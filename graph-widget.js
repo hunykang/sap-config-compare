@@ -77,13 +77,13 @@ function initGraph(canvasId, opts) {
   let dragging = null, selected = null, hover = null;
   let ox = 0, oy = 0, scale = 1;
   applyFilter();
-  // 시뮬레이션 냉각: 시간이 지나면 힘이 약해져 레이아웃이 완전히 멈춤 (d3 alpha decay 방식)
+  // 시뮬레이션 냉각: 처음엔 자연스럽게 움직이다가 점점 식어서 완전히 멈춤 (d3 alpha decay 방식)
   let alpha = 1;
-  const ALPHA_MIN = 0.02, ALPHA_DECAY = 0.03;
+  const ALPHA_MIN = 0.02, ALPHA_DECAY = 0.015;
   function reheat() { alpha = 1; }
-  function tick() {
+  function tick(noDecay) {
     if (alpha < ALPHA_MIN) return;  // 식었으면 물리 연산 스킵
-    alpha *= (1 - ALPHA_DECAY);
+    if (!noDecay) alpha *= (1 - ALPHA_DECAY);
     const cx = (W / 2 - ox) / scale, cy = (H / 2 - oy) / scale;
     for (let i = 0; i < nodes.length; i++) {
       const a = nodes[i];
@@ -214,7 +214,8 @@ function initGraph(canvasId, opts) {
   }, { passive: false });
 
   resize();
-  for (let i = 0; i < (opts.ticks || 120); i++) tick();
+  for (let i = 0; i < (opts.ticks || 120); i++) tick(true);  // 초기 레이아웃은 감쇠 없이
+  alpha = 1;  // 화면에 보이는 애니메이션은 최대 에너지에서 시작해 약 4초간 자연스럽게 식음
   loop();
   function selectNode(n) {
     selected = n || null;
