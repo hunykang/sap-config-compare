@@ -38,10 +38,34 @@ function initGraph(canvasId, opts) {
     if (/결산/.test(tags)) link('c-fcc');
   });
 
+  // ---- 필터 / 포커스 / 검색 ----
+  const adj = {};
+  function buildAdj() {
+    nodes.forEach(n => adj[n.id] = new Set());
+    edges.forEach(e => {
+      if (nodeById[e.a] && nodeById[e.b]) { adj[e.a].add(e.b); adj[e.b].add(e.a); }
+    });
+  }
+  buildAdj();
+  const filter = { area: '', showConcepts: true, focusOnly: false };
+  function isNeighborOrSelf(n) {
+    return !selected || n.id === selected.id || (adj[selected.id] && adj[selected.id].has(n.id));
+  }
+  function applyFilter() {
+    nodes.forEach(n => {
+      let hide = false;
+      const isEntry = n.ref.kind === 'entry';
+      if (isEntry && filter.area && n.ref.entry.area !== filter.area) hide = true;
+      if (!isEntry && !filter.showConcepts) hide = true;
+      if (filter.focusOnly && !isNeighborOrSelf(n)) hide = true;
+      n.hidden = hide;
+      n.match = false;
+    });
+  }
+
   const canvas = document.getElementById(canvasId);
   const ctx = canvas.getContext('2d');
-  let W = 0, H = 0, dpr = Math.min(2, window.devicePixelRatio || 1);
-  function resize() {
+  let W = 0, H = 0, dpr = Math.min(2, window.devicePixelRatio || 1);  function resize() {
     const r = canvas.getBoundingClientRect();
     W = Math.max(300, r.width); H = HEIGHT;
     canvas.width = W * dpr; canvas.height = H * dpr;
@@ -52,12 +76,15 @@ function initGraph(canvasId, opts) {
 
   let dragging = null, selected = null, hover = null;
   let ox = 0, oy = 0, scale = 1;
+  applyFilter();
   function tick() {
     const cx = (W / 2 - ox) / scale, cy = (H / 2 - oy) / scale;
     for (let i = 0; i < nodes.length; i++) {
       const a = nodes[i];
+      if (a.hidden) continue;
       for (let j = i + 1; j < nodes.length; j++) {
         const b = nodes[j];
+        if (b.hidden) continue;
         let dx = a.x - b.x, dy = a.y - b.y;
         let d2 = dx * dx + dy * dy || 1;
         const f = Math.min(9000 / d2, 8);
@@ -69,7 +96,7 @@ function initGraph(canvasId, opts) {
     }
     edges.forEach(e => {
       const a = nodeById[e.a], b = nodeById[e.b];
-      if (!a || !b) return;
+      if (!a || !b || a.hidden || b.hidden) return;
       const dx = b.x - a.x, dy = b.y - a.y;
       const d = Math.hypot(dx, dy) || 1;
       const f = (d - 130) * 0.012;
@@ -77,7 +104,7 @@ function initGraph(canvasId, opts) {
       a.vx += fx; a.vy += fy; b.vx -= fx; b.vy -= fy;
     });
     nodes.forEach(n => {
-      if (n === dragging) return;
+      if (n === dragging || n.hidden) return;
       n.vx += (cx - n.x) * 0.004;
       n.vy += (cy - n.y) * 0.004;
       n.vx *= 0.82; n.vy *= 0.82;
@@ -91,7 +118,7 @@ function initGraph(canvasId, opts) {
     ctx.translate(ox, oy); ctx.scale(scale, scale);
     edges.forEach(e => {
       const a = nodeById[e.a], b = nodeById[e.b];
-      if (!a || !b) return;
+      if (!a || !b || a.hidden || b.hidden) return;
       const hot = selected && (e.a === selected.id || e.b === selected.id);
       ctx.strokeStyle = hot ? '#0b5fff' : '#d7dce3';
       ctx.lineWidth = hot ? 2 : 1;
@@ -102,6 +129,7 @@ function initGraph(canvasId, opts) {
       }
     });
     nodes.forEach(n => {
+      if (n.hidden) return;
       const r = n.type === 'entry' ? 9 : 14;
       ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, 7);
       ctx.fillStyle = TYPE_COLOR[n.type] || '#475569';
@@ -110,6 +138,7 @@ function initGraph(canvasId, opts) {
       ctx.fill(); ctx.globalAlpha = 1;
       if (n === selected) { ctx.strokeStyle = '#0b5fff'; ctx.lineWidth = 3; ctx.stroke(); }
       if (n === hover) { ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2; ctx.stroke(); }
+      if (n.match) { ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 3; ctx.stroke(); }
       ctx.fillStyle = '#1a1a1a'; ctx.font = (n.type === 'entry' ? 11 : 12) + 'px sans-serif';
       ctx.textAlign = 'center';
       ctx.fillText(n.label, n.x, n.y + r + 14);
@@ -127,6 +156,7 @@ function initGraph(canvasId, opts) {
     const p = toWorld(mx, my);
     let best = null, bd = 1e9;
     nodes.forEach(n => {
+      if (n.hidden) return;
       const d = Math.hypot(n.x - p.x, n.y - p.y);
       if (d < 24 && d < bd) { bd = d; best = n; }
     });
@@ -160,6 +190,7 @@ function initGraph(canvasId, opts) {
     if (!moved) {
       const n = pick(e.clientX, e.clientY);
       selected = n;
+      applyFilter();
       onSelect(n);
     }
     dragging = null; downPos = null; panStart = null;
@@ -172,5 +203,26 @@ function initGraph(canvasId, opts) {
   resize();
   for (let i = 0; i < (opts.ticks || 120); i++) tick();
   loop();
-  return { nodes, nodeById, edges };
+  function selectNode(n) {
+    selected = n || null;
+    applyFilter();
+    onSelect(selected);
+  }
+  function search(q) {
+    q = (q || '').trim().toLowerCase();
+    nodes.forEach(n => n.match = false);
+    if (!q) return [];
+    const hits = nodes.filter(n => !n.hidden && (n.label || '').toLowerCase().includes(q));
+    hits.forEach(n => n.match = true);
+    return hits;
+  }
+  return {
+    nodes, nodeById, edges,
+    setArea(a) { filter.area = a || ''; applyFilter(); },
+    setShowConcepts(v) { filter.showConcepts = !!v; applyFilter(); },
+    setFocusOnly(v) { filter.focusOnly = !!v; applyFilter(); },
+    clearSelection() { selectNode(null); },
+    search, selectNode,
+    visibleCount() { return nodes.filter(n => !n.hidden).length; }
+  };
 }

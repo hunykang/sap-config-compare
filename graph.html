@@ -34,6 +34,14 @@
     <span><span class="dot" style="background:#0a7a42"></span>앱</span>
     <span><span class="dot" style="background:#475569"></span>비교 항목</span>
   </div>
+  <div class="g-controls">
+    <div class="rel-chips" id="area-chips" style="margin-top:0"></div>
+    <div class="g-toggles">
+      <label><input type="checkbox" id="tgl-concepts" checked> 개념 노드</label>
+      <label><input type="checkbox" id="tgl-focus"> 선택 시 이웃만 보기</label>
+      <span class="g-search"><input type="search" id="g-search" placeholder="노드 검색 (예: 전표유형)"><span id="g-count"></span></span>
+    </div>
+  </div>
   <div class="graph-box" style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff">
     <canvas id="graph-canvas" style="width:100%;display:block;cursor:grab;touch-action:pan-y"></canvas>
   </div>
@@ -68,6 +76,33 @@
     slide: true,
     afterEntry: function (e) {
       return `<p style="margin-top:12px;font-size:13px"><a href="compare.html?q=${encodeURIComponent(e.item)}">📊 비교표에서 보기 →</a> · <a href="index.html#${e.id}">📋 개요 리스트에서 보기 →</a></p>`;
+    }
+  });
+  // 영역 필터 칩
+  const areas = ['전체', '조직구조', 'G/L', 'AP', 'AR', '은행', '자산회계', '세금', 'CO', '타모듈 연결', '결산'];
+  const chipsBox = document.getElementById('area-chips');
+  chipsBox.innerHTML = areas.map((a, i) =>
+    `<button data-area="${a === '전체' ? '' : a}" class="${i === 0 ? 'on' : ''}">${a}</button>`).join('');
+  chipsBox.addEventListener('click', ev => {
+    const b = ev.target.closest('button');
+    if (!b) return;
+    chipsBox.querySelectorAll('button').forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+    g.setArea(b.dataset.area);
+  });
+  document.getElementById('tgl-concepts').addEventListener('change', ev => g.setShowConcepts(ev.target.checked));
+  document.getElementById('tgl-focus').addEventListener('change', ev => g.setFocusOnly(ev.target.checked));
+  // 노드 검색
+  const sInput = document.getElementById('g-search');
+  const sCount = document.getElementById('g-count');
+  sInput.addEventListener('input', () => {
+    const hits = g.search(sInput.value);
+    sCount.textContent = sInput.value.trim() ? hits.length + '개' : '';
+  });
+  sInput.addEventListener('keydown', ev => {
+    if (ev.key === 'Enter') {
+      const hits = g.search(sInput.value);
+      if (hits.length) g.selectNode(hits[0]);
     }
   });
 })();

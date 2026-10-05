@@ -119,6 +119,16 @@ p.lead { color: var(--muted); }
 td.rel { min-width: 130px; }
 tr.flash td { animation: rowflash 2s ease; }
 @keyframes rowflash { 0%, 60% { background: #fff7d6; } 100% { background: transparent; } }
+/* 지식그래프 컨트롤 */
+.g-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 10px 0; }
+.g-controls .rel-chips button.on { border-color: #0b5fff; color: #0b5fff; background: #eef4ff; font-weight: 700; }
+.g-toggles { display: flex; gap: 14px; align-items: center; font-size: 13.5px; margin-left: auto; flex-wrap: wrap; }
+.g-toggles label { display: flex; gap: 5px; align-items: center; cursor: pointer; white-space: nowrap; }
+.g-search { display: flex; gap: 6px; align-items: center; }
+.g-search input { border: 1px solid var(--line); border-radius: 20px; padding: 5px 12px; font-size: 13px; width: 170px; }
+.g-search input:focus { outline: none; border-color: #0b5fff; }
+#g-count { font-size: 12.5px; color: #666; min-width: 30px; }
+@media (max-width: 760px) { .g-toggles { margin-left: 0; } }
 /* 전체화면 그래프용 슬라이딩 패널 */
 .graph-slide-panel {
   position: fixed; top: 0; right: 0; z-index: 60;
