@@ -20,14 +20,15 @@ const GLOSSARY = [
   "kr": "회사",
   "en": "Company",
   "abbr": "",
-  "desc": "여러 회사코드를 묶는 최상위 조직 단위. 연결재무제표의 기준이 된다.",
+  "desc": "여러 회사코드를 묶는 최상위 조직 단위. 연결재무제표의 기준이 된다. 회사 간 거래가 일어나면 전표에 상대 회사(Trading Partner, 거래상대방)를 찍어 두어야 한다. 이 정보가 있어야 연결 결산 때 그룹 내부거래를 찾아내 상계할 수 있다.",
   "area": "org",
   "items": [
    "org-company",
    "org-ccode-company"
   ],
   "terms": [
-   "company-code"
+   "company-code",
+   "intercompany"
   ]
  },
  {
@@ -1120,7 +1121,7 @@ const GLOSSARY = [
   "kr": "GR/IR",
   "en": "GR/IR Clearing",
   "abbr": "",
-  "desc": "입고(GR)는 됐는데 송장(IR)이 안 온 상태를 묶어 두는 중간계정이다. 입고와 송장이 모두 들어오면 반제되어 잔액이 0이 된다. 월말에 미결 잔액을 꼭 확인해야 한다.",
+  "desc": "입고(GR)와 송장(IR)의 시차 때문에 생기는 중간계정이다. 입고는 됐는데 송장이 안 온 경우(GNB)와 송장은 왔는데 입고가 안 된 경우(BNG) 모두 GR/IR에 쌓인다. 입고와 송장이 모두 들어오면 반제되어 잔액이 0이 된다. 월말에 미결 잔액을 꼭 확인해야 한다.",
   "area": "xmod",
   "items": [
    "xmod-griradj",
