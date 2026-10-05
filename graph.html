@@ -34,8 +34,10 @@
     <span><span class="dot" style="background:#0a7a42"></span>앱</span>
     <span><span class="dot" style="background:#475569"></span>비교 항목</span>
   </div>
-  <div class="graph-layout">
-    <canvas id="graph-canvas"></canvas>
+  <div class="top-graph-layout">
+    <div class="graph-box" style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff">
+      <canvas id="graph-canvas" style="width:100%;display:block;cursor:grab"></canvas>
+    </div>
     <aside class="graph-side" id="side">
       <h3>노드를 클릭하세요</h3>
       <p class="lead">선택한 객체의 ECC / PCE / Public 비교가 여기에 표시됩니다.</p>
@@ -54,39 +56,18 @@
 
 <script src="data.js"></script>
 <script src="graph-widget.js"></script>
+<script src="graph-panel.js"></script>
 <script>
 (function () {
   const side = document.getElementById('side');
-  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  let panelCtl = null;
   const g = initGraph('graph-canvas', {
-    height: 520,
-    onSelect: function (n) {
-      if (!n) {
-        side.innerHTML = '<h3>노드를 클릭하세요</h3><p class="lead">선택한 객체의 ECC / PCE / Public 비교가 여기에 표시됩니다.</p>';
-        return;
-      }
-      if (n.ref.kind === 'entry') {
-        const e = n.ref.entry;
-        side.innerHTML = `
-          <h3>${esc(e.item)}</h3>
-          <div class="meta" style="font-size:12px;color:#666;margin-bottom:10px">${esc(e.area)} · ${e.tags.map(esc).join(', ')}</div>
-          <p><span class="badge ecc">ECC</span><br>${esc(e.ecc)}</p>
-          <p><span class="badge pce">PCE</span><br>${esc(e.pce)}</p>
-          <p><span class="badge pub">Public</span><br>${esc(e.pub)}</p>
-          <p style="margin-top:10px"><strong>달라지는 부분</strong><br>${esc(e.diff)}</p>
-          ${e.help.length ? `<p class="src">${e.help.map(u => `<a href="${u}" target="_blank" rel="noopener">SAP 공식 ↗</a>`).join('<br>')}</p>` : ''}
-          <p style="margin-top:12px"><a href="compare.html?q=${encodeURIComponent(e.item)}">비교표에서 보기 →</a></p>`;
-      } else {
-        const linked = g.edges.filter(e => e.a === n.id || e.b === n.id)
-          .map(e => g.nodeById[e.a === n.id ? e.b : e.a]).filter(Boolean);
-        const uniq = [...new Map(linked.map(x => [x.id, x])).values()];
-        side.innerHTML = `
-          <h3>${esc(n.label)}</h3>
-          <div class="meta" style="font-size:12px;color:#666;margin-bottom:10px">개념 노드 · 연결 ${uniq.length}개</div>
-          <p><strong>연결된 항목</strong></p>
-          ${uniq.slice(0, 20).map(x => `<p style="margin:4px 0"><a href="index.html#${x.id.replace(/^e-/, '')}">${esc(x.label)}</a></p>`).join('')}
-        `;
-      }
+    height: 560,
+    onSelect: function (n) { if (panelCtl) panelCtl.onSelect(n); }
+  });
+  panelCtl = initGraphPanel(g, side, {
+    afterEntry: function (e) {
+      return `<p style="margin-top:12px;font-size:13px"><a href="compare.html?q=${encodeURIComponent(e.item)}">📊 비교표에서 보기 →</a> · <a href="index.html#${e.id}">📋 개요 리스트에서 보기 →</a></p>`;
     }
   });
 })();
