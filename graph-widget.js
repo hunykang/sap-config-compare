@@ -77,13 +77,7 @@ function initGraph(canvasId, opts) {
   let dragging = null, selected = null, hover = null;
   let ox = 0, oy = 0, scale = 1;
   applyFilter();
-  // 시뮬레이션 냉각: 처음엔 자연스럽게 움직이다가 점점 식어서 완전히 멈춤 (d3 alpha decay 방식)
-  let alpha = 1;
-  const ALPHA_MIN = 0.02, ALPHA_DECAY = 0.015;
-  function reheat() { alpha = 1; }
-  function tick(noDecay) {
-    if (alpha < ALPHA_MIN) return;  // 식었으면 물리 연산 스킵
-    if (!noDecay) alpha *= (1 - ALPHA_DECAY);
+  function tick() {
     const cx = (W / 2 - ox) / scale, cy = (H / 2 - oy) / scale;
     for (let i = 0; i < nodes.length; i++) {
       const a = nodes[i];
@@ -93,7 +87,7 @@ function initGraph(canvasId, opts) {
         if (b.hidden || b.pinned) continue;
         let dx = a.x - b.x, dy = a.y - b.y;
         let d2 = dx * dx + dy * dy || 1;
-        const f = Math.min(9000 / d2, 8) * alpha;
+        const f = Math.min(9000 / d2, 8);
         const d = Math.sqrt(d2);
         dx /= d; dy /= d;
         a.vx += dx * f; a.vy += dy * f;
@@ -105,15 +99,15 @@ function initGraph(canvasId, opts) {
       if (!a || !b || a.hidden || b.hidden || (a.pinned && b.pinned)) return;
       const dx = b.x - a.x, dy = b.y - a.y;
       const d = Math.hypot(dx, dy) || 1;
-      const f = (d - 130) * 0.012 * alpha;
+      const f = (d - 130) * 0.012;
       const fx = dx / d * f, fy = dy / d * f;
       if (!a.pinned) { a.vx += fx; a.vy += fy; }
       if (!b.pinned) { b.vx -= fx; b.vy -= fy; }
     });
     nodes.forEach(n => {
       if (n === dragging || n.hidden || n.pinned) return;
-      n.vx += (cx - n.x) * 0.004 * alpha;
-      n.vy += (cy - n.y) * 0.004 * alpha;
+      n.vx += (cx - n.x) * 0.0004;
+      n.vy += (cy - n.y) * 0.0004;
       n.vx *= 0.82; n.vy *= 0.82;
       n.x += n.vx; n.y += n.vy;
     });
@@ -174,7 +168,7 @@ function initGraph(canvasId, opts) {
   canvas.addEventListener('pointerdown', e => {
     const n = pick(e.clientX, e.clientY);
     downPos = { x: e.clientX, y: e.clientY }; moved = false;
-    if (n) { dragging = n; reheat(); }
+    if (n) { dragging = n; }
     else { panStart = { x: e.clientX, y: e.clientY, ox, oy }; }
     canvas.setPointerCapture(e.pointerId);
     canvas.style.cursor = 'grabbing';
@@ -206,7 +200,7 @@ function initGraph(canvasId, opts) {
   });
   canvas.addEventListener('dblclick', e => {
     const n = pick(e.clientX, e.clientY);
-    if (n) { n.pinned = false; reheat(); }  // 더블클릭으로 고정 해제
+    if (n) { n.pinned = false; }  // 더블클릭으로 고정 해제
   });
   canvas.addEventListener('wheel', e => {
     e.preventDefault();
@@ -214,8 +208,7 @@ function initGraph(canvasId, opts) {
   }, { passive: false });
 
   resize();
-  for (let i = 0; i < (opts.ticks || 120); i++) tick(true);  // 초기 레이아웃은 감쇠 없이
-  alpha = 1;  // 화면에 보이는 애니메이션은 최대 에너지에서 시작해 약 4초간 자연스럽게 식음
+  for (let i = 0; i < (opts.ticks || 120); i++) tick();
   loop();
   function selectNode(n) {
     selected = n || null;
@@ -232,11 +225,11 @@ function initGraph(canvasId, opts) {
   }
   return {
     nodes, nodeById, edges,
-    setArea(a) { filter.area = a || ''; applyFilter(); reheat(); },
-    setShowConcepts(v) { filter.showConcepts = !!v; applyFilter(); reheat(); },
-    setFocusOnly(v) { filter.focusOnly = !!v; applyFilter(); reheat(); },
+    setArea(a) { filter.area = a || ''; applyFilter(); },
+    setShowConcepts(v) { filter.showConcepts = !!v; applyFilter(); },
+    setFocusOnly(v) { filter.focusOnly = !!v; applyFilter(); },
     clearSelection() { selectNode(null); },
-    unpinAll() { nodes.forEach(n => n.pinned = false); reheat(); },
+    unpinAll() { nodes.forEach(n => n.pinned = false); },
     search, selectNode,
     visibleCount() { return nodes.filter(n => !n.hidden).length; }
   };
