@@ -1,6 +1,6 @@
 // 비교 가이드 데이터 (ECC / PCE / Public) — PCE 기준
-// 원천: config_master.json (EUG 203개 대조 + PCE 스크립트 56개 + 오마주 목차)
-// Public "확인 중" 항목은 Public 매뉴얼 입수 후 보완 예정
+// 원천: config_master.json — 빌드 스크립트 build_data_js.py 가 자동 생성
+// Public "확인 중" 항목은 추후 보완 예정
 
 const GUIDE_DATA = [
 {
