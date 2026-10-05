@@ -52,7 +52,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "SAP에서 '계정'은 G/L계정만이 아니라 고객·공급처·자산·자재까지 포함한 넓은 개념이다. 이 다섯 가지를 구분하는 코드가 계정유형이며, 전표의 성격이 여기서 갈린다.",
   "area": "aa",
-  "items": [],
+  "items": [
+   "gl-acct-group"
+  ],
   "terms": [
    "gl-account",
    "business-partner",
@@ -82,7 +84,10 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "비용이 어느 코스트센터·오더에 귀속되는지 찍어주는 정보다. FI 전표 한 줄에 CO 귀속 정보를 함께 넣는 것이 계정지정이다.",
   "area": "co",
-  "items": [],
+  "items": [
+   "xmod-obyc",
+   "xmod-assetpo"
+  ],
   "terms": [
    "cost-center",
    "internal-order",
@@ -96,7 +101,10 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "기본 계정지정 외에 보조적으로 한 번 더 귀속을 나누는 기능이다. 예를 들어 한 비용을 두 부서에 나눠 보고 싶을 때 쓴다.",
   "area": "gl",
-  "items": [],
+  "items": [
+   "xmod-obyc",
+   "gl-docsplit"
+  ],
   "terms": [
    "account-assignment",
    "cost-center"
@@ -127,7 +135,10 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "돈이나 물건이 잠시 거쳐 가는 계정이다. GR/IR처럼 입고와 송장이 따로 들어올 때, 두 쪽이 맞을 때까지 금액을 임시로 묶어 둔다.",
   "area": "gl",
-  "items": [],
+  "items": [
+   "gl-clear-prep",
+   "close-autoclear"
+  ],
   "terms": [
    "gr-ir",
    "clearing",
@@ -191,7 +202,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "전표의 머리 부분이다. 전표일자·전기일자·전표유형·통화처럼 전표 전체에 공통으로 적용되는 정보가 들어간다.",
   "area": "gl",
-  "items": [],
+  "items": [
+   "gl-doc-type"
+  ],
   "terms": [
    "document",
    "line-item",
@@ -250,7 +263,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "전표를 만들 때 지켜야 하는 기본 규칙이다. 차변 합계와 대변 합계가 맞아야 하고, 한 전표는 하나의 회사코드에만 속한다는 식의 원칙들이다.",
   "area": "gl",
-  "items": [],
+  "items": [
+   "gl-docsplit"
+  ],
   "terms": [
    "document",
    "line-item",
@@ -363,7 +378,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "전표를 구성하는 한 줄 한 줄의明細이다. 각 개별항목에는 계정·금액·전기키·텍스트 같은 정보가 들어간다.",
   "area": "gl",
-  "items": [],
+  "items": [
+   "gl-posting-key"
+  ],
   "terms": [
    "document",
    "posting-key",
@@ -377,7 +394,10 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "나중에 반제로 정리해야 하는 항목들을 '미결' 상태로 따로 관리하는 방식이다. 고객·공급처 계정과 GR/IR 계정이 대표적이며, 미결항목이 있는 계정은 잔액이 아니라 미결 합계로 관리된다.",
   "area": "gl",
-  "items": [],
+  "items": [
+   "gl-clear-prep",
+   "close-autoclear"
+  ],
   "terms": [
    "clearing",
    "reconciliation-account",
@@ -409,7 +429,10 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "일반 거래와 성격이 다른 거래(선금·어음 등)를 구분하는 한 자리 코드다. 같은 고객이라도 선금은 별도 조정계정에 쌓이게 하려는 장치다.",
   "area": "bank",
-  "items": [],
+  "items": [
+   "ap-vendor-group",
+   "ar-cust-group"
+  ],
   "terms": [
    "special-gl-account",
    "down-payment",
@@ -423,7 +446,10 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "선금·어음처럼 일반 채권·채무와 따로 보고 싶은 거래를 모아 두는 별도 조정계정이다. 특수G/L표시자와 세트로 움직인다.",
   "area": "bank",
-  "items": [],
+  "items": [
+   "ap-recon",
+   "ar-recon"
+  ],
   "terms": [
    "special-gl-indicator",
    "down-payment",
@@ -437,7 +463,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "참고용으로만 적어 두는 항목이다. 금액 집계에는 영향을 주지 않고, 나중에 실제 전표가 들어오면 연결해서 볼 수 있다.",
   "area": "xmod",
-  "items": [],
+  "items": [
+   "ar-dispute"
+  ],
   "terms": [
    "open-item-management",
    "clearing",
@@ -451,7 +479,10 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "반제할 때 금액이 다 맞지 않으면, 차액을 새 미결항목으로 남기는 방식이다. 예를 들어 100 중 70만 입금되면 70은 반제되고 30이 잔여항목으로 남는다.",
   "area": "gl",
-  "items": [],
+  "items": [
+   "close-autoclear",
+   "gl-clear-prep"
+  ],
   "terms": [
    "clearing",
    "partial-payment",
@@ -525,7 +556,10 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "돈을 보낼 때 '이 돈은 어떤 송장들에 대한 지급이다'라고 알려주는 명세서다. 받는 쪽에서 반제할 때 대조 기준으로 쓴다.",
   "area": "bank",
-  "items": [],
+  "items": [
+   "ap-bank-determ",
+   "ap-paymethod-ccode"
+  ],
   "terms": [
    "payment-method",
    "clearing"
@@ -539,7 +573,8 @@ const GLOSSARY = [
   "desc": "월말에 외화로 된 채권·채무를 마감 환율로 다시 평가하는 작업이다. 환율 차이만큼 평가손익이 생기며, 다음 달 초에 자동으로 역분개된다.",
   "area": "close",
   "items": [
-   "close-fxval"
+   "close-fxval",
+   "gl-fx-diff-acct"
   ],
   "terms": [
    "document-currency",
@@ -554,7 +589,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "회사코드가 쓰는 자국 통화다. 전표통화가 달러여도 회사코드 통화가 원화면, 원화 금액이 함께 계산되어 장부에 남는다.",
   "area": "gl",
-  "items": [],
+  "items": [
+   "gl-global-param"
+  ],
   "terms": [
    "document-currency",
    "foreign-currency-valuation",
@@ -599,7 +636,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "자주 치는 전표의 양식을 저장해 둔 것이다. 실제 전기되지는 않고, 필요할 때 불러와 금액·날짜만 바꿔서 쓴다.",
   "area": "gl",
-  "items": [],
+  "items": [
+   "close-recurr"
+  ],
   "terms": [
    "document",
    "recurring-entry",
@@ -641,7 +680,11 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "고객·공급처·자산처럼 낱개 단위로 자세히 관리하는 보조 장부다. 보조원장의 합계는 조정계정을 통해 총계정원장에 자동 반영된다.",
   "area": "aa",
-  "items": [],
+  "items": [
+   "ap-recon",
+   "ar-recon",
+   "aa-acctdet"
+  ],
   "terms": [
    "reconciliation-account",
    "general-ledger",
@@ -690,7 +733,10 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "미결항목 금액의 일부만 먼저 지급하는 것이다. 원래 항목은 미결로 남고 지급액만큼 별도 항목이 생긴다. 잔여항목 방식과 달리 원 항목을 쪼개지 않는다.",
   "area": "bank",
-  "items": [],
+  "items": [
+   "ar-overunder",
+   "ar-cashdisc"
+  ],
   "terms": [
    "clearing",
    "residual-item",
@@ -1162,7 +1208,8 @@ const GLOSSARY = [
   "items": [
    "tax-code",
    "tax-account",
-   "tax-procedure"
+   "tax-procedure",
+   "tax-nontax"
   ],
   "terms": [
    "gl-account",
@@ -1555,7 +1602,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "표준원가로 미리 잡아둔 원가와 실제로 든 비용의 차이를 계산해 자재와 제품의 진짜 원가를 다시 매기는 결산 절차. 자재원장(ML)과 함께 돌리며 재고와 매출원가를 실제에 가깝게 고친다.",
   "area": "co",
-  "items": [],
+  "items": [
+   "xmod-ml"
+  ],
   "terms": [
    "material-ledger",
    "standard-cost-valuation",
@@ -1569,7 +1618,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "계획할 때 정해둔 작업 단가가 아니라, 결산 시점에 모인 실제 비용으로 작업 단가를 다시 계산하는 절차. 이렇게 구한 실제 단가로 생산오더 원가를 확정한다.",
   "area": "co",
-  "items": [],
+  "items": [
+   "co-acttype"
+  ],
   "terms": [
    "activity-type",
    "cost-center",
@@ -1583,7 +1634,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "코스트센터에 뭉쳐 있는 실제 비용을 어떤 생산 활동에 얼마나 썼는지에 따라 나누는 절차. 나눠야 활동별 실제 단가를 구할 수 있어 제조원가 결산의 첫 단추다.",
   "area": "co",
-  "items": [],
+  "items": [
+   "xmod-ml"
+  ],
   "terms": [
    "cost-center",
    "activity-type",
@@ -1639,7 +1692,9 @@ const GLOSSARY = [
   "abbr": "CCA",
   "desc": "비용이 어디서 발생했는지 부서(코스트센터) 단위로 모아 관리하는 관리회계. 제조원가 결산은 여기서 시작한다. 비용 집계가 끝나야 배부·간접비·차이분석이 이어진다.",
   "area": "co",
-  "items": [],
+  "items": [
+   "co-ccenter"
+  ],
   "terms": [
    "cost-center",
    "cost-element",
@@ -1653,7 +1708,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "실제 비용은 코스트센터에 그대로 두고, 참고용으로만 금액을 따로 모아보는 관리용 오더. 부산물 원가 흐름처럼 실제 배부와 별개로 통계를 내고 싶을 때 쓴다.",
   "area": "co",
-  "items": [],
+  "items": [
+   "co-order"
+  ],
   "terms": [
    "internal-order",
    "cost-center"
@@ -1708,7 +1765,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "부서·프로젝트별로 쓸 수 있는 돈의 한도를 미리 정하고 집행을 통제하는 관리. S/4HANA에서는 내부오더나 프로젝트에 예산을 걸어 초과 집행을 막는다.",
   "area": "co",
-  "items": [],
+  "items": [
+   "co-version"
+  ],
   "terms": [
    "internal-order",
    "cost-center"
@@ -1777,7 +1836,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "자재가 움직일 때(입고·출고·이동) 상대 계정을 자동으로 정해주는 OBYC의 대표 트랜잭션 키. 평가클래스와 이동유형을 보고 재고·소비·차이 계정을 골라 전표를 만든다.",
   "area": "xmod",
-  "items": [],
+  "items": [
+   "xmod-obyc"
+  ],
   "terms": [
    "obyc",
    "material-ledger",
@@ -1791,7 +1852,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "공급처가 보낸 청구서와 실제 입고 내역을 대조해 지급할 금액을 확정하는 절차(MIRO). 입고·발주·송장 세 가지를 맞추는 3자 대조로 틀린 청구를 걸러낸다.",
   "area": "xmod",
-  "items": [],
+  "items": [
+   "close-grir"
+  ],
   "terms": [
    "gr-ir",
    "automatic-payment",
@@ -1805,7 +1868,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "자재 이동유형을 몇 개씩 묶어 가격차이 계정을 다르게 쓰는 설정. 자재원장 결산 때 이동유형별로 차이 계정을 나누고 싶을 때 쓴다.",
   "area": "xmod",
-  "items": [],
+  "items": [
+   "xmod-assetpo"
+  ],
   "terms": [
    "material-ledger",
    "price-variance",
@@ -1847,7 +1912,10 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "자재가 들어오고 나가는 흐름을 금액으로 기록해 재고자산 가치를 관리하는 회계. 입고는 재고자산 증가, 출고는 매출원가 또는 소비로 잡힌다.",
   "area": "xmod",
-  "items": [],
+  "items": [
+   "xmod-obyc",
+   "xmod-ml"
+  ],
   "terms": [
    "material-ledger",
    "gbb",
@@ -1861,7 +1929,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "자재를 실제 가격이 아니라 미리 정한 표준가격으로 평가하는 방식. 표준과 실제의 차이는 가격차이로 모아 자재원장에서 나중에 정산한다.",
   "area": "xmod",
-  "items": [],
+  "items": [
+   "xmod-ml"
+  ],
   "terms": [
    "material-ledger",
    "price-variance",
@@ -1875,7 +1945,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "표준가격과 실제 매입·제조 가격의 차이. 자재원장 결산 때 이 차이를 재고와 매출원가에 나눠 실제에 가깝게 고친다.",
   "area": "xmod",
-  "items": [],
+  "items": [
+   "xmod-obyc"
+  ],
   "terms": [
    "standard-cost-valuation",
    "material-ledger",
@@ -1931,7 +2003,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "CKMLCP를 돌려 자재별 실제 단가를 확정하는 월 결산 절차. 가격차이를 재고와 소비에 배부하고, 다단계로 올려 최종 제품 원가를 확정한다.",
   "area": "close",
-  "items": [],
+  "items": [
+   "xmod-ml"
+  ],
   "terms": [
    "material-ledger",
    "actual-costing",
@@ -1945,7 +2019,9 @@ const GLOSSARY = [
   "abbr": "COC",
   "desc": "자재원장 결산에서 가격차이를 이미 쓴(소비된) 수량에 나눠 실제 원가로 고치는 단계. 기말재고가 아닌 당기 소비분에 대한 차이를 손익 쪽에 반영한다.",
   "area": "close",
-  "items": [],
+  "items": [
+   "xmod-ml"
+  ],
   "terms": [
    "material-ledger-closing",
    "price-variance",
@@ -1959,7 +2035,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "한 달 동안 공장에서 든 비용을 모아 제품 원가를 확정하는 결산. 코스트센터 마감→간접비→차이분석→자재원장 순서로 돌린다.",
   "area": "close",
-  "items": [],
+  "items": [
+   "xmod-ml"
+  ],
   "terms": [
    "production-costing",
    "material-ledger-closing",
@@ -1973,7 +2051,10 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "결산 때 해야 할 일(감가상각·외화평가·GR/IR조정 등)의 진행 상태를 한 화면에서 보는 기능. 누가 어디까지 했는지 보여줘 결산을 빨리 닫게 돕는다.",
   "area": "close",
-  "items": [],
+  "items": [
+   "close-cockpit",
+   "close-jobs"
+  ],
   "terms": [
    "closing-cockpit",
    "accrual-engine",
@@ -1987,7 +2068,10 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "반복되는 결산 작업을 스케줄로 돌려 사람이 손대지 않게 하는 것. 결산콕핏의 작업 목록을 자동 실행해 결산 기간을 단축한다.",
   "area": "close",
-  "items": [],
+  "items": [
+   "close-cockpit",
+   "close-jobs"
+  ],
   "terms": [
    "closing-cockpit",
    "recurring-entry",
@@ -2017,7 +2101,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "이미 쓰고 있는 자산에 가치를 올리는 큰 수리를 했을 때 그 돈을 비용이 아니라 자산 원가에 얹는 처리. 내용연수가 늘어나는 효과가 있다.",
   "area": "aa",
-  "items": [],
+  "items": [
+   "aa-transtype"
+  ],
   "terms": [
    "asset-class",
    "depreciation-key",
@@ -2203,7 +2289,10 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "탄소 배출량을 재무 데이터와 함께 관리하는 원장 개념. 코스트센터·손익센터 단위로 탄소 비용을 모아 ESG 보고의 근거로 쓴다.",
   "area": "gl",
-  "items": [],
+  "items": [
+   "gl-ledger",
+   "gl-ledger-group"
+  ],
   "terms": [
    "ledger",
    "cost-center",
@@ -2217,7 +2306,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "원장마다 어떤 회계 기준(로컬/IFRS 등)으로 기록할지 정하는 S/4HANA 설정. 한 번 저장하면 바꾸기 어려워 처음 설계가 중요하다.",
   "area": "gl",
-  "items": [],
+  "items": [
+   "gl-ledger"
+  ],
   "terms": [
    "ledger",
    "ledger-group",
@@ -2245,7 +2336,10 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "물건을 넘기거나 서비스를 다 했을 때 비로소 매출로 잡는 원칙. 대금을 먼저 받았으면 선수금(부채)으로 두었다가 인도 시점에 매출로 돌린다.",
   "area": "gl",
-  "items": [],
+  "items": [
+   "xmod-vkoa",
+   "xmod-sdbill"
+  ],
   "terms": [
    "document",
    "down-payment",
