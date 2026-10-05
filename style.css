@@ -114,6 +114,11 @@ p.lead { color: var(--muted); }
 .rel-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
 .rel-chips button { border: 1px solid var(--line); background: #f8fafc; border-radius: 20px; padding: 4px 10px; font-size: 12.5px; cursor: pointer; }
 .rel-chips button:hover { border-color: #0b5fff; color: #0b5fff; }
+.rel-chips a { border: 1px solid var(--line); background: #f8fafc; border-radius: 20px; padding: 4px 10px; font-size: 12.5px; cursor: pointer; text-decoration: none; color: inherit; display: inline-block; }
+.rel-chips a:hover { border-color: #0b5fff; color: #0b5fff; }
+td.rel { min-width: 130px; }
+tr.flash td { animation: rowflash 2s ease; }
+@keyframes rowflash { 0%, 60% { background: #fff7d6; } 100% { background: transparent; } }
 /* 전체화면 그래프용 슬라이딩 패널 */
 .graph-slide-panel {
   position: fixed; top: 0; right: 0; z-index: 60;
