@@ -40,7 +40,7 @@ a:hover { text-decoration: underline; }
 }
 .searchbar input:focus { border-color: var(--accent); }
 .searchbar button {
-  padding: 12px 20px; font-size: 15px; background: var(--accent); color: #fff;
+  padding: 12px 20px; font-size: 15px; background: #44546b; color: #fff;
   border: 0; border-radius: 8px; cursor: pointer;
 }
 
