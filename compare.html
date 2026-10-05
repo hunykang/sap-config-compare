@@ -82,17 +82,11 @@
 
 <script src="data.js"></script>
 <script src="glossary.js"></script>
-<script src="sketch.js"></script>
 <script>
 // 용어집 역인덱스: 설정 항목 id -> 용어 목록
 const TERMS_BY_ITEM = {};
 GLOSSARY.forEach(t => (t.items || []).forEach(id => {
   (TERMS_BY_ITEM[id] = TERMS_BY_ITEM[id] || []).push(t);
-}));
-// 현장 스케치 역인덱스: 설정 항목 id -> 스케치 목록
-const SKETCH_BY_ITEM = {};
-if (typeof SKETCHES !== 'undefined') SKETCHES.forEach(s => (s.configs || []).forEach(id => {
-  (SKETCH_BY_ITEM[id] = SKETCH_BY_ITEM[id] || []).push(s);
 }));
 const params = new URLSearchParams(location.search);
 const qInput = document.getElementById('q');
@@ -120,7 +114,7 @@ function render() {
   document.getElementById('count-note').innerHTML = `<strong>${rows.length}</strong>개 항목 표시 중`;
   document.getElementById('rows').innerHTML = rows.map(e => `
     <tr id="row-${e.id}">
-      <td class="item" data-th="항목">${esc(e.item)}<br><span class="checking">${esc(e.area)} · ${e.tags.map(esc).join(', ')}</span>${(TERMS_BY_ITEM[e.id] || []).length ? `<br><span class="g-terms">📖 ` + TERMS_BY_ITEM[e.id].map(t => `<a href="glossary.html#term-${t.id}">${esc(t.kr)}</a>`).join(' · ') + `</span>` : ''}${(SKETCH_BY_ITEM[e.id] || []).length ? `<br><span class="g-terms">🎙 ` + SKETCH_BY_ITEM[e.id].map(s => `<a href="sketch.html#sk-${s.id}">${esc(s.title)}</a>`).join(' · ') + `</span>` : ''}</td>
+      <td class="item" data-th="항목">${esc(e.item)}<br><span class="checking">${esc(e.area)} · ${e.tags.map(esc).join(', ')}</span>${(TERMS_BY_ITEM[e.id] || []).length ? `<br><span class="g-terms">📖 ` + TERMS_BY_ITEM[e.id].map(t => `<a href="glossary.html#term-${t.id}">${esc(t.kr)}</a>`).join(' · ') + `</span>` : ''}</td>
       <td data-th="ECC 경로">${esc(e.ecc)}</td>
       <td data-th="PCE 경로">${esc(e.pce)}</td>
       <td data-th="Public 경로">${esc(e.pub).replace(/확인 중/g, '<span class="checking">확인 중</span>').replace(/사용불가/g, '<span class="nouse">사용불가</span>')}</td>
