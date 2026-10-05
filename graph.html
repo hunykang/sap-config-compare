@@ -26,7 +26,7 @@
 
 <main class="wrap">
   <h2 class="section">지식그래프</h2>
-  <p class="lead">설정 객체·개념들이 어떻게 연결되어 있는지 탐색합니다. 노드를 <strong>드래그</strong>해서 움직이고, <strong>클릭</strong>하면 오른쪽에서 설명 패널이 열립니다.</p>
+  <p class="lead">설정 객체·개념들이 어떻게 연결되어 있는지 탐색합니다. 노드를 <strong>드래그</strong>해서 움직이고, 빈 곳을 <strong>드래그</strong>하면 화면을 이동하며, <strong>클릭</strong>하면 오른쪽에서 설명 패널이 열립니다.</p>
   <div class="legend">
     <span><span class="dot" style="background:#0b5fff"></span>마스터</span>
     <span><span class="dot" style="background:#7c3aed"></span>개념</span>
@@ -35,7 +35,7 @@
     <span><span class="dot" style="background:#475569"></span>비교 항목</span>
   </div>
   <div class="graph-box" style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff">
-    <canvas id="graph-canvas" style="width:100%;display:block;cursor:grab"></canvas>
+    <canvas id="graph-canvas" style="width:100%;display:block;cursor:grab;touch-action:pan-y"></canvas>
   </div>
   <aside class="graph-side graph-slide-panel" id="side">
     <h3>노드를 클릭하세요</h3>
@@ -49,6 +49,7 @@
     <a href="feedback.html">피드백 보내기</a>
     <a href="privacy.html">개인정보처리방침</a>
     <a href="updates.html">업데이트 로그</a>
+    <span id="visit-counter" style="display:none;margin-left:auto"></span>
   </div>
 </footer>
 
@@ -71,5 +72,6 @@
   });
 })();
 </script>
+<script src="counter.js"></script>
 </body>
 </html>

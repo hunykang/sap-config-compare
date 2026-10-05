@@ -53,7 +53,7 @@ function initGraph(canvasId, opts) {
   let dragging = null, selected = null, hover = null;
   let ox = 0, oy = 0, scale = 1;
   function tick() {
-    const cx = W / 2, cy = H / 2;
+    const cx = (W / 2 - ox) / scale, cy = (H / 2 - oy) / scale;
     for (let i = 0; i < nodes.length; i++) {
       const a = nodes[i];
       for (let j = i + 1; j < nodes.length; j++) {
@@ -133,11 +133,13 @@ function initGraph(canvasId, opts) {
     return best;
   }
 
-  let downPos = null, moved = false;
+  let downPos = null, moved = false, panStart = null;
   canvas.addEventListener('pointerdown', e => {
     const n = pick(e.clientX, e.clientY);
     downPos = { x: e.clientX, y: e.clientY }; moved = false;
-    if (n) { dragging = n; canvas.setPointerCapture(e.pointerId); }
+    if (n) { dragging = n; }
+    else { panStart = { x: e.clientX, y: e.clientY, ox, oy }; }
+    canvas.setPointerCapture(e.pointerId);
     canvas.style.cursor = 'grabbing';
   });
   canvas.addEventListener('pointermove', e => {
@@ -145,6 +147,9 @@ function initGraph(canvasId, opts) {
     if (dragging && moved) {
       const p = toWorld(e.clientX, e.clientY);
       dragging.x = p.x; dragging.y = p.y; dragging.vx = dragging.vy = 0;
+    } else if (!dragging && panStart) {
+      ox = panStart.ox + (e.clientX - panStart.x);
+      oy = panStart.oy + (e.clientY - panStart.y);
     } else if (!dragging) {
       hover = pick(e.clientX, e.clientY);
       canvas.style.cursor = hover ? 'pointer' : 'grab';
@@ -157,7 +162,7 @@ function initGraph(canvasId, opts) {
       selected = n;
       onSelect(n);
     }
-    dragging = null; downPos = null;
+    dragging = null; downPos = null; panStart = null;
   });
   canvas.addEventListener('wheel', e => {
     e.preventDefault();
