@@ -106,7 +106,8 @@ p.lead { color: var(--muted); }
   .top-graph-layout .graph-side { width: auto; position: static; max-height: none; }
   .hero h1 { font-size: 24px; }
   .brand { font-size: 15px; }
-  .nav { gap: 12px; font-size: 13px; }
+  .nav { gap: 12px; font-size: 13px; flex-wrap: wrap; row-gap: 6px; }
+  .site-header .wrap { flex-wrap: wrap; height: auto; padding: 10px 0; row-gap: 8px; }
 }
 @media (max-width: 560px) {
   .brand .brand-sub { display: none; }
