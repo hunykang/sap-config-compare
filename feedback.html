@@ -54,12 +54,21 @@
       <p>hksap.tistory.com 방명록에 남겨주세요.</p>
       <span class="count">방명록으로 이동 ↗</span>
     </a>
-    <a class="card" href="mailto:기재예정?subject=[Config비교가이드] 피드백">
+    <a class="card" href="#" id="mailCard">
       <h3>이메일</h3>
-      <p>직접 메일로 보내주셔도 됩니다.</p>
+      <p>직접 메일로 보내주셔도 됩니다.<br><span id="mailAddr"></span></p>
       <span class="count">메일 보내기 ↗</span>
     </a>
   </div>
+  <script>
+    // 스팸봇 수집을 피하기 위해 메일 주소는 JS로 조립
+    (function(){
+      var u = "hunykang", d = "gmail.com";
+      var addr = u + "@" + d;
+      document.getElementById("mailAddr").textContent = addr;
+      document.getElementById("mailCard").href = "mailto:" + addr + "?subject=" + encodeURIComponent("[Config비교가이드] 피드백");
+    })();
+  </script>
 
   <div class="note" style="margin-top:20px">
     <strong>기여자 크레딧:</strong> 반영된 피드백은 <a href="updates.html#contributors">업데이트 로그의 기여자 명단</a>에 닉네임을 기록합니다.
