@@ -108,6 +108,16 @@ p.lead { color: var(--muted); }
   .brand { font-size: 15px; }
   .nav { gap: 12px; font-size: 13px; flex-wrap: wrap; row-gap: 6px; }
   .site-header .wrap { flex-wrap: wrap; height: auto; padding: 10px 0; row-gap: 8px; }
+  /* 비교표 → 카드형 */
+  table.compare thead { display: none; }
+  table.compare, table.compare tbody, table.compare tr, table.compare td { display: block; width: auto; }
+  table.compare { border: 0; margin: 10px 0 30px; }
+  table.compare tr { border: 1px solid var(--line); border-radius: 10px; margin: 0 0 14px; background: #fff; overflow: hidden; }
+  table.compare td { border: 0; border-bottom: 1px solid var(--line); padding: 10px 14px; }
+  table.compare td:last-child { border-bottom: 0; }
+  table.compare td::before { content: attr(data-th); display: block; font-size: 12px; color: var(--muted); font-weight: 700; margin-bottom: 4px; }
+  table.compare td.item { background: var(--card); font-size: 16px; white-space: normal; }
+  table.compare td.item::before { display: none; }
 }
 @media (max-width: 560px) {
   .brand .brand-sub { display: none; }
