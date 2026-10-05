@@ -1508,5 +1508,804 @@ const GLOSSARY = [
    "gl-account",
    "general-ledger"
   ]
+ },
+ {
+  "id": "material-master",
+  "kr": "자재마스터",
+  "en": "Material Master",
+  "abbr": "",
+  "desc": "회사가 사고팔고 만드는 모든 자재의 기준 정보를 모아둔 마스터. 자재번호 하나로 구매·재고·원가·회계가 같은 자재를 가리킨다. S/4HANA에서는 자재유형과 평가클래스로 회계 연결을 정한다.",
+  "area": "xmod",
+  "items": [],
+  "terms": [
+   "business-partner",
+   "material-ledger"
+  ]
+ },
+ {
+  "id": "master-data-management",
+  "kr": "마스터데이터 관리",
+  "en": "Master Data Management",
+  "abbr": "MDM",
+  "desc": "계정·자재·거래처처럼 여러 업무에서 함께 쓰는 기준 정보를 하나로 모아 관리하는 활동. 기준 정보가 틀어지면 전표부터 결산까지 다 틀어지므로 처음 만들 때부터 표준을 정해 관리한다.",
+  "area": "org",
+  "items": [],
+  "terms": [
+   "business-partner",
+   "organizational-structure"
+  ]
+ },
+ {
+  "id": "bom",
+  "kr": "BOM",
+  "en": "Bill of Material",
+  "abbr": "",
+  "desc": "제품 하나를 만드는 데 들어가는 자재 목록과 수량을 정리한 설계도. MRP가 이 목록을 보고 자재를 발주하고, 표준원가도 이 목록을 기준으로 계산한다.",
+  "area": "xmod",
+  "items": [],
+  "terms": [
+   "material-master",
+   "standard-cost-valuation"
+  ]
+ },
+ {
+  "id": "actual-costing",
+  "kr": "실제원가계산",
+  "en": "Actual Costing",
+  "abbr": "",
+  "desc": "표준원가로 미리 잡아둔 원가와 실제로 든 비용의 차이를 계산해 자재와 제품의 진짜 원가를 다시 매기는 결산 절차. 자재원장(ML)과 함께 돌리며 재고와 매출원가를 실제에 가깝게 고친다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "material-ledger",
+   "standard-cost-valuation",
+   "price-variance"
+  ]
+ },
+ {
+  "id": "actual-activity-price-calculation",
+  "kr": "실제작업단가계산",
+  "en": "Actual Activity Price Calculation",
+  "abbr": "",
+  "desc": "계획할 때 정해둔 작업 단가가 아니라, 결산 시점에 모인 실제 비용으로 작업 단가를 다시 계산하는 절차. 이렇게 구한 실제 단가로 생산오더 원가를 확정한다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "activity-type",
+   "cost-center",
+   "actual-costing"
+  ]
+ },
+ {
+  "id": "actual-cost-splitting",
+  "kr": "실제원가분할",
+  "en": "Actual Cost Splitting",
+  "abbr": "",
+  "desc": "코스트센터에 뭉쳐 있는 실제 비용을 어떤 생산 활동에 얼마나 썼는지에 따라 나누는 절차. 나눠야 활동별 실제 단가를 구할 수 있어 제조원가 결산의 첫 단추다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "cost-center",
+   "activity-type",
+   "actual-activity-price-calculation"
+  ]
+ },
+ {
+  "id": "allocation",
+  "kr": "배부",
+  "en": "Allocation",
+  "abbr": "",
+  "desc": "어느 부서 것인지 딱 잘라 말하기 어려운 간접비를 정해둔 기준(인원수, 면적 등)으로 나눠 갖는 처리. 코스트센터끼리, 또는 코스트센터에서 손익센터로 비용을 옮길 때 쓴다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "cost-center",
+   "profit-center",
+   "settlement"
+  ]
+ },
+ {
+  "id": "universal-allocation",
+  "kr": "유니버설배부",
+  "en": "Universal Allocation",
+  "abbr": "",
+  "desc": "S/4HANA에서 배부를 ACDOCA 위에서 바로 돌리는 기능. 별도 배부 원장을 거치지 않아 배부 결과가 재무와 관리회계에 동시에 같은 숫자로 보인다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "allocation",
+   "universal-journal",
+   "cost-center"
+  ]
+ },
+ {
+  "id": "overhead-calculation",
+  "kr": "간접비계산",
+  "en": "Overhead Calculation",
+  "abbr": "",
+  "desc": "생산오더에 직접 붙이기 어려운 간접비(간접노무비, 경비 등)를 미리 정한 비율로 얹어주는 결산 단계. 간접비를 얹고 나면 빌려준 쪽 코스트센터 잔액은 0이 된다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "cost-center",
+   "internal-order",
+   "production-costing"
+  ]
+ },
+ {
+  "id": "cost-center-accounting",
+  "kr": "코스트센터회계",
+  "en": "Cost Center Accounting",
+  "abbr": "CCA",
+  "desc": "비용이 어디서 발생했는지 부서(코스트센터) 단위로 모아 관리하는 관리회계. 제조원가 결산은 여기서 시작한다. 비용 집계가 끝나야 배부·간접비·차이분석이 이어진다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "cost-center",
+   "cost-element",
+   "allocation"
+  ]
+ },
+ {
+  "id": "statistical-order",
+  "kr": "통계오더",
+  "en": "Statistical Order",
+  "abbr": "",
+  "desc": "실제 비용은 코스트센터에 그대로 두고, 참고용으로만 금액을 따로 모아보는 관리용 오더. 부산물 원가 흐름처럼 실제 배부와 별개로 통계를 내고 싶을 때 쓴다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "internal-order",
+   "cost-center"
+  ]
+ },
+ {
+  "id": "multilevel-costing",
+  "kr": "다단계원가계산",
+  "en": "Multilevel Costing",
+  "abbr": "",
+  "desc": "반제품에서 난 가격차이를 상위 제품으로 한 단계씩 올려 보내 최종 제품의 실제 원가를 구하는 계산. BOM 단계가 여러 개인 제조업에서 자재원장 결산의 핵심이다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "material-ledger",
+   "actual-costing",
+   "price-variance"
+  ]
+ },
+ {
+  "id": "variance-analysis",
+  "kr": "차이분석",
+  "en": "Variance Analysis",
+  "abbr": "",
+  "desc": "표준원가와 실제원가가 왜 어긋났는지 재료비·노무비·경비로 쪼개 원인을 찾는 분석. 차이가 크면 표준을 고치거나 현장을 손본다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "production-costing",
+   "standard-cost-valuation",
+   "actual-costing"
+  ]
+ },
+ {
+  "id": "production-variance-analysis",
+  "kr": "생산차이분석",
+  "en": "Production Variance Analysis",
+  "abbr": "",
+  "desc": "생산오더별로 표준 투입 대비 실제 투입의 차이를 계산해 손익으로 정산하는 절차. 수량 차이와 가격 차이를 구분해 어디서 새는지를 본다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "variance-analysis",
+   "production-costing",
+   "settlement"
+  ]
+ },
+ {
+  "id": "budget-planning",
+  "kr": "예산관리",
+  "en": "Budgeting and Planning",
+  "abbr": "",
+  "desc": "부서·프로젝트별로 쓸 수 있는 돈의 한도를 미리 정하고 집행을 통제하는 관리. S/4HANA에서는 내부오더나 프로젝트에 예산을 걸어 초과 집행을 막는다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "internal-order",
+   "cost-center"
+  ]
+ },
+ {
+  "id": "allocation-base",
+  "kr": "배부기준",
+  "en": "Allocation Base",
+  "abbr": "",
+  "desc": "간접비를 나눌 때 쓰는 자(기준). 인원수·면적·매출액처럼 합리적인 기준을 정해야 배부 결과가 설득력을 갖는다. CO 배부 사이클의 핵심 설정이다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "allocation",
+   "cost-center",
+   "profitability-analysis"
+  ]
+ },
+ {
+  "id": "by-product-accounting",
+  "kr": "부산물원가배분",
+  "en": "By-product Accounting",
+  "abbr": "",
+  "desc": "주산품과 함께 나오는 부산물에 원가를 나눠주는 회계 처리. 부산물은 보통 순실현가치로 평가하고 나머지를 주산품이 가져가는 식으로 배분한다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "production-costing",
+   "statistical-order",
+   "material-ledger"
+  ]
+ },
+ {
+  "id": "production-costing",
+  "kr": "생산원가계산",
+  "en": "Production Costing",
+  "abbr": "CO-PC",
+  "desc": "생산오더에 들어간 재료비·노무비·경비를 모아 제품 하나의 원가를 계산하는 관리회계. 표준원가와 비교해 차이를 내고, 자재원장으로 실제원가를 확정한다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "internal-order",
+   "actual-costing",
+   "variance-analysis"
+  ]
+ },
+ {
+  "id": "wip-accounting",
+  "kr": "재공품회계",
+  "en": "WIP Accounting",
+  "abbr": "WIP",
+  "desc": "아직 다 만들지 못한 채 공정에 걸쳐 있는 제품(재공품)의 가치를 계산하는 처리. 투입된 비용에서 완성품으로 빠진 것을 빼고 남은 금액을 재고자산으로 잡는다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "production-costing",
+   "settlement",
+   "material-ledger"
+  ]
+ },
+ {
+  "id": "gbb",
+  "kr": "GBB",
+  "en": "Offsetting Entry for Inventory Posting",
+  "abbr": "",
+  "desc": "자재가 움직일 때(입고·출고·이동) 상대 계정을 자동으로 정해주는 OBYC의 대표 트랜잭션 키. 평가클래스와 이동유형을 보고 재고·소비·차이 계정을 골라 전표를 만든다.",
+  "area": "xmod",
+  "items": [],
+  "terms": [
+   "obyc",
+   "material-ledger",
+   "inventory-accounting"
+  ]
+ },
+ {
+  "id": "invoice-verification",
+  "kr": "송장검증",
+  "en": "Invoice Verification",
+  "abbr": "",
+  "desc": "공급처가 보낸 청구서와 실제 입고 내역을 대조해 지급할 금액을 확정하는 절차(MIRO). 입고·발주·송장 세 가지를 맞추는 3자 대조로 틀린 청구를 걸러낸다.",
+  "area": "xmod",
+  "items": [],
+  "terms": [
+   "gr-ir",
+   "automatic-payment",
+   "reconciliation-account"
+  ]
+ },
+ {
+  "id": "movement-type-grouping",
+  "kr": "이동유형그룹",
+  "en": "Movement Type Grouping",
+  "abbr": "",
+  "desc": "자재 이동유형을 몇 개씩 묶어 가격차이 계정을 다르게 쓰는 설정. 자재원장 결산 때 이동유형별로 차이 계정을 나누고 싶을 때 쓴다.",
+  "area": "xmod",
+  "items": [],
+  "terms": [
+   "material-ledger",
+   "price-variance",
+   "obyc"
+  ]
+ },
+ {
+  "id": "p2p",
+  "kr": "P2P",
+  "en": "Procure to Pay",
+  "abbr": "",
+  "desc": "구매요청부터 발주·입고·송장검증·지급까지 이어지는 구매-지급 전 과정. FI와 만나면 입고 때 GR/IR, 송장 때 채무, 지급 때 출금이 자동으로 찍힌다.",
+  "area": "xmod",
+  "items": [],
+  "terms": [
+   "gr-ir",
+   "invoice-verification",
+   "automatic-payment"
+  ]
+ },
+ {
+  "id": "mm-module",
+  "kr": "MM",
+  "en": "Materials Management",
+  "abbr": "",
+  "desc": "자재·구매·재고를 맡는 물류 모듈. FI와는 입고(재고자산), 송장(채무), 지급(현금) 지점에서 전표로 연결된다.",
+  "area": "xmod",
+  "items": [],
+  "terms": [
+   "material-master",
+   "inventory-accounting",
+   "gr-ir"
+  ]
+ },
+ {
+  "id": "inventory-accounting",
+  "kr": "재고회계",
+  "en": "Inventory Accounting",
+  "abbr": "",
+  "desc": "자재가 들어오고 나가는 흐름을 금액으로 기록해 재고자산 가치를 관리하는 회계. 입고는 재고자산 증가, 출고는 매출원가 또는 소비로 잡힌다.",
+  "area": "xmod",
+  "items": [],
+  "terms": [
+   "material-ledger",
+   "gbb",
+   "standard-cost-valuation"
+  ]
+ },
+ {
+  "id": "standard-cost-valuation",
+  "kr": "표준원가평가",
+  "en": "Standard Cost Valuation",
+  "abbr": "",
+  "desc": "자재를 실제 가격이 아니라 미리 정한 표준가격으로 평가하는 방식. 표준과 실제의 차이는 가격차이로 모아 자재원장에서 나중에 정산한다.",
+  "area": "xmod",
+  "items": [],
+  "terms": [
+   "material-ledger",
+   "price-variance",
+   "bom"
+  ]
+ },
+ {
+  "id": "price-variance",
+  "kr": "가격차이",
+  "en": "Price Variance",
+  "abbr": "",
+  "desc": "표준가격과 실제 매입·제조 가격의 차이. 자재원장 결산 때 이 차이를 재고와 매출원가에 나눠 실제에 가깝게 고친다.",
+  "area": "xmod",
+  "items": [],
+  "terms": [
+   "standard-cost-valuation",
+   "material-ledger",
+   "multilevel-costing"
+  ]
+ },
+ {
+  "id": "order-to-cash",
+  "kr": "O2C",
+  "en": "Order to Cash",
+  "abbr": "",
+  "desc": "고객 주문부터 출고·청구·수금까지 이어지는 판매-회수 전 과정. FI와 만나면 출고 때 매출원가, 청구 때 매출채권과 매출이 자동으로 찍힌다.",
+  "area": "xmod",
+  "items": [],
+  "terms": [
+   "credit-management",
+   "dunning",
+   "revenue-recognition"
+  ]
+ },
+ {
+  "id": "sd-module",
+  "kr": "SD",
+  "en": "Sales and Distribution",
+  "abbr": "",
+  "desc": "주문·출고·청구를 맡는 영업 물류 모듈. FI와는 매출(수익), 매출채권, 세금 지점에서 전표로 연결된다.",
+  "area": "xmod",
+  "items": [],
+  "terms": [
+   "credit-management",
+   "vkoa",
+   "revenue-recognition"
+  ]
+ },
+ {
+  "id": "mrp",
+  "kr": "MRP",
+  "en": "Material Requirements Planning",
+  "abbr": "",
+  "desc": "앞으로 필요한 자재가 언제 얼마나 모자라는지 계산해 구매요청을 자동으로 만드는 계획 기능. BOM과 재고·주문 정보를 보고 소요량을 전개한다.",
+  "area": "xmod",
+  "items": [],
+  "terms": [
+   "material-master",
+   "bom",
+   "inventory-accounting"
+  ]
+ },
+ {
+  "id": "material-ledger-closing",
+  "kr": "자재원장결산",
+  "en": "Material Ledger Closing",
+  "abbr": "",
+  "desc": "CKMLCP를 돌려 자재별 실제 단가를 확정하는 월 결산 절차. 가격차이를 재고와 소비에 배부하고, 다단계로 올려 최종 제품 원가를 확정한다.",
+  "area": "close",
+  "items": [],
+  "terms": [
+   "material-ledger",
+   "actual-costing",
+   "consumption-revaluation"
+  ]
+ },
+ {
+  "id": "consumption-revaluation",
+  "kr": "소비재평가",
+  "en": "Consumption Revaluation",
+  "abbr": "COC",
+  "desc": "자재원장 결산에서 가격차이를 이미 쓴(소비된) 수량에 나눠 실제 원가로 고치는 단계. 기말재고가 아닌 당기 소비분에 대한 차이를 손익 쪽에 반영한다.",
+  "area": "close",
+  "items": [],
+  "terms": [
+   "material-ledger-closing",
+   "price-variance",
+   "movement-type-grouping"
+  ]
+ },
+ {
+  "id": "manufacturing-cost-closing",
+  "kr": "제조원가결산",
+  "en": "Manufacturing Cost Closing",
+  "abbr": "",
+  "desc": "한 달 동안 공장에서 든 비용을 모아 제품 원가를 확정하는 결산. 코스트센터 마감→간접비→차이분석→자재원장 순서로 돌린다.",
+  "area": "close",
+  "items": [],
+  "terms": [
+   "production-costing",
+   "material-ledger-closing",
+   "closing-cockpit"
+  ]
+ },
+ {
+  "id": "closing-monitor",
+  "kr": "결산모니터",
+  "en": "Closing Monitor",
+  "abbr": "",
+  "desc": "결산 때 해야 할 일(감가상각·외화평가·GR/IR조정 등)의 진행 상태를 한 화면에서 보는 기능. 누가 어디까지 했는지 보여줘 결산을 빨리 닫게 돕는다.",
+  "area": "close",
+  "items": [],
+  "terms": [
+   "closing-cockpit",
+   "accrual-engine",
+   "foreign-currency-valuation"
+  ]
+ },
+ {
+  "id": "closing-automation",
+  "kr": "결산자동화",
+  "en": "Financial Closing Automation",
+  "abbr": "",
+  "desc": "반복되는 결산 작업을 스케줄로 돌려 사람이 손대지 않게 하는 것. 결산콕핏의 작업 목록을 자동 실행해 결산 기간을 단축한다.",
+  "area": "close",
+  "items": [],
+  "terms": [
+   "closing-cockpit",
+   "recurring-entry",
+   "accrual-engine"
+  ]
+ },
+ {
+  "id": "asset-revaluation",
+  "kr": "자산재평가",
+  "en": "Asset Revaluation",
+  "abbr": "",
+  "desc": "토지 같은 자산의 장부가액을 시장 가치에 맞게 다시 매기는 처리. 재평가 차액은 자본(재평가잉여금)에 쌓는다.",
+  "area": "aa",
+  "items": [
+   "aa-transtype"
+  ],
+  "terms": [
+   "asset-class",
+   "depreciation-area",
+   "sub-ledger"
+  ]
+ },
+ {
+  "id": "post-capitalization",
+  "kr": "자본적지출",
+  "en": "Post-Capitalization",
+  "abbr": "",
+  "desc": "이미 쓰고 있는 자산에 가치를 올리는 큰 수리를 했을 때 그 돈을 비용이 아니라 자산 원가에 얹는 처리. 내용연수가 늘어나는 효과가 있다.",
+  "area": "aa",
+  "items": [],
+  "terms": [
+   "asset-class",
+   "depreciation-key",
+   "sub-ledger"
+  ]
+ },
+ {
+  "id": "declining-balance-method",
+  "kr": "정률법",
+  "en": "Declining Balance Method",
+  "abbr": "",
+  "desc": "처음엔 많이, 갈수록 적게 감가상각하는 체감상각법. 자산 가치가 초기에 빨리 떨어지는 설비에 어울린다. 감가상각키에 상각 방법을 담는다.",
+  "area": "aa",
+  "items": [
+   "aa-depkey"
+  ],
+  "terms": [
+   "depreciation-key",
+   "depreciation-area",
+   "chart-of-depreciation"
+  ]
+ },
+ {
+  "id": "acquire-to-decommission",
+  "kr": "자산생애주기",
+  "en": "Acquire to Decommission",
+  "abbr": "A2D",
+  "desc": "자산의 취득부터 운영·유지보수·폐기까지 전 생애를 하나로 보는 프로세스. FI-AA는 이 흐름 중 취득·감가상각·폐기의 회계 처리를 맡는다.",
+  "area": "aa",
+  "items": [],
+  "terms": [
+   "asset-class",
+   "asset-retirement",
+   "sub-ledger"
+  ]
+ },
+ {
+  "id": "lease-accounting",
+  "kr": "리스회계",
+  "en": "Lease Accounting",
+  "abbr": "",
+  "desc": "리스 계약을 IFRS 16 기준으로 회계 처리하는 것. 임차인은 사용권자산과 리스부채를 잡고, 매달 이자와 감가상각을 나눠 인식한다.",
+  "area": "aa",
+  "items": [],
+  "terms": [
+   "right-of-use-asset",
+   "asset-class",
+   "sub-ledger"
+  ]
+ },
+ {
+  "id": "right-of-use-asset",
+  "kr": "사용권자산",
+  "en": "Right-of-Use Asset",
+  "abbr": "ROU",
+  "desc": "리스로 빌려 쓰는 자산에 대한 사용 권리를 자산으로 잡은 것. 리스부채와 함께 재무상태표에 올라가고 리스 기간 동안 감가상각한다.",
+  "area": "aa",
+  "items": [],
+  "terms": [
+   "lease-accounting",
+   "asset-class",
+   "depreciation-area"
+  ]
+ },
+ {
+  "id": "asset-retirement",
+  "kr": "자산폐기",
+  "en": "Asset Retirement",
+  "abbr": "",
+  "desc": "다 쓴 자산을 팔거나 버리며 장부에서 없애는 처리. 처분 금액과 장부가액의 차이는 처분손익으로 잡고 감가상각을 멈춘다.",
+  "area": "aa",
+  "items": [
+   "aa-transtype"
+  ],
+  "terms": [
+   "asset-class",
+   "physical-inventory-verification",
+   "sub-ledger"
+  ]
+ },
+ {
+  "id": "physical-inventory-verification",
+  "kr": "재물조사",
+  "en": "Physical Inventory Verification",
+  "abbr": "",
+  "desc": "장부상 자산 목록과 실제 있는 자산을 대조하는 실사. 없어진 건 폐기하고, 찾아낸 건 등록하며 장부를 현실에 맞춘다.",
+  "area": "aa",
+  "items": [],
+  "terms": [
+   "asset-class",
+   "asset-retirement",
+   "sub-ledger"
+  ]
+ },
+ {
+  "id": "bank-interface",
+  "kr": "은행인터페이스",
+  "en": "Bank Interface",
+  "abbr": "",
+  "desc": "ERP와 은행을 연결해 입출금 내역을 받아오고 지급 지시를 보내는 연동. 펌뱅킹이 대표적이며, 들어온 내역으로 전표를 자동 생성한다.",
+  "area": "bank",
+  "items": [],
+  "terms": [
+   "firmbanking",
+   "house-bank",
+   "bank-master"
+  ]
+ },
+ {
+  "id": "firmbanking",
+  "kr": "펌뱅킹",
+  "en": "Firm Banking",
+  "abbr": "",
+  "desc": "회사 시스템과 은행을 전용선으로 직접 연결해 이체·조회를 실시간 처리하는 서비스. 대량 지급을 은행에 가지 않고 ERP에서 바로 날린다.",
+  "area": "bank",
+  "items": [],
+  "terms": [
+   "bank-interface",
+   "automatic-payment",
+   "house-bank"
+  ]
+ },
+ {
+  "id": "treasury-management",
+  "kr": "자금관리",
+  "en": "Treasury Management",
+  "abbr": "TR",
+  "desc": "회사의 현금 흐름과 금융거래를 한데 모아 관리하는 영역. 현금 포지션 파악, 지급·차입·예적금 같은 금융상품을 여기서 다룬다.",
+  "area": "bank",
+  "items": [],
+  "terms": [
+   "cash-flow-planning",
+   "bank-interface",
+   "house-bank"
+  ]
+ },
+ {
+  "id": "cash-flow-planning",
+  "kr": "자금수지계획",
+  "en": "Cash Flow Planning",
+  "abbr": "",
+  "desc": "앞으로 들어오고 나갈 현금을 미리 짜보는 계획. 손익이 아니라 현금 기준으로 세워 자금이 모자랄 때를 대비한다.",
+  "area": "bank",
+  "items": [],
+  "terms": [
+   "treasury-management",
+   "firmbanking",
+   "bank-interface"
+  ]
+ },
+ {
+  "id": "journal-entry-api",
+  "kr": "전표API",
+  "en": "Journal Entry API",
+  "abbr": "",
+  "desc": "외부 시스템의 거래 데이터를 SAP로 보내 전표를 자동으로 만드는 표준 인터페이스. S/4HANA Public에서는 외부 전표 연동의 정석이다.",
+  "area": "gl",
+  "items": [],
+  "terms": [
+   "document",
+   "document-type",
+   "document-management"
+  ]
+ },
+ {
+  "id": "predictive-accounting",
+  "kr": "예측회계",
+  "en": "Predictive Accounting",
+  "abbr": "",
+  "desc": "판매오더 같은 물류 데이터를 미리 재무에 반영해 미래 손익을 내다보는 기능. 결산 전에도 이번 달 실적이 어떻게 될지 가늠한다.",
+  "area": "gl",
+  "items": [],
+  "terms": [
+   "universal-journal",
+   "order-to-cash",
+   "document"
+  ]
+ },
+ {
+  "id": "green-ledger",
+  "kr": "그린원장",
+  "en": "Green Ledger",
+  "abbr": "",
+  "desc": "탄소 배출량을 재무 데이터와 함께 관리하는 원장 개념. 코스트센터·손익센터 단위로 탄소 비용을 모아 ESG 보고의 근거로 쓴다.",
+  "area": "gl",
+  "items": [],
+  "terms": [
+   "ledger",
+   "cost-center",
+   "profit-center"
+  ]
+ },
+ {
+  "id": "ledger-scenario",
+  "kr": "원장시나리오",
+  "en": "Ledger Scenario",
+  "abbr": "",
+  "desc": "원장마다 어떤 회계 기준(로컬/IFRS 등)으로 기록할지 정하는 S/4HANA 설정. 한 번 저장하면 바꾸기 어려워 처음 설계가 중요하다.",
+  "area": "gl",
+  "items": [],
+  "terms": [
+   "ledger",
+   "ledger-group",
+   "fiscal-year-variant"
+  ]
+ },
+ {
+  "id": "document-management",
+  "kr": "전표관리",
+  "en": "Document Management",
+  "abbr": "",
+  "desc": "전표의 생성·승인·추적을 체계화하는 업무. 누가 언제 어떤 전표를 만들었는지 이력이 남아야 결산 때 믿고 쓸 수 있다.",
+  "area": "gl",
+  "items": [],
+  "terms": [
+   "document",
+   "document-type",
+   "change-document"
+  ]
+ },
+ {
+  "id": "revenue-recognition",
+  "kr": "수익인식",
+  "en": "Revenue Recognition",
+  "abbr": "",
+  "desc": "물건을 넘기거나 서비스를 다 했을 때 비로소 매출로 잡는 원칙. 대금을 먼저 받았으면 선수금(부채)으로 두었다가 인도 시점에 매출로 돌린다.",
+  "area": "gl",
+  "items": [],
+  "terms": [
+   "document",
+   "down-payment",
+   "order-to-cash"
+  ]
+ },
+ {
+  "id": "consolidation",
+  "kr": "연결회계",
+  "en": "Consolidation",
+  "abbr": "",
+  "desc": "본사와 자회사들을 하나의 회사처럼 합쳐 재무제표를 만드는 회계. S/4HANA에서는 Group Reporting에서 내부거래를 상계하고 합산한다.",
+  "area": "xmod",
+  "items": [],
+  "terms": [
+   "intercompany",
+   "consolidation-adjustment",
+   "intercompany-elimination"
+  ]
+ },
+ {
+  "id": "consolidation-adjustment",
+  "kr": "연결조정",
+  "en": "Consolidation Adjustment",
+  "abbr": "",
+  "desc": "각 회사의 재무제표를 합치기 전후에 중복을 없애고 기준을 맞추는 조정. 내부거래 상계와 미실현이익 제거가 대표적이다.",
+  "area": "xmod",
+  "items": [],
+  "terms": [
+   "consolidation",
+   "intercompany-elimination",
+   "unrealized-profit-elimination"
+  ]
+ },
+ {
+  "id": "intercompany-elimination",
+  "kr": "내부거래상계",
+  "en": "Intercompany Elimination",
+  "abbr": "",
+  "desc": "그룹 안에서 오간 매출·매입·채권·채무를 연결재무제표에서 지워 없애는 처리. 안 지우면 그룹 전체 숫자가 부풀려 보인다.",
+  "area": "xmod",
+  "items": [],
+  "terms": [
+   "intercompany",
+   "consolidation-adjustment",
+   "consolidation"
+  ]
+ },
+ {
+  "id": "unrealized-profit-elimination",
+  "kr": "미실현이익제거",
+  "en": "Unrealized Profit Elimination",
+  "abbr": "",
+  "desc": "그룹 안에서 주고받은 재고·자산에 숨어 있는 이익을 연결결산에서 빼는 조정. 아직 밖에 팔지 않았으니 이익으로 볼 수 없다는 원칙이다.",
+  "area": "xmod",
+  "items": [],
+  "terms": [
+   "consolidation-adjustment",
+   "intercompany-elimination",
+   "consolidation"
+  ]
  }
 ];
