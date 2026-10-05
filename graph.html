@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>지식그래프 | SAP Config 비교 가이드</title>
+<meta name="description" content="SAP FI 설정 객체들의 연결 관계를 그래프로 탐색합니다. 노드를 클릭하면 ECC/PCE/Public 비교가 표시됩니다.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9919904969420259" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">SAP Config <span>비교 가이드</span></a>
+    <nav class="nav">
+      <a href="index.html">홈</a>
+      <a href="compare.html">비교표</a>
+      <a href="graph.html" class="active">지식그래프</a>
+      <a href="sketch.html">현장 스케치</a>
+      <a href="updates.html">업데이트</a>
+      <a href="feedback.html">피드백</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h2 class="section">지식그래프</h2>
+  <p class="lead">설정 객체·개념들이 어떻게 연결되어 있는지 탐색합니다. 노드를 <strong>드래그</strong>해서 움직이고, <strong>클릭</strong>하면 상세 비교가 표시됩니다.</p>
+  <div class="legend">
+    <span><span class="dot" style="background:#0b5fff"></span>마스터</span>
+    <span><span class="dot" style="background:#7c3aed"></span>개념</span>
+    <span><span class="dot" style="background:#b45309"></span>테이블</span>
+    <span><span class="dot" style="background:#0a7a42"></span>앱</span>
+    <span><span class="dot" style="background:#475569"></span>비교 항목</span>
+  </div>
+  <div class="graph-layout">
+    <canvas id="graph-canvas"></canvas>
+    <aside class="graph-side" id="side">
+      <h3>노드를 클릭하세요</h3>
+      <p class="lead">선택한 객체의 ECC / PCE / Public 비교가 여기에 표시됩니다.</p>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>20년차 SAP FI 컨설턴트의 실무 기록</span>
+    <a href="feedback.html">피드백 보내기</a>
+    <a href="privacy.html">개인정보처리방침</a>
+    <a href="updates.html">업데이트 로그</a>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="graph-widget.js"></script>
+<script>
+(function () {
+  const side = document.getElementById('side');
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  const g = initGraph('graph-canvas', {
+    height: 520,
+    onSelect: function (n) {
+      if (!n) {
+        side.innerHTML = '<h3>노드를 클릭하세요</h3><p class="lead">선택한 객체의 ECC / PCE / Public 비교가 여기에 표시됩니다.</p>';
+        return;
+      }
+      if (n.ref.kind === 'entry') {
+        const e = n.ref.entry;
+        side.innerHTML = `
+          <h3>${esc(e.item)}</h3>
+          <div class="meta" style="font-size:12px;color:#666;margin-bottom:10px">${esc(e.area)} · ${e.tags.map(esc).join(', ')}</div>
+          <p><span class="badge ecc">ECC</span><br>${esc(e.ecc)}</p>
+          <p><span class="badge pce">PCE</span><br>${esc(e.pce)}</p>
+          <p><span class="badge pub">Public</span><br>${esc(e.pub)}</p>
+          <p style="margin-top:10px"><strong>달라지는 부분</strong><br>${esc(e.diff)}</p>
+          ${e.help.length ? `<p class="src">${e.help.map(u => `<a href="${u}" target="_blank" rel="noopener">SAP 공식 ↗</a>`).join('<br>')}</p>` : ''}
+          <p style="margin-top:12px"><a href="compare.html?q=${encodeURIComponent(e.item)}">비교표에서 보기 →</a></p>`;
+      } else {
+        const linked = g.edges.filter(e => e.a === n.id || e.b === n.id)
+          .map(e => g.nodeById[e.a === n.id ? e.b : e.a]).filter(Boolean);
+        const uniq = [...new Map(linked.map(x => [x.id, x])).values()];
+        side.innerHTML = `
+          <h3>${esc(n.label)}</h3>
+          <div class="meta" style="font-size:12px;color:#666;margin-bottom:10px">개념 노드 · 연결 ${uniq.length}개</div>
+          <p><strong>연결된 항목</strong></p>
+          ${uniq.slice(0, 20).map(x => `<p style="margin:4px 0"><a href="index.html#${x.id.replace(/^e-/, '')}">${esc(x.label)}</a></p>`).join('')}
+        `;
+      }
+    }
+  });
+})();
+</script>
+</body>
+</html>

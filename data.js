@@ -1,0 +1,1076 @@
+// 비교 가이드 데이터 (ECC / PCE / Public) — PCE 기준
+// 원천: config_master.json (EUG 203개 대조 + PCE 스크립트 56개 + 오마주 목차)
+// Public "확인 중" 항목은 Public 매뉴얼 입수 후 보완 예정
+
+const GUIDE_DATA = [
+{
+  id: "org-company", area: "조직구조", item: "회사 정의",
+  ecc: "기업 구조 > 정의 > 재무회계 > 회사 정의",
+  pce: "기업 구조 > 정의 > 재무회계",
+  pub: "확인 중",
+  diff: "최상위 조직 단위 정의. ECC·PCE 모두 IMG에서 직접 정의하며 개념은 동일. Public에서는 엔터프라이즈 구조 설정이 제한적이므로 확인이 필요.",
+  help: [],
+  tags: ["조직"], related: ["org-company-code", "org-ccode-company", "org-business-area"],
+  eccSame: true
+},
+{
+  id: "org-company-code", area: "조직구조", item: "회사코드 정의/복사/삭제",
+  ecc: "기업 구조 > 정의 > 재무회계 > 회사코드 정의, 복사, 삭제, 점검",
+  pce: "기업 구조 > 정의 > 재무회계",
+  pub: "확인 중",
+  diff: "재무회계의 최소 독립 회계 단위. 정의·복사 체계는 ECC와 동일하나, S/4HANA에서는 회사코드 통화와 원장 통화의 연계가 병렬회계 설계와 직결되어 중요도가 상승.",
+  help: [],
+  tags: ["조직"], related: ["org-company", "org-ccode-company", "org-business-area"],
+  eccSame: true
+},
+{
+  id: "org-ccode-company", area: "조직구조", item: "회사에 회사코드 지정",
+  ecc: "기업 구조 > 지정 > 재무회계 > 회사에 회사코드 지정",
+  pce: "기업 구조 > 지정 > 재무회계",
+  pub: "확인 중",
+  diff: "회사-회사코드 연결 관계 지정. ECC와 동일.",
+  help: [],
+  tags: ["조직"], related: ["org-company", "org-company-code", "org-business-area"],
+  eccSame: true
+},
+{
+  id: "org-business-area", area: "조직구조", item: "사업영역 정의",
+  ecc: "기업 구조 > 정의 > 재무회계 > 사업영역 정의",
+  pce: "기업 구조 > 정의 > 재무회계",
+  pub: "확인 중",
+  diff: "ECC의 사업영역은 S/4HANA에서도 유지되나, 세그먼트(Segment) 중심 보고로 전환이 권장됨.",
+  help: [],
+  tags: ["조직", "전환"], related: ["org-company", "org-company-code", "org-ccode-company"],
+  eccSame: true
+},
+{
+  id: "org-functional-area", area: "조직구조", item: "기능영역 정의",
+  ecc: "기업 구조 > 정의 > 재무회계 > 기능영역 정의",
+  pce: "기업 구조 > 정의 > 재무회계",
+  pub: "확인 중",
+  diff: "매출원가 회계 활성화 시 기능영역 대체 설정이 필수(PCE CS-FI-0017 참조). 개념은 ECC와 동일.",
+  help: [],
+  tags: ["조직"], related: ["org-company", "org-company-code", "org-ccode-company"],
+  eccSame: true
+},
+{
+  id: "org-fm-area", area: "조직구조", item: "재무관리영역 유지보수",
+  ecc: "기업 구조 > 정의 > 재무회계 > 재무관리영역 유지보수",
+  pce: "기업 구조 > 정의 > 재무회계",
+  pub: "확인 중",
+  diff: "자금관리(FM) 조직 단위. ECC와 동일.",
+  help: [],
+  tags: ["조직"], related: ["org-company", "org-company-code", "org-ccode-company"],
+  eccSame: true
+},
+{
+  id: "org-fm-ccode", area: "조직구조", item: "재무관리영역에 회사코드 지정",
+  ecc: "기업 구조 > 지정 > 재무회계 > 재무관리영역에 회사코드 지정",
+  pce: "기업 구조 > 지정 > 재무회계",
+  pub: "확인 중",
+  diff: "ECC와 동일.",
+  help: [],
+  tags: ["조직"], related: ["org-company", "org-company-code", "org-ccode-company"],
+  eccSame: true
+},
+{
+  id: "org-credit-area", area: "조직구조", item: "신용관리영역에 회사코드 지정",
+  ecc: "기업 구조 > 지정 > 재무회계 > 신용관리영역에 회사코드 지정",
+  pce: "기업 구조 > 지정 > 재무회계",
+  pub: "확인 중",
+  diff: "신용관리 조직 단위 지정. S/4HANA에서는 FSCM 신용관리로 기능이 이관되어 연계 확인이 필요.",
+  help: [],
+  tags: ["조직"], related: ["org-company", "org-company-code", "org-ccode-company"],
+  eccSame: false
+},
+{
+  id: "gl-field-status", area: "G/L", item: "필드 상태 변형 정의",
+  ecc: "재무회계 > 재무회계 기본세팅 > 원장 > 필드 > 필드상태변형 정의",
+  pce: "재무회계 > 재무회계 전역 설정 > 원장 > 필드",
+  pub: "확인 중",
+  diff: "전표 입력 화면의 필드 제어(필수/선택/숨김) 정의. ECC와 개념·설정 체계 동일.",
+  help: [],
+  tags: ["G/L", "전표"], related: ["gl-field-status-assign", "gl-ledger", "gl-ledger-group"],
+  eccSame: true
+},
+{
+  id: "gl-field-status-assign", area: "G/L", item: "회사코드를 필드상태변형에 지정",
+  ecc: "재무회계 > 재무회계 기본세팅 > 원장 > 필드 > 회사코드를 필드상태변형에 지정",
+  pce: "재무회계 > 재무회계 전역 설정 > 원장 > 필드",
+  pub: "확인 중",
+  diff: "ECC와 동일.",
+  help: [],
+  tags: ["G/L"], related: ["gl-field-status", "gl-ledger", "gl-ledger-group"],
+  eccSame: true
+},
+{
+  id: "gl-ledger", area: "G/L", item: "원장 정의",
+  ecc: "재무회계 > 재무회계 기본세팅 > 원장 > 원장 > 총계정원장 회계에 대한 원장 정의",
+  pce: "재무회계 > 재무회계 전역 설정 > 원장 > 원장",
+  pub: "확인 중",
+  diff: "ECC New GL의 원장 개념은 유지되나, S/4HANA에서는 Universal Journal(ACDOCA) 단일 테이블이 실제 전기 원천. 원장은 회계기준별 병렬회계 용도로 정의.",
+  help: ["https://help.sap.com/doc/0df2ffddebab40cf9338488b2f18dc41/2025.latest/en-US/SIMPL_OP2025.pdf"],
+  tags: ["G/L", "전표"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger-group"],
+  eccSame: false
+},
+{
+  id: "gl-ledger-group", area: "G/L", item: "원장그룹 정의",
+  ecc: "재무회계 > 재무회계 기본세팅 > 원장 > 원장 > 원장그룹 정의",
+  pce: "재무회계 > 재무회계 전역 설정 > 원장 > 원장",
+  pub: "확인 중",
+  diff: "원장을 묶어 전기·조회하는 단위. ECC와 개념 동일.",
+  help: [],
+  tags: ["G/L", "전표"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-acct-principle", area: "G/L", item: "회계기준 정의 및 원장그룹 지정",
+  ecc: "재무회계 > 재무회계 기본세팅 > 원장 > 병렬회계 > 회계기준 정의 / 회계기준을 원장그룹에 지정",
+  pce: "재무회계 > 재무회계 전역 설정 > 원장 > 병렬회계",
+  pub: "확인 중",
+  diff: "S/4HANA에서는 감가상각영역이 원장(그룹)에 직접 매핑되어 병렬회계 설정이 New AA 설계와 직결됨.",
+  help: ["https://help.sap.com/doc/0df2ffddebab40cf9338488b2f18dc41/2025.latest/en-US/SIMPL_OP2025.pdf"],
+  tags: ["G/L"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: false
+},
+{
+  id: "gl-fiscal-year", area: "G/L", item: "회계연도변형 유지보수",
+  ecc: "재무회계 > 재무회계 기본세팅 > 원장 > 회계연도 및 전기 기간 > 회계연도변형 유지보수",
+  pce: "재무회계 > 재무회계 전역 설정 > 원장 > 회계연도 및 전기기간",
+  pub: "확인 중",
+  diff: "ECC와 동일.",
+  help: [],
+  tags: ["G/L"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-fiscal-assign", area: "G/L", item: "회사코드를 회계연도변형에 지정",
+  ecc: "재무회계 > 재무회계 기본세팅 > 원장 > 회계연도 및 전기 기간 > 회사코드를 회계연도변형에 지정",
+  pce: "재무회계 > 재무회계 전역 설정 > 원장 > 회계연도 및 전기기간",
+  pub: "확인 중",
+  diff: "ECC와 동일.",
+  help: [],
+  tags: ["G/L"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-pp-variant", area: "G/L", item: "개시 전기기간 변형 정의",
+  ecc: "재무회계 > 재무회계 기본세팅 > 원장 > 회계연도 및 전기 기간 > 전기 기간 > 개시 전기기간에 대한 변형 정의",
+  pce: "재무회계 > 재무회계 전역 설정 > 원장 > 전기 기간",
+  pub: "확인 중",
+  diff: "ECC와 동일.",
+  help: [],
+  tags: ["G/L", "전표"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-posting-period", area: "G/L", item: "전기기간 개시 및 마감",
+  ecc: "재무회계 > 재무회계 기본세팅 > 원장 > 회계연도 및 전기 기간 > 전기 기간 > 전기기간 개시 및 마감",
+  pce: "재무회계 > 재무회계 전역 설정 > 원장 > 전기기간",
+  pub: "Fiori 'Manage Posting Period' 앱 (Scope Item J58)",
+  diff: "PCE에서는 OB52로 개시/마감하며 개념은 ECC와 동일. Public은 Fiori 앱으로 수행.",
+  help: [],
+  tags: ["G/L", "전표", "Fiori"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-doc-type", area: "G/L", item: "전표유형 정의",
+  ecc: "재무회계 > 재무회계 기본세팅 > 전표 > 전표유형 > 데이터 입력뷰의 전표유형 정의",
+  pce: "재무회계 > 재무회계 전역 설정 > 전표 > 전표유형",
+  pub: "SSCUI 500242 '전표 유형 정의'",
+  diff: "ECC와 개념 동일. Public은 SSCUI 500242에서 정의.",
+  help: [],
+  tags: ["G/L", "전표"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-doc-number", area: "G/L", item: "전표 번호범위 정의",
+  ecc: "재무회계 > 재무회계 기본세팅 > 전표 > 전표번호범위 > 데이터 입력뷰에 대한 전표 번호범위 정의",
+  pce: "재무회계 > 재무회계 전역 설정 > 전표 > 전표유형",
+  pub: "확인 중",
+  diff: "ECC와 동일.",
+  help: [],
+  tags: ["G/L", "전표"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-posting-key", area: "G/L", item: "전기키 정의",
+  ecc: "재무회계 > 재무회계 기본세팅 > 전표 > 전기키 정의",
+  pce: "재무회계 > 재무회계 전역 설정 > 전표 > 전표 번호 범위",
+  pub: "확인 중",
+  diff: "차/대변, 계정유형별 전기 규칙 정의. ECC와 동일. (EUG 문서에는 별도 항목 없음)",
+  help: [],
+  tags: ["G/L", "전표"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-tolerance", area: "G/L", item: "종업원 허용한도그룹 정의",
+  ecc: "재무회계 > 재무회계 기본세팅 > 전표 > 허용한도그룹 > 종업원에 대한 허용한도그룹 정의",
+  pce: "재무회계 > 재무회계 전역 설정 > 전표 > 허용 한도 그룹",
+  pub: "확인 중",
+  diff: "전표 입력 금액 한도 그룹. ECC와 동일.",
+  help: [],
+  tags: ["G/L", "전표"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-global-param", area: "G/L", item: "회사코드 광역매개변수",
+  ecc: "재무회계 > 재무회계 기본세팅 > 회사 코드에 대한 전역 매개변수 > 광역매개변수 입력",
+  pce: "재무회계 > 재무회계 전역 설정 > 회사 코드에 대한 전역 매개변수",
+  pub: "확인 중",
+  diff: "회사코드의 기본 통화·계정과목표·필드상태변형 등 전역 기본값. ECC와 동일.",
+  help: [],
+  tags: ["G/L"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-doc-change", area: "G/L", item: "전표변경규칙",
+  ecc: "재무회계 > 재무회계 기본세팅 > 전표 > 전표변경규칙 > 전표변경규칙, 전표헤더/개별항목",
+  pce: "재무회계 > 재무회계 전역 설정 > 전표 > 전표 변경 규칙",
+  pub: "확인 중",
+  diff: "전기 후 변경 가능 필드 규칙. ECC와 동일.",
+  help: [],
+  tags: ["G/L", "전표"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-coa", area: "G/L", item: "계정과목표 정의",
+  ecc: "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항 > 계정과목표 리스트 편집",
+  pce: "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항",
+  pub: "SSCUI 500043 '계정과목표 관리'",
+  diff: "ECC와 개념 동일. Public은 SSCUI 500043에서 계정과목표 관리.",
+  help: [],
+  tags: ["G/L"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-coa-assign", area: "G/L", item: "회사코드를 계정과목표에 지정",
+  ecc: "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항 > 회사코드를 계정과목표에 지정",
+  pce: "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항",
+  pub: "확인 중",
+  diff: "ECC와 동일. (EUG 문서에는 별도 항목 없음)",
+  help: [],
+  tags: ["G/L"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-acct-group", area: "G/L", item: "G/L 계정그룹 정의",
+  ecc: "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항 > 계정그룹 정의",
+  pce: "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항",
+  pub: "Fiori 'Manage G/L Account Master data' 앱 (Scope Item J58)",
+  diff: "계정 마스터의 필드 제어·번호범위 그룹. ECC와 동일, Public은 Fiori 앱으로 마스터 관리.",
+  help: [],
+  tags: ["G/L", "Fiori", "마스터"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-retained", area: "G/L", item: "이익잉여금계정 정의",
+  ecc: "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항 > 이익잉여금계정 정의",
+  pce: "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항",
+  pub: "확인 중",
+  diff: "손익계정의 결산 이월 대상 계정 지정. ECC와 동일.",
+  help: [],
+  tags: ["G/L"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-fsver", area: "G/L", item: "재무제표버전 정의",
+  ecc: "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항 > 재무제표버전 정의",
+  pce: "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정",
+  pub: "SSCUI 500043 '재무제표 버전 정의'",
+  diff: "ECC와 개념 동일. Public은 SSCUI 500043에서 정의, Fiori 'Balance Sheet/Income Statement' 앱(J58)으로 조회.",
+  help: [],
+  tags: ["G/L"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-docsplit", area: "G/L", item: "전표분할 설정",
+  ecc: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 전표분할 > 전표분할 활성화/분류/제로잔액계정 정의",
+  pce: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 전표 분할",
+  pub: "확인 중",
+  diff: "S/4HANA에서는 세그먼트 보고를 위해 전표분할이 사실상 필수 설정. 제로잔액 임시계정 정의가 선행되어야 함.",
+  help: ["https://help.sap.com/doc/0df2ffddebab40cf9338488b2f18dc41/2025.latest/en-US/SIMPL_OP2025.pdf"],
+  tags: ["G/L", "전표"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: false
+},
+{
+  id: "gl-validation", area: "G/L", item: "회계전표 유효성 확인",
+  ecc: "재무회계 > 재무회계 기본세팅 > 툴 > 유효성 확인 / 대체 > 회계전표에서 유효성 확인",
+  pce: "재무회계 > 재무회계 전역 설정 > 툴 > 유효성 확인 / 대체",
+  pub: "확인 중",
+  diff: "전기 시 조건 체크 규칙. ECC와 동일.",
+  help: [],
+  tags: ["G/L", "전표"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-substitution", area: "G/L", item: "회계전표 대체",
+  ecc: "재무회계 > 재무회계 기본세팅 > 툴 > 유효성 확인 / 대체 > 회계전표내 대체",
+  pce: "재무회계 > 재무회계 전역 설정 > 툴 > 유효성 확인 / 대체",
+  pub: "확인 중",
+  diff: "전기 시 필드값 자동 대체 규칙. ECC와 동일.",
+  help: [],
+  tags: ["G/L", "전표"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-clear-prep", area: "G/L", item: "자동반제 준비",
+  ecc: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 미결 항목 반제 > 자동반제준비",
+  pce: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 미결 항목 반제",
+  pub: "확인 중",
+  diff: "자동반제 기준(반제규칙) 사전 준비. ECC와 동일.",
+  help: [],
+  tags: ["G/L", "전표"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "ap-bp-role", area: "AP", item: "BP 역할 활성화/정의",
+  ecc: "해당 없음 (ECC에는 BP 개념 없음)",
+  pce: "어플리케이션 전반 컴포넌트 > SAP 비즈니스 파트너",
+  pub: "SSCUI 500092 (그룹핑·번호범위 중심, 역할 정의는 제한적)",
+  diff: "ECC의 고객/공급처 마스터가 S/4HANA에서 비즈니스 파트너(BP)로 통합. 역할(Role)·역할범주·그룹핑 정의가 마스터 전략의 출발점.",
+  help: [],
+  tags: ["AP", "BP", "마스터"], related: ["ap-bp-num", "ap-cvi", "ap-vendor-group"],
+  eccSame: false
+},
+{
+  id: "ap-bp-num", area: "AP", item: "BP 번호범위 및 그룹핑",
+  ecc: "해당 없음",
+  pce: "어플리케이션 전반 컴포넌트 > SAP 비즈니스 파트너 > 비즈니스 파트너 > 기본설정 > 번호범위 및 그룹핑",
+  pub: "SSCUI 500092 '번호 범위 정의'",
+  diff: "BP 그룹핑별 내부/외부 번호범위 지정. Public은 SSCUI 500092에서 번호범위 정의 가능.",
+  help: [],
+  tags: ["AP", "BP"], related: ["ap-bp-role", "ap-cvi", "ap-vendor-group"],
+  eccSame: false
+},
+{
+  id: "ap-cvi", area: "AP", item: "CVI 통합 설정 (BP↔고객/공급처)",
+  ecc: "해당 없음 (전환 프로젝트에서만 해당)",
+  pce: "어플리케이션 전반 컴포넌트 > 마스터데이터동기화 > 고객/공급업체 통합 > 비즈니스파트너 설정",
+  pub: "확인 중",
+  diff: "S/4 전환 프로젝트의 필수 관문. BP와 고객/공급처 기술 마스터 간 번호·필드 동기화 방향을 정의.",
+  help: ["https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/faq-cvi-customer-vendor-integration-for-system-conversion-to-sap-s-4hana/ba-p/13740757"],
+  tags: ["AP", "BP", "전환", "마스터"], related: ["ap-bp-role", "ap-bp-num", "ap-vendor-group"],
+  eccSame: false
+},
+{
+  id: "ap-vendor-group", area: "AP", item: "공급처 계정그룹/화면레이아웃",
+  ecc: "재무회계 > 채권 및 채무 > 공급업체 계정 > 마스터데이터 > 공급업체 마스터 레코드 생성 준비 > 계정그룹을 화면레이아웃으로 정의",
+  pce: "재무회계 > 채권 및 채무 > 공급업체 계정 > 마스터 데이터 > 공급업체 마스터 레코드 생성 준비",
+  pub: "확인 중",
+  diff: "계정그룹·번호범위 체계는 유지되나 마스터 입력 채널이 BP 트랜잭션으로 일원화됨.",
+  help: [],
+  tags: ["AP", "BP", "마스터"], related: ["ap-bp-role", "ap-bp-num", "ap-cvi"],
+  eccSame: false
+},
+{
+  id: "ap-vendor-num", area: "AP", item: "공급처 번호범위",
+  ecc: "재무회계 > 채권 및 채무 > 공급업체계정 > 마스터데이터 > 공급업체 마스터 레코드 생성 준비 > 구매처계정에 대한 번호범위 생성",
+  pce: "재무회계 > 채권 및 채무 > 공급업체 계정 > 마스터 데이터 > 공급업체 마스터 레코드 생성 준비",
+  pub: "확인 중",
+  diff: "ECC와 동일.",
+  help: [],
+  tags: ["AP", "BP"], related: ["ap-bp-role", "ap-bp-num", "ap-cvi"],
+  eccSame: true
+},
+{
+  id: "ap-payterms", area: "AP", item: "지급조건 유지보수",
+  ecc: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 수령 송장 / 대변 메모 > 지급조건 유지보수",
+  pce: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 지급조건",
+  pub: "SSCUI 500137 '지급조건 유지보수'",
+  diff: "ECC와 개념 동일. Public은 SSCUI 500137에서 유지보수.",
+  help: [],
+  tags: ["AP", "BP"], related: ["ap-bp-role", "ap-bp-num", "ap-cvi"],
+  eccSame: true
+},
+{
+  id: "ap-housebank", area: "AP", item: "House Bank 정의",
+  ecc: "재무회계 > 은행 회계 > 은행 계좌 > House Bank 정의",
+  pce: "재무회계 > 은행 회계 > 은행 계좌 > House Bank 정의",
+  pub: "Fiori 'Manage Banks'/'Manage Bank Accounts' 앱 (Scope Item BFA)",
+  diff: "지급용 자사 은행 정의. ECC와 개념 동일, Public은 Fiori 앱으로 관리.",
+  help: [],
+  tags: ["AP", "BP", "Fiori"], related: ["ap-bp-role", "ap-bp-num", "ap-cvi"],
+  eccSame: true
+},
+{
+  id: "ap-paymethod-country", area: "AP", item: "국가별 지급방법 설정",
+  ecc: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 자동 아웃고잉 지급 > 지급 방법/회사코드 설정",
+  pce: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 자동 아웃고잉 지급",
+  pub: "SSCUI 500137 '지급 거래에 대한 국가/지역별 지급 방법 설정'",
+  diff: "ECC와 로직 동일. Public은 SSCUI 500137에서 설정.",
+  help: [],
+  tags: ["AP", "BP"], related: ["ap-bp-role", "ap-bp-num", "ap-cvi"],
+  eccSame: true
+},
+{
+  id: "ap-paymethod-ccode", area: "AP", item: "회사코드별 지급방법 설정",
+  ecc: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 자동 아웃고잉 지급 > 지급 방법/회사코드 설정",
+  pce: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 자동 아웃고잉 지급",
+  pub: "SSCUI 500012 '지급거래에 대한 회사코드별 지급방법설정'",
+  diff: "ECC와 로직 동일. Public은 SSCUI 500012에서 설정.",
+  help: [],
+  tags: ["AP", "BP"], related: ["ap-bp-role", "ap-bp-num", "ap-cvi"],
+  eccSame: true
+},
+{
+  id: "ap-bank-determ", area: "AP", item: "자동지급 은행결정",
+  ecc: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 자동 아웃고잉 지급 > 은행결정",
+  pce: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 자동 아웃고잉 지급 > 은행결정",
+  pub: "SSCUI 500012 '지급 거래를 위한 은행 결정 설정'",
+  diff: "지급 프로그램의 순위·은행계좌·지급용 G/L계정 결정. ECC와 로직 동일.",
+  help: [],
+  tags: ["AP", "BP"], related: ["ap-bp-role", "ap-bp-num", "ap-cvi"],
+  eccSame: true
+},
+{
+  id: "ap-payblock", area: "AP", item: "지급보류사유 정의",
+  ecc: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 지급 > 지급 전역 세팅 > 지급 보류 사유 > 지급보류사유 정의",
+  pce: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 지급보류사유 정의",
+  pub: "확인 중",
+  diff: "ECC와 동일.",
+  help: [],
+  tags: ["AP", "BP"], related: ["ap-bp-role", "ap-bp-num", "ap-cvi"],
+  eccSame: true
+},
+{
+  id: "ap-recon", area: "AP", item: "공급처 대체조정계정",
+  ecc: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 대체 조정 계정로 전기 > 기타 특별 G/L 거래 > 구매처에 대한 대체조정계정 정의",
+  pce: "재무회계 > 채권 및 채무 > 공급업체 계정",
+  pub: "SSCUI 500043 '대체조정계정 정의'",
+  diff: "ECC와 개념 동일. Public은 SSCUI 500043에서 정의.",
+  help: [],
+  tags: ["AP", "BP"], related: ["ap-bp-role", "ap-bp-num", "ap-cvi"],
+  eccSame: true
+},
+{
+  id: "ar-cust-group", area: "AR", item: "고객 계정그룹/화면레이아웃",
+  ecc: "재무회계 > 채권 및 채무 > 고객계정 > 마스터데이터 > 고객 마스터 레코드 생성 준비 > 계정그룹을 화면레이아웃으로 정의",
+  pce: "재무회계 > 채권 및 채무 > 고객 계정 > 마스터 데이터 > 고객마스터 레코드 생성 준비",
+  pub: "확인 중",
+  diff: "BP 일원화로 마스터 입력은 BP 트랜잭션, 고객 회계뷰는 역할로 부여. 계정그룹 체계는 유지.",
+  help: [],
+  tags: ["AR", "BP", "마스터"], related: ["ar-cust-num", "ar-interest", "ar-dunning"],
+  eccSame: false
+},
+{
+  id: "ar-cust-num", area: "AR", item: "고객 번호범위",
+  ecc: "재무회계 > 채권 및 채무 > 고객계정 > 마스터데이터 > 고객 마스터 레코드 생성 준비 > 고객계정에 대한 번호범위 생성",
+  pce: "재무회계 > 채권 및 채무 > 고객 계정 > 마스터 데이터 > 고객마스터 레코드 생성 준비",
+  pub: "확인 중",
+  diff: "ECC와 동일.",
+  help: [],
+  tags: ["AR", "BP"], related: ["ar-cust-group", "ar-interest", "ar-dunning"],
+  eccSame: true
+},
+{
+  id: "ar-interest", area: "AR", item: "이자계산",
+  ecc: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 이자계산",
+  pce: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 이자계산",
+  pub: "확인 중",
+  diff: "연체 이자 계산 유형·이자율 정의. ECC와 개념 동일.",
+  help: [],
+  tags: ["AR", "BP"], related: ["ar-cust-group", "ar-cust-num", "ar-dunning"],
+  eccSame: true
+},
+{
+  id: "ar-dunning", area: "AR", item: "독촉 절차",
+  ecc: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 독촉",
+  pce: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 독촉",
+  pub: "확인 중",
+  diff: "독촉 레벨·간격·문구 설정. 실행은 PCE에서 F150과 Fiori 앱 병행.",
+  help: [],
+  tags: ["AR", "BP"], related: ["ar-cust-group", "ar-cust-num", "ar-interest"],
+  eccSame: true
+},
+{
+  id: "ar-credit", area: "AR", item: "신용관리",
+  ecc: "재무회계 > 채권 및 채무 > 신용관리 (신용관리영역·신용한도)",
+  pce: "재무회계 > 채권 및 채무 > 신용관리 (FSCM)",
+  pub: "확인 중",
+  diff: "ECC의 신용관리는 S/4HANA에서 FSCM 신용관리로 이관. 신용한도·위험범주·체크 규칙 체계가 변경됨.",
+  help: [],
+  tags: ["AR", "BP"], related: ["ar-cust-group", "ar-cust-num", "ar-interest"],
+  eccSame: false
+},
+{
+  id: "ar-recon", area: "AR", item: "고객 대체조정계정",
+  ecc: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 대체 조정 계정로 전기 > 기타 특별 G/L 거래 > 고객에 대한 대체조정계정 정의",
+  pce: "재무회계 > 채권 및 채무 > 고객 계정",
+  pub: "SSCUI 500043 '대체조정계정 정의'",
+  diff: "ECC와 개념 동일. Public은 SSCUI 500043에서 정의.",
+  help: [],
+  tags: ["AR", "BP"], related: ["ar-cust-group", "ar-cust-num", "ar-interest"],
+  eccSame: true
+},
+{
+  id: "ar-reason", area: "AR", item: "사유코드 정의",
+  ecc: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 사유코드",
+  pce: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 사유코드",
+  pub: "확인 중",
+  diff: "지급차이·반제차이 사유코드. ECC와 동일.",
+  help: [],
+  tags: ["AR", "BP", "전표"], related: ["ar-cust-group", "ar-cust-num", "ar-interest"],
+  eccSame: true
+},
+{
+  id: "ar-cashdisc", area: "AR", item: "현금할인/지급차이 처리",
+  ecc: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 현금할인",
+  pce: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션",
+  pub: "확인 중",
+  diff: "조기 지급 할인 조건과 허용차이 한도. ECC와 개념 동일.",
+  help: [],
+  tags: ["AR", "BP"], related: ["ar-cust-group", "ar-cust-num", "ar-interest"],
+  eccSame: true
+},
+{
+  id: "ar-overunder", area: "AR", item: "초과/미달지급 처리",
+  ecc: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 초과/미달 지급",
+  pce: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션",
+  pub: "확인 중",
+  diff: "잔액 허용차이 내 자동 반제 규칙. ECC와 동일.",
+  help: [],
+  tags: ["AR", "BP", "전표"], related: ["ar-cust-group", "ar-cust-num", "ar-interest"],
+  eccSame: true
+},
+{
+  id: "ar-dispute", area: "AR", item: "분쟁관리 (FSCM)",
+  ecc: "해당 없음 (ECC 분쟁관리는 별도 컴포넌트)",
+  pce: "재무회계 > 채권 및 채무 > FSCM 분쟁관리",
+  pub: "확인 중",
+  diff: "S/4HANA에서는 FSCM 분쟁관리로 통합되어 사유코드·자동 케이스 생성 체계가 정비됨.",
+  help: [],
+  tags: ["AR", "BP"], related: ["ar-cust-group", "ar-cust-num", "ar-interest"],
+  eccSame: false
+},
+{
+  id: "bank-master", area: "은행", item: "은행마스터 정의",
+  ecc: "재무회계 > 은행 회계 > 은행 마스터 데이터",
+  pce: "재무회계 > 은행 회계 > 은행 마스터 데이터",
+  pub: "Fiori 'Manage Banks' 앱 (Scope Item BFA)",
+  diff: "은행 기본 마스터. Public은 Fiori 앱으로 관리.",
+  help: [],
+  tags: ["은행", "Fiori", "마스터"], related: ["bank-glstruct", "bank-check"],
+  eccSame: true
+},
+{
+  id: "bank-glstruct", area: "은행", item: "은행계좌 G/L 구조",
+  ecc: "재무회계 > 은행 회계 > 은행 계좌 > 은행계좌 G/L 구조",
+  pce: "재무회계 > 은행 회계 > 은행 계좌",
+  pub: "확인 중",
+  diff: "은행 하위계좌의 G/L 반영 구조. ECC와 동일.",
+  help: [],
+  tags: ["은행"], related: ["bank-master", "bank-check"],
+  eccSame: true
+},
+{
+  id: "bank-check", area: "은행", item: "수표번호 및 무효사유",
+  ecc: "재무회계 > 은행 회계 > 지급수단 > 수표 로트/무효사유 정의",
+  pce: "재무회계 > 은행 회계",
+  pub: "확인 중",
+  diff: "수표 발행 번호대와 무효 사유코드. ECC와 동일.",
+  help: [],
+  tags: ["은행"], related: ["bank-master", "bank-glstruct"],
+  eccSame: true
+},
+{
+  id: "aa-depchart", area: "자산회계", item: "참조감가상각표 복사",
+  ecc: "재무회계 > 자산 회계 > 조직 구조 > 참조감가상각표/감가상각영역 복사",
+  pce: "재무회계 > 자산 회계 > 조직 구조",
+  pub: "SSCUI 500309 Configure Asset Accounting",
+  diff: "S/4HANA에서는 감가상각영역이 원장에 직접 연결되므로 복사 후 영역-원장 매핑이 핵심.",
+  help: [],
+  tags: ["자산"], related: ["aa-depchart-assign", "aa-deparea", "aa-class"],
+  eccSame: false
+},
+{
+  id: "aa-depchart-assign", area: "자산회계", item: "감가상각표를 회사코드에 지정",
+  ecc: "재무회계 > 자산 회계 > 조직 구조 > 감가상각표를 회사코드에 지정",
+  pce: "재무회계 > 자산 회계 > 조직 구조",
+  pub: "SSCUI 500309 Configure Asset Accounting",
+  diff: "ECC와 동일.",
+  help: [],
+  tags: ["자산"], related: ["aa-depchart", "aa-deparea", "aa-class"],
+  eccSame: true
+},
+{
+  id: "aa-deparea", area: "자산회계", item: "감가상각영역 정의",
+  ecc: "재무회계 > 자산 회계 > 일반 평가 > 감가상각영역 정의",
+  pce: "재무회계 > 자산 회계 > 일반 평가 > 감가상각 영역",
+  pub: "SSCUI 500309 '회사 코드의 감가상각 영역 정의'",
+  diff: "New AA에서는 감가상각영역이 원장 그룹에 매핑되어야 함. 실제 전기 영역과 통계 영역 구분이 중요.",
+  help: [],
+  tags: ["자산", "전표"], related: ["aa-depchart", "aa-depchart-assign", "aa-class"],
+  eccSame: false
+},
+{
+  id: "aa-class", area: "자산회계", item: "자산클래스 정의",
+  ecc: "재무회계 > 자산 회계 > 자산 데이터 구조 > 자산클래스 정의",
+  pce: "재무회계 > 자산 회계 > 자산 데이터 구조",
+  pub: "SSCUI 500309 '자산 클래스 정의'",
+  diff: "ECC와 개념 동일. Public은 SSCUI 500309에서 정의.",
+  help: [],
+  tags: ["자산"], related: ["aa-depchart", "aa-depchart-assign", "aa-deparea"],
+  eccSame: true
+},
+{
+  id: "aa-acctdet", area: "자산회계", item: "자산 계정결정",
+  ecc: "재무회계 > 자산 회계 > 통합 > FI-GL과의 통합 > 계정결정 지정",
+  pce: "재무회계 > 자산 회계 > 통합 > 계정결정 정의",
+  pub: "SSCUI 500309 '계정결정 정의'",
+  diff: "ECC와 개념 동일. Public은 SSCUI 500309에서 정의.",
+  help: [],
+  tags: ["자산"], related: ["aa-depchart", "aa-depchart-assign", "aa-deparea"],
+  eccSame: true
+},
+{
+  id: "aa-numrange", area: "자산회계", item: "자산 번호범위",
+  ecc: "재무회계 > 자산 회계 > 조직 구조 > 번호범위간격 정의",
+  pce: "재무회계 > 자산 회계 > 조직 구조",
+  pub: "확인 중",
+  diff: "ECC와 동일.",
+  help: [],
+  tags: ["자산"], related: ["aa-depchart", "aa-depchart-assign", "aa-deparea"],
+  eccSame: true
+},
+{
+  id: "aa-depkey", area: "자산회계", item: "감가상각키",
+  ecc: "재무회계 > 자산 회계 > 감가상각 > 평가방법 > 감가상각키 유지보수",
+  pce: "재무회계 > 자산 회계 > 감가상각 > 평가방법",
+  pub: "SSCUI 500309 (감가상각키·내용연수 설정)",
+  diff: "ECC와 개념 동일.",
+  help: [],
+  tags: ["자산"], related: ["aa-depchart", "aa-depchart-assign", "aa-deparea"],
+  eccSame: true
+},
+{
+  id: "aa-transtype", area: "자산회계", item: "자산 거래유형 정의",
+  ecc: "재무회계 > 자산 회계 > 거래 > 취득/처분에 대한 거래유형 정의",
+  pce: "재무회계 > 자산 회계 > 거래",
+  pub: "확인 중",
+  diff: "취득·처분·대체 거래유형. ECC와 동일.",
+  help: [],
+  tags: ["자산"], related: ["aa-depchart", "aa-depchart-assign", "aa-deparea"],
+  eccSame: true
+},
+{
+  id: "aa-yearend", area: "자산회계", item: "자산 연마감/이월 (AJAB)",
+  ecc: "AJRW (자산 연마감)",
+  pce: "재무회계 > 자산 회계 > 정기 처리 > 연마감 (AJAB)",
+  pub: "확인 중",
+  diff: "New AA에서는 자산 연마감이 FI 연마감과 통합되어 AJAB로 일원화. ABST2(AA-FI 대사 리포트) 폐지.",
+  help: ["https://help.sap.com/doc/0df2ffddebab40cf9338488b2f18dc41/2025.latest/en-US/SIMPL_OP2025.pdf"],
+  tags: ["자산"], related: ["aa-depchart", "aa-depchart-assign", "aa-deparea"],
+  eccSame: false
+},
+{
+  id: "tax-code", area: "세금", item: "세금코드 정의",
+  ecc: "재무회계 > 재무회계 기본세팅 > 부가가치세 > 전기 > 세금코드 정의",
+  pce: "재무회계 > 재무회계 전역 설정 > 세금 > 매출세/매입세 계산",
+  pub: "SSCUI 500069 '세금코드 유지보수'",
+  diff: "ECC와 개념 동일. Public은 SSCUI 500069에서 유지보수.",
+  help: [],
+  tags: ["세금"], related: ["tax-account", "tax-procedure", "tax-nontax"],
+  eccSame: true
+},
+{
+  id: "tax-account", area: "세금", item: "세금계정 정의",
+  ecc: "재무회계 > 재무회계 기본세팅 > 부가가치세 > 전기 > 세금계정 정의",
+  pce: "재무회계 > 재무회계 전역 설정 > 세금 > 매출세/매입세 계산",
+  pub: "확인 중",
+  diff: "세금 유형별 자동 전기 계정. ECC와 동일.",
+  help: [],
+  tags: ["세금", "전표"], related: ["tax-code", "tax-procedure", "tax-nontax"],
+  eccSame: true
+},
+{
+  id: "tax-procedure", area: "세금", item: "계산절차 점검 및 국가 지정",
+  ecc: "재무회계 > 재무회계 기본세팅 > 부가가치세 > 전기 > 계산절차 점검 / 국가를 계산절차에 지정",
+  pce: "재무회계 > 재무회계 전역 설정 > 세금 > 매출세/매입세 계산",
+  pub: "확인 중",
+  diff: "ECC와 동일.",
+  help: [],
+  tags: ["세금"], related: ["tax-code", "tax-account", "tax-nontax"],
+  eccSame: true
+},
+{
+  id: "tax-nontax", area: "세금", item: "비과세거래 세금코드",
+  ecc: "재무회계 > 재무회계 기본세팅 > 부가가치세 > 전기 > 비과세 거래에 대한 세금코드 정의",
+  pce: "재무회계 > 재무회계 전역 설정 > 세금 > 매출세/매입세 계산",
+  pub: "SSCUI 500069 '비과세거래에 대한 세금코드 지정'",
+  diff: "ECC와 개념 동일. Public은 SSCUI 500069에서 지정.",
+  help: [],
+  tags: ["세금"], related: ["tax-code", "tax-account", "tax-procedure"],
+  eccSame: true
+},
+{
+  id: "wth-type", area: "세금", item: "원천세유형/코드 정의",
+  ecc: "재무회계 > 재무회계 기본세팅 > 원천세 > 확장된 원천세 > 원천세키/코드 정의",
+  pce: "재무회계 > 재무회계 전역 설정 > 원천세 > 확장된 원천세",
+  pub: "SSCUI 500351 '원천세코드정의', '원천세유형을 회사코드에 지정'",
+  diff: "ECC와 개념 동일. Public은 SSCUI 500351에서 정의.",
+  help: [],
+  tags: ["세금"], related: ["tax-code", "tax-account", "tax-procedure"],
+  eccSame: true
+},
+{
+  id: "wth-section", area: "세금", item: "섹션코드/사업장 정의",
+  ecc: "재무회계 > 재무회계 기본세팅 > 원천세 > 사업장/섹션코드 정의",
+  pce: "재무회계 > 재무회계 전역 설정 > 원천세",
+  pub: "SSCUI 500351 '섹션코드 정의'",
+  diff: "원천세 신고 단위(사업장) 정의. ECC와 개념 동일.",
+  help: [],
+  tags: ["세금"], related: ["tax-code", "tax-account", "tax-procedure"],
+  eccSame: true
+},
+{
+  id: "co-area", area: "CO", item: "관리영역 정의",
+  ecc: "관리회계 > 관리회계 기본 설정 > 조직 > 관리영역 유지보수",
+  pce: "관리회계 > 관리회계 기본 설정 > 조직 > 관리영역 유지보수",
+  pub: "확인 중",
+  diff: "관리회계 최상위 조직. 회사코드 1:N 구조는 ECC와 동일하나, 원가요소-G/L계정 통합으로 계정체계 설계가 선행되어야 함.",
+  help: [],
+  tags: ["CO"], related: ["co-ccassign", "co-celem", "co-ccenter"],
+  eccSame: false
+},
+{
+  id: "co-ccassign", area: "CO", item: "회사코드를 관리영역에 지정",
+  ecc: "관리회계 > 관리회계 기본 설정 > 조직 > 회사코드를 관리영역에 지정",
+  pce: "관리회계 > 관리회계 기본 설정 > 조직",
+  pub: "확인 중",
+  diff: "ECC와 동일.",
+  help: [],
+  tags: ["CO"], related: ["co-area", "co-celem", "co-ccenter"],
+  eccSame: true
+},
+{
+  id: "co-celem", area: "CO", item: "원가요소 범주 (G/L계정 통합)",
+  ecc: "관리회계 > 원가요소 회계 > 원가요소 마스터 데이터 > 1차/2차 원가요소 생성",
+  pce: "관리회계 > 원가요소 회계 > 원가요소 마스터 데이터",
+  pub: "확인 중",
+  diff: "S/4HANA에서는 원가요소 마스터가 G/L계정 마스터와 통합. 1차 원가요소는 G/L계정 생성 시 자동 생성되며 별도 생성이 불필요.",
+  help: ["https://help.sap.com/doc/0df2ffddebab40cf9338488b2f18dc41/2025.latest/en-US/SIMPL_OP2025.pdf"],
+  tags: ["CO", "마스터"], related: ["co-area", "co-ccassign", "co-ccenter"],
+  eccSame: false
+},
+{
+  id: "co-ccenter", area: "CO", item: "코스트센터/표준계층",
+  ecc: "관리회계 > 코스트센터 회계 > 마스터 데이터 > 코스트센터/표준계층",
+  pce: "관리회계 > 코스트센터 회계 > 마스터 데이터",
+  pub: "확인 중",
+  diff: "ECC와 개념 동일.",
+  help: [],
+  tags: ["CO"], related: ["co-area", "co-ccassign", "co-celem"],
+  eccSame: true
+},
+{
+  id: "co-acttype", area: "CO", item: "활동유형",
+  ecc: "관리회계 > 코스트센터 회계 > 마스터 데이터 > 활동유형",
+  pce: "관리회계 > 코스트센터 회계 > 마스터 데이터",
+  pub: "확인 중",
+  diff: "ECC와 개념 동일.",
+  help: [],
+  tags: ["CO"], related: ["co-area", "co-ccassign", "co-celem"],
+  eccSame: true
+},
+{
+  id: "co-order", area: "CO", item: "내부오더 유형",
+  ecc: "관리회계 > 내부오더 > 오더 마스터 데이터 > 오더 유형 정의",
+  pce: "관리회계 > 내부오더 > 오더 마스터 데이터",
+  pub: "확인 중",
+  diff: "내부오더 유형·상태관리·예산. ECC와 개념 동일.",
+  help: [],
+  tags: ["CO"], related: ["co-area", "co-ccassign", "co-celem"],
+  eccSame: true
+},
+{
+  id: "co-settle", area: "CO", item: "정산 프로파일/배분구조",
+  ecc: "관리회계 > 내부오더 > 실제전기 > 정산 > 정산 프로파일/배분구조 정의",
+  pce: "관리회계 > 내부오더 > 실제전기 > 정산",
+  pub: "확인 중",
+  diff: "오더·프로젝트 정산 규칙. ECC와 개념 동일.",
+  help: [],
+  tags: ["CO"], related: ["co-area", "co-ccassign", "co-celem"],
+  eccSame: true
+},
+{
+  id: "co-opcon", area: "CO", item: "영업관리영역 정의",
+  ecc: "관리회계 > 수익성 분석 > 구조 > 영업관리영역 유지보수",
+  pce: "관리회계 > 수익성 분석 > 구조",
+  pub: "확인 중",
+  diff: "ECC와 개념 동일.",
+  help: [],
+  tags: ["CO"], related: ["co-area", "co-ccassign", "co-celem"],
+  eccSame: true
+},
+{
+  id: "co-prctr", area: "CO", item: "손익센터 정의",
+  ecc: "관리회계 > 손익센터 회계 > 마스터 데이터 > 손익센터",
+  pce: "관리회계 > 손익센터 회계 > 마스터 데이터",
+  pub: "확인 중",
+  diff: "전표분할과 연계되는 손익센터. S/4HANA에서는 전표분할 활성화 시 손익센터 파생이 필수.",
+  help: [],
+  tags: ["CO", "전표"], related: ["co-area", "co-ccassign", "co-celem"],
+  eccSame: false
+},
+{
+  id: "co-version", area: "CO", item: "CO 버전 유지보수",
+  ecc: "관리회계 > 관리회계 기본 설정 > 버전 유지보수",
+  pce: "관리회계 > 관리회계 기본 설정 > 버전",
+  pub: "확인 중",
+  diff: "계획 버전 관리. ECC와 동일.",
+  help: [],
+  tags: ["CO"], related: ["co-area", "co-ccassign", "co-celem"],
+  eccSame: true
+},
+{
+  id: "close-cockpit", area: "결산", item: "결산콕핏",
+  ecc: "재무회계 > 총계정원장 회계 > 정기 처리 > 결산콕핏 (작업 템플릿·태스크 정의)",
+  pce: "재무회계 > 총계정원장 회계 > 정기 처리 > 결산콕핏",
+  pub: "확인 중",
+  diff: "S/4HANA 결산콕핏은 Fiori 기반 스케줄링·모니터링으로 고도화. 작업 템플릿·의존성 정의 체계는 ECC와 유사.",
+  help: ["https://blog.sap-press.com/key-changes-to-period-end-closing-in-s/4hana-finance"],
+  tags: ["결산"], related: ["close-fxval", "close-carryfwd", "close-accrual"],
+  eccSame: false
+},
+{
+  id: "close-fxval", area: "결산", item: "외화평가",
+  ecc: "재무회계 > 총계정원장 회계 > 정기처리 > 평가 > 외화평가 > 외화평가에 대한 자동전기 준비",
+  pce: "재무회계 > 총계정원장 회계 > 정기 처리 > 평가",
+  pub: "확인 중",
+  diff: "평가방법·평가영역 정의 후 자동전기. 로직은 ECC와 동일.",
+  help: [],
+  tags: ["결산", "전표"], related: ["close-cockpit", "close-carryfwd", "close-accrual"],
+  eccSame: true
+},
+{
+  id: "close-carryfwd", area: "결산", item: "잔액이월",
+  ecc: "FAGLGVTR (G/L), AJRW (자산)",
+  pce: "재무회계 > 총계정원장 회계 > 정기 처리 > 이월 (FAGLGVTR)",
+  pub: "확인 중",
+  diff: "New AA에서는 자산 잔액이월이 FI 이월과 통합되어 별도 자산 이월이 불필요.",
+  help: [],
+  tags: ["결산"], related: ["close-cockpit", "close-fxval", "close-accrual"],
+  eccSame: false
+},
+{
+  id: "close-accrual", area: "결산", item: "발생엔진 (Accrual Engine)",
+  ecc: "재무회계 > 총계정원장 회계 > 정기처리 > 기간손익/발생엔진 설정",
+  pce: "재무회계 > 총계정원장 회계 > 정기 처리 > 발생엔진",
+  pub: "확인 중",
+  diff: "발생유형·평가영역·규칙세트 정의 체계는 ECC와 동일. S/4HANA에서는 구매오더 발생액 Fiori 앱(2VB)과 연계.",
+  help: [],
+  tags: ["결산"], related: ["close-cockpit", "close-fxval", "close-carryfwd"],
+  eccSame: true
+},
+{
+  id: "close-autoclear", area: "결산", item: "자동반제 실행",
+  ecc: "F.13 (반제규칙 OBIA/OBIB)",
+  pce: "F.13 유지",
+  pub: "확인 중",
+  diff: "로직은 유지, 실행 채널이 Fiori로 이동 중.",
+  help: [],
+  tags: ["결산", "전표"], related: ["close-cockpit", "close-fxval", "close-carryfwd"],
+  eccSame: true
+},
+{
+  id: "close-recurr", area: "결산", item: "정기/반복전표",
+  ecc: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 정기전표",
+  pce: "Fiori 'Manage Recurring Journal Entries' 앱",
+  pub: "Fiori 'Manage Recurring Journal Entries' 앱 (Scope Item J58)",
+  diff: "PCE에서는 GUI와 Fiori 병행, Public은 Fiori 앱 중심.",
+  help: [],
+  tags: ["결산", "전표", "Fiori"], related: ["close-cockpit", "close-fxval", "close-carryfwd"],
+  eccSame: true
+},
+{
+  id: "close-grir", area: "결산", item: "GR/IR 미결관리",
+  ecc: "F.13/MR11 (반제·잔액조정)",
+  pce: "Fiori 'Reconcile GR/IR Accounts' 앱",
+  pub: "Fiori 'Reconcile GR/IR Accounts' 앱 (Scope Item 2VB)",
+  diff: "반제 로직은 유지되나 S/4HANA에서 Fiori 앱(2VB)으로 모니터링이 강화됨.",
+  help: [],
+  tags: ["결산", "전표", "Fiori"], related: ["close-cockpit", "close-fxval", "close-carryfwd"],
+  eccSame: false
+},
+{
+  id: "close-jobs", area: "결산", item: "결산 작업 스케줄링",
+  ecc: "SM36/SM37 배치잡 직접 실행",
+  pce: "Fiori 'Schedule General Ledger Jobs' 앱 / Application Jobs",
+  pub: "Fiori 'Schedule General Ledger Jobs' 앱 (Scope Item J58)",
+  diff: "S/4HANA에서는 결산 프로그램 실행이 Fiori 작업 스케줄링으로 전환. 실행 이력·모니터링이 앱에서 일원화.",
+  help: [],
+  tags: ["결산", "Fiori", "전환"], related: ["close-cockpit", "close-fxval", "close-carryfwd"],
+  eccSame: false
+},
+{
+  id: "xmod-obyc", area: "타모듈 연결", item: "MM-FI 자동계정결정 (OBYC)",
+  ecc: "자재관리 > 평가 및 계정지정 > 계정결정 > 계정결정 마법사",
+  pce: "자재관리 > 평가 및 계정지정 > 계정결정 > 계정결정 마법사",
+  pub: "SSCUI 500043 '자동 계정 결정' (활동 ID 100297)",
+  diff: "BSX(재고전기)·WRX(GR/IR)·PRD(가격차이) 등 이벤트키별 계정결정이 핵심. 평가클래스-이동유형 조합 체계는 ECC와 동일.",
+  help: [],
+  tags: ["연계", "전표"], related: ["xmod-plant", "xmod-ml", "xmod-vkoa"],
+  eccSame: true
+},
+{
+  id: "xmod-plant", area: "타모듈 연결", item: "플랜트를 회사코드에 지정",
+  ecc: "기업 구조 > 지정 > 자재관리 > 플랜트를 회사코드에 지정",
+  pce: "기업 구조 > 지정 > 자재관리",
+  pub: "확인 중",
+  diff: "MM-FI 연결의 출발점. ECC와 동일.",
+  help: [],
+  tags: ["연계"], related: ["xmod-obyc", "xmod-ml", "xmod-vkoa"],
+  eccSame: true
+},
+{
+  id: "xmod-ml", area: "타모듈 연결", item: "자재원장 활성화",
+  ecc: "선택 사항 (관리회계 > 실제원가계산/자재원장)",
+  pce: "관리회계 > 실제원가계산/자재원장 > 자재원장 활성화",
+  pub: "확인 중",
+  diff: "S/4HANA에서는 모든 플랜트에 자재원장 활성화가 필수. MLDOC·MLDOCCCS 테이블로 평가하며 Universal Journal과 통합.",
+  help: ["https://blog.sap-press.com/the-material-ledger-and-actual-costing-with-sap-s4hana"],
+  tags: ["연계", "자재원장"], related: ["xmod-obyc", "xmod-plant", "xmod-vkoa"],
+  eccSame: false
+},
+{
+  id: "xmod-vkoa", area: "타모듈 연결", item: "SD 수익계정결정 (VKOA)",
+  ecc: "영업 및 유통 > 기본 기능 > 계정지정/원가계산 > 수익 계정 결정",
+  pce: "영업 및 유통 > 기본 기능 > 계정지정/원가계산 > 수익 계정 결정",
+  pub: "확인 중",
+  diff: "조건유형·계정키(ERL/ERS) 기반 G/L계정 결정. S/4HANA에서도 VKOA 체계 유지.",
+  help: [],
+  tags: ["연계"], related: ["xmod-obyc", "xmod-plant", "xmod-ml"],
+  eccSame: true
+},
+{
+  id: "xmod-copamap", area: "타모듈 연결", item: "SD 조건유형→CO-PA 값필드 매핑",
+  ecc: "관리회계 > 수익성 분석 > 플로우 > 실제값 > SD 조건유형/계정키 지정",
+  pce: "관리회계 > 수익성 분석 > 플로우",
+  pub: "확인 중",
+  diff: "SD 청구 조건이 CO-PA 값필드로 흐르는 인터페이스 정의. ECC와 개념 동일.",
+  help: [],
+  tags: ["연계"], related: ["xmod-obyc", "xmod-plant", "xmod-ml"],
+  eccSame: true
+},
+{
+  id: "xmod-payroll", area: "타모듈 연결", item: "급여전기 (HR→FI)",
+  ecc: "인적자원관리 > 급여 > 평가 > 회계로의 전기",
+  pce: "인적자원관리 > 급여관리 > 회계로의 전기",
+  pub: "확인 중",
+  diff: "급여전기 결과의 FI 전표 생성 규칙. ECC와 개념 동일.",
+  help: [],
+  tags: ["연계", "전표"], related: ["xmod-obyc", "xmod-plant", "xmod-ml"],
+  eccSame: true
+},
+{
+  id: "xmod-assetpo", area: "타모듈 연결", item: "자산구매오더 계정지정범주",
+  ecc: "재무회계 > 자산 회계 > ... > 자산구매오더에 대한 계정지정범주 정의",
+  pce: "재무회계 > 자산 회계 > 통합",
+  pub: "확인 중",
+  diff: "자산 구매오더의 계정지정 유형(A). ECC와 동일.",
+  help: [],
+  tags: ["연계"], related: ["xmod-obyc", "xmod-plant", "xmod-ml"],
+  eccSame: true
+},
+{
+  id: "xmod-sdbill", area: "타모듈 연결", item: "SD 인도·청구와 FI 전기 연계",
+  ecc: "영업 및 유통 > 청구 > 청구문서 > 회계전기 연계",
+  pce: "영업 및 유통 > 청구",
+  pub: "확인 중",
+  diff: "청구 문서 유형별 FI 전표 생성과 계정결정(VKOA) 연계. ECC와 개념 동일.",
+  help: [],
+  tags: ["연계", "전표"], related: ["xmod-obyc", "xmod-plant", "xmod-ml"],
+  eccSame: true
+},
+{
+  id: "xmod-griradj", area: "타모듈 연결", item: "GR/IR 반제 수정계정",
+  ecc: "재무회계 > 총계정원장 회계 > 정기처리 > 재분류 > GRIR 반제에 대한 수정계정 정의",
+  pce: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 미결 항목 반제",
+  pub: "확인 중",
+  diff: "GR/IR 반제 시 차이 조정용 수정계정. ECC와 동일.",
+  help: [],
+  tags: ["연계", "전표"], related: ["xmod-obyc", "xmod-plant", "xmod-ml"],
+  eccSame: true
+},
+{
+  id: "xmod-interco", area: "타모듈 연결", item: "회사간 전기 자동계정결정",
+  ecc: "재무회계 > 재무회계 기본세팅 > 전표 > 회사간 전기 자동계정결정",
+  pce: "재무회계 > 재무회계 전역 설정",
+  pub: "확인 중",
+  diff: "회사간 거래의 자동 상계계정 결정. ECC와 동일.",
+  help: [],
+  tags: ["연계", "전표"], related: ["xmod-obyc", "xmod-plant", "xmod-ml"],
+  eccSame: true
+},
+{
+  id: "gl-negative-posting", area: "G/L", item: "음의전기 허용",
+  ecc: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 조정 전기 / 역분개 > 음의전기허용",
+  pce: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 조정 전기/역분개",
+  pub: "확인 중",
+  diff: "회사코드별 음의전기 허용 여부. ECC와 동일.",
+  help: [],
+  tags: ["G/L", "전표"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-reversal-reason", area: "G/L", item: "역분개사유 정의",
+  ecc: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 조정 전기 / 역분개 > 역분개사유 정의",
+  pce: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 조정 전기/역분개",
+  pub: "확인 중",
+  diff: "역분개 시 사유코드와 전기일 규칙. ECC와 동일.",
+  help: [],
+  tags: ["G/L", "전표"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "gl-fx-diff-acct", area: "G/L", item: "환율차이 계정 정의",
+  ecc: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 미결 항목 반제 > 환율차이에 대한 계정 정의",
+  pce: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 미결 항목 반제",
+  pub: "확인 중",
+  diff: "외화 반제 시 환율차이 자동 전기 계정. 외화평가 설정과 함께 확인. ECC와 동일.",
+  help: [],
+  tags: ["G/L", "전표"], related: ["gl-field-status", "gl-field-status-assign", "gl-ledger"],
+  eccSame: true
+},
+{
+  id: "aa-settlement", area: "자산회계", item: "자산 정산프로파일 정의",
+  ecc: "재무회계 > 자산회계 > 거래 > 건설가계정 자본화 > 정산프로파일 정의 / 지정",
+  pce: "재무회계 > 자산 회계 > 거래 > 건설가계정",
+  pub: "확인 중",
+  diff: "건설가계정(AuC) 정산 규칙. AA-CO 연계의 핵심으로 ECC와 개념 동일.",
+  help: [],
+  tags: ["자산"], related: ["aa-depchart", "aa-depchart-assign", "aa-deparea"],
+  eccSame: true
+},
+{
+  id: "wth-account", area: "세금", item: "지급 원천세 계정 정의",
+  ecc: "재무회계 > 재무회계 기본세팅 > 원천세 > 확장된 원천세 > 전기 > 원천세 계정 > 지급될 원천세에 대한 계정정의",
+  pce: "재무회계 > 재무회계 전역 설정 > 원천세 > 확장된 원천세",
+  pub: "확인 중",
+  diff: "원천세 유형별 납부 계정 결정. ECC와 동일.",
+  help: [],
+  tags: ["세금"], related: ["tax-code", "tax-account", "tax-procedure"],
+  eccSame: true
+},
+];
+
+// 지식그래프용 노드/엣지 (entries에서 자동 생성 + 개념 노드 추가)
+const GRAPH_CONCEPTS = [
+  {id: "c-acdoca", label: "ACDOCA", type: "table"},
+  {id: "c-bp", label: "Business Partner", type: "master"},
+  {id: "c-cvi", label: "CVI", type: "concept"},
+  {id: "c-fiori", label: "Fiori", type: "app"},
+  {id: "c-newaa", label: "New AA", type: "concept"},
+  {id: "c-ml", label: "Material Ledger", type: "concept"},
+  {id: "c-fcc", label: "결산 콕핏", type: "app"}
+];
+const GRAPH_LINKS = [
+  {from: "c-acdoca", to: "c-bp", label: "연관"},
+  {from: "c-bp", to: "c-cvi", label: "동기화"},
+  {from: "c-acdoca", to: "c-newaa", label: "연계"},
+  {from: "c-acdoca", to: "c-ml", label: "통합"},
+  {from: "c-fiori", to: "c-bp", label: "앱 제공"},
+  {from: "c-fiori", to: "c-fcc", label: "통합"},
+  {from: "c-newaa", to: "c-fcc", label: "이월 통합"}
+];

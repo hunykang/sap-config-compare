@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAP ECC - S/4HANA PCE - S/4HANA Public Configuring 비교 가이드</title>
+<meta name="description" content="S/4HANA PCE 기준 컨피그 경로 가이드. 항목을 클릭하면 ECC와 Public에서 달라지는 부분이 표시됩니다. SAP FI 실무 비교 가이드.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9919904969420259" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="style.css">
+<style>
+.area-group { margin: 0 0 8px; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.area-head {
+  width: 100%; text-align: left; padding: 14px 18px; font-size: 15px; font-weight: 700;
+  background: var(--card); border: 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+}
+.area-head .n { font-size: 12px; color: var(--muted); font-weight: 400; }
+.area-items { display: none; }
+.area-group.open .area-items { display: block; }
+.cfg-item {
+  width: 100%; text-align: left; padding: 12px 18px; font-size: 14px; background: #fff;
+  border: 0; border-top: 1px solid var(--line); cursor: pointer; display: flex; gap: 10px; align-items: baseline;
+}
+.cfg-item:hover { background: var(--accent-soft); }
+.cfg-item.active { background: var(--accent-soft); box-shadow: inset 3px 0 0 var(--accent); }
+.cfg-item .t { color: var(--muted); font-size: 12px; margin-left: auto; white-space: nowrap; }
+.diff-badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; margin: 2px 4px 2px 0; }
+.diff-badge.yes { background: #fff8e1; color: #7a6c00; border: 1px solid #f0e2a0; }
+.diff-badge.same { background: #eef1f4; color: #666; border: 1px solid #dfe3e8; }
+.diff-badge.checking { background: #e8f7ef; color: #0a7a42; border: 1px solid #bfe6cf; }
+#side { position: sticky; top: 76px; align-self: flex-start; max-height: calc(100vh - 100px); overflow-y: auto; }
+@media (max-width: 760px) { #side { position: static; max-height: none; } }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">SAP Config <span>비교 가이드</span></a>
+    <nav class="nav">
+      <a href="index.html" class="active">개요</a>
+      <a href="compare.html">비교표</a>
+      <a href="graph.html">지식그래프</a>
+      <a href="sketch.html">현장 스케치</a>
+      <a href="updates.html">업데이트</a>
+      <a href="feedback.html">피드백</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>SAP ECC - S/4HANA PCE - S/4HANA Public<br>Configuring 비교 가이드</h1>
+    <p><strong>S/4HANA PCE를 기준</strong>으로 메뉴 경로 위치를 정리합니다. 항목을 클릭하면 <strong>ECC와 Public에서 달라지는 부분</strong>이 오른쪽에 표시됩니다. 화면을 하나하나 캡쳐하는 메뉴얼이 아닙니다.</p>
+    <div class="searchbar">
+      <input id="q" type="search" placeholder="예: BP, F110, ACDOCA, 자산 연마감…" aria-label="사이트 검색">
+      <button onclick="goCompare()">검색</button>
+    </div>
+  </section>
+
+  <h2 class="section">지식그래프</h2>
+  <p class="lead">설정 객체들이 어떻게 연결되어 있는지 한눈에 봅니다. 노드를 <strong>드래그</strong>해서 움직이고, <strong>클릭</strong>하면 아래 리스트의 해당 항목으로 이동합니다. <a href="graph.html">전체화면으로 열기 →</a></p>
+  <div class="graph-box" style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;margin-bottom:28px">
+    <canvas id="top-graph" style="width:100%;display:block;cursor:grab"></canvas>
+  </div>
+
+  <h2 class="section">PCE 기준 Configuration 리스트</h2>
+  <p class="lead">모듈별로 펼쳐서 항목을 클릭하세요. 링크를 복사하면 해당 항목을 바로 공유할 수 있습니다.</p>
+
+  <div class="graph-layout">
+    <div style="flex:1" id="list"></div>
+    <aside class="graph-side" id="side">
+      <h3>항목을 클릭하세요</h3>
+      <p class="lead">선택한 항목의 ECC / Public 경로와 달라지는 부분이 여기에 표시됩니다.</p>
+    </aside>
+  </div>
+
+  <h2 class="section">더 보기</h2>
+  <p class="lead">비교표와 현장 이야기로 이어집니다.</p>
+  <div class="grid">
+    <a class="card" href="compare.html">
+      <h3>전체 비교표</h3>
+      <p>ECC / PCE / Public 3-way 비교를 한 화면에서 검색·필터링합니다.</p>
+      <span class="count">compare.html →</span>
+    </a>
+    <a class="card" href="sketch.html">
+      <h3>현장 스케치</h3>
+      <p>메뉴얼에는 없는 프로젝트 현장의 컨피그 이야기.</p>
+      <span class="count">sketch.html →</span>
+    </a>
+  </div>
+
+  <div class="note">
+    <strong>업데이트 정책:</strong> S/4HANA Public은 SAP 공식 릴리스 일정에 따라 자동으로 업데이트됩니다.
+    변경 사항은 <a href="updates.html">업데이트 로그</a>에 기록하고,
+    SAP 공식 What's New는 <a href="http://help.sap.com/doc/ce01d82756b947a1a043a5d5a3204226/latest/" target="_blank" rel="noopener">Help Portal</a>에서 확인하세요.
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>20년차 SAP FI 컨설턴트의 실무 기록</span>
+    <a href="feedback.html">피드백 보내기</a>
+    <a href="privacy.html">개인정보처리방침</a>
+    <a href="updates.html">업데이트 로그</a>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="graph-widget.js"></script>
+<script>
+// 맨 위 지식그래프: 클릭하면 아래 리스트의 해당 항목으로 이동
+initGraph('top-graph', {
+  height: 380,
+  ticks: 80,
+  onSelect: function (n) {
+    if (!n || n.ref.kind !== 'entry') return;
+    const id = n.ref.entry.id;
+    const btn = document.querySelector('.cfg-item[data-id="' + CSS.escape(id) + '"]');
+    if (!btn) return;
+    btn.closest('.area-group').classList.add('open');
+    btn.click();
+    setTimeout(() => btn.scrollIntoView({ block: 'center', behavior: 'smooth' }), 100);
+  }
+});
+</script>
+<script>
+const AREAS = ["조직구조", "G/L", "AP", "AR", "은행", "자산회계", "세금", "CO", "타모듈 연결", "결산"];
+const AREA_DESC = {
+  "조직구조": "회사·회사코드·사업영역·기능영역",
+  "G/L": "총계정원장 — 원장, 전표, 전기기간, 전표분할",
+  "AP": "매입채무 — BP, 지급조건, House Bank, 자동지급",
+  "AR": "매출채권 — BP, 독촉, 신용관리",
+  "은행": "은행회계 — 은행마스터, 계좌",
+  "자산회계": "고정자산 — 감가상각, New AA, 연마감",
+  "세금": "세금코드, 세금계정, 원천세",
+  "CO": "관리회계 — 관리영역, 원가요소, 코스트센터",
+  "타모듈 연결": "FI컨 필수 — MM/SD/HR 연계",
+  "결산": "결산 — 외화평가, 결산 콕핏, 이월"
+};
+const listEl = document.getElementById('list');
+const sideEl = document.getElementById('side');
+
+function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+function diffBadges(e) {
+  const b = [];
+  b.push(e.eccSame
+    ? '<span class="diff-badge same">ECC와 동일</span>'
+    : '<span class="diff-badge yes">ECC와 다름</span>');
+  if (/확인 중/.test(e.pub)) b.push('<span class="diff-badge checking">Public 확인 중</span>');
+  else if (e.pub === e.pce) b.push('<span class="diff-badge same">Public 동일</span>');
+  else b.push('<span class="diff-badge yes">Public 다름</span>');
+  return b.join('');
+}
+
+AREAS.forEach((a, idx) => {
+  const items = GUIDE_DATA.filter(e => e.area === a);
+  if (!items.length) return;
+  const g = document.createElement('div');
+  g.className = 'area-group' + (idx === 0 ? ' open' : '');
+  g.innerHTML = `<button class="area-head">${esc(a)} <span class="n">${esc(AREA_DESC[a] || '')} · ${items.length}개</span></button>
+    <div class="area-items">${items.map(e =>
+      `<button class="cfg-item" data-id="${e.id}"><span>${esc(e.item)}</span><span class="t">${e.tags.map(esc).join(' · ')}</span></button>`
+    ).join('')}</div>`;
+  g.querySelector('.area-head').addEventListener('click', () => g.classList.toggle('open'));
+  listEl.appendChild(g);
+});
+
+listEl.addEventListener('click', ev => {
+  const btn = ev.target.closest('.cfg-item');
+  if (btn) selectItem(btn.dataset.id, true);
+});
+
+function selectItem(id, push) {
+  const e = GUIDE_DATA.find(x => x.id === id);
+  if (!e) return;
+  document.querySelectorAll('.cfg-item').forEach(b => b.classList.toggle('active', b.dataset.id === id));
+  sideEl.innerHTML = `
+    <h3>${esc(e.item)}</h3>
+    <div style="font-size:12px;color:#666;margin-bottom:10px">${esc(e.area)} · ${e.tags.map(esc).join(', ')}</div>
+    <div style="margin-bottom:10px">${diffBadges(e)}</div>
+    <p><span class="badge pce">PCE 기준</span><br>${esc(e.pce)}</p>
+    <p><span class="badge ecc">ECC</span><br>${esc(e.ecc)}</p>
+    <p><span class="badge pub">Public</span><br>${esc(e.pub).replace(/확인 중/g, '<span class="checking">확인 중</span>')}</p>
+    <p style="margin-top:10px"><strong>달라지는 부분</strong><br>${esc(e.diff)}</p>
+    ${e.help.length ? `<p class="src">${e.help.map(u => `<a href="${u}" target="_blank" rel="noopener">SAP 공식 문서 ↗</a>`).join('<br>')}</p>` : ''}
+    <p style="margin-top:12px;font-size:13px"><a href="#${e.id}" onclick="copyLink('${e.id}');return false;">🔗 이 항목 링크 복사</a> · <a href="feedback.html">✏️ 오류 제보하기</a></p>`;
+  if (push) history.replaceState(null, '', '#' + id);
+  if (window.innerWidth <= 760) sideEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+function copyLink(id) {
+  const url = location.origin + location.pathname + '#' + id;
+  (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject())
+    .then(() => alert('링크가 복사되었습니다.'))
+    .catch(() => prompt('아래 링크를 복사하세요:', url));
+}
+// 딥링킹: #id 로 바로 열기
+const initial = location.hash.replace('#', '');
+if (initial) {
+  const btn = document.querySelector(`.cfg-item[data-id="${CSS.escape(initial)}"]`);
+  if (btn) {
+    btn.closest('.area-group').classList.add('open');
+    selectItem(initial, false);
+    setTimeout(() => btn.scrollIntoView({ block: 'center' }), 300);
+  }
+}
+function goCompare() {
+  const q = document.getElementById('q').value.trim();
+  location.href = 'compare.html' + (q ? '?q=' + encodeURIComponent(q) : '');
+}
+document.getElementById('q').addEventListener('keydown', e => { if (e.key === 'Enter') goCompare(); });
+</script>
+</body>
+</html>
