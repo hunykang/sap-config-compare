@@ -22,6 +22,11 @@
 .g-chips a { font-size: 12px; padding: 3px 10px; border-radius: 20px; background: var(--accent-soft); text-decoration: none; color: inherit; }
 .g-chips a:hover { background: #dbe4f0; }
 .g-chips .lbl { font-size: 12px; color: var(--muted); align-self: center; margin-right: 2px; }
+.area-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 4px; }
+.area-chips button { border: 1px solid var(--line); background: #f8fafc; border-radius: 20px; padding: 6px 14px; font-size: 13px; cursor: pointer; }
+.area-chips button:hover { border-color: #0b5fff; color: #0b5fff; }
+.area-chips button.on { background: #0b5fff; border-color: #0b5fff; color: #fff; }
+.g-area-h { font-size: 15px; margin: 20px 0 4px; padding-bottom: 6px; border-bottom: 2px solid var(--line); }
 </style>
 </head>
 <body>
@@ -47,6 +52,7 @@
   <div class="g-search">
     <input id="gq" type="search" placeholder="용어 검색 (예: 전표유형, ACDOCA, OBYC)">
   </div>
+  <div class="area-chips" id="achips"></div>
   <p id="gcount" class="meta"></p>
   <div class="g-list" id="glist"></div>
   <div class="note" style="margin-top:20px">SAP 관련 용어만 수록합니다. 일반 회계·경영 용어는 제외. 용어 추가·수정 제안은 <a href="feedback.html">피드백</a>으로 보내주세요.</div>
@@ -67,15 +73,27 @@
 <script>
 const qInput = document.getElementById('gq');
 const list = document.getElementById('glist');
+const chipsBox = document.getElementById('achips');
 const byId = Object.fromEntries(GLOSSARY.map(t => [t.id, t]));
+const AREA_LABEL = { org: '조직구조', gl: 'G/L', ap: 'AP', ar: 'AR', bank: '은행', aa: '자산회계', tax: '세금', co: 'CO', xmod: '타모듈 연결', close: '결산' };
+const AREA_ORDER = ['org', 'gl', 'ap', 'ar', 'bank', 'aa', 'tax', 'co', 'xmod', 'close'];
+let curArea = '';
+const areaCount = {};
+GLOSSARY.forEach(t => { areaCount[t.area] = (areaCount[t.area] || 0) + 1; });
+chipsBox.innerHTML = [`<button data-a="" class="on">전체 ${GLOSSARY.length}</button>`]
+  .concat(AREA_ORDER.filter(a => areaCount[a]).map(a =>
+    `<button data-a="${a}">${AREA_LABEL[a]} ${areaCount[a]}</button>`)).join('');
+chipsBox.addEventListener('click', ev => {
+  const b = ev.target.closest('button[data-a]');
+  if (!b) return;
+  curArea = b.dataset.a;
+  chipsBox.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+  render();
+});
 const itemName = id => { const e = (typeof GUIDE_DATA !== 'undefined') ? GUIDE_DATA.find(x => x.id === id) : null; return e ? e.item : id; };
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
-function render() {
-  const q = qInput.value.trim().toLowerCase();
-  const terms = GLOSSARY.filter(t =>
-    !q || (t.kr + ' ' + t.en + ' ' + (t.abbr || '')).toLowerCase().includes(q));
-  document.getElementById('gcount').innerHTML = `<strong>${terms.length}</strong>개 용어`;
-  list.innerHTML = terms.map(t => `
+function cardHTML(t) {
+  return `
     <div class="g-card" id="term-${t.id}">
       <h3>${esc(t.kr)}${t.abbr ? ` (${esc(t.abbr)})` : ''}<span class="en">${esc(t.en)}</span></h3>
       <p class="desc">${esc(t.desc)}</p>
@@ -83,7 +101,23 @@ function render() {
         `<a href="compare.html#row-${id}">${esc(itemName(id))}</a>`).join('')}</div>` : ''}
       ${(t.terms && t.terms.length) ? `<div class="g-chips"><span class="lbl">🔗 관련 용어</span>${t.terms.map(id =>
         byId[id] ? `<a href="#term-${id}" data-term="${id}">${esc(byId[id].kr)}</a>` : '').join('')}</div>` : ''}
-    </div>`).join('') || '<p>검색 결과가 없습니다.</p>';
+    </div>`;
+}
+function render() {
+  const q = qInput.value.trim().toLowerCase();
+  const terms = GLOSSARY.filter(t =>
+    (!curArea || t.area === curArea) &&
+    (!q || (t.kr + ' ' + t.en + ' ' + (t.abbr || '')).toLowerCase().includes(q)));
+  document.getElementById('gcount').innerHTML = `<strong>${terms.length}</strong>개 용어`;
+  if (!curArea && !q) {
+    // 전체 보기: 영역별로 묶어서 표시
+    list.innerHTML = AREA_ORDER.filter(a => areaCount[a]).map(a => {
+      const ts = terms.filter(t => t.area === a);
+      return ts.length ? `<h3 class="g-area-h">${AREA_LABEL[a]} <span class="meta">${ts.length}개</span></h3>` + ts.map(cardHTML).join('') : '';
+    }).join('') || '<p>검색 결과가 없습니다.</p>';
+  } else {
+    list.innerHTML = terms.map(cardHTML).join('') || '<p>검색 결과가 없습니다.</p>';
+  }
 }
 qInput.addEventListener('input', render);
 list.addEventListener('click', ev => {

@@ -5,6 +5,7 @@ const GLOSSARY = [
   "en": "Company Code",
   "abbr": "",
   "desc": "재무회계를 독립적으로 결산할 수 있는 가장 작은 조직 단위. 전표가 이 단위로 끊어지고, 재무제표도 회사코드별로 나온다.",
+  "area": "org",
   "items": [
    "org-company-code",
    "org-ccode-company"
@@ -20,6 +21,7 @@ const GLOSSARY = [
   "en": "Company",
   "abbr": "",
   "desc": "여러 회사코드를 묶는 최상위 조직 단위. 연결재무제표의 기준이 된다.",
+  "area": "org",
   "items": [
    "org-company",
    "org-ccode-company"
@@ -34,6 +36,7 @@ const GLOSSARY = [
   "en": "Chart of Accounts",
   "abbr": "COA",
   "desc": "G/L 계정들의 전체 목록표. 회사코드는 반드시 하나의 계정과목표에 연결되어야 전표를 칠 수 있다.",
+  "area": "org",
   "items": [
    "org-ccode-company"
   ],
@@ -48,6 +51,7 @@ const GLOSSARY = [
   "en": "Account Type",
   "abbr": "",
   "desc": "SAP에서 '계정'은 G/L계정만이 아니라 고객·공급처·자산·자재까지 포함한 넓은 개념이다. 이 다섯 가지를 구분하는 코드가 계정유형이며, 전표의 성격이 여기서 갈린다.",
+  "area": "aa",
   "items": [],
   "terms": [
    "gl-account",
@@ -62,6 +66,7 @@ const GLOSSARY = [
   "en": "Account Group",
   "abbr": "",
   "desc": "비슷한 성격의 계정들을 묶는 틀이다. G/L계정의 계정그룹은 전표 입력 화면에 어떤 필드가 나오는지(필드상태)를 좌우한다.",
+  "area": "gl",
   "items": [
    "gl-acct-group"
   ],
@@ -76,6 +81,7 @@ const GLOSSARY = [
   "en": "Account Assignment",
   "abbr": "",
   "desc": "비용이 어느 코스트센터·오더에 귀속되는지 찍어주는 정보다. FI 전표 한 줄에 CO 귀속 정보를 함께 넣는 것이 계정지정이다.",
+  "area": "co",
   "items": [],
   "terms": [
    "cost-center",
@@ -89,6 +95,7 @@ const GLOSSARY = [
   "en": "Additional Account Assignment",
   "abbr": "",
   "desc": "기본 계정지정 외에 보조적으로 한 번 더 귀속을 나누는 기능이다. 예를 들어 한 비용을 두 부서에 나눠 보고 싶을 때 쓴다.",
+  "area": "gl",
   "items": [],
   "terms": [
    "account-assignment",
@@ -101,6 +108,7 @@ const GLOSSARY = [
   "en": "Clearing",
   "abbr": "",
   "desc": "미결항목의 짝을 맞춰 '정리 완료'로 만드는 과정이다. 고객이 외상값을 갚으면, 미결로 남아 있던 송장 항목과 입금 항목을 반제해서 둘 다 미결에서 사라지게 한다.",
+  "area": "gl",
   "items": [
    "gl-clear-prep",
    "close-autoclear"
@@ -118,6 +126,7 @@ const GLOSSARY = [
   "en": "Clearing Account",
   "abbr": "",
   "desc": "돈이나 물건이 잠시 거쳐 가는 계정이다. GR/IR처럼 입고와 송장이 따로 들어올 때, 두 쪽이 맞을 때까지 금액을 임시로 묶어 둔다.",
+  "area": "gl",
   "items": [],
   "terms": [
    "gr-ir",
@@ -131,6 +140,7 @@ const GLOSSARY = [
   "en": "Clearing Procedure",
   "abbr": "",
   "desc": "어떤 기준으로 미결항목들의 짝을 찾을지 정한 규칙이다. 금액·지급조건 등이 자동으로 맞으면 시스템이 알아서 반제한다.",
+  "area": "gl",
   "items": [
    "gl-clear-prep",
    "close-autoclear"
@@ -146,6 +156,7 @@ const GLOSSARY = [
   "en": "Document",
   "abbr": "",
   "desc": "SAP에서 일어나는 모든 회계 기록의 기본 단위다. 하나의 전표는 헤더(누가·언제·무슨 거래)와 여러 개의 개별항목(어느 계정에 얼마)으로 이루어진다.",
+  "area": "gl",
   "items": [
    "gl-doc-type"
   ],
@@ -162,6 +173,7 @@ const GLOSSARY = [
   "en": "Document Type",
   "abbr": "",
   "desc": "전표의 종류를 구분하는 2자리 코드다. 전표유형이 정해지면 번호범위와 전기할 수 있는 계정유형이 자동으로 따라온다. (예: DR 고객송장, KR 공급처송장)",
+  "area": "gl",
   "items": [
    "gl-doc-type",
    "gl-doc-number"
@@ -178,6 +190,7 @@ const GLOSSARY = [
   "en": "Document Header",
   "abbr": "",
   "desc": "전표의 머리 부분이다. 전표일자·전기일자·전표유형·통화처럼 전표 전체에 공통으로 적용되는 정보가 들어간다.",
+  "area": "gl",
   "items": [],
   "terms": [
    "document",
@@ -192,6 +205,7 @@ const GLOSSARY = [
   "en": "Document Number",
   "abbr": "",
   "desc": "전표마다 붙는 고유 번호다. 번호범위 설정에서 전표유형별로 번호 구간을 미리 정해 두면, 전기할 때 자동으로 채번된다.",
+  "area": "gl",
   "items": [
    "gl-doc-number"
   ],
@@ -207,6 +221,7 @@ const GLOSSARY = [
   "en": "Document Currency",
   "abbr": "",
   "desc": "전표에 찍힌 원래 통화다. 달러로 거래했다면 전표통화는 USD, 회사코드의 현지통화(KRW) 금액은 환율을 적용해 따로 계산된다.",
+  "area": "gl",
   "items": [],
   "terms": [
    "document",
@@ -220,6 +235,7 @@ const GLOSSARY = [
   "en": "Document Date",
   "abbr": "",
   "desc": "실제 거래가 일어난 날짜, 즉 증빙서류에 적힌 날짜다. 전기를 어느 회계기간에 넣을지 정하는 전기일자와는 다른 개념이다.",
+  "area": "gl",
   "items": [],
   "terms": [
    "document",
@@ -233,6 +249,7 @@ const GLOSSARY = [
   "en": "Document Principle",
   "abbr": "",
   "desc": "전표를 만들 때 지켜야 하는 기본 규칙이다. 차변 합계와 대변 합계가 맞아야 하고, 한 전표는 하나의 회사코드에만 속한다는 식의 원칙들이다.",
+  "area": "gl",
   "items": [],
   "terms": [
    "document",
@@ -246,6 +263,7 @@ const GLOSSARY = [
   "en": "Change Document",
   "abbr": "",
   "desc": "마스터데이터나 전표가 바뀌면 누가·언제·무엇을 바꿨는지 자동으로 남기는 변경 이력이다. 감사 추적의 근거가 된다.",
+  "area": "gl",
   "items": [
    "gl-doc-change"
   ],
@@ -260,6 +278,7 @@ const GLOSSARY = [
   "en": "Field Status",
   "abbr": "",
   "desc": "전표 입력 화면에서 각 필드를 필수·선택·숨김 중 어떻게 보여줄지 정하는 설정이다. 계정그룹과 전기키의 조합으로 최종 필드상태가 결정된다.",
+  "area": "gl",
   "items": [
    "gl-field-status",
    "gl-field-status-assign"
@@ -276,6 +295,7 @@ const GLOSSARY = [
   "en": "Posting Key",
   "abbr": "",
   "desc": "전표 개별항목 한 줄의 성격을 정하는 2자리 숫자다. 차변인지 대변인지, 어떤 계정유형에 전기하는지, 입력 화면 레이아웃은 무엇인지가 전기키 하나로 결정된다.",
+  "area": "gl",
   "items": [
    "gl-posting-key"
   ],
@@ -292,6 +312,7 @@ const GLOSSARY = [
   "en": "Posting Period",
   "abbr": "",
   "desc": "전기를 허용하는 회계기간이다. 월마감이 끝나면 지난 기간을 닫아 더 이상 전기가 안 되게 막는다. 보통 당월과 다음 달만 열어 둔다.",
+  "area": "gl",
   "items": [
    "gl-posting-period",
    "gl-pp-variant"
@@ -307,6 +328,7 @@ const GLOSSARY = [
   "en": "Ledger",
   "abbr": "",
   "desc": "전표들을 모아 두는 장부 단위다. S/4HANA에서는 회계기준별로 원장을 여러 개 둘 수 있고(예: K-IFRS용, 세무용), 전표는 원장별로 따로 집계된다.",
+  "area": "gl",
   "items": [
    "gl-ledger",
    "gl-ledger-group"
@@ -323,6 +345,7 @@ const GLOSSARY = [
   "en": "General Ledger",
   "abbr": "G/L",
   "desc": "모든 회계 거래가 최종으로 모이는 대표 장부다. 고객·공급처 같은 보조원장의 합계가 조정계정을 통해 G/L로 자동 반영된다.",
+  "area": "gl",
   "items": [
    "gl-ledger"
   ],
@@ -339,6 +362,7 @@ const GLOSSARY = [
   "en": "Line Item",
   "abbr": "",
   "desc": "전표를 구성하는 한 줄 한 줄의明細이다. 각 개별항목에는 계정·금액·전기키·텍스트 같은 정보가 들어간다.",
+  "area": "gl",
   "items": [],
   "terms": [
    "document",
@@ -352,6 +376,7 @@ const GLOSSARY = [
   "en": "Open Item Management",
   "abbr": "",
   "desc": "나중에 반제로 정리해야 하는 항목들을 '미결' 상태로 따로 관리하는 방식이다. 고객·공급처 계정과 GR/IR 계정이 대표적이며, 미결항목이 있는 계정은 잔액이 아니라 미결 합계로 관리된다.",
+  "area": "gl",
   "items": [],
   "terms": [
    "clearing",
@@ -366,6 +391,7 @@ const GLOSSARY = [
   "en": "Reconciliation Account",
   "abbr": "",
   "desc": "보조원장(고객·공급처·자산)의 합계를 G/L에 자동으로 반영해주는 연결 계정이다. 이 계정에는 직접 전표를 칠 수 없고, 보조원장에서 전기가 일어날 때만 자동 반영된다.",
+  "area": "ap",
   "items": [
    "ap-recon",
    "ar-recon"
@@ -382,6 +408,7 @@ const GLOSSARY = [
   "en": "Special G/L Indicator",
   "abbr": "",
   "desc": "일반 거래와 성격이 다른 거래(선금·어음 등)를 구분하는 한 자리 코드다. 같은 고객이라도 선금은 별도 조정계정에 쌓이게 하려는 장치다.",
+  "area": "bank",
   "items": [],
   "terms": [
    "special-gl-account",
@@ -395,6 +422,7 @@ const GLOSSARY = [
   "en": "Special G/L Account",
   "abbr": "",
   "desc": "선금·어음처럼 일반 채권·채무와 따로 보고 싶은 거래를 모아 두는 별도 조정계정이다. 특수G/L표시자와 세트로 움직인다.",
+  "area": "bank",
   "items": [],
   "terms": [
    "special-gl-indicator",
@@ -408,6 +436,7 @@ const GLOSSARY = [
   "en": "Noted Item",
   "abbr": "",
   "desc": "참고용으로만 적어 두는 항목이다. 금액 집계에는 영향을 주지 않고, 나중에 실제 전표가 들어오면 연결해서 볼 수 있다.",
+  "area": "xmod",
   "items": [],
   "terms": [
    "open-item-management",
@@ -421,6 +450,7 @@ const GLOSSARY = [
   "en": "Residual Item",
   "abbr": "",
   "desc": "반제할 때 금액이 다 맞지 않으면, 차액을 새 미결항목으로 남기는 방식이다. 예를 들어 100 중 70만 입금되면 70은 반제되고 30이 잔여항목으로 남는다.",
+  "area": "gl",
   "items": [],
   "terms": [
    "clearing",
@@ -434,6 +464,7 @@ const GLOSSARY = [
   "en": "Down Payment",
   "abbr": "",
   "desc": "물건·서비스를 받기 전에 미리 주는 돈이다. SAP에서는 특수G/L로 따로 관리해서 일반 외상잔액과 섞이지 않게 한다.",
+  "area": "ap",
   "items": [],
   "terms": [
    "down-payment-request",
@@ -447,6 +478,7 @@ const GLOSSARY = [
   "en": "Down Payment Request",
   "abbr": "",
   "desc": "선금을 달라고 요청하는 문서다. 실제 돈이 오가기 전 단계라 비망항목으로 관리되며, 입금이 되면 본 선금으로 연결된다.",
+  "area": "xmod",
   "items": [],
   "terms": [
    "down-payment",
@@ -459,6 +491,7 @@ const GLOSSARY = [
   "en": "Payment Method",
   "abbr": "",
   "desc": "대금을 어떤 수단으로 치를지 정하는 코드다. 계좌이체·수표·어음 등이 있으며, 국가별·회사코드별로 따로 설정한다. 자동지급 실행의 기준이 된다.",
+  "area": "ap",
   "items": [
    "ap-paymethod-country",
    "ap-paymethod-ccode",
@@ -476,6 +509,7 @@ const GLOSSARY = [
   "en": "Payment Block",
   "abbr": "",
   "desc": "지급을 잠시 막아 두는 장치다. 송장에 이의가 있거나 확인이 필요할 때 보류 사유를 걸어 두면, 자동지급 대상에서 제외된다.",
+  "area": "ap",
   "items": [
    "ap-payblock"
   ],
@@ -490,6 +524,7 @@ const GLOSSARY = [
   "en": "Payment Advice",
   "abbr": "",
   "desc": "돈을 보낼 때 '이 돈은 어떤 송장들에 대한 지급이다'라고 알려주는 명세서다. 받는 쪽에서 반제할 때 대조 기준으로 쓴다.",
+  "area": "bank",
   "items": [],
   "terms": [
    "payment-method",
@@ -502,6 +537,7 @@ const GLOSSARY = [
   "en": "Foreign Currency Valuation",
   "abbr": "",
   "desc": "월말에 외화로 된 채권·채무를 마감 환율로 다시 평가하는 작업이다. 환율 차이만큼 평가손익이 생기며, 다음 달 초에 자동으로 역분개된다.",
+  "area": "close",
   "items": [
    "close-fxval"
   ],
@@ -517,6 +553,7 @@ const GLOSSARY = [
   "en": "Local Currency",
   "abbr": "",
   "desc": "회사코드가 쓰는 자국 통화다. 전표통화가 달러여도 회사코드 통화가 원화면, 원화 금액이 함께 계산되어 장부에 남는다.",
+  "area": "gl",
   "items": [],
   "terms": [
    "document-currency",
@@ -530,6 +567,7 @@ const GLOSSARY = [
   "en": "Reversal",
   "abbr": "",
   "desc": "이미 친 전표를 뒤집어서 없던 일로 만드는 것이다. 원전표를 삭제하는 게 아니라 반대 전표를 쳐서 상쇄하므로 감사 추적이 남는다.",
+  "area": "gl",
   "items": [
    "gl-reversal-reason"
   ],
@@ -545,6 +583,7 @@ const GLOSSARY = [
   "en": "Sample Account",
   "abbr": "",
   "desc": "자주 쓰는 계정의 입력 패턴을 미리 저장해 둔 틀이다. 새 계정을 만들 때 샘플계정을 참조하면 필드값을 자동으로 가져올 수 있다.",
+  "area": "gl",
   "items": [
    "gl-acct-group"
   ],
@@ -559,6 +598,7 @@ const GLOSSARY = [
   "en": "Sample Document",
   "abbr": "",
   "desc": "자주 치는 전표의 양식을 저장해 둔 것이다. 실제 전기되지는 않고, 필요할 때 불러와 금액·날짜만 바꿔서 쓴다.",
+  "area": "gl",
   "items": [],
   "terms": [
    "document",
@@ -572,6 +612,7 @@ const GLOSSARY = [
   "en": "Recurring Entry",
   "abbr": "",
   "desc": "임대료처럼 매달 같은 내용으로 치는 전표를 미리 등록해 두는 기능이다. 실행일에 시스템이 자동으로 전표를 생성해준다.",
+  "area": "close",
   "items": [
    "close-recurr"
   ],
@@ -586,6 +627,7 @@ const GLOSSARY = [
   "en": "Reference Document",
   "abbr": "",
   "desc": "새 전표를 칠 때 복사 원본으로 삼는 기존 전표다. 참조하면 계정·금액 패턴을 그대로 가져오면서 새 전표번호로 전기된다.",
+  "area": "gl",
   "items": [],
   "terms": [
    "document",
@@ -598,6 +640,7 @@ const GLOSSARY = [
   "en": "Sub-ledger",
   "abbr": "",
   "desc": "고객·공급처·자산처럼 낱개 단위로 자세히 관리하는 보조 장부다. 보조원장의 합계는 조정계정을 통해 총계정원장에 자동 반영된다.",
+  "area": "aa",
   "items": [],
   "terms": [
    "reconciliation-account",
@@ -612,6 +655,7 @@ const GLOSSARY = [
   "en": "Organizational Structure",
   "abbr": "",
   "desc": "회사·회사코드·사업영역 같은 SAP 조직 단위들의 계층 관계다. 전표가 어느 단위로 끊어지고 집계되는지가 조직구조에서 정해진다.",
+  "area": "org",
   "items": [
    "org-company",
    "org-company-code",
@@ -629,6 +673,7 @@ const GLOSSARY = [
   "en": "Cash Discount",
   "abbr": "",
   "desc": "빨리 갚으면 깎아주는 할인이다. 지급조건에 할인율과 할인 기간을 넣어 두면, 자동지급이나 수동 지급 때 할인액을 자동 계산해준다.",
+  "area": "ar",
   "items": [
    "ar-cashdisc",
    "ap-payterms"
@@ -644,6 +689,7 @@ const GLOSSARY = [
   "en": "Partial Payment",
   "abbr": "",
   "desc": "미결항목 금액의 일부만 먼저 지급하는 것이다. 원래 항목은 미결로 남고 지급액만큼 별도 항목이 생긴다. 잔여항목 방식과 달리 원 항목을 쪼개지 않는다.",
+  "area": "bank",
   "items": [],
   "terms": [
    "clearing",
@@ -657,6 +703,7 @@ const GLOSSARY = [
   "en": "G/L Account",
   "abbr": "",
   "desc": "계정과목표 안에 실제로 전표가 쳐지는 낱개의 계정이다. 계정그룹이 이 계정의 입력 화면 모양을 정하고, 조정계정으로 지정되면 직접 전기를 막는다.",
+  "area": "gl",
   "items": [
    "gl-acct-group",
    "gl-coa",
@@ -675,6 +722,7 @@ const GLOSSARY = [
   "en": "Business Area",
   "abbr": "",
   "desc": "회사코드 안에서 사업 부문별로 재무제표를 나눠 보고 싶을 때 쓰는 조직 단위다. 전표 개별항목에 사업영역을 찍어 두면 부문별 손익을 뽑을 수 있다.",
+  "area": "org",
   "items": [
    "org-business-area"
   ],
@@ -690,6 +738,7 @@ const GLOSSARY = [
   "en": "Functional Area",
   "abbr": "",
   "desc": "비용을 기능별(제조·판매·관리)로 나눠 표시하기 위한 구분자다. 원가요소를 기능영역에 연결해 두면 손익계산서를 기능별로 그릴 수 있다.",
+  "area": "org",
   "items": [
    "org-functional-area"
   ],
@@ -704,6 +753,7 @@ const GLOSSARY = [
   "en": "Controlling Area",
   "abbr": "CO Area",
   "desc": "관리회계(CO)의 최상위 조직 단위다. 여러 회사코드를 하나의 관리회계영역에 묶어야 회사 간 원가 배부와 내부 정산이 가능하다.",
+  "area": "co",
   "items": [
    "co-area",
    "co-ccassign"
@@ -721,6 +771,7 @@ const GLOSSARY = [
   "en": "Credit Control Area",
   "abbr": "",
   "desc": "고객 신용한도를 관리하는 조직 단위다. 여러 회사코드를 묶어 한 고객의 총 여신을 한눈에 보고 한도를 통제한다.",
+  "area": "org",
   "items": [
    "org-credit-area",
    "ar-credit"
@@ -737,6 +788,7 @@ const GLOSSARY = [
   "en": "Funds Management Area",
   "abbr": "FM Area",
   "desc": "예산과 자금 집행을 통제하는 조직 단위다. 회사코드를 자금관리영역에 연결하면 부서별 예산 대비 집행 현황을 관리할 수 있다.",
+  "area": "org",
   "items": [
    "org-fm-area",
    "org-fm-ccode"
@@ -752,6 +804,7 @@ const GLOSSARY = [
   "en": "Fiscal Year Variant",
   "abbr": "FYV",
   "desc": "회계연도를 몇 개 기간으로 나눌지, 월과 기간이 어떻게 대응되는지 정한 달력 틀이다. 회사코드는 반드시 하나의 회계연도변형에 연결되어야 한다.",
+  "area": "gl",
   "items": [
    "gl-fiscal-year",
    "gl-fiscal-assign"
@@ -767,6 +820,7 @@ const GLOSSARY = [
   "en": "Ledger Group",
   "abbr": "",
   "desc": "여러 원장을 묶어 한 번에 전표 치는 단위다. 회계기준별로 원장을 나눴을 때, 이 그룹에 전기하면 속한 원장들에 동시에 반영된다.",
+  "area": "gl",
   "items": [
    "gl-ledger-group",
    "gl-acct-principle"
@@ -782,6 +836,7 @@ const GLOSSARY = [
   "en": "Document Splitting",
   "abbr": "",
   "desc": "전표 한 장을 세그먼트(사업영역 등)별로 자동 쪼개서 균형을 맞추는 기능이다. 덕분에 사업영역별 재무제표가 전표 단에서부터 맞아떨어진다.",
+  "area": "gl",
   "items": [
    "gl-docsplit"
   ],
@@ -797,6 +852,7 @@ const GLOSSARY = [
   "en": "Tolerance Group",
   "abbr": "",
   "desc": "전표 입력 담당자별로 허용되는 차액 한도를 묶은 그룹이다. 한도를 넘는 전표는 전기되지 않고, 담당자 권한에 따라 결재 절차를 탄다.",
+  "area": "gl",
   "items": [
    "gl-tolerance"
   ],
@@ -811,6 +867,7 @@ const GLOSSARY = [
   "en": "Dunning",
   "abbr": "",
   "desc": "외상값을 안 갚는 고객에게 단계별로 독촉장을 보내는 기능이다. 독촉 절차에 따라 독촉장을 몇 차까지 보낼지, 이자는 어떻게 붙일지가 정해진다.",
+  "area": "ar",
   "items": [
    "ar-dunning"
   ],
@@ -826,6 +883,7 @@ const GLOSSARY = [
   "en": "House Bank",
   "abbr": "",
   "desc": "회사가 실제로 거래하는 은행을 SAP 안에 등록한 것이다. 회사코드별로 하우스뱅크와 계좌를 연결해 두면 자동지급이 이 계좌에서 나간다.",
+  "area": "ap",
   "items": [
    "ap-housebank",
    "ap-bank-determ"
@@ -842,6 +900,7 @@ const GLOSSARY = [
   "en": "Bank Master",
   "abbr": "",
   "desc": "은행 코드·지점·주소 같은 은행 기본 정보를 등록한 마스터다. 하우스뱅크나 거래처 은행계좌를 만들 때 이 마스터를 참조한다.",
+  "area": "bank",
   "items": [
    "bank-master",
    "bank-glstruct"
@@ -857,6 +916,7 @@ const GLOSSARY = [
   "en": "Payment Terms",
   "abbr": "",
   "desc": "언제까지 갚으면 되고, 일찍 갚으면 얼마나 깎아주는지 정한 조건 코드다. 송장에 지급조건이 들어가면 만기일과 현금할인이 자동 계산된다.",
+  "area": "ap",
   "items": [
    "ap-payterms",
    "ar-cashdisc"
@@ -873,6 +933,7 @@ const GLOSSARY = [
   "en": "Automatic Payment Program",
   "abbr": "F110",
   "desc": "만기가 된 미결항목을 모아서 한 번에 지급 실행하는 배치 프로그램이다. 지급방법·하우스뱅크·지급보류를 보고 지급 파일을 만들어 은행에 보낸다.",
+  "area": "ap",
   "items": [
    "ap-paymethod-ccode",
    "ap-bank-determ",
@@ -891,6 +952,7 @@ const GLOSSARY = [
   "en": "Number Range",
   "abbr": "",
   "desc": "전표번호·거래처번호처럼 시스템이 자동으로 매기는 번호의 구간 정의다. 전표유형별, 계정그룹별로 번호 구간을 나눠 관리한다.",
+  "area": "ap",
   "items": [
    "gl-doc-number",
    "ap-vendor-num",
@@ -910,6 +972,7 @@ const GLOSSARY = [
   "en": "Automatic Account Determination",
   "abbr": "OBYC",
   "desc": "자재 입고·출고 같은 물류 거래가 일어날 때, 어떤 G/L계정에 전기할지를 거래키별로 자동 찾아주는 설정이다. MM과 FI를 잇는 핵심 연결고리다.",
+  "area": "xmod",
   "items": [
    "xmod-obyc",
    "xmod-griradj"
@@ -926,6 +989,7 @@ const GLOSSARY = [
   "en": "Revenue Account Determination",
   "abbr": "VKOA",
   "desc": "판매 청구가 일어날 때 매출을 어떤 G/L계정에 잡을지 정하는 설정이다. 판매조직·조건유형 같은 SD 정보와 FI 수익계정을 연결한다.",
+  "area": "xmod",
   "items": [
    "xmod-vkoa",
    "xmod-copamap"
@@ -941,6 +1005,7 @@ const GLOSSARY = [
   "en": "Customer/Vendor Integration",
   "abbr": "CVI",
   "desc": "S/4HANA에서 고객과 공급처 마스터를 비즈니스 파트너(BP)로 통합 관리하는 구조다. BP를 만들면 고객·공급처 역할이 자동으로 연결된다.",
+  "area": "ap",
   "items": [
    "ap-cvi"
   ],
@@ -955,6 +1020,7 @@ const GLOSSARY = [
   "en": "Business Partner",
   "abbr": "BP",
   "desc": "S/4HANA에서 거래처를 통합 관리하는 마스터 개념이다. 고객·공급처가 따로 놀던 과거와 달리, 하나의 BP에 여러 역할을 부여해 함께 관리한다.",
+  "area": "ap",
   "items": [
    "ap-bp-role",
    "ap-bp-num",
@@ -975,6 +1041,7 @@ const GLOSSARY = [
   "en": "Universal Journal",
   "abbr": "ACDOCA",
   "desc": "S/4HANA의 단일 회계 장부 테이블이다. FI·CO 전표가 모두 여기에 한 줄로 쌓여서, 재무와 관리회계가 같은 숫자를 보게 된다. 과거의 총계정·보조계정 분리 구조를 대체한다.",
+  "area": "gl",
   "items": [
    "gl-ledger"
   ],
@@ -991,6 +1058,7 @@ const GLOSSARY = [
   "en": "Material Ledger",
   "abbr": "ML",
   "desc": "자재의 수량·금액을 다통화로 관리하는 원장이다. S/4HANA에서는 사실상 필수이며, 실제원가 계산과 다통화 평가의 기준이 된다.",
+  "area": "xmod",
   "items": [
    "xmod-ml"
   ],
@@ -1006,6 +1074,7 @@ const GLOSSARY = [
   "en": "GR/IR Clearing",
   "abbr": "",
   "desc": "입고(GR)는 됐는데 송장(IR)이 안 온 상태를 묶어 두는 중간계정이다. 입고와 송장이 모두 들어오면 반제되어 잔액이 0이 된다. 월말에 미결 잔액을 꼭 확인해야 한다.",
+  "area": "xmod",
   "items": [
    "xmod-griradj",
    "close-grir"
@@ -1022,6 +1091,7 @@ const GLOSSARY = [
   "en": "Depreciation Area",
   "abbr": "",
   "desc": "하나의 자산에 대해 목적별(회계용·세무용 등)로 감가상각을 따로 계산하는 영역이다. 영역마다 감가상각키와 내용연수를 다르게 둘 수 있다.",
+  "area": "aa",
   "items": [
    "aa-deparea"
   ],
@@ -1037,6 +1107,7 @@ const GLOSSARY = [
   "en": "Depreciation Key",
   "abbr": "",
   "desc": "감가상각을 어떤 방법(정액·정률 등)으로, 몇 년에 걸쳐 할지 정한 코드다. 감가상각영역마다 키를 지정해 계산 방식을 정한다.",
+  "area": "aa",
   "items": [
    "aa-depkey"
   ],
@@ -1051,6 +1122,7 @@ const GLOSSARY = [
   "en": "Asset Class",
   "abbr": "",
   "desc": "비슷한 자산들을 묶는 분류 틀이다. 자산클래스가 정해지면 번호범위와 전기될 G/L계정(계정결정)이 자동으로 따라온다.",
+  "area": "aa",
   "items": [
    "aa-class",
    "aa-acctdet",
@@ -1069,6 +1141,7 @@ const GLOSSARY = [
   "en": "Chart of Depreciation",
   "abbr": "",
   "desc": "감가상각영역들의 묶음 정의다. 회사코드는 하나의 감가상각표에 연결되며, 보통 국가별 회계·세무 요구에 맞춰 만든다.",
+  "area": "aa",
   "items": [
    "aa-depchart",
    "aa-depchart-assign"
@@ -1085,6 +1158,7 @@ const GLOSSARY = [
   "en": "Tax Code",
   "abbr": "",
   "desc": "전표에 붙는 부가세 유형 코드다. 세금코드가 정해지면 세율과 전기될 세금계정이 자동으로 결정된다. 과세·영세·비과세를 코드로 구분한다.",
+  "area": "tax",
   "items": [
    "tax-code",
    "tax-account",
@@ -1101,6 +1175,7 @@ const GLOSSARY = [
   "en": "Withholding Tax",
   "abbr": "",
   "desc": "대금을 줄 때 세금을 미리 떼고 내는 제도다. SAP에서는 원천세 유형·코드를 설정해 지급 실행 시점에 세액을 자동 계산하고 별도 계정에 전기한다.",
+  "area": "tax",
   "items": [
    "wth-type",
    "wth-account",
@@ -1117,6 +1192,7 @@ const GLOSSARY = [
   "en": "Cost Center",
   "abbr": "",
   "desc": "비용이 어디서 발생했는지 모으는 관리 단위다. 부서·팀별로 코스트센터를 만들고 표준계층으로 묶어, 부서별 실적을 집계한다.",
+  "area": "co",
   "items": [
    "co-ccenter"
   ],
@@ -1133,6 +1209,7 @@ const GLOSSARY = [
   "en": "Cost Element",
   "abbr": "",
   "desc": "CO에서 비용의 성격을 구분하는 코드다. 1차 원가요소는 G/L계정과 1:1로 연결되어, FI 전표가 CO로 넘어올 때 이 코드가 함께 간다.",
+  "area": "co",
   "items": [
    "co-celem"
   ],
@@ -1148,6 +1225,7 @@ const GLOSSARY = [
   "en": "Internal Order",
   "abbr": "",
   "desc": "특정 프로젝트·행사처럼 한시적인 비용을 따로 모아보는 관리 단위다. 실제 발생한 비용을 오더에 모았다가 나중에 정산으로 배분한다.",
+  "area": "co",
   "items": [
    "co-order",
    "co-settle"
@@ -1164,6 +1242,7 @@ const GLOSSARY = [
   "en": "Profit Center",
   "abbr": "",
   "desc": "수익과 비용을 함께 모아 손익을 내는 관리 단위다. 사업부·제품군별로 손익센터를 두면 부문별 손익계산서를 뽑을 수 있다.",
+  "area": "co",
   "items": [
    "co-prctr"
   ],
@@ -1179,6 +1258,7 @@ const GLOSSARY = [
   "en": "Activity Type",
   "abbr": "",
   "desc": "코스트센터가 제공하는 활동(예: 기계시간, 작업시간)의 단위다. 활동단가를 정해 두면 실제 활동량만큼 비용을 배부할 수 있다.",
+  "area": "co",
   "items": [
    "co-acttype"
   ],
@@ -1193,6 +1273,7 @@ const GLOSSARY = [
   "en": "Settlement",
   "abbr": "",
   "desc": "내부오더 등에 모인 비용을 최종 귀속처(코스트센터·자산 등)로 배분하는 작업이다. 정산 프로파일에 배분 규칙과 받는 쪽을 미리 정해 둔다.",
+  "area": "co",
   "items": [
    "co-settle",
    "aa-settlement"
@@ -1209,6 +1290,7 @@ const GLOSSARY = [
   "en": "Operating Concern",
   "abbr": "",
   "desc": "수익성 분석(CO-PA)의 최상위 구조다. 어떤 특성(제품·고객·지역)과 값필드(매출·원가)로 수익성을 볼지 여기서 정의한다.",
+  "area": "co",
   "items": [
    "co-opcon"
   ],
@@ -1223,6 +1305,7 @@ const GLOSSARY = [
   "en": "Profitability Analysis",
   "abbr": "CO-PA",
   "desc": "제품·고객·지역별로 '어디서 돈을 벌었는지'를 분석하는 CO 모듈이다. S/4HANA에서는 마진 분석 방식으로 SD 청구 데이터가 실시간 넘어온다.",
+  "area": "xmod",
   "items": [
    "xmod-copamap"
   ],
@@ -1238,6 +1321,7 @@ const GLOSSARY = [
   "en": "Accrual Engine",
   "abbr": "",
   "desc": "아직 송장이 안 왔지만 비용이 발생한 항목을 월말에 자동으로 계상해주는 기능이다. 다음 달에 실제 송장이 오면 역분개로 정리된다.",
+  "area": "close",
   "items": [
    "close-accrual"
   ],
@@ -1252,6 +1336,7 @@ const GLOSSARY = [
   "en": "Financial Closing Cockpit",
   "abbr": "FCLOS",
   "desc": "월말·연말 결산 작업들을 한 화면에서 순서대로 실행·모니터링하는 도구다. 작업 간 의존성을 정해 두면 순서대로 자동 실행된다.",
+  "area": "close",
   "items": [
    "close-cockpit",
    "close-jobs"
@@ -1268,6 +1353,7 @@ const GLOSSARY = [
   "en": "Balance Carryforward",
   "abbr": "",
   "desc": "연도가 바뀌면 전년도 잔액을 새 연도로 넘기는 작업이다. G/L잔액·미결항목·자산 등 영역별로 이월 프로그램이 따로 있다.",
+  "area": "close",
   "items": [
    "close-carryfwd",
    "aa-yearend"
@@ -1283,6 +1369,7 @@ const GLOSSARY = [
   "en": "Intercompany Posting",
   "abbr": "",
   "desc": "같은 그룹 내 회사코드끼리 주고받는 거래다. 한쪽이 매출을 치면 다른 쪽에 매입이 생기며, 차액은 회사간 전기 계정으로 자동 맞춰진다.",
+  "area": "xmod",
   "items": [
    "xmod-interco"
   ],
@@ -1298,6 +1385,7 @@ const GLOSSARY = [
   "en": "Validation",
   "abbr": "",
   "desc": "전표가 전기되기 전에 '이런 조합은 안 된다'는 규칙을 검사하는 기능이다. 조건에 안 맞으면 전기를 막고 오류 메시지를 띄운다.",
+  "area": "gl",
   "items": [
    "gl-validation"
   ],
@@ -1312,6 +1400,7 @@ const GLOSSARY = [
   "en": "Substitution",
   "abbr": "",
   "desc": "전표 입력값을 조건에 따라 자동으로 바꿔치우는 기능이다. 예를 들어 특정 계정에 전기하면 코스트센터를 자동으로 채워준다.",
+  "area": "gl",
   "items": [
    "gl-substitution"
   ],
@@ -1327,6 +1416,7 @@ const GLOSSARY = [
   "en": "Negative Posting",
   "abbr": "",
   "desc": "금액을 마이너스로 직접 치는 전기 방식이다. 허용해 두면 차·대변을 뒤집지 않고도 음수 금액으로 조정 전표를 칠 수 있다.",
+  "area": "gl",
   "items": [
    "gl-negative-posting"
   ],
@@ -1342,6 +1432,7 @@ const GLOSSARY = [
   "en": "Credit Management",
   "abbr": "",
   "desc": "고객별로 신용한도를 정하고 여신을 통제하는 기능이다. 한도를 넘으면 주문·출하를 막거나 승인 절차를 태운다.",
+  "area": "ar",
   "items": [
    "ar-credit",
    "org-credit-area",
@@ -1359,6 +1450,7 @@ const GLOSSARY = [
   "en": "Dispute Management",
   "abbr": "FSCM",
   "desc": "송장에 이의가 제기된 건을 별도 케이스로 관리하는 기능이다. 분쟁 케이스가 열리면 해당 미결항목은 독촉·지급 대상에서 제외된다.",
+  "area": "ar",
   "items": [
    "ar-dispute"
   ],
@@ -1374,6 +1466,7 @@ const GLOSSARY = [
   "en": "Reason Code",
   "abbr": "",
   "desc": "지급차이나 역분개가 왜 일어났는지 구분하는 코드다. 사유코드별로 차액이 어느 계정으로 가는지가 정해진다.",
+  "area": "ar",
   "items": [
    "ar-reason",
    "ar-overunder",
@@ -1390,6 +1483,7 @@ const GLOSSARY = [
   "en": "Retained Earnings Account",
   "abbr": "",
   "desc": "손익계정들의 잔액을 연말에 모아 두는 계정이다. 결산 때 수익·비용 계정의 잔액이 이 계정으로 이월되면서 손익계정은 0이 된다.",
+  "area": "gl",
   "items": [
    "gl-retained"
   ],
@@ -1405,6 +1499,7 @@ const GLOSSARY = [
   "en": "Financial Statement Version",
   "abbr": "FSV",
   "desc": "G/L계정들을 재무제표 양식에 맞게 트리 구조로 묶어 둔 버전이다. 같은 계정과목표라도 용도별로 다른 재무제표 모양을 만들 수 있다.",
+  "area": "gl",
   "items": [
    "gl-fsver"
   ],
