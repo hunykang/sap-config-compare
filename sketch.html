@@ -12,24 +12,17 @@
 <script src="glossary.js"></script>
 <script src="sketch.js"></script>
 <style>
-.blog-list { display: grid; gap: 8px; margin: 12px 0 8px; }
-.blog-link {
-  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
-  padding: 12px 16px; border: 1px solid var(--line); border-radius: 10px;
-  background: var(--card); text-decoration: none; color: inherit;
-}
-.blog-link:hover { background: var(--accent-soft); }
-.blog-link .t { font-size: 14px; }
-.blog-link .go { font-size: 12px; color: var(--muted); white-space: nowrap; }
 .sketch-card { border: 1px solid var(--line); border-radius: 10px; background: #fff; padding: 14px 16px; margin: 10px 0; }
-.sketch-card h4 { margin: 0 0 6px; font-size: 15px; }
+.sketch-card h4 { margin: 0 0 6px; font-size: 15px; font-weight: 600; }
 .sketch-card h4 a { color: inherit; text-decoration: none; }
 .sketch-card h4 a:hover { text-decoration: underline; }
 .sketch-card .cmt { font-size: 13.5px; color: #334155; margin: 6px 0 8px; }
 .sketch-card .rel-line { font-size: 12.5px; color: var(--muted); margin-top: 6px; }
 .sketch-card .rel-line a { color: var(--pce); text-decoration: none; }
 .sketch-card .rel-line a:hover { text-decoration: underline; }
+.sketch-card .go { font-size: 12px; color: var(--muted); white-space: nowrap; margin-left: 8px; }
 .src-badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; background: #f1f5f9; color: var(--muted); margin-left: 8px; vertical-align: middle; }
+.src-badge.nolink { background: transparent; color: #c3ccd8; border: 1px dashed #e5eaf1; }
 </style>
 </head>
 <body>
@@ -50,139 +43,39 @@
 
 <main class="wrap">
   <h2 class="section">프로젝트 현장 스케치</h2>
-  <p class="lead">메뉴얼에는 없는, 현장에서 겪은 컨피그 이야기. 20년간 블로그에 기록한 삽질 중에서 주제별로 모았습니다. (초안)</p>
-
-  <h3 class="section" style="margin-top:26px">현장 기록 <span style="font-size:12px;color:var(--muted);font-weight:400">· 계속 추가 중</span></h3>
-  <p class="lead" style="font-size:13px">블로그·페이스북·에버노트·Keep에 흩어진 현장 기록 중에서 설정·용어와 엮이는 것들을 모았습니다. 각 기록 아래 관련 비교표 항목과 용어로 바로 이동할 수 있습니다.</p>
-  <div id="sketch-list"></div>
+  <p class="lead">살며 삽질하며.. 그날의 기록들</p>
+  <div id="sketch-sections"></div>
   <script>
   (function () {
+    function esc(x) { return String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
     const cfgName = id => { const e = (typeof GUIDE_DATA !== 'undefined' ? GUIDE_DATA : []).find(x => x.id === id); return e ? e.item : id; };
     const termName = id => { const t = (typeof GLOSSARY !== 'undefined' ? GLOSSARY : []).find(x => x.id === id); return t ? t.kr : id; };
     const srcLabel = { blog: '블로그', facebook: '페이스북', evernote: '에버노트', keep: 'Keep' };
-    document.getElementById('sketch-list').innerHTML = SKETCHES.map(s => {
-      const title = s.url ? `<a href="${s.url}" target="_blank" rel="noopener">${esc(s.title)} ↗</a>` : esc(s.title);
-      const seen = new Set();
-      const uniq = [];
-      (s.configs || []).forEach(id => { const n = cfgName(id); if (!seen.has(n)) { seen.add(n); uniq.push(`<a href="compare.html#row-${id}">${esc(n)}</a>`); } });
-      (s.terms || []).forEach(id => { const n = termName(id); if (!seen.has(n)) { seen.add(n); uniq.push(`<a href="glossary.html#term-${id}">${esc(n)}</a>`); } });
+    const ORDER = ['현장 기록', 'SAP FI', 'SAP 기타 (MM·CO 연계)', '회계 일반'];
+    const bySec = {};
+    SKETCHES.forEach(s => { (bySec[s.section] = bySec[s.section] || []).push(s); });
+    function card(s) {
+      const badge = s.url
+        ? `<span class="src-badge">${srcLabel[s.source] || s.source}</span>`
+        : `<span class="src-badge nolink">${srcLabel[s.source] || s.source}</span>`;
+      const title = s.url ? `<a href="${s.url}" target="_blank" rel="noopener">${esc(s.title)}</a>${s.source === 'blog' ? '<span class="go">블로그에서 읽기 ↗</span>' : ''}` : esc(s.title);
+      const seen = new Set(); const rel = [];
+      (s.configs || []).forEach(id => { const n = cfgName(id); if (!seen.has(n)) { seen.add(n); rel.push(`<a href="compare.html#row-${id}">${esc(n)}</a>`); } });
+      (s.terms || []).forEach(id => { const n = termName(id); if (!seen.has(n)) { seen.add(n); rel.push(`<a href="glossary.html#term-${id}">${esc(n)}</a>`); } });
       return `<div class="sketch-card" id="sk-${s.id}">
-        <h4>${title}<span class="src-badge">${srcLabel[s.source] || s.source}</span></h4>
-        <p class="cmt">${esc(s.comment)}</p>
-        ${uniq.length ? `<div class="rel-line">관련: ${uniq.join(' · ')}</div>` : ''}
+        <h4>${title}${badge}</h4>
+        ${s.comment ? `<p class="cmt">${esc(s.comment)}</p>` : ''}
+        ${rel.length ? `<div class="rel-line">관련: ${rel.join(' · ')}</div>` : ''}
       </div>`;
-    }).join('');
-    function esc(x) { return String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+    }
+    document.getElementById('sketch-sections').innerHTML = ORDER
+      .filter(sec => bySec[sec])
+      .map(sec => `<h3 class="section" style="margin-top:26px">${esc(sec)}${sec === '현장 기록' ? ' <span style="font-size:12px;color:var(--muted);font-weight:400">· 계속 추가 중</span>' : ' <span style="font-size:12px;color:var(--muted);font-weight:400">· hksap.tistory.com</span>'}</h3>` +
+        bySec[sec].map(card).join(''))
+      .join('') +
+      `<div class="note" style="margin-top:28px">이 목록은 계속 엮어 나갑니다. 비교 가이드 항목과 연결되는 글을 추가 중입니다.</div>`;
   })();
   </script>
-
-  <h3 class="section" style="margin-top:26px">SAP FI <span style="font-size:12px;color:var(--muted);font-weight:400">· hksap.tistory.com</span></h3>
-  <div class="blog-list">
-    <a class="blog-link" href="https://hksap.tistory.com/861" target="_blank" rel="noopener">
-      <span class="t">전표입력 Fiori 앱에서 그룹통화 변경</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/860" target="_blank" rel="noopener">
-      <span class="t">SPGL 관련</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/848" target="_blank" rel="noopener">
-      <span class="t">전기일 &lt;> 반제일 Case</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/841" target="_blank" rel="noopener">
-      <span class="t">F110 자동지급 처리 시 지급전표 필드 대체룰 처리 관련</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/834" target="_blank" rel="noopener">
-      <span class="t">F.19 GR/IR 미착대체 관련</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/831" target="_blank" rel="noopener">
-      <span class="t">F5080 Consolidated companies XXXX and ' ' are different</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/821" target="_blank" rel="noopener">
-      <span class="t">AR &amp; AP 일괄 F110 처리 관련</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/820" target="_blank" rel="noopener">
-      <span class="t">건설중인자산 mig시 전기일 관련</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-  </div>
-  <h3 class="section" style="margin-top:26px">SAP 기타 (MM·CO 연계) <span style="font-size:12px;color:var(--muted);font-weight:400">· hksap.tistory.com</span></h3>
-  <div class="blog-list">
-    <a class="blog-link" href="https://hksap.tistory.com/857" target="_blank" rel="noopener">
-      <span class="t">표준원가 추정시 외자 적용 환율 관련</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/856" target="_blank" rel="noopener">
-      <span class="t">MM 입고시 회계전표 안나오게 설정</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/855" target="_blank" rel="noopener">
-      <span class="t">OBYC GBB-VAX GBB-VAY 관련</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/854" target="_blank" rel="noopener">
-      <span class="t">외주생산시 제품 입고시점 제조간접부서의 경비 처리 관련</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/853" target="_blank" rel="noopener">
-      <span class="t">부산물의 실제원가 관련</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/852" target="_blank" rel="noopener">
-      <span class="t">수입자재 표준원가 추정 관련</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/851" target="_blank" rel="noopener">
-      <span class="t">반제품을 구매시 처리방법 관련</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/850" target="_blank" rel="noopener">
-      <span class="t">공정중 불량 처리방법 관련</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-  </div>
-  <h3 class="section" style="margin-top:26px">회계 일반 <span style="font-size:12px;color:var(--muted);font-weight:400">· hksap.tistory.com</span></h3>
-  <div class="blog-list">
-    <a class="blog-link" href="https://hksap.tistory.com/826" target="_blank" rel="noopener">
-      <span class="t">연결회계 관련 참고자료</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/741" target="_blank" rel="noopener">
-      <span class="t">리스채권과 투자부동산관련</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/737" target="_blank" rel="noopener">
-      <span class="t">수출입 분개관련</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/725" target="_blank" rel="noopener">
-      <span class="t">공통매입세액 재계산 관련</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/708" target="_blank" rel="noopener">
-      <span class="t">유효이자율 관련</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/680" target="_blank" rel="noopener">
-      <span class="t">리스회계</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/651" target="_blank" rel="noopener">
-      <span class="t">복구충당부채 회계처리</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-    <a class="blog-link" href="https://hksap.tistory.com/647" target="_blank" rel="noopener">
-      <span class="t">[연결회계] 투자자본상계 개념</span>
-      <span class="go">블로그에서 읽기 ↗</span>
-    </a>
-  </div>
-
-  <div class="note" style="margin-top:28px">이 목록은 초안입니다. 비교 가이드 항목과 연결되는 글을 계속 엮어 나갑니다.</div>
 </main>
 
 <footer class="site-footer">
