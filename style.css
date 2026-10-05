@@ -24,7 +24,7 @@ a:hover { text-decoration: underline; }
 .site-header { border-bottom: 1px solid var(--line); background: #fff; position: sticky; top: 0; z-index: 50; }
 .site-header .wrap { display: flex; align-items: center; gap: 24px; height: 60px; }
 .brand { font-weight: 800; font-size: 17px; color: var(--ink); white-space: nowrap; }
-.brand span { color: var(--accent); }
+.brand .brand-sub { color: #157ead; }
 .nav { display: flex; gap: 18px; margin-left: auto; font-size: 14px; }
 .nav a { color: var(--muted); }
 .nav a.active, .nav a:hover { color: var(--ink); }
@@ -105,6 +105,11 @@ p.lead { color: var(--muted); }
   .top-graph-layout { flex-direction: column; }
   .top-graph-layout .graph-side { width: auto; position: static; max-height: none; }
   .hero h1 { font-size: 24px; }
+  .brand { font-size: 15px; }
+  .nav { gap: 12px; font-size: 13px; }
+}
+@media (max-width: 560px) {
+  .brand .brand-sub { display: none; }
 }
 .rel-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
 .rel-chips button { border: 1px solid var(--line); background: #f8fafc; border-radius: 20px; padding: 4px 10px; font-size: 12.5px; cursor: pointer; }
