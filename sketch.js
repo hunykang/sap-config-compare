@@ -218,7 +218,7 @@ const SKETCHES = [
     title: "999라인 넘는 전표",
     source: "keep",
     url: "",
-    comment: "한 전표에 999라인이 넘는 경우에 대한 메모. 대량 라인 전표는 성능·번호·출력에서 별도 고려가 필요해 현장에서 자주話題가 된다.",
+    comment: "한 전표에 999라인이 넘는 경우에 대한 메모. 대량 라인 전표는 성능·번호·출력에서 별도 고려가 필요해 현장에서 자주 화젯거리가 된다.",
     configs: ["gl-doc-type"],
     terms: ["document", "line-item"],
   },
