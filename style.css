@@ -24,7 +24,7 @@ a:hover { text-decoration: underline; }
 .site-header { border-bottom: 1px solid var(--line); background: #fff; position: sticky; top: 0; z-index: 50; }
 .site-header .wrap { display: flex; align-items: center; gap: 24px; height: 60px; }
 .brand { font-weight: 800; font-size: 17px; color: var(--ink); white-space: nowrap; }
-.brand .brand-sub { color: #157ead; }
+.brand .brand-sub { color: #44546b; }
 .nav { display: flex; gap: 18px; margin-left: auto; font-size: 14px; }
 .nav a { color: var(--muted); }
 .nav a.active, .nav a:hover { color: var(--ink); }
