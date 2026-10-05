@@ -121,7 +121,7 @@ function initGraph(canvasId, opts) {
     // 살살 계속 움직이는 느낌: 고정되지 않은 노드에만 미세한 부유 효과 (물리 연산과 무관한 시각 효과)
     function floatOf(n) {
       if (n.hidden || n.pinned) return [0, 0];
-      return [Math.sin(tNow * 0.6 + n.x * 0.05) * 3, Math.cos(tNow * 0.5 + n.y * 0.05) * 3];
+      return [Math.sin(tNow * 0.8 + n.x * 0.05) * 5, Math.cos(tNow * 0.7 + n.y * 0.05) * 5];
     }
     edges.forEach(e => {
       const a = nodeById[e.a], b = nodeById[e.b];
