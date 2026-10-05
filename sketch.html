@@ -62,12 +62,14 @@
     const srcLabel = { blog: '블로그', facebook: '페이스북', evernote: '에버노트', keep: 'Keep' };
     document.getElementById('sketch-list').innerHTML = SKETCHES.map(s => {
       const title = s.url ? `<a href="${s.url}" target="_blank" rel="noopener">${esc(s.title)} ↗</a>` : esc(s.title);
-      const cfgs = (s.configs || []).map(id => `<a href="compare.html#row-${id}">${esc(cfgName(id))}</a>`).join(' · ');
-      const terms = (s.terms || []).map(id => `<a href="glossary.html#term-${id}">${esc(termName(id))}</a>`).join(' · ');
+      const seen = new Set();
+      const uniq = [];
+      (s.configs || []).forEach(id => { const n = cfgName(id); if (!seen.has(n)) { seen.add(n); uniq.push(`<a href="compare.html#row-${id}">${esc(n)}</a>`); } });
+      (s.terms || []).forEach(id => { const n = termName(id); if (!seen.has(n)) { seen.add(n); uniq.push(`<a href="glossary.html#term-${id}">${esc(n)}</a>`); } });
       return `<div class="sketch-card" id="sk-${s.id}">
         <h4>${title}<span class="src-badge">${srcLabel[s.source] || s.source}</span></h4>
         <p class="cmt">${esc(s.comment)}</p>
-        ${(cfgs || terms) ? `<div class="rel-line">관련: ${cfgs}${cfgs && terms ? ' · ' : ''}${terms}</div>` : ''}
+        ${uniq.length ? `<div class="rel-line">관련: ${uniq.join(' · ')}</div>` : ''}
       </div>`;
     }).join('');
     function esc(x) { return String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
