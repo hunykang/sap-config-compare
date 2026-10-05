@@ -23,6 +23,7 @@
 .sketch-card .go { font-size: 12px; color: var(--muted); white-space: nowrap; margin-left: 8px; }
 .src-badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; background: #f1f5f9; color: var(--muted); margin-left: 8px; vertical-align: middle; }
 .src-badge.nolink { background: transparent; color: #c3ccd8; border: 1px dashed #e5eaf1; }
+.src-badge.date { background: transparent; color: #94a3b8; font-size: 11px; }
 </style>
 </head>
 <body>
@@ -51,27 +52,28 @@
     const cfgName = id => { const e = (typeof GUIDE_DATA !== 'undefined' ? GUIDE_DATA : []).find(x => x.id === id); return e ? e.item : id; };
     const termName = id => { const t = (typeof GLOSSARY !== 'undefined' ? GLOSSARY : []).find(x => x.id === id); return t ? t.kr : id; };
     const srcLabel = { blog: '블로그', facebook: '페이스북', evernote: '에버노트', keep: 'Keep' };
-    const ORDER = ['현장 기록', 'SAP FI', 'SAP 기타 (MM·CO 연계)', '회계 일반'];
-    const bySec = {};
-    SKETCHES.forEach(s => { (bySec[s.section] = bySec[s.section] || []).push(s); });
+    const ORDER = ['결산·마감', '전표·전기', '원가·자재', '마스터·조직', 'MM·SD 연계', '회계 일반'];
+    const byCat = {};
+    SKETCHES.forEach(s => { (byCat[s.category || '회계 일반'] = byCat[s.category || '회계 일반'] || []).push(s); });
     function card(s) {
       const badge = s.url
         ? `<span class="src-badge">${srcLabel[s.source] || s.source}</span>`
         : `<span class="src-badge nolink">${srcLabel[s.source] || s.source}</span>`;
+      const dateBadge = s.date ? `<span class="src-badge date">${esc(s.date)}</span>` : '';
       const title = s.url ? `<a href="${s.url}" target="_blank" rel="noopener">${esc(s.title)}</a>${s.source === 'blog' ? '<span class="go">블로그에서 읽기 ↗</span>' : ''}` : esc(s.title);
       const seen = new Set(); const rel = [];
       (s.configs || []).forEach(id => { const n = cfgName(id); if (!seen.has(n)) { seen.add(n); rel.push(`<a href="compare.html#row-${id}">${esc(n)}</a>`); } });
       (s.terms || []).forEach(id => { const n = termName(id); if (!seen.has(n)) { seen.add(n); rel.push(`<a href="glossary.html#term-${id}">${esc(n)}</a>`); } });
       return `<div class="sketch-card" id="sk-${s.id}">
-        <h4>${title}${badge}</h4>
+        <h4>${title}${badge}${dateBadge}</h4>
         ${s.comment ? `<p class="cmt">${esc(s.comment)}</p>` : ''}
         ${rel.length ? `<div class="rel-line">관련: ${rel.join(' · ')}</div>` : ''}
       </div>`;
     }
     document.getElementById('sketch-sections').innerHTML = ORDER
-      .filter(sec => bySec[sec])
-      .map(sec => `<h3 class="section" style="margin-top:26px">${esc(sec)}${sec === '현장 기록' ? ' <span style="font-size:12px;color:var(--muted);font-weight:400">· 계속 추가 중</span>' : ' <span style="font-size:12px;color:var(--muted);font-weight:400">· hksap.tistory.com</span>'}</h3>` +
-        bySec[sec].map(card).join(''))
+      .filter(cat => byCat[cat])
+      .map(cat => `<h3 class="section" style="margin-top:26px">${esc(cat)} <span style="font-size:12px;color:var(--muted);font-weight:400">· ${byCat[cat].length}</span></h3>` +
+        byCat[cat].map(card).join(''))
       .join('') +
       `<div class="note" style="margin-top:28px">이 목록은 계속 엮어 나갑니다. 비교 가이드 항목과 연결되는 글을 추가 중입니다.</div>`;
   })();
