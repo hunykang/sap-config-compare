@@ -58,7 +58,7 @@
   </section>
 
   <h2 class="section">지식그래프</h2>
-  <p class="lead">설정 객체들이 어떻게 연결되어 있는지 한눈에 봅니다. 노드를 <strong>드래그</strong>해서 움직이고, 빈 곳을 <strong>드래그</strong>하면 화면을 이동하며, <strong>클릭</strong>하면 오른쪽 패널에 설명이 표시됩니다. <a href="graph.html">전체화면으로 열기 →</a></p>
+  <p class="lead">설정 객체들이 어떻게 연결되어 있는지 한눈에 봅니다. 노드를 <strong>드래그</strong>해서 움직이고(놓은 자리에 고정됩니다), 빈 곳을 <strong>드래그</strong>하면 화면을 이동하며, <strong>클릭</strong>하면 오른쪽 패널에 설명이 표시됩니다. <a href="graph.html">전체화면으로 열기 →</a> · <a href="#" id="graph-reset">🔄 위치 초기화</a></p>
   <div class="top-graph-layout">
     <div class="graph-box" style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff">
       <canvas id="top-graph" style="width:100%;display:block;cursor:grab;touch-action:pan-y"></canvas>
@@ -135,6 +135,10 @@ function jumpToList(id) {
   selectItem(id, true);
   setTimeout(() => btn.scrollIntoView({ block: 'center', behavior: 'smooth' }), 100);
 }
+document.getElementById('graph-reset').addEventListener('click', ev => {
+  ev.preventDefault();
+  gApi.unpinAll();
+});
 </script>
 <script>
 const AREAS = ["조직구조", "G/L", "AP", "AR", "은행", "자산회계", "세금", "CO", "타모듈 연결", "결산"];

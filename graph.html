@@ -26,7 +26,7 @@
 
 <main class="wrap">
   <h2 class="section">지식그래프</h2>
-  <p class="lead">설정 객체·개념들이 어떻게 연결되어 있는지 탐색합니다. 노드를 <strong>드래그</strong>해서 움직이고, 빈 곳을 <strong>드래그</strong>하면 화면을 이동하며, <strong>클릭</strong>하면 오른쪽에서 설명 패널이 열립니다.</p>
+  <p class="lead">설정 객체·개념들이 어떻게 연결되어 있는지 탐색합니다. 노드를 <strong>드래그</strong>해서 움직이면 놓은 자리에 고정되고, 빈 곳을 <strong>드래그</strong>하면 화면을 이동하며, <strong>클릭</strong>하면 오른쪽에서 설명 패널이 열립니다.</p>
   <div class="legend">
     <span><span class="dot" style="background:#0b5fff"></span>마스터</span>
     <span><span class="dot" style="background:#7c3aed"></span>개념</span>
@@ -40,6 +40,7 @@
       <label><input type="checkbox" id="tgl-concepts" checked> 개념 노드</label>
       <label><input type="checkbox" id="tgl-focus"> 선택 시 이웃만 보기</label>
       <span class="g-search"><input type="search" id="g-search" placeholder="노드 검색 (예: 전표유형)"><span id="g-count"></span></span>
+      <button type="button" id="g-reset" class="g-reset-btn" title="고정된 노드 위치를 초기화합니다">🔄 위치 초기화</button>
     </div>
   </div>
   <div class="graph-box" style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff">
@@ -92,6 +93,7 @@
   });
   document.getElementById('tgl-concepts').addEventListener('change', ev => g.setShowConcepts(ev.target.checked));
   document.getElementById('tgl-focus').addEventListener('change', ev => g.setFocusOnly(ev.target.checked));
+  document.getElementById('g-reset').addEventListener('click', () => g.unpinAll());
   // 노드 검색
   const sInput = document.getElementById('g-search');
   const sCount = document.getElementById('g-count');

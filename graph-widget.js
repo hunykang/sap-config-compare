@@ -81,10 +81,10 @@ function initGraph(canvasId, opts) {
     const cx = (W / 2 - ox) / scale, cy = (H / 2 - oy) / scale;
     for (let i = 0; i < nodes.length; i++) {
       const a = nodes[i];
-      if (a.hidden) continue;
+      if (a.hidden || a.pinned) continue;
       for (let j = i + 1; j < nodes.length; j++) {
         const b = nodes[j];
-        if (b.hidden) continue;
+        if (b.hidden || b.pinned) continue;
         let dx = a.x - b.x, dy = a.y - b.y;
         let d2 = dx * dx + dy * dy || 1;
         const f = Math.min(9000 / d2, 8);
@@ -96,15 +96,16 @@ function initGraph(canvasId, opts) {
     }
     edges.forEach(e => {
       const a = nodeById[e.a], b = nodeById[e.b];
-      if (!a || !b || a.hidden || b.hidden) return;
+      if (!a || !b || a.hidden || b.hidden || (a.pinned && b.pinned)) return;
       const dx = b.x - a.x, dy = b.y - a.y;
       const d = Math.hypot(dx, dy) || 1;
       const f = (d - 130) * 0.012;
       const fx = dx / d * f, fy = dy / d * f;
-      a.vx += fx; a.vy += fy; b.vx -= fx; b.vy -= fy;
+      if (!a.pinned) { a.vx += fx; a.vy += fy; }
+      if (!b.pinned) { b.vx -= fx; b.vy -= fy; }
     });
     nodes.forEach(n => {
-      if (n === dragging || n.hidden) return;
+      if (n === dragging || n.hidden || n.pinned) return;
       n.vx += (cx - n.x) * 0.004;
       n.vy += (cy - n.y) * 0.004;
       n.vx *= 0.82; n.vy *= 0.82;
@@ -192,8 +193,14 @@ function initGraph(canvasId, opts) {
       selected = n;
       applyFilter();
       onSelect(n);
+    } else if (dragging) {
+      dragging.pinned = true;  // 드래그한 노드는 그 자리에 고정
     }
     dragging = null; downPos = null; panStart = null;
+  });
+  canvas.addEventListener('dblclick', e => {
+    const n = pick(e.clientX, e.clientY);
+    if (n) n.pinned = false;  // 더블클릭으로 고정 해제
   });
   canvas.addEventListener('wheel', e => {
     e.preventDefault();
@@ -222,6 +229,7 @@ function initGraph(canvasId, opts) {
     setShowConcepts(v) { filter.showConcepts = !!v; applyFilter(); },
     setFocusOnly(v) { filter.focusOnly = !!v; applyFilter(); },
     clearSelection() { selectNode(null); },
+    unpinAll() { nodes.forEach(n => n.pinned = false); },
     search, selectNode,
     visibleCount() { return nodes.filter(n => !n.hidden).length; }
   };
