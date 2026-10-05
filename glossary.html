@@ -70,6 +70,7 @@
 
 <script src="glossary.js"></script>
 <script src="data.js"></script>
+<script src="sketch.js"></script>
 <script>
 const qInput = document.getElementById('gq');
 const list = document.getElementById('glist');
@@ -91,6 +92,11 @@ chipsBox.addEventListener('click', ev => {
   render();
 });
 const itemName = id => { const e = (typeof GUIDE_DATA !== 'undefined') ? GUIDE_DATA.find(x => x.id === id) : null; return e ? e.item : id; };
+// 현장 스케치 역인덱스: 용어 id -> 스케치 목록
+const SKETCH_BY_TERM = {};
+if (typeof SKETCHES !== 'undefined') SKETCHES.forEach(s => (s.terms || []).forEach(id => {
+  (SKETCH_BY_TERM[id] = SKETCH_BY_TERM[id] || []).push(s);
+}));
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
 function cardHTML(t) {
   return `
@@ -101,6 +107,8 @@ function cardHTML(t) {
         `<a href="compare.html#row-${id}">${esc(itemName(id))}</a>`).join('')}</div>` : ''}
       ${(t.terms && t.terms.length) ? `<div class="g-chips"><span class="lbl">🔗 관련 용어</span>${t.terms.map(id =>
         byId[id] ? `<a href="#term-${id}" data-term="${id}">${esc(byId[id].kr)}</a>` : '').join('')}</div>` : ''}
+      ${(SKETCH_BY_TERM[t.id] || []).length ? `<div class="g-chips"><span class="lbl">🎙 현장 스케치</span>${SKETCH_BY_TERM[t.id].map(s =>
+        `<a href="sketch.html#sk-${s.id}">${esc(s.title)}</a>`).join('')}</div>` : ''}
     </div>`;
 }
 function render() {

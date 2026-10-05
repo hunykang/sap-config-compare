@@ -8,6 +8,9 @@
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9919904969420259" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="style.css">
+<script src="data.js"></script>
+<script src="glossary.js"></script>
+<script src="sketch.js"></script>
 <style>
 .blog-list { display: grid; gap: 8px; margin: 12px 0 8px; }
 .blog-link {
@@ -18,6 +21,15 @@
 .blog-link:hover { background: var(--accent-soft); }
 .blog-link .t { font-size: 14px; }
 .blog-link .go { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.sketch-card { border: 1px solid var(--line); border-radius: 10px; background: #fff; padding: 14px 16px; margin: 10px 0; }
+.sketch-card h4 { margin: 0 0 6px; font-size: 15px; }
+.sketch-card h4 a { color: inherit; text-decoration: none; }
+.sketch-card h4 a:hover { text-decoration: underline; }
+.sketch-card .cmt { font-size: 13.5px; color: #334155; margin: 6px 0 8px; }
+.sketch-card .rel-line { font-size: 12.5px; color: var(--muted); margin-top: 6px; }
+.sketch-card .rel-line a { color: var(--pce); text-decoration: none; }
+.sketch-card .rel-line a:hover { text-decoration: underline; }
+.src-badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; background: #f1f5f9; color: var(--muted); margin-left: 8px; vertical-align: middle; }
 </style>
 </head>
 <body>
@@ -39,6 +51,28 @@
 <main class="wrap">
   <h2 class="section">프로젝트 현장 스케치</h2>
   <p class="lead">메뉴얼에는 없는, 현장에서 겪은 컨피그 이야기. 20년간 블로그에 기록한 삽질 중에서 주제별로 모았습니다. (초안)</p>
+
+  <h3 class="section" style="margin-top:26px">현장 기록 <span style="font-size:12px;color:var(--muted);font-weight:400">· 계속 추가 중</span></h3>
+  <p class="lead" style="font-size:13px">블로그·페이스북·에버노트·Keep에 흩어진 현장 기록 중에서 설정·용어와 엮이는 것들을 모았습니다. 각 기록 아래 관련 비교표 항목과 용어로 바로 이동할 수 있습니다.</p>
+  <div id="sketch-list"></div>
+  <script>
+  (function () {
+    const cfgName = id => { const e = (typeof GUIDE_DATA !== 'undefined' ? GUIDE_DATA : []).find(x => x.id === id); return e ? e.item : id; };
+    const termName = id => { const t = (typeof GLOSSARY !== 'undefined' ? GLOSSARY : []).find(x => x.id === id); return t ? t.kr : id; };
+    const srcLabel = { blog: '블로그', facebook: '페이스북', evernote: '에버노트', keep: 'Keep' };
+    document.getElementById('sketch-list').innerHTML = SKETCHES.map(s => {
+      const title = s.url ? `<a href="${s.url}" target="_blank" rel="noopener">${esc(s.title)} ↗</a>` : esc(s.title);
+      const cfgs = (s.configs || []).map(id => `<a href="compare.html#row-${id}">${esc(cfgName(id))}</a>`).join(' · ');
+      const terms = (s.terms || []).map(id => `<a href="glossary.html#term-${id}">${esc(termName(id))}</a>`).join(' · ');
+      return `<div class="sketch-card" id="sk-${s.id}">
+        <h4>${title}<span class="src-badge">${srcLabel[s.source] || s.source}</span></h4>
+        <p class="cmt">${esc(s.comment)}</p>
+        ${(cfgs || terms) ? `<div class="rel-line">관련: ${cfgs}${cfgs && terms ? ' · ' : ''}${terms}</div>` : ''}
+      </div>`;
+    }).join('');
+    function esc(x) { return String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  })();
+  </script>
 
   <h3 class="section" style="margin-top:26px">SAP FI <span style="font-size:12px;color:var(--muted);font-weight:400">· hksap.tistory.com</span></h3>
   <div class="blog-list">
