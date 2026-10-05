@@ -37,9 +37,9 @@ const GUIDE_DATA = [
   id: "org-business-area", area: "조직구조", item: "사업영역 정의",
   ecc: "기업 구조 > 정의 > 재무회계 > 사업영역 정의",
   pce: "기업 구조 > 정의 > 재무회계",
-  pub: "확인 중",
-  diff: "ECC의 사업영역은 S/4HANA에서도 유지되나, 세그먼트(Segment) 중심 보고로 전환이 권장됨.",
-  help: [],
+  pub: "사용불가 (2608 버전 현재)",
+  diff: "S/4HANA Public(2608 버전 현재)에서는 사업영역을 사용할 수 없다. 사업영역 대신 손익센터(Profit Center)로 구분하는 것을 권장한다.",
+  help: ["https://userapps.support.sap.com/sap/support/knowledge/en/2760863"],
   tags: ["조직", "전환"], related: ["org-company", "org-company-code", "org-ccode-company"],
   eccSame: true
 },

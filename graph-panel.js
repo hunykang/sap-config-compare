@@ -13,6 +13,7 @@ function gpDiffBadges(e) {
     ? '<span class="diff-badge same">ECC와 동일</span>'
     : '<span class="diff-badge yes">ECC와 다름</span>');
   if (/확인 중/.test(e.pub)) b.push('<span class="diff-badge checking">Public 확인 중</span>');
+  else if (/사용불가/.test(e.pub)) b.push('<span class="diff-badge nouse">Public 사용불가</span>');
   else if (e.pub === e.pce) b.push('<span class="diff-badge same">Public 동일</span>');
   else b.push('<span class="diff-badge yes">Public 다름</span>');
   return b.join('');

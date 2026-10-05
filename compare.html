@@ -106,7 +106,7 @@ function render() {
       <td class="item">${esc(e.item)}<br><span class="checking">${esc(e.area)} · ${e.tags.map(esc).join(', ')}</span>${(TERMS_BY_ITEM[e.id] || []).length ? `<br><span class="g-terms">📖 ` + TERMS_BY_ITEM[e.id].map(t => `<a href="glossary.html#term-${t.id}">${esc(t.kr)}</a>`).join(' · ') + `</span>` : ''}</td>
       <td>${esc(e.ecc)}</td>
       <td>${esc(e.pce)}</td>
-      <td>${esc(e.pub).replace(/확인 중/g, '<span class="checking">확인 중</span>')}</td>
+      <td>${esc(e.pub).replace(/확인 중/g, '<span class="checking">확인 중</span>').replace(/사용불가/g, '<span class="nouse">사용불가</span>')}</td>
       <td>${esc(e.diff)}</td>
       <td class="rel"><div class="rel-chips">${(e.related || []).filter(id => id !== e.id).slice(0, 5).map(id => {
         const r = GUIDE_DATA.find(x => x.id === id);
