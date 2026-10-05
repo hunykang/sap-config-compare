@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>현장 스케치 | SAP Config 비교 가이드</title>
+<meta name="description" content="SAP 프로젝트 현장에서 겪은 컨피그 관련 에피소드. 메뉴얼에는 없는 현장의 기록입니다.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9919904969420259" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="style.css">
+<style>
+.blog-list { display: grid; gap: 8px; margin: 12px 0 8px; }
+.blog-link {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  padding: 12px 16px; border: 1px solid var(--line); border-radius: 10px;
+  background: var(--card); text-decoration: none; color: inherit;
+}
+.blog-link:hover { background: var(--accent-soft); }
+.blog-link .t { font-size: 14px; }
+.blog-link .go { font-size: 12px; color: var(--muted); white-space: nowrap; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">SAP Config <span>비교 가이드</span></a>
+    <nav class="nav">
+      <a href="index.html">홈</a>
+      <a href="compare.html">비교표</a>
+      <a href="graph.html">지식그래프</a>
+      <a href="sketch.html" class="active">현장 스케치</a>
+      <a href="updates.html">업데이트</a>
+      <a href="feedback.html">피드백</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h2 class="section">프로젝트 현장 스케치</h2>
+  <p class="lead">메뉴얼에는 없는, 현장에서 겪은 컨피그 이야기. 20년간 블로그에 기록한 삽질 중에서 주제별로 모았습니다. (초안)</p>
+
+  <h3 class="section" style="margin-top:26px">SAP FI <span style="font-size:12px;color:var(--muted);font-weight:400">· hksap.tistory.com</span></h3>
+  <div class="blog-list">
+    <a class="blog-link" href="https://hksap.tistory.com/861" target="_blank" rel="noopener">
+      <span class="t">전표입력 Fiori 앱에서 그룹통화 변경</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/860" target="_blank" rel="noopener">
+      <span class="t">SPGL 관련</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/848" target="_blank" rel="noopener">
+      <span class="t">전기일 &lt;> 반제일 Case</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/841" target="_blank" rel="noopener">
+      <span class="t">F110 자동지급 처리 시 지급전표 필드 대체룰 처리 관련</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/834" target="_blank" rel="noopener">
+      <span class="t">F.19 GR/IR 미착대체 관련</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/831" target="_blank" rel="noopener">
+      <span class="t">F5080 Consolidated companies XXXX and ' ' are different</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/821" target="_blank" rel="noopener">
+      <span class="t">AR &amp; AP 일괄 F110 처리 관련</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/820" target="_blank" rel="noopener">
+      <span class="t">건설중인자산 mig시 전기일 관련</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+  </div>
+  <h3 class="section" style="margin-top:26px">SAP 기타 (MM·CO 연계) <span style="font-size:12px;color:var(--muted);font-weight:400">· hksap.tistory.com</span></h3>
+  <div class="blog-list">
+    <a class="blog-link" href="https://hksap.tistory.com/857" target="_blank" rel="noopener">
+      <span class="t">표준원가 추정시 외자 적용 환율 관련</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/856" target="_blank" rel="noopener">
+      <span class="t">MM 입고시 회계전표 안나오게 설정</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/855" target="_blank" rel="noopener">
+      <span class="t">OBYC GBB-VAX GBB-VAY 관련</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/854" target="_blank" rel="noopener">
+      <span class="t">외주생산시 제품 입고시점 제조간접부서의 경비 처리 관련</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/853" target="_blank" rel="noopener">
+      <span class="t">부산물의 실제원가 관련</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/852" target="_blank" rel="noopener">
+      <span class="t">수입자재 표준원가 추정 관련</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/851" target="_blank" rel="noopener">
+      <span class="t">반제품을 구매시 처리방법 관련</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/850" target="_blank" rel="noopener">
+      <span class="t">공정중 불량 처리방법 관련</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+  </div>
+  <h3 class="section" style="margin-top:26px">회계 일반 <span style="font-size:12px;color:var(--muted);font-weight:400">· hksap.tistory.com</span></h3>
+  <div class="blog-list">
+    <a class="blog-link" href="https://hksap.tistory.com/826" target="_blank" rel="noopener">
+      <span class="t">연결회계 관련 참고자료</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/741" target="_blank" rel="noopener">
+      <span class="t">리스채권과 투자부동산관련</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/737" target="_blank" rel="noopener">
+      <span class="t">수출입 분개관련</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/725" target="_blank" rel="noopener">
+      <span class="t">공통매입세액 재계산 관련</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/708" target="_blank" rel="noopener">
+      <span class="t">유효이자율 관련</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/680" target="_blank" rel="noopener">
+      <span class="t">리스회계</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/651" target="_blank" rel="noopener">
+      <span class="t">복구충당부채 회계처리</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+    <a class="blog-link" href="https://hksap.tistory.com/647" target="_blank" rel="noopener">
+      <span class="t">[연결회계] 투자자본상계 개념</span>
+      <span class="go">블로그에서 읽기 ↗</span>
+    </a>
+  </div>
+
+  <div class="note" style="margin-top:28px">이 목록은 초안입니다. 비교 가이드 항목과 연결되는 글을 계속 엮어 나갑니다. 현장 스케치는 『살며 삽질하며』(프로젝트 에세이)의 온라인 선행 공개 공간이기도 합니다.</div>
+
+  <h3 class="section" style="margin-top:26px">연재 중인 현장 에세이</h3>
+  <div class="result">
+    <h3>오픈 전야 — 물류는 삼일째 밤샘 마이그레이션</h3>
+    <div class="meta">2011년 · 오픈 에피소드</div>
+    <p>비교표의 숫자가 현장에서는 밤샘으로 바뀐다. 마이그레이션 리허설에서 잡히지 않은 한 건이 오픈 당일 새벽에 터졌던 이야기. (원고 준비 중)</p>
+  </div>
+
+  <div class="result">
+    <h3>통테 데이2 — 재무 마물과의 사투</h3>
+    <div class="meta">통합테스트 · FI 결산</div>
+    <p>통합테스트에서 FI 결산 시나리오가 무너진 날의 기록. 컨피그 하나가 테스트 전체를 멈춘 이야기. (원고 준비 중)</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>20년차 SAP FI 컨설턴트의 실무 기록</span>
+    <a href="feedback.html">피드백 보내기</a>
+    <a href="privacy.html">개인정보처리방침</a>
+    <a href="updates.html">업데이트 로그</a>
+  </div>
+</footer>
+</body>
+</html>
