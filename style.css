@@ -109,3 +109,20 @@ p.lead { color: var(--muted); }
 .rel-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
 .rel-chips button { border: 1px solid var(--line); background: #f8fafc; border-radius: 20px; padding: 4px 10px; font-size: 12.5px; cursor: pointer; }
 .rel-chips button:hover { border-color: #0b5fff; color: #0b5fff; }
+/* 전체화면 그래프용 슬라이딩 패널 */
+.graph-slide-panel {
+  position: fixed; top: 0; right: 0; z-index: 60;
+  width: min(400px, 94vw); height: 100vh; height: 100dvh;
+  background: #fff; border-left: 1px solid var(--line); border-radius: 0;
+  box-shadow: -12px 0 32px rgba(15,23,42,.14);
+  transform: translateX(105%); transition: transform .28s ease;
+  overflow-y: auto;
+}
+.graph-slide-panel.open { transform: translateX(0); }
+.panel-close {
+  position: sticky; top: 0; float: right;
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid var(--line); background: #fff;
+  font-size: 18px; line-height: 1; cursor: pointer; color: #555;
+}
+.panel-close:hover { background: #f1f5f9; }

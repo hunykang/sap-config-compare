@@ -26,7 +26,7 @@
 
 <main class="wrap">
   <h2 class="section">지식그래프</h2>
-  <p class="lead">설정 객체·개념들이 어떻게 연결되어 있는지 탐색합니다. 노드를 <strong>드래그</strong>해서 움직이고, <strong>클릭</strong>하면 상세 비교가 표시됩니다.</p>
+  <p class="lead">설정 객체·개념들이 어떻게 연결되어 있는지 탐색합니다. 노드를 <strong>드래그</strong>해서 움직이고, <strong>클릭</strong>하면 오른쪽에서 설명 패널이 열립니다.</p>
   <div class="legend">
     <span><span class="dot" style="background:#0b5fff"></span>마스터</span>
     <span><span class="dot" style="background:#7c3aed"></span>개념</span>
@@ -34,15 +34,13 @@
     <span><span class="dot" style="background:#0a7a42"></span>앱</span>
     <span><span class="dot" style="background:#475569"></span>비교 항목</span>
   </div>
-  <div class="top-graph-layout">
-    <div class="graph-box" style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff">
-      <canvas id="graph-canvas" style="width:100%;display:block;cursor:grab"></canvas>
-    </div>
-    <aside class="graph-side" id="side">
-      <h3>노드를 클릭하세요</h3>
-      <p class="lead">선택한 객체의 ECC / PCE / Public 비교가 여기에 표시됩니다.</p>
-    </aside>
+  <div class="graph-box" style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff">
+    <canvas id="graph-canvas" style="width:100%;display:block;cursor:grab"></canvas>
   </div>
+  <aside class="graph-side graph-slide-panel" id="side">
+    <h3>노드를 클릭하세요</h3>
+    <p class="lead">선택한 객체의 ECC / PCE / Public 비교가 여기에 표시됩니다.</p>
+  </aside>
 </main>
 
 <footer class="site-footer">
@@ -66,6 +64,7 @@
     onSelect: function (n) { if (panelCtl) panelCtl.onSelect(n); }
   });
   panelCtl = initGraphPanel(g, side, {
+    slide: true,
     afterEntry: function (e) {
       return `<p style="margin-top:12px;font-size:13px"><a href="compare.html?q=${encodeURIComponent(e.item)}">📊 비교표에서 보기 →</a> · <a href="index.html#${e.id}">📋 개요 리스트에서 보기 →</a></p>`;
     }

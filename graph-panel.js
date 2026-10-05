@@ -52,8 +52,10 @@ function gpNeighbors(g, nodeId) {
 
 function initGraphPanel(g, panel, opts) {
   opts = opts || {};
+  const slide = !!opts.slide;   // true면 오른쪽 슬라이딩 오버레이 패널
   const DEFAULT_HTML = panel.innerHTML;
   const afterEntry = opts.afterEntry || function () { return ''; };
+  const closeBtnHTML = slide ? '<button class="panel-close" data-close aria-label="닫기">×</button>' : '';
 
   function relChips(ids, selfId) {
     const list = ids.filter(id => id !== selfId).slice(0, 8);
@@ -68,15 +70,20 @@ function initGraphPanel(g, panel, opts) {
   function showEntry(id) {
     const e = GUIDE_DATA.find(x => x.id === id);
     if (!e) return;
-    panel.innerHTML = gpDetailHTML(e, relChips(gpNeighbors(g, 'e-' + id), id) + afterEntry(e));
-    if (window.innerWidth <= 760) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    panel.innerHTML = closeBtnHTML + gpDetailHTML(e, relChips(gpNeighbors(g, 'e-' + id), id) + afterEntry(e));
+    if (slide) panel.classList.add('open');
+    else if (window.innerWidth <= 760) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   function onSelect(n) {
-    if (!n) { panel.innerHTML = DEFAULT_HTML; return; }
+    if (!n) {
+      if (slide) panel.classList.remove('open');
+      else panel.innerHTML = DEFAULT_HTML;
+      return;
+    }
     if (n.ref.kind === 'entry') { showEntry(n.ref.entry.id); return; }
     const rel = gpNeighbors(g, n.id);
-    panel.innerHTML = `
+    panel.innerHTML = closeBtnHTML + `
       <h3>${gpEsc(n.label)}</h3>
       <div style="font-size:12px;color:#666;margin-bottom:10px">개념 노드 · 연결 ${rel.length}개</div>
       <p><strong>연결된 설정 항목</strong></p>
@@ -86,13 +93,17 @@ function initGraphPanel(g, panel, opts) {
             return e ? `<button data-goto="${id}">${gpEsc(e.item)}</button>` : '';
           }).join('')}</div>`
         : '<p style="font-size:13px;color:#888">연결된 항목이 없습니다.</p>'}`;
-    if (window.innerWidth <= 760) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    if (slide) panel.classList.add('open');
+    else if (window.innerWidth <= 760) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
+  function close() { panel.classList.remove('open'); }
+
   panel.addEventListener('click', ev => {
+    if (ev.target.closest('[data-close]')) { close(); return; }
     const b = ev.target.closest('[data-goto]');
     if (b) showEntry(b.dataset.goto);
   });
 
-  return { onSelect, showEntry };
+  return { onSelect, showEntry, close };
 }
