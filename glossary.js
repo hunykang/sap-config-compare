@@ -86,7 +86,8 @@ const GLOSSARY = [
   "area": "co",
   "items": [
    "xmod-obyc",
-   "xmod-assetpo"
+   "xmod-assetpo",
+   "co-okb9"
   ],
   "terms": [
    "cost-center",
@@ -1275,7 +1276,8 @@ const GLOSSARY = [
   "area": "co",
   "items": [
    "co-order",
-   "co-settle"
+   "co-settle",
+   "co-order-budget"
   ],
   "terms": [
    "cost-center",
@@ -1323,7 +1325,9 @@ const GLOSSARY = [
   "area": "co",
   "items": [
    "co-settle",
-   "aa-settlement"
+   "aa-settlement",
+   "co-auc-settle",
+   "co-close"
   ],
   "terms": [
    "internal-order",
@@ -1603,7 +1607,8 @@ const GLOSSARY = [
   "desc": "표준원가로 미리 잡아둔 원가와 실제로 든 비용의 차이를 계산해 자재와 제품의 진짜 원가를 다시 매기는 결산 절차. 자재원장(ML)과 함께 돌리며 재고와 매출원가를 실제에 가깝게 고친다.",
   "area": "co",
   "items": [
-   "xmod-ml"
+   "xmod-ml",
+   "co-ml"
   ],
   "terms": [
    "material-ledger",
@@ -1619,7 +1624,8 @@ const GLOSSARY = [
   "desc": "계획할 때 정해둔 작업 단가가 아니라, 결산 시점에 모인 실제 비용으로 작업 단가를 다시 계산하는 절차. 이렇게 구한 실제 단가로 생산오더 원가를 확정한다.",
   "area": "co",
   "items": [
-   "co-acttype"
+   "co-acttype",
+   "co-ml"
   ],
   "terms": [
    "activity-type",
@@ -1635,7 +1641,8 @@ const GLOSSARY = [
   "desc": "코스트센터에 뭉쳐 있는 실제 비용을 어떤 생산 활동에 얼마나 썼는지에 따라 나누는 절차. 나눠야 활동별 실제 단가를 구할 수 있어 제조원가 결산의 첫 단추다.",
   "area": "co",
   "items": [
-   "xmod-ml"
+   "xmod-ml",
+   "co-ml"
   ],
   "terms": [
    "cost-center",
@@ -1650,7 +1657,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "어느 부서 것인지 딱 잘라 말하기 어려운 간접비를 정해둔 기준(인원수, 면적 등)으로 나눠 갖는 처리. 코스트센터끼리, 또는 코스트센터에서 손익센터로 비용을 옮길 때 쓴다.",
   "area": "co",
-  "items": [],
+  "items": [
+   "co-alloc"
+  ],
   "terms": [
    "cost-center",
    "profit-center",
@@ -1664,7 +1673,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "S/4HANA에서 배부를 ACDOCA 위에서 바로 돌리는 기능. 별도 배부 원장을 거치지 않아 배부 결과가 재무와 관리회계에 동시에 같은 숫자로 보인다.",
   "area": "co",
-  "items": [],
+  "items": [
+   "co-alloc"
+  ],
   "terms": [
    "allocation",
    "universal-journal",
@@ -1678,7 +1689,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "생산오더에 직접 붙이기 어려운 간접비(간접노무비, 경비 등)를 미리 정한 비율로 얹어주는 결산 단계. 간접비를 얹고 나면 빌려준 쪽 코스트센터 잔액은 0이 된다.",
   "area": "co",
-  "items": [],
+  "items": [
+   "co-alloc"
+  ],
   "terms": [
    "cost-center",
    "internal-order",
@@ -1693,7 +1706,9 @@ const GLOSSARY = [
   "desc": "비용이 어디서 발생했는지 부서(코스트센터) 단위로 모아 관리하는 관리회계. 제조원가 결산은 여기서 시작한다. 비용 집계가 끝나야 배부·간접비·차이분석이 이어진다.",
   "area": "co",
   "items": [
-   "co-ccenter"
+   "co-ccenter",
+   "co-alloc",
+   "co-repost"
   ],
   "terms": [
    "cost-center",
@@ -1723,7 +1738,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "반제품에서 난 가격차이를 상위 제품으로 한 단계씩 올려 보내 최종 제품의 실제 원가를 구하는 계산. BOM 단계가 여러 개인 제조업에서 자재원장 결산의 핵심이다.",
   "area": "co",
-  "items": [],
+  "items": [
+   "co-costvar"
+  ],
   "terms": [
    "material-ledger",
    "actual-costing",
@@ -1737,7 +1754,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "표준원가와 실제원가가 왜 어긋났는지 재료비·노무비·경비로 쪼개 원인을 찾는 분석. 차이가 크면 표준을 고치거나 현장을 손본다.",
   "area": "co",
-  "items": [],
+  "items": [
+   "co-costvar"
+  ],
   "terms": [
    "production-costing",
    "standard-cost-valuation",
@@ -1751,7 +1770,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "생산오더별로 표준 투입 대비 실제 투입의 차이를 계산해 손익으로 정산하는 절차. 수량 차이와 가격 차이를 구분해 어디서 새는지를 본다.",
   "area": "co",
-  "items": [],
+  "items": [
+   "co-costvar"
+  ],
   "terms": [
    "variance-analysis",
    "production-costing",
@@ -1766,7 +1787,8 @@ const GLOSSARY = [
   "desc": "부서·프로젝트별로 쓸 수 있는 돈의 한도를 미리 정하고 집행을 통제하는 관리. S/4HANA에서는 내부오더나 프로젝트에 예산을 걸어 초과 집행을 막는다.",
   "area": "co",
   "items": [
-   "co-version"
+   "co-version",
+   "co-order-budget"
   ],
   "terms": [
    "internal-order",
@@ -1780,7 +1802,10 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "간접비를 나눌 때 쓰는 자(기준). 인원수·면적·매출액처럼 합리적인 기준을 정해야 배부 결과가 설득력을 갖는다. CO 배부 사이클의 핵심 설정이다.",
   "area": "co",
-  "items": [],
+  "items": [
+   "co-alloc",
+   "co-skf"
+  ],
   "terms": [
    "allocation",
    "cost-center",
@@ -1794,7 +1819,9 @@ const GLOSSARY = [
   "abbr": "",
   "desc": "주산품과 함께 나오는 부산물에 원가를 나눠주는 회계 처리. 부산물은 보통 순실현가치로 평가하고 나머지를 주산품이 가져가는 식으로 배분한다.",
   "area": "co",
-  "items": [],
+  "items": [
+   "co-costvar"
+  ],
   "terms": [
    "production-costing",
    "statistical-order",
@@ -1808,7 +1835,10 @@ const GLOSSARY = [
   "abbr": "CO-PC",
   "desc": "생산오더에 들어간 재료비·노무비·경비를 모아 제품 하나의 원가를 계산하는 관리회계. 표준원가와 비교해 차이를 내고, 자재원장으로 실제원가를 확정한다.",
   "area": "co",
-  "items": [],
+  "items": [
+   "co-costvar",
+   "co-ml"
+  ],
   "terms": [
    "internal-order",
    "actual-costing",
@@ -1822,7 +1852,9 @@ const GLOSSARY = [
   "abbr": "WIP",
   "desc": "아직 다 만들지 못한 채 공정에 걸쳐 있는 제품(재공품)의 가치를 계산하는 처리. 투입된 비용에서 완성품으로 빠진 것을 빼고 남은 금액을 재고자산으로 잡는다.",
   "area": "co",
-  "items": [],
+  "items": [
+   "co-ml"
+  ],
   "terms": [
    "production-costing",
    "settlement",
