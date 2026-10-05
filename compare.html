@@ -17,6 +17,7 @@
       <a href="index.html">홈</a>
       <a href="compare.html" class="active">비교표</a>
       <a href="graph.html">지식그래프</a>
+      <a href="glossary.html">용어집</a>
       <a href="sketch.html">현장 스케치</a>
       <a href="updates.html">업데이트</a>
       <a href="feedback.html">피드백</a>
@@ -69,7 +70,13 @@
 </footer>
 
 <script src="data.js"></script>
+<script src="glossary.js"></script>
 <script>
+// 용어집 역인덱스: 설정 항목 id -> 용어 목록
+const TERMS_BY_ITEM = {};
+GLOSSARY.forEach(t => (t.items || []).forEach(id => {
+  (TERMS_BY_ITEM[id] = TERMS_BY_ITEM[id] || []).push(t);
+}));
 const params = new URLSearchParams(location.search);
 const qInput = document.getElementById('q');
 const areaSel = document.getElementById('area');
@@ -96,7 +103,7 @@ function render() {
   document.getElementById('count-note').innerHTML = `<strong>${rows.length}</strong>개 항목 표시 중`;
   document.getElementById('rows').innerHTML = rows.map(e => `
     <tr id="row-${e.id}">
-      <td class="item">${esc(e.item)}<br><span class="checking">${esc(e.area)} · ${e.tags.map(esc).join(', ')}</span></td>
+      <td class="item">${esc(e.item)}<br><span class="checking">${esc(e.area)} · ${e.tags.map(esc).join(', ')}</span>${(TERMS_BY_ITEM[e.id] || []).length ? `<br><span class="g-terms">📖 ` + TERMS_BY_ITEM[e.id].map(t => `<a href="glossary.html#term-${t.id}">${esc(t.kr)}</a>`).join(' · ') + `</span>` : ''}</td>
       <td>${esc(e.ecc)}</td>
       <td>${esc(e.pce)}</td>
       <td>${esc(e.pub).replace(/확인 중/g, '<span class="checking">확인 중</span>')}</td>

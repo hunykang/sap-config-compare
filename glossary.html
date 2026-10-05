@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>용어집 | SAP Config 비교 가이드</title>
+<meta name="description" content="SAP FI 설정에서 자주 만나는 용어 95개를 S/4HANA 기준으로 쉽게 정리했습니다. 비교표 항목과 서로 연결됩니다.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9919904969420259" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="style.css">
+<style>
+.g-search { display: flex; gap: 8px; margin: 14px 0 6px; }
+.g-search input { flex: 1; padding: 10px 14px; font-size: 14px; border: 1px solid var(--line); border-radius: 8px; }
+.g-list { display: grid; gap: 10px; margin: 12px 0 8px; }
+.g-card { border: 1px solid var(--line); border-radius: 10px; background: var(--card); padding: 14px 16px; scroll-margin-top: 80px; }
+.g-card.flash { animation: gflash 2s ease; }
+@keyframes gflash { 0%, 60% { background: #fef9c3; } 100% { background: var(--card); } }
+.g-card h3 { margin: 0 0 2px; font-size: 16px; }
+.g-card h3 .en { font-size: 12px; color: var(--muted); font-weight: 400; margin-left: 8px; }
+.g-card .desc { font-size: 14px; margin: 8px 0; line-height: 1.6; }
+.g-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.g-chips a { font-size: 12px; padding: 3px 10px; border-radius: 20px; background: var(--accent-soft); text-decoration: none; color: inherit; }
+.g-chips a:hover { background: #dbe4f0; }
+.g-chips .lbl { font-size: 12px; color: var(--muted); align-self: center; margin-right: 2px; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">SAP FI Configuring Guide <span class="brand-sub">- ECC/PCE/PUBLIC</span></a>
+    <nav class="nav">
+      <a href="index.html">홈</a>
+      <a href="compare.html">비교표</a>
+      <a href="graph.html">지식그래프</a>
+      <a href="glossary.html" class="active">용어집</a>
+      <a href="sketch.html">현장 스케치</a>
+      <a href="updates.html">업데이트</a>
+      <a href="feedback.html">피드백</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h2 class="section">SAP FI 용어집</h2>
+  <p class="lead">설정 화면에서 마주치는 SAP 용어를 S/4HANA 기준으로 쉽게 풀었습니다. 용어 → 비교표 설정 항목, 설정 항목 → 용어로 서로 오갈 수 있습니다.</p>
+
+  <div class="g-search">
+    <input id="gq" type="search" placeholder="용어 검색 (예: 전표유형, ACDOCA, OBYC)">
+  </div>
+  <p id="gcount" class="meta"></p>
+  <div class="g-list" id="glist"></div>
+  <div class="note" style="margin-top:20px">SAP 관련 용어만 수록합니다. 일반 회계·경영 용어는 제외. 용어 추가·수정 제안은 <a href="feedback.html">피드백</a>으로 보내주세요.</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span><a href="https://hksap.tistory.com" target="_blank" rel="noopener">hksap</a> | <a href="https://x.com/hunykang" target="_blank" rel="noopener">@hunykang</a> | <a href="https://www.linkedin.com/in/heonkyu-kang-2a615031/" target="_blank" rel="noopener">LinkedIn</a> | 살며삽질하며.. | My issue log | Since 2006</span>
+    <a href="feedback.html">피드백 보내기</a>
+    <a href="privacy.html">개인정보처리방침</a>
+    <a href="updates.html">업데이트 로그</a>
+    <span id="visit-counter" style="display:none;margin-left:auto"></span>
+  </div>
+</footer>
+
+<script src="glossary.js"></script>
+<script src="data.js"></script>
+<script>
+const qInput = document.getElementById('gq');
+const list = document.getElementById('glist');
+const byId = Object.fromEntries(GLOSSARY.map(t => [t.id, t]));
+const itemName = id => { const e = (typeof GUIDE_DATA !== 'undefined') ? GUIDE_DATA.find(x => x.id === id) : null; return e ? e.item : id; };
+function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+function render() {
+  const q = qInput.value.trim().toLowerCase();
+  const terms = GLOSSARY.filter(t =>
+    !q || (t.kr + ' ' + t.en + ' ' + (t.abbr || '')).toLowerCase().includes(q));
+  document.getElementById('gcount').innerHTML = `<strong>${terms.length}</strong>개 용어`;
+  list.innerHTML = terms.map(t => `
+    <div class="g-card" id="term-${t.id}">
+      <h3>${esc(t.kr)}${t.abbr ? ` (${esc(t.abbr)})` : ''}<span class="en">${esc(t.en)}</span></h3>
+      <p class="desc">${esc(t.desc)}</p>
+      ${(t.items && t.items.length) ? `<div class="g-chips"><span class="lbl">📋 관련 설정</span>${t.items.map(id =>
+        `<a href="compare.html#row-${id}">${esc(itemName(id))}</a>`).join('')}</div>` : ''}
+      ${(t.terms && t.terms.length) ? `<div class="g-chips"><span class="lbl">🔗 관련 용어</span>${t.terms.map(id =>
+        byId[id] ? `<a href="#term-${id}" data-term="${id}">${esc(byId[id].kr)}</a>` : '').join('')}</div>` : ''}
+    </div>`).join('') || '<p>검색 결과가 없습니다.</p>';
+}
+qInput.addEventListener('input', render);
+list.addEventListener('click', ev => {
+  const a = ev.target.closest('a[data-term]');
+  if (!a) return;
+  ev.preventDefault();
+  const id = a.dataset.term;
+  let card = document.getElementById('term-' + id);
+  if (!card) { qInput.value = ''; render(); card = document.getElementById('term-' + id); }
+  if (card) {
+    card.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
+    history.replaceState(null, '', '#term-' + id);
+  }
+});
+render();
+// 딥링크 #term-xxx 로 들어오면 해당 카드로 이동
+if (location.hash.startsWith('#term-')) {
+  const card = document.getElementById(location.hash.slice(1));
+  if (card) { card.scrollIntoView({ block: 'center' }); card.classList.add('flash'); }
+}
+</script>
+<script src="counter.js"></script>
+</body>
+</html>
