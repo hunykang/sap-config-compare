@@ -123,6 +123,7 @@ tr.flash td { animation: rowflash 2s ease; }
 /* 지식그래프 컨트롤 */
 .g-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 10px 0; }
 .g-controls .rel-chips button.on { border-color: #0b5fff; color: #0b5fff; background: #eef4ff; font-weight: 700; }
+.rel-chips button.on { border-color: #0b5fff; color: #0b5fff; background: #eef4ff; font-weight: 700; }
 .g-toggles { display: flex; gap: 14px; align-items: center; font-size: 13.5px; margin-left: auto; flex-wrap: wrap; }
 .g-toggles label { display: flex; gap: 5px; align-items: center; cursor: pointer; white-space: nowrap; }
 .g-search { display: flex; gap: 6px; align-items: center; }

@@ -7,6 +7,13 @@
  */
 function gpEsc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
 
+const TERM_AREA_KO = { org: '조직구조', gl: 'G/L', ap: 'AP', ar: 'AR', bank: '은행', aa: '자산회계', tax: '세금', co: 'CO', xmod: '타모듈 연결', close: '결산' };
+const TYPE_LABEL_FALLBACK = { entry: '설정', term: '용어', concept: '개념', master: '마스터', table: '테이블', app: '앱' };
+function gpTypeLabel(g, n) {
+  if (g && g.TYPE_LABEL && g.TYPE_LABEL[n.type]) return g.TYPE_LABEL[n.type];
+  return TYPE_LABEL_FALLBACK[n.type] || n.type;
+}
+
 function gpDiffBadges(e) {
   const b = [];
   b.push(e.eccSame
@@ -76,6 +83,27 @@ function initGraphPanel(g, panel, opts) {
     else if (window.innerWidth <= 760) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
+  function showTerm(t) {
+    const rel = gpNeighbors(g, 't-' + t.id);
+    const terms = (t.terms || [])
+      .map(tid => (typeof GLOSSARY !== 'undefined' ? GLOSSARY.find(x => x.id === tid) : null))
+      .filter(Boolean);
+    panel.innerHTML = closeBtnHTML + `
+      <h3>${gpEsc(t.kr)}${t.en ? `<span style="font-size:13px;color:#666;font-weight:400"> · ${gpEsc(t.en)}</span>` : ''}</h3>
+      <div style="font-size:12px;color:#666;margin-bottom:10px">용어 노드${t.area ? ' · ' + gpEsc(TERM_AREA_KO[t.area] || t.area) : ''}${t.abbr ? ' · 약어 ' + gpEsc(t.abbr) : ''}</div>
+      <p>${gpEsc(t.desc)}</p>
+      ${rel.length ? `<p style="margin-top:10px"><strong>관련 설정 항목</strong></p>
+      <div class="rel-chips">${rel.slice(0, 20).map(id => {
+          const e = GUIDE_DATA.find(x => x.id === id);
+          return e ? `<button data-goto="${id}">${gpEsc(e.item)}</button>` : '';
+        }).join('')}</div>` : ''}
+      ${terms.length ? `<p style="margin-top:10px"><strong>관련 용어</strong></p>
+      <div class="rel-chips">${terms.slice(0, 8).map(x => `<button data-goto-term="${x.id}">${gpEsc(x.kr)}</button>`).join('')}</div>` : ''}
+      <p style="margin-top:12px;font-size:13px"><a href="glossary.html#${encodeURIComponent(t.id)}">📖 용어집에서 보기 →</a> · <a href="feedback.html">✏️ 오류 제보하기</a></p>`;
+    if (slide) panel.classList.add('open');
+    else if (window.innerWidth <= 760) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
   function onSelect(n) {
     if (!n) {
       if (slide) panel.classList.remove('open');
@@ -83,10 +111,11 @@ function initGraphPanel(g, panel, opts) {
       return;
     }
     if (n.ref.kind === 'entry') { showEntry(n.ref.entry.id); return; }
+    if (n.ref.kind === 'term') { showTerm(n.ref.term); return; }
     const rel = gpNeighbors(g, n.id);
     panel.innerHTML = closeBtnHTML + `
       <h3>${gpEsc(n.label)}</h3>
-      <div style="font-size:12px;color:#666;margin-bottom:10px">개념 노드 · 연결 ${rel.length}개</div>
+      <div style="font-size:12px;color:#666;margin-bottom:10px">${gpEsc(gpTypeLabel(g, n))} 노드 · 연결 ${rel.length}개</div>
       <p><strong>연결된 설정 항목</strong></p>
       ${rel.length
         ? `<div class="rel-chips">${rel.slice(0, 20).map(id => {
@@ -102,6 +131,12 @@ function initGraphPanel(g, panel, opts) {
 
   panel.addEventListener('click', ev => {
     if (ev.target.closest('[data-close]')) { close(); return; }
+    const gt = ev.target.closest('[data-goto-term]');
+    if (gt && typeof GLOSSARY !== 'undefined') {
+      const t = GLOSSARY.find(x => x.id === gt.dataset.gotoTerm);
+      if (t) showTerm(t);
+      return;
+    }
     const b = ev.target.closest('[data-goto]');
     if (b) showEntry(b.dataset.goto);
   });

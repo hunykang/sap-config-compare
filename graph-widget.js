@@ -2,14 +2,29 @@
  * data.js의 GUIDE_DATA / GRAPH_CONCEPTS / GRAPH_LINKS를 읽어 force-directed 그래프를 그린다.
  * initGraph(canvasId, opts)
  *   opts.height: 캔버스 높이(px, 기본 520)
- *   opts.onSelect: 노드 클릭 시 호출. function(node | null). node.ref = {kind:'entry',entry} | {kind:'concept'}
+ *   opts.onSelect: 노드 클릭 시 호출. function(node | null). node.ref = {kind:'entry',entry} | {kind:'term',term} | {kind:'concept'}
  *   opts.ticks: 초기 안정화 tick 수 (기본 120)
  */
 function initGraph(canvasId, opts) {
   opts = opts || {};
   const HEIGHT = opts.height || 520;
   const onSelect = opts.onSelect || function () {};
-  const TYPE_COLOR = { master: '#0b5fff', concept: '#7c3aed', table: '#b45309', app: '#0a7a42', entry: '#475569' };
+  const TYPE_COLOR = { entry: '#475569', term: '#7c3aed', concept: '#0ea5e9', master: '#0b5fff', table: '#b45309', app: '#0a7a42' };
+  const TYPE_LABEL = { entry: '설정', term: '용어', concept: '개념', master: '마스터', table: '테이블', app: '앱' };
+  const TYPE_BASE_R = { entry: 7, term: 6, concept: 10, master: 10, table: 10, app: 10 };
+  // 용어 area 코드 → 영역 필터 한글명
+  const TERM_AREA_NAME = { org: '조직구조', gl: 'G/L', ap: 'AP', ar: 'AR', bank: '은행', aa: '자산회계', tax: '세금', co: 'CO', xmod: '타모듈 연결', close: '결산' };
+  // 개념/마스터/테이블/앱 허브 노드와 용어를 잇는 키워드 (고아 용어 fallback용)
+  const CONCEPT_KEYS = [
+    ['c-acdoca', ['ACDOCA', 'acdoca', '유니버셜 저널']],
+    ['c-bp', ['비즈니스 파트너', '비즈니스파트너', 'Business Partner']],
+    ['c-cvi', ['CVI']],
+    ['c-newaa', ['New AA', '신자산']],
+    ['c-ml', ['Material Ledger', '자재원장']],
+    ['c-fiori', ['Fiori', '피오리']],
+    ['c-fcc', ['결산 콕핏', 'Financial Closing Cockpit', '결산콕핏']]
+  ];
+  const ORPHAN_HUB = { org: 'c-acdoca', gl: 'c-acdoca', ap: 'c-bp', ar: 'c-bp', bank: 'c-acdoca', aa: 'c-newaa', tax: 'c-acdoca', co: 'c-ml', xmod: 'c-ml', close: 'c-fcc' };
 
   const nodes = [];
   const nodeById = {};
@@ -22,13 +37,22 @@ function initGraph(canvasId, opts) {
   GUIDE_DATA.forEach(e => addNode('e-' + e.id, e.item, 'entry', { kind: 'entry', entry: e }));
 
   const edges = [];
-  GRAPH_LINKS.forEach(l => edges.push({ a: l.from, b: l.to, label: l.label }));
+  const edgeSeen = new Set();
+  function pushEdge(a, b, label) {
+    if (!nodeById[a] || !nodeById[b] || a === b) return false;
+    const key = a < b ? a + '|' + b : b + '|' + a;
+    if (edgeSeen.has(key)) return false;
+    edgeSeen.add(key);
+    edges.push({ a, b, label });
+    return true;
+  }
+  GRAPH_LINKS.forEach(l => pushEdge(l.from, l.to, l.label));
   GUIDE_DATA.forEach(e => {
     (e.related || []).forEach(r => {
-      if (nodeById['e-' + r]) edges.push({ a: 'e-' + e.id, b: 'e-' + r, label: '연관' });
+      if (nodeById['e-' + r]) pushEdge('e-' + e.id, 'e-' + r, '연관');
     });
     const tags = e.tags.join(' ') + ' ' + e.area;
-    const link = (cid) => edges.push({ a: 'e-' + e.id, b: cid, label: '관련' });
+    const link = (cid) => pushEdge('e-' + e.id, cid, '관련');
     if (/BP/.test(tags)) link('c-bp');
     if (/BP/.test(tags) && /전환/.test(tags)) link('c-cvi');
     if (/G\/L|전표|테이블/.test(tags)) link('c-acdoca');
@@ -37,6 +61,46 @@ function initGraph(canvasId, opts) {
     if (/Fiori/.test(tags)) link('c-fiori');
     if (/결산/.test(tags)) link('c-fcc');
   });
+
+  // ---- 용어 노드 (glossary.js, type='term') ----
+  const MAX_TERM_EDGES = 6;
+  if (typeof GLOSSARY !== 'undefined' && GLOSSARY) {
+    GLOSSARY.forEach(t => addNode('t-' + t.id, t.kr, 'term', { kind: 'term', term: t }));
+    GLOSSARY.forEach(t => {
+      const tid = 't-' + t.id;
+      let cnt = 0;
+      // 용어 → 관련 설정
+      (t.items || []).forEach(iid => {
+        if (cnt >= MAX_TERM_EDGES) return;
+        if (pushEdge(tid, 'e-' + iid, '설정')) cnt++;
+      });
+      // 용어 ↔ 용어
+      (t.terms || []).forEach(tid2 => {
+        if (cnt >= MAX_TERM_EDGES) return;
+        if (pushEdge(tid, 't-' + tid2, '연관')) cnt++;
+      });
+      // 용어 → 허브 노드(개념/마스터/테이블/앱) 키워드 매칭
+      if (cnt < MAX_TERM_EDGES) {
+        const hay = ((t.kr || '') + ' ' + (t.en || '') + ' ' + (t.abbr || '') + ' ' + (t.desc || '')).toLowerCase();
+        for (const [cid, keys] of CONCEPT_KEYS) {
+          if (cnt >= MAX_TERM_EDGES) break;
+          if (keys.some(k => hay.indexOf(k.toLowerCase()) >= 0)) {
+            if (pushEdge(tid, cid, '관련')) cnt++;
+          }
+        }
+      }
+    });
+    // 고아 용어(엣지 0개) → 영역 허브에 최소 1개 연결
+    const _deg = {};
+    edges.forEach(e => { _deg[e.a] = (_deg[e.a] || 0) + 1; _deg[e.b] = (_deg[e.b] || 0) + 1; });
+    GLOSSARY.forEach(t => {
+      const tid = 't-' + t.id;
+      if (!_deg[tid]) {
+        const hub = ORPHAN_HUB[t.area];
+        if (hub) pushEdge(tid, hub, '관련');
+      }
+    });
+  }
 
   // ---- 필터 / 포커스 / 검색 ----
   const adj = {};
@@ -47,7 +111,12 @@ function initGraph(canvasId, opts) {
     });
   }
   buildAdj();
-  const filter = { area: '', showConcepts: true, focusOnly: false };
+  // 노드 반지름: 연결 수(degree)에 비례 — 허브가 자연스럽게 커진다. r = base + sqrt(degree) * 2.2
+  nodes.forEach(n => {
+    n.degree = (adj[n.id] || new Set()).size;
+    n.r = (TYPE_BASE_R[n.type] || 7) + Math.sqrt(n.degree) * 2.2;
+  });
+  const filter = { area: '', hiddenTypes: new Set(), focusOnly: false };
   function isNeighborOrSelf(n) {
     return !selected || n.id === selected.id || (adj[selected.id] && adj[selected.id].has(n.id));
   }
@@ -56,7 +125,8 @@ function initGraph(canvasId, opts) {
       let hide = false;
       const isEntry = n.ref.kind === 'entry';
       if (isEntry && filter.area && n.ref.entry.area !== filter.area) hide = true;
-      if (!isEntry && !filter.showConcepts) hide = true;
+      if (n.ref.kind === 'term' && filter.area && TERM_AREA_NAME[n.ref.term.area] !== filter.area) hide = true;
+      if (filter.hiddenTypes.has(n.type)) hide = true;
       if (filter.focusOnly && !isNeighborOrSelf(n)) hide = true;
       n.hidden = hide;
       n.match = false;
@@ -119,8 +189,9 @@ function initGraph(canvasId, opts) {
     ctx.translate(ox, oy); ctx.scale(scale, scale);
     const tNow = performance.now() / 1000;
     // 살살 계속 움직이는 느낌: 고정되지 않은 노드에만 미세한 부유 효과 (물리 연산과 무관한 시각 효과)
+    // 드래그 중인 노드는 부유를 멈춤 — 놓으면 다시 부유
     function floatOf(n) {
-      if (n.hidden || n.pinned) return [0, 0];
+      if (n.hidden || n.pinned || n === dragging) return [0, 0];
       return [Math.sin(tNow * 0.8 + n.x * 0.05) * 5, Math.cos(tNow * 0.7 + n.y * 0.05) * 5];
     }
     edges.forEach(e => {
@@ -139,11 +210,11 @@ function initGraph(canvasId, opts) {
       if (n.hidden) return;
       const [fx, fy] = floatOf(n);
       const px = n.x + fx, py = n.y + fy;
-      const r = n.type === 'entry' ? 9 : 14;
+      const r = n.r || 9;
       ctx.beginPath(); ctx.arc(px, py, r, 0, 7);
       ctx.fillStyle = TYPE_COLOR[n.type] || '#475569';
-      ctx.globalAlpha = (!selected || n === selected || edges.some(e =>
-        (e.a === selected.id && e.b === n.id) || (e.b === selected.id && e.a === n.id))) ? 1 : 0.25;
+      const isRel = !selected || n === selected || (adj[selected.id] && adj[selected.id].has(n.id));
+      ctx.globalAlpha = isRel ? 1 : 0.25;
       ctx.fill(); ctx.globalAlpha = 1;
       if (n === selected) { ctx.strokeStyle = '#0b5fff'; ctx.lineWidth = 3; ctx.stroke(); }
       if (n === hover) { ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2; ctx.stroke(); }
@@ -167,7 +238,8 @@ function initGraph(canvasId, opts) {
     nodes.forEach(n => {
       if (n.hidden) return;
       const d = Math.hypot(n.x - p.x, n.y - p.y);
-      if (d < 24 && d < bd) { bd = d; best = n; }
+      const grabR = (n.r || 9) + 14;
+      if (d < grabR && d < bd) { bd = d; best = n; }
     });
     return best;
   }
@@ -232,9 +304,9 @@ function initGraph(canvasId, opts) {
     return hits;
   }
   return {
-    nodes, nodeById, edges,
+    nodes, nodeById, edges, TYPE_COLOR, TYPE_LABEL,
     setArea(a) { filter.area = a || ''; applyFilter(); },
-    setShowConcepts(v) { filter.showConcepts = !!v; applyFilter(); },
+    setTypeVisible(type, v) { if (v) filter.hiddenTypes.delete(type); else filter.hiddenTypes.add(type); applyFilter(); },
     setFocusOnly(v) { filter.focusOnly = !!v; applyFilter(); },
     clearSelection() { selectNode(null); },
     unpinAll() { nodes.forEach(n => n.pinned = false); },
