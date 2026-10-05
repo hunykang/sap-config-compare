@@ -117,6 +117,12 @@ function initGraph(canvasId, opts) {
     ctx.clearRect(0, 0, W, H);
     ctx.save();
     ctx.translate(ox, oy); ctx.scale(scale, scale);
+    const tNow = performance.now() / 1000;
+    // 살살 계속 움직이는 느낌: 고정되지 않은 노드에만 미세한 부유 효과 (물리 연산과 무관한 시각 효과)
+    function floatOf(n) {
+      if (n.hidden || n.pinned) return [0, 0];
+      return [Math.sin(tNow * 0.6 + n.x * 0.05) * 3, Math.cos(tNow * 0.5 + n.y * 0.05) * 3];
+    }
     edges.forEach(e => {
       const a = nodeById[e.a], b = nodeById[e.b];
       if (!a || !b || a.hidden || b.hidden) return;
@@ -131,8 +137,10 @@ function initGraph(canvasId, opts) {
     });
     nodes.forEach(n => {
       if (n.hidden) return;
+      const [fx, fy] = floatOf(n);
+      const px = n.x + fx, py = n.y + fy;
       const r = n.type === 'entry' ? 9 : 14;
-      ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, 7);
+      ctx.beginPath(); ctx.arc(px, py, r, 0, 7);
       ctx.fillStyle = TYPE_COLOR[n.type] || '#475569';
       ctx.globalAlpha = (!selected || n === selected || edges.some(e =>
         (e.a === selected.id && e.b === n.id) || (e.b === selected.id && e.a === n.id))) ? 1 : 0.25;
@@ -142,7 +150,7 @@ function initGraph(canvasId, opts) {
       if (n.match) { ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 3; ctx.stroke(); }
       ctx.fillStyle = '#1a1a1a'; ctx.font = (n.type === 'entry' ? 11 : 12) + 'px sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText(n.label, n.x, n.y + r + 14);
+      ctx.fillText(n.label, px, py + r + 14);
     });
     ctx.restore();
   }
