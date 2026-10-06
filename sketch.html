@@ -23,6 +23,7 @@
 .sketch-card .go { font-size: 12px; color: var(--muted); white-space: nowrap; margin-left: 8px; }
 .src-badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; background: #f1f5f9; color: var(--muted); margin-left: 8px; vertical-align: middle; }
 .src-badge.nolink { background: transparent; color: #c3ccd8; border: 1px dashed #e5eaf1; }
+.src-badge.link { text-decoration: none; cursor: pointer; }
 .src-badge.date { background: transparent; color: #94a3b8; font-size: 11px; }
 </style>
 </head>
@@ -59,14 +60,19 @@
       const badge = s.url
         ? `<span class="src-badge">${srcLabel[s.source] || s.source}</span>`
         : `<span class="src-badge nolink">${srcLabel[s.source] || s.source}</span>`;
+      const linkBadges = (s.links || []).map(l =>
+        `<a class="src-badge link" href="${l.url}" target="_blank" rel="noopener">${srcLabel[l.type] || l.type}</a>`).join('');
       const dateBadge = s.date ? `<span class="src-badge date">${esc(s.date)}</span>` : '';
       const title = s.url ? `<a href="${s.url}" target="_blank" rel="noopener">${esc(s.title)}</a>${s.source === 'blog' ? '<span class="go">블로그에서 읽기 ↗</span>' : ''}` : esc(s.title);
       const seen = new Set(); const rel = [];
       (s.configs || []).forEach(id => { const n = cfgName(id); if (!seen.has(n)) { seen.add(n); rel.push(`<a href="compare.html#row-${id}">${esc(n)}</a>`); } });
       (s.terms || []).forEach(id => { const n = termName(id); if (!seen.has(n)) { seen.add(n); rel.push(`<a href="glossary.html#term-${id}">${esc(n)}</a>`); } });
+      const refs = (s.links || []).map(l =>
+        `<a href="${l.url}" target="_blank" rel="noopener">${srcLabel[l.type] || l.type}${l.title ? ` '${esc(l.title)}'` : ''} ↗</a>`).join(' · ');
       return `<div class="sketch-card" id="sk-${s.id}">
-        <h4>${title}${badge}${dateBadge}</h4>
+        <h4>${title}${badge}${linkBadges}${dateBadge}</h4>
         ${s.comment ? `<p class="cmt">${esc(s.comment)}</p>` : ''}
+        ${refs ? `<div class="rel-line">참고: ${refs}</div>` : ''}
         ${rel.length ? `<div class="rel-line">관련: ${rel.join(' · ')}</div>` : ''}
       </div>`;
     }
