@@ -794,8 +794,8 @@ const GUIDE_DATA = [
   eccSame: true
 },
 {
-  id: "co-opcon", area: "CO", item: "영업관리영역 정의",
-  ecc: "관리회계 > 수익성 분석 > 구조 > 영업관리영역 유지보수",
+  id: "co-opcon", area: "CO", item: "경영단위 정의",
+  ecc: "관리회계 > 수익성 분석 > 구조 > 경영단위 유지보수",
   pce: "관리회계 > 수익성 분석 > 구조",
   pub: "확인 중",
   diff: "ECC와 개념 동일.",
@@ -1075,7 +1075,7 @@ const GUIDE_DATA = [
 },
 {
   id: "co-margin", area: "CO", item: "마진분석 (계정기반 수익성분석)",
-  ecc: "관리회계 > 수익성 분석 > 영업관리영역 (계정기반)",
+  ecc: "관리회계 > 수익성 분석 > 경영단위 (계정기반)",
   pce: "관리회계 > 수익성 분석",
   pub: "IMG 표시 > 회계 > 마진 분석 > 마진 분석 프로세스 > 하향식 분배 > 하향식 배부 템플릿 정의",
   diff: "S/4HANA의 표준 수익성분석. Costing-based COPA와 달리 별도 값필드 없이 G/L계정 기준으로 분석한다. Public에서는 Costing-based를 쓸 수 없어 마진분석이 필수.",
