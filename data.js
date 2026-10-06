@@ -1,14 +1,14 @@
 // 비교 가이드 데이터 (ECC / PCE / Public) — PCE 기준
-// 원천: config_master.json — 빌드 스크립트 build_data_js.py 가 자동 생성
-// Public "확인 중" 항목은 추후 보완 예정
+// 원천: config_master.json (EUG 203개 대조 + PCE 스크립트 56개 + 오마주 목차)
+// Public "확인 중" 항목은 Public 매뉴얼 입수 후 보완 예정
 
 const GUIDE_DATA = [
 {
   id: "org-company", area: "조직구조", item: "회사 정의",
   ecc: "기업 구조 > 정의 > 재무회계 > 회사 정의",
   pce: "기업 구조 > 정의 > 재무회계",
-  pub: "CBC (Central Business Configuration) > Set Up Organizational Structure (조직 구조 설정)",
-  diff: "최상위 조직 단위 정의. ECC·PCE 모두 IMG에서 직접 정의하며 개념은 동일. Public에서는 엔터프라이즈 구조 설정이 제한적이므로 확인이 필요.",
+  pub: "구현 액티비티(IMG) > 일반 설정 > 조직 구조 > 회사 > 회사 생성 (V_880_CLD)",
+  diff: "최상위 조직 단위 정의. ECC·PCE 모두 IMG에서 직접 정의하며 개념은 동일. Public도 구현 액티비티(일반 설정 > 조직 구조 > 회사 > 회사 생성)에서 정의하며 개념은 동일하다.",
   help: [],
   tags: ["조직"], related: ["org-company-code", "org-ccode-company", "org-business-area"],
   eccSame: true
@@ -27,7 +27,7 @@ const GUIDE_DATA = [
   id: "org-ccode-company", area: "조직구조", item: "회사에 회사코드 지정",
   ecc: "기업 구조 > 지정 > 재무회계 > 회사에 회사코드 지정",
   pce: "기업 구조 > 지정 > 재무회계",
-  pub: "CBC > General Settings > Organizational Structure > Company > Company > Assign company code to company (101631)",
+  pub: "구현 액티비티(IMG) > 일반 설정 > 조직 구조 > 회사 > 회사에 회사코드 지정 (SIMG_CFMENUSAPCOX16)",
   diff: "회사-회사코드 연결 관계 지정. ECC와 동일.",
   help: [],
   tags: ["조직"], related: ["org-company", "org-company-code", "co-ccassign"],
