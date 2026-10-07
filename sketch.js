@@ -1144,4 +1144,15 @@ const SKETCHES = [
     configs: ["tax-code"],
     terms: ["tax-code"],
   },
+  {
+    id: "sk-coding-block-699",
+    category: "결산·마감",
+    date: "20X2.11",
+    title: "총계테이블/뷰(FAGLFLEXT, ACDOCT)에 Coding Block 필드 추가방법 문의",
+    source: "blog",
+    url: "https://hksap.tistory.com/699",
+    comment: "S/4HANA에서 총계테이블/뷰(FAGLFLEXT, ACDOCT)에 코딩블록 사용자 필드를 넣는 방법을 카페 Q&A에 문의한 글이다. ACDOCA에는 잘 들어갔는데 총계테이블은 예전 ECC처럼 IMG로 안 되고 CDS 뷰를 만들어야 하는지 묻고 있다.",
+    configs: [],
+    terms: ["general-ledger"],
+  },
 ];
