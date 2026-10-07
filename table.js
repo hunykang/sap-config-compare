@@ -1,5 +1,5 @@
 // Table(CDS View) 매핑 데이터
-// 출처: 구글 드라이브 _S4 SAP T-CODE_맵핑.xlsx (P주요필드 탭: I_BUSINESSPARTNER 필드 상세)
+// 출처: 내부 T-Code 매핑 정리 자료 (P주요필드 탭: I_BUSINESSPARTNER 필드 상세)
 //   엑셀에 없는 CDS뷰는 공개 자료로 대조, 확인 불가 항목은 확인중(unknown) 태그
 // flag: 'yes' | 'no' | 'unknown'(확인중)
 const TABLE_MODULES = [
