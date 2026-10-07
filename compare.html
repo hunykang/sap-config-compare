@@ -8,6 +8,23 @@
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9919904969420259" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="style.css?v=20261007j">
+<style>
+.cmod { border: 1px solid var(--line); border-radius: 10px; background: #fff; margin: 10px 0; overflow: hidden; }
+.cmod-head { width: 100%; text-align: left; padding: 13px 16px; background: #fff; border: 0; cursor: pointer; display: flex; gap: 10px; align-items: baseline; }
+.cmod-head:hover { background: #fafbfe; }
+.cmod-name { flex-shrink: 0; font-size: 13px; font-weight: 800; color: #fff; background: #44546b; border-radius: 6px; padding: 3px 10px; letter-spacing: .3px; white-space: nowrap; }
+.cmod-meta { font-size: 12.5px; color: var(--muted); margin-left: auto; text-align: right; flex-shrink: 0; }
+.cmod-head .arrow { color: var(--muted); font-size: 12px; margin-left: 4px; transition: transform .15s; flex-shrink: 0; }
+.cmod.open .cmod-head .arrow { transform: rotate(180deg); }
+.cmod-body { display: none; border-top: 1px dashed var(--line); padding: 0 16px 16px; }
+.cmod.open .cmod-body { display: block; }
+.cmod .table-wrap { overflow-x: auto; }
+.cmod table.compare { margin: 12px 0 6px; }
+.t-tools { display: flex; gap: 8px; margin: 10px 0 4px; align-items: center; flex-wrap: wrap; }
+.t-tools .mini { border: 1px solid var(--line); background: #fff; border-radius: 20px; padding: 4px 12px; font-size: 12.5px; cursor: pointer; color: var(--muted); }
+.t-tools .mini:hover { border-color: var(--accent); color: var(--accent); }
+.t-count { font-size: 12.5px; color: var(--muted); margin-left: auto; }
+</style>
 </head>
 <body>
 <header class="site-header">
@@ -30,42 +47,19 @@
 
 <main class="wrap">
   <h2 class="section">3-Way 비교표</h2>
-  <p class="lead">PCE 기준 메뉴 경로와 ECC·Public의 차이점을 항목별로 정리합니다. 화면 캡쳐가 아니라 <strong>경로 위치와 달라지는 부분</strong> 위주입니다.</p>
+  <p class="lead">PCE 기준 메뉴 경로와 ECC·Public의 차이점을 항목별로 정리합니다. 화면 캡쳐가 아니라 <strong>경로 위치와 달라지는 부분</strong> 위주입니다. 주제를 눌러 골라보고, 모듈별로 접었다 펼 수 있습니다.</p>
 
   <div class="toolbar">
     <input id="q" type="search" placeholder="키워드 검색 (예: BP, 반제, 자산)" aria-label="비교표 검색">
-    <select id="area" aria-label="영역 필터">
-      <option value="">전체 영역</option>
-    </select>
+  </div>
+  <div class="rel-chips" id="area-chips" style="margin:0 0 6px"></div>
+  <div class="t-tools">
+    <button class="mini" id="expand-all">모두 펼치기</button>
+    <button class="mini" id="collapse-all">모두 접기</button>
+    <span class="t-count" id="count-note"></span>
   </div>
 
-  <div class="note" id="count-note"></div>
-
-  <div class="table-wrap">
-  <table class="compare" id="tbl">
-    <colgroup>
-      <col style="width:14%">
-      <col style="width:12%">
-      <col style="width:12%">
-      <col style="width:16%">
-      <col style="width:24%">
-      <col style="width:13%">
-      <col style="width:9%">
-    </colgroup>
-    <thead>
-      <tr>
-        <th>항목</th>
-        <th><span class="badge ecc">ECC</span><br>경로</th>
-        <th><span class="badge pce">PCE</span><br>경로</th>
-        <th><span class="badge pub">Public</span><br>경로</th>
-        <th>달라지는 부분</th>
-        <th>관련 항목</th>
-        <th>출처</th>
-      </tr>
-    </thead>
-    <tbody id="rows"></tbody>
-  </table>
-  </div>
+  <div id="area-list"></div>
 
   <div class="note">
     Public 경로는 추후 보완 예정입니다. "확인 중" 표기는 현재 검증 중인 항목입니다.
@@ -93,29 +87,18 @@ GLOSSARY.forEach(t => (t.items || []).forEach(id => {
 }));
 const params = new URLSearchParams(location.search);
 const qInput = document.getElementById('q');
-const areaSel = document.getElementById('area');
-const areas = [...new Set(GUIDE_DATA.map(e => e.area))].sort();
-areas.forEach(a => {
-  const o = document.createElement('option');
-  o.value = a; o.textContent = a;
-  areaSel.appendChild(o);
-});
-if (params.get('q')) qInput.value = params.get('q');
-if (params.get('area')) areaSel.value = params.get('area');
+const chipsEl = document.getElementById('area-chips');
+const listEl = document.getElementById('area-list');
+const countEl = document.getElementById('count-note');
+const areas = [];
+GUIDE_DATA.forEach(e => { if (!areas.includes(e.area)) areas.push(e.area); });
+let activeArea = null;
 
 function esc(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
 }
-function render() {
-  const q = qInput.value.trim().toLowerCase();
-  const area = areaSel.value;
-  const rows = GUIDE_DATA.filter(e => {
-    if (area && e.area !== area) return false;
-    if (!q) return true;
-    return (e.item + ' ' + e.ecc + ' ' + e.pce + ' ' + e.pub + ' ' + e.diff + ' ' + e.tags.join(' ')).toLowerCase().includes(q);
-  });
-  document.getElementById('count-note').innerHTML = `<strong>${rows.length}</strong>개 항목 표시 중`;
-  document.getElementById('rows').innerHTML = rows.map(e => `
+function rowHtml(e) {
+  return `
     <tr id="row-${e.id}">
       <td class="item" data-th="항목">${esc(e.item)}<br><span class="checking">${esc(e.area)} · ${e.tags.map(esc).join(', ')}</span>${(TERMS_BY_ITEM[e.id] || []).length ? `<br><span class="g-terms">📖 ` + TERMS_BY_ITEM[e.id].map(t => `<a href="glossary.html#term-${t.id}">${esc(t.kr)}</a>`).join(' · ') + `</span>` : ''}</td>
       <td data-th="ECC 경로">${esc(e.ecc)}</td>
@@ -127,28 +110,96 @@ function render() {
         return r ? `<a href="#row-${id}" data-rel="${id}">${esc(r.item)}</a>` : '';
       }).join('')}</div></td>
       <td class="src" data-th="출처">${e.help.map(u => `<a href="${u}" target="_blank" rel="noopener">SAP 공식 ↗</a>`).join('<br>')}</td>
-    </tr>`).join('') || `<tr><td colspan="7">검색 결과가 없습니다.</td></tr>`;
-  const target = params.get('q');
-  if (target) {
-    const hit = rows.find(r => r.item === target);
-    if (hit) document.getElementById('row-' + hit.id)?.scrollIntoView({block: 'center'});
-  }
+    </tr>`;
 }
-qInput.addEventListener('input', render);
-areaSel.addEventListener('change', render);
-document.getElementById('rows').addEventListener('click', ev => {
+function areaHtml(area, idx) {
+  const rows = GUIDE_DATA.filter(e => e.area === area);
+  return `
+  <div class="cmod${idx === 0 ? ' open' : ''}" data-area="${esc(area)}">
+    <button class="cmod-head"><span class="cmod-name">${esc(area)}</span>
+      <span class="cmod-meta">${rows.length}개 항목</span><span class="arrow">▼</span></button>
+    <div class="cmod-body"><div class="table-wrap">
+      <table class="compare">
+        <colgroup>
+          <col style="width:14%">
+          <col style="width:12%">
+          <col style="width:12%">
+          <col style="width:16%">
+          <col style="width:24%">
+          <col style="width:13%">
+          <col style="width:9%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>항목</th>
+            <th><span class="badge ecc">ECC</span><br>경로</th>
+            <th><span class="badge pce">PCE</span><br>경로</th>
+            <th><span class="badge pub">Public</span><br>경로</th>
+            <th>달라지는 부분</th>
+            <th>관련 항목</th>
+            <th>출처</th>
+          </tr>
+        </thead>
+        <tbody>${rows.map(rowHtml).join('')}</tbody>
+      </table>
+    </div></div>
+  </div>`;
+}
+listEl.innerHTML = areas.map(areaHtml).join('');
+chipsEl.innerHTML = areas.map(a => {
+  const n = GUIDE_DATA.filter(e => e.area === a).length;
+  return `<button data-area="${esc(a)}">${esc(a)} ${n}</button>`;
+}).join('');
+
+function visibleMods() {
+  return Array.from(listEl.querySelectorAll('.cmod')).filter(m => m.style.display !== 'none');
+}
+function applyFilter() {
+  const q = qInput.value.trim().toLowerCase();
+  let shown = 0;
+  listEl.querySelectorAll('.cmod').forEach(mod => {
+    const areaOk = !activeArea || mod.dataset.area === activeArea;
+    let modShown = 0;
+    mod.querySelectorAll('tbody tr').forEach(tr => {
+      const kwOk = !q || tr.textContent.toLowerCase().includes(q);
+      const ok = areaOk && kwOk;
+      tr.style.display = ok ? '' : 'none';
+      if (ok) modShown++;
+    });
+    const showMod = areaOk && (!q || modShown > 0);
+    mod.style.display = showMod ? '' : 'none';
+    if (showMod) {
+      shown += modShown;
+      if (q) mod.classList.add('open');
+    }
+    if (!q && !activeArea) mod.classList.toggle('open', mod.dataset.area === areas[0]);
+  });
+  countEl.innerHTML = `<strong>${shown}</strong> / ${GUIDE_DATA.length}개 항목 표시 중`;
+}
+chipsEl.addEventListener('click', ev => {
+  const b = ev.target.closest('button');
+  if (!b) return;
+  activeArea = (activeArea === b.dataset.area) ? null : b.dataset.area;
+  chipsEl.querySelectorAll('button').forEach(x => x.classList.toggle('on', x.dataset.area === activeArea));
+  applyFilter();
+});
+qInput.addEventListener('input', applyFilter);
+listEl.addEventListener('click', ev => {
+  const head = ev.target.closest('.cmod-head');
+  if (head) { head.closest('.cmod').classList.toggle('open'); return; }
   const a = ev.target.closest('a[data-rel]');
   if (!a) return;
   ev.preventDefault();
   const id = a.dataset.rel;
-  let row = document.getElementById('row-' + id);
-  if (!row) {  // 필터에 가려져 있으면 필터 초기화 후 다시 렌더
-    qInput.value = '';
-    areaSel.value = '';
-    render();
-    row = document.getElementById('row-' + id);
-  }
+  // 필터에 가려져 있으면 필터 초기화 후 다시 렌더
+  qInput.value = '';
+  activeArea = null;
+  chipsEl.querySelectorAll('button').forEach(x => x.classList.remove('on'));
+  applyFilter();
+  const row = document.getElementById('row-' + id);
   if (row) {
+    const mod = row.closest('.cmod');
+    if (mod) { mod.style.display = ''; mod.classList.add('open'); }
     row.scrollIntoView({ block: 'center', behavior: 'smooth' });
     row.classList.remove('flash');
     void row.offsetWidth;
@@ -156,7 +207,29 @@ document.getElementById('rows').addEventListener('click', ev => {
     history.replaceState(null, '', '#row-' + id);
   }
 });
-render();
+document.getElementById('expand-all').addEventListener('click', () =>
+  visibleMods().forEach(m => m.classList.add('open')));
+document.getElementById('collapse-all').addEventListener('click', () =>
+  listEl.querySelectorAll('.cmod').forEach(m => m.classList.remove('open')));
+
+if (params.get('q')) qInput.value = params.get('q');
+if (params.get('area') && areas.includes(params.get('area'))) {
+  activeArea = params.get('area');
+  chipsEl.querySelectorAll('button').forEach(x => x.classList.toggle('on', x.dataset.area === activeArea));
+}
+applyFilter();
+
+// 딥링킹: #row-xxx 로 바로 이동 (모듈 자동 펼침)
+(function deepLink() {
+  const h = location.hash.replace('#', '');
+  if (!h.startsWith('row-')) return;
+  const el = document.getElementById(h);
+  if (!el) return;
+  const mod = el.closest('.cmod');
+  if (mod) { mod.style.display = ''; mod.classList.add('open'); }
+  el.classList.add('flash');
+  setTimeout(() => el.scrollIntoView({ block: 'center', behavior: 'smooth' }), 100);
+})();
 </script>
 <script src="counter.js?v=202610061759"></script>
 </body>
