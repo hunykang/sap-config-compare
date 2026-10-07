@@ -522,4 +522,15 @@ const SKETCHES = [
     configs: [],
     terms: [],
   },
+  {
+    id: "sk-qty-digits-785",
+    category: "전표·전기",
+    date: "20X3.09",
+    title: "전표입력 시 수량필드 자리 수 관련",
+    source: "blog",
+    url: "https://hksap.tistory.com/785",
+    comment: "전표에 수량 필드를 열어뒀더니 현업에서 99억 개가 넘는 수량을 넣으려다 에러가 난 사례. ACDOCA는 23자리지만 BSEG 수량 필드는 10자리+소수점 3자리라 99억까지만 입력된다. 대량 수량 거래는 단위를 바꿔 관리하기로 협의한 기록이다.",
+    configs: [],
+    terms: [],
+  },
 ];
