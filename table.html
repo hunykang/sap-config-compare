@@ -28,6 +28,7 @@ code.cds { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace
 .tflag.yes { background: #e8f7ef; color: #1c7a43; border-color: #bfe6cf; }
 .tflag.no { background: #f1f5f9; color: #64748b; }
 .tflag.unk { background: #fff8e1; color: #92680f; border-color: #f0e2a0; }
+.tflag.mix { background: #eef2ff; color: #3b5bdb; border-color: #c7d4f5; }
 .t-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 12.5px; color: var(--muted); margin: 8px 0 2px; align-items: center; }
 .t-src { margin-top: 28px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); font-size: 13px; }
 .t-src h4 { margin: 0 0 8px; font-size: 14px; }
@@ -68,6 +69,7 @@ td.t-note { font-size: 12.5px; color: var(--muted); }
     <span><span class="tflag yes">✓</span> 사용 가능(릴리스됨)</span>
     <span><span class="tflag no">–</span> 사용 불가</span>
     <span><span class="tflag unk">확인중</span> 아직 검증되지 않음</span>
+    <span><span class="tflag mix">혼합</span> 뷰마다 다름(기타 칸 참고)</span>
   </div>
   <div id="t-list"></div>
 
@@ -105,6 +107,7 @@ td.t-note { font-size: 12.5px; color: var(--muted); }
   function flag(v) {
     if (v === 'yes') return '<span class="tflag yes">✓</span>';
     if (v === 'no') return '<span class="tflag no">–</span>';
+    if (v === 'mix') return '<span class="tflag mix">혼합</span>';
     return '<span class="tflag unk">확인중</span>';
   }
   function cdsCell(r) {

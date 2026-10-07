@@ -1,7 +1,7 @@
 // Table(CDS View) 매핑 데이터
 // 출처: 내부 T-Code 매핑 정리 자료 (P주요필드 탭: I_BUSINESSPARTNER 필드 상세)
 //   엑셀에 없는 CDS뷰는 공개 자료로 대조, 확인 불가 항목은 확인중(unknown) 태그
-// flag: 'yes' | 'no' | 'unknown'(확인중)
+// flag: 'yes' | 'no' | 'unknown'(확인중) | 'mix'(뷰별 상이)
 const TABLE_MODULES = [
   { id: 'FI', name: 'FI', sub: '재무회계', open: true },
   { id: 'CO', name: 'CO', sub: '관리회계' },
@@ -13,8 +13,8 @@ const TABLE_MODULES = [
 const TABLE_ROWS = [
   // ---- FI ----
   { mod: 'FI', table: 'BKPF', desc: '전표 헤더', cds: ['I_JournalEntry'], cloud: 'unknown', keyuser: 'yes', note: 'ACDOCA(Universal Journal) 기반' },
-  { mod: 'FI', table: 'BSEG', desc: '전표 라인아이템', cds: ['I_JournalEntryItem'], cloud: 'unknown', keyuser: 'yes', note: 'ACDOCA 기반' },
-  { mod: 'FI', table: 'ACDOCA', desc: 'GL 원장 라인아이템', cds: ['I_GLAccountLineItem'], cloud: 'unknown', keyuser: 'yes', note: 'FAGLFLEXT 총계테이블 대체' },
+  { mod: 'FI', table: 'BSEG', desc: '전표 라인아이템', cds: ['I_JournalEntryItem', 'I_OPERATIONALACCTGDOCITEM'], cloud: 'unknown', keyuser: 'mix', note: 'KeyUser ✓: I_JournalEntryItem · ACDOCA 기반' },
+  { mod: 'FI', table: 'ACDOCA', desc: 'GL 원장 라인아이템', cds: ['I_GLAccountLineItem', 'I_GLACCOUNTLINEITEMRAWDATA', 'I_OperationalAcctgDocCube', 'I_JOURNALENTRYITEMCUBE', 'I_GLAccountYearToDateBalanceC', 'I_GLACCOUNTLINEITEMCUBE'], cloud: 'mix', keyuser: 'mix', note: 'Cloud ✓: 큐브 4종 · KeyUser ✓: I_GLAccountLineItem · FAGLFLEXT 총계테이블 대체' },
   { mod: 'FI', table: 'ACDOCP', desc: '계획 데이터', cds: null, cloud: 'unknown', keyuser: 'unknown', note: '' },
   { mod: 'FI', table: 'SKA1 / SKAT / SKB1', desc: 'G/L 계정 마스터', cds: ['I_GLAccount'], cloud: 'unknown', keyuser: 'yes', note: '' },
   { mod: 'FI', table: 'BSID / BSAD', desc: '고객 미결 / 반제 항목', cds: ['I_ARLINEITEM'], cloud: 'no', keyuser: 'yes', note: 'TDD API State 확인값 (C0 Released)' },
@@ -24,21 +24,12 @@ const TABLE_ROWS = [
   { mod: 'FI', table: 'BUT000', desc: '비즈니스 파트너', cds: ['I_BusinessPartner'], cloud: 'unknown', keyuser: 'yes', note: '엑셀 P주요필드 탭에 필드 상세 수록' },
   { mod: 'FI', table: 'T001', desc: '회사코드', cds: ['I_CompanyCode'], cloud: 'unknown', keyuser: 'yes', note: '' },
   { mod: 'FI', table: 'TCURR', desc: '환율', cds: ['I_Exchangeraterawdata'], cloud: 'unknown', keyuser: 'unknown', note: '' },
-  { mod: 'FI', table: 'ACDOCA', desc: 'GL 원장 라인아이템(원시 데이터)', cds: ['I_GLACCOUNTLINEITEMRAWDATA'], cloud: 'unknown', keyuser: 'unknown', note: '' },
   { mod: 'FI', table: 'WITH_ITEM', desc: '원천세 아이템', cds: ['I_WithholdingTaxItem'], cloud: 'unknown', keyuser: 'unknown', note: '' },
   { mod: 'FI', table: 'REGUP', desc: '자동지급 제안 (개별 미결 항목)', cds: ['I_PaymentProposalItem'], cloud: 'unknown', keyuser: 'unknown', note: '' },
   { mod: 'FI', table: 'REGUH', desc: '자동지급 지급프로그램 헤더', cds: null, cloud: 'unknown', keyuser: 'unknown', note: '' },
-  { mod: 'FI', table: 'BSEG', desc: '전표 라인아이템(운영 회계문서)', cds: ['I_OPERATIONALACCTGDOCITEM'], cloud: 'unknown', keyuser: 'unknown', note: '' },
   { mod: 'FI', table: 'T882', desc: '원장별 회사코드 설정', cds: ['I_LedgerCoCode'], cloud: 'yes', keyuser: 'unknown', note: '신규 릴리스 (developer extensibility)' },
-  { mod: 'FI', table: 'ACDOCA', desc: '운영 전표 아이템 큐브', cds: ['I_OperationalAcctgDocCube'], cloud: 'yes', keyuser: 'unknown', note: '신규 릴리스 (developer extensibility)' },
-  { mod: 'FI', table: 'ACDOCA', desc: '전표 아이템 큐브', cds: ['I_JOURNALENTRYITEMCUBE'], cloud: 'yes', keyuser: 'unknown', note: '신규 릴리스 (developer extensibility)' },
-  { mod: 'FI', table: 'ACDOCA', desc: 'G/L 계정 연누적 잔액 큐브', cds: ['I_GLAccountYearToDateBalanceC'], cloud: 'yes', keyuser: 'unknown', note: '신규 릴리스 (developer extensibility)' },
-  { mod: 'FI', table: 'ACDOCA', desc: 'G/L 원장 라인아이템 큐브', cds: ['I_GLACCOUNTLINEITEMCUBE'], cloud: 'yes', keyuser: 'unknown', note: '신규 릴리스 (developer extensibility)' },
-  { mod: 'FI', table: 'T009', desc: '회계연도 구간 파생', cds: ['I_FSCLYRINTVLDRVTNFORPOSTGDATE', 'I_FSCLYRINTVLDRVTNFORCOMPRNDTE'], cloud: 'yes', keyuser: 'unknown', note: '신규 릴리스 (developer extensibility)' },
-  { mod: 'FI', table: 'T009', desc: '회계연도 변형 없는 회계분기/기간', cds: ['I_FSCLQTRWTHOUTFSCLYRFORVAR', 'I_FSCLPERDWTHOUTFSCLYRFORVAR', 'I_CURRENTYEARFISCALPERIODTEXT'], cloud: 'yes', keyuser: 'unknown', note: '신규 릴리스 (developer extensibility)' },
-  { mod: 'FI', table: 'T009', desc: '달력일 기준 이전/다음 회계기간', cds: ['I_FISCALCALENDARDTEPREVPERIODS', 'I_FISCALCALENDARDATENXTPERIODS', 'I_FISCALCALDATEPREVFSCLPERIOD', 'I_FISCALCALDATENXTFSCLPERIOD'], cloud: 'yes', keyuser: 'unknown', note: '신규 릴리스 (developer extensibility)' },
-  { mod: 'FI', table: 'SETHEADER', desc: '기능영역 계층구조', cds: ['I_FUNCTIONALAREAHIERARCHY', 'I_FUNCTIONALAREAHIERNODE'], cloud: 'unknown', keyuser: 'unknown', note: '' },
-  { mod: 'FI', table: 'SETHEADER', desc: '이익센터 계층구조', cds: ['I_PROFITCENTERHIERARCHY', 'I_PROFITCENTERHIERARCHYNODE'], cloud: 'unknown', keyuser: 'unknown', note: '' },
+  { mod: 'FI', table: 'T009', desc: '회계연도·회계기간', cds: ['I_FSCLYRINTVLDRVTNFORPOSTGDATE', 'I_FSCLYRINTVLDRVTNFORCOMPRNDTE', 'I_FSCLQTRWTHOUTFSCLYRFORVAR', 'I_FSCLPERDWTHOUTFSCLYRFORVAR', 'I_CURRENTYEARFISCALPERIODTEXT', 'I_FISCALCALENDARDTEPREVPERIODS', 'I_FISCALCALENDARDATENXTPERIODS', 'I_FISCALCALDATEPREVFSCLPERIOD', 'I_FISCALCALDATENXTFSCLPERIOD'], cloud: 'yes', keyuser: 'unknown', note: '신규 릴리스 (developer extensibility)' },
+  { mod: 'FI', table: 'SETHEADER', desc: '계층구조(기능영역·이익센터)', cds: ['I_FUNCTIONALAREAHIERARCHY', 'I_FUNCTIONALAREAHIERNODE', 'I_PROFITCENTERHIERARCHY', 'I_PROFITCENTERHIERARCHYNODE'], cloud: 'unknown', keyuser: 'unknown', note: '' },
   // ---- CO ----
   { mod: 'CO', table: 'COEP', desc: 'CO 라인아이템(실적)', cds: null, cloud: 'unknown', keyuser: 'unknown', note: '' },
   { mod: 'CO', table: 'COBK', desc: 'CO 문서 헤더', cds: null, cloud: 'unknown', keyuser: 'unknown', note: '' },
@@ -47,9 +38,7 @@ const TABLE_ROWS = [
   { mod: 'CO', table: 'CEPC / CECT', desc: '이익센터 마스터 / 텍스트', cds: ['I_ProfitCenter'], cloud: 'unknown', keyuser: 'yes', note: '' },
   { mod: 'CO', table: 'TKA02', desc: '관리회계영역', cds: null, cloud: 'unknown', keyuser: 'unknown', note: '' },
   { mod: 'CO', table: 'COSP / COSS', desc: '기간 합계(외부 / 내부)', cds: null, cloud: 'unknown', keyuser: 'unknown', note: '' },
-  { mod: 'CO', table: 'SETHEADER', desc: '코스트센터 계층구조', cds: ['I_COSTCENTERHIERARCHY', 'I_COSTCENTERHIERARCHYNODE'], cloud: 'unknown', keyuser: 'unknown', note: '' },
-  { mod: 'CO', table: 'SETHEADER', desc: '액티비티 유형 계층구조', cds: ['I_COSTCTRACTIVITYTYPEHIERARCHY', 'I_COSTCTRACTIVITYTYPEHIERNODE'], cloud: 'unknown', keyuser: 'unknown', note: '' },
-  { mod: 'CO', table: 'SETHEADER', desc: '통계 키 수치 계층구조', cds: ['I_STSTCLKEYFIGUREHIERARCHY', 'I_STSTCLKEYFIGUREHIERNODE'], cloud: 'unknown', keyuser: 'unknown', note: '' },
+  { mod: 'CO', table: 'SETHEADER', desc: '계층구조(코스트센터·액티비티유형·통계키수치)', cds: ['I_COSTCENTERHIERARCHY', 'I_COSTCENTERHIERARCHYNODE', 'I_COSTCTRACTIVITYTYPEHIERARCHY', 'I_COSTCTRACTIVITYTYPEHIERNODE', 'I_STSTCLKEYFIGUREHIERARCHY', 'I_STSTCLKEYFIGUREHIERNODE'], cloud: 'unknown', keyuser: 'unknown', note: '' },
   { mod: 'CO', table: null, desc: '계층구조 런타임 노드', cds: ['I_HIERRUNTIMERPRSTNNODE', 'I_HIERRUNTIMERPRSTNNODETEXT'], cloud: 'unknown', keyuser: 'unknown', note: '특정 테이블에 종속되지 않은 런타임 계층 노드' },
   // ---- SD ----
   { mod: 'SD', table: 'VBAK / VBAP', desc: '판매오더 헤더 / 아이템', cds: ['I_SalesDocument', 'I_SalesDocumentItem'], cloud: 'unknown', keyuser: 'yes', note: '' },
@@ -59,19 +48,16 @@ const TABLE_ROWS = [
   // ---- MM ----
   { mod: 'MM', table: 'MARA', desc: '자재 마스터(기본)', cds: ['I_Product'], cloud: 'unknown', keyuser: 'yes', note: '' },
   { mod: 'MM', table: 'MARC', desc: '자재 마스터(플랜트)', cds: ['I_ProductPlant'], cloud: 'unknown', keyuser: 'yes', note: '' },
-  { mod: 'MM', table: 'MBEW', desc: '자재 평가', cds: ['I_ProductValuation'], cloud: 'unknown', keyuser: 'yes', note: '' },
+  { mod: 'MM', table: 'MBEW', desc: '자재 평가', cds: ['I_ProductValuation', 'I_PRODUCTVALUATIONACCT'], cloud: 'unknown', keyuser: 'mix', note: 'KeyUser ✓: I_ProductValuation' },
   { mod: 'MM', table: 'MKPF / MSEG', desc: '자재문서 헤더 / 아이템', cds: ['I_MaterialDocumentHeader', 'I_MaterialDocumentItem'], cloud: 'unknown', keyuser: 'yes', note: '' },
   { mod: 'MM', table: 'EKKO / EKPO', desc: '구매오더 헤더 / 아이템', cds: ['I_PurchaseOrder', 'I_PurchaseOrderItem'], cloud: 'unknown', keyuser: 'yes', note: '' },
-  { mod: 'MM', table: 'EKBE', desc: '구매오더 이력', cds: ['I_PurchaseOrderHistory'], cloud: 'unknown', keyuser: 'yes', note: '' },
-  { mod: 'MM', table: 'MLDOC', desc: '수불부(자재원장 실제원가)', cds: ['I_ActlCostgMatlValueChainItem'], cloud: 'unknown', keyuser: 'unknown', note: '' },
-  { mod: 'MM', table: 'MLDOC', desc: '단가(자재원장 큐브)', cds: ['I_MATERIALLEDGERCUBE_LIT'], cloud: 'unknown', keyuser: 'unknown', note: '' },
-  { mod: 'MM', table: 'MBEW', desc: '자재 평가 회계', cds: ['I_PRODUCTVALUATIONACCT'], cloud: 'unknown', keyuser: 'unknown', note: '' },
+  { mod: 'MM', table: 'EKBE', desc: '구매오더 이력', cds: ['I_PurchaseOrderHistory', 'I_GRIRPROCESSHISTORY'], cloud: 'mix', keyuser: 'mix', note: 'Cloud ✓: I_GRIRPROCESSHISTORY(신규 릴리스) · KeyUser ✓: I_PurchaseOrderHistory' },
+  { mod: 'MM', table: 'MLDOC', desc: '수불부(자재원장)', cds: ['I_ActlCostgMatlValueChainItem', 'I_MATERIALLEDGERCUBE_LIT'], cloud: 'unknown', keyuser: 'unknown', note: '실제원가·단가 큐브' },
   { mod: 'MM', table: 'RSEG', desc: '임시송장(공급업체 송장 귀속)', cds: ['I_SUPPLIERINVOICEACCOUNTASSGMT'], cloud: 'unknown', keyuser: 'unknown', note: '' },
-  { mod: 'MM', table: 'EKBE', desc: 'GR/IR 프로세스 이력', cds: ['I_GRIRPROCESSHISTORY'], cloud: 'yes', keyuser: 'unknown', note: '신규 릴리스 (developer extensibility)' },
-  // ---- PS ----
-  { mod: 'PS', table: 'PRPS', desc: 'WBS 요소', cds: ['I_EnterpriseProjectElement'], cloud: 'unknown', keyuser: 'unknown', note: '' },
   // ---- PP ----
   { mod: 'PP', table: 'AFKO / AFPO', desc: '생산오더 헤더 / 오퍼레이션', cds: null, cloud: 'unknown', keyuser: 'unknown', note: 'MRP용 PPH_MRP_* 뷰는 별도 존재' },
   { mod: 'PP', table: 'AUFM', desc: '자재 이동(오더 관련)', cds: null, cloud: 'unknown', keyuser: 'unknown', note: '' },
   { mod: 'PP', table: 'PLKO / PLPO', desc: '작업순서 헤더 / 공정', cds: null, cloud: 'unknown', keyuser: 'unknown', note: '' },
+  // ---- PS ----
+  { mod: 'PS', table: 'PRPS', desc: 'WBS 요소', cds: ['I_EnterpriseProjectElement'], cloud: 'unknown', keyuser: 'unknown', note: '' },
 ];
