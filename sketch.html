@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="style.css?v=202610061759">
 <script src="data.js?v=202610061759"></script>
 <script src="glossary.js?v=202610061759"></script>
-<script src="sketch.js?v=20261007e"></script>
+<script src="sketch.js?v=20261007f"></script>
 <style>
 .sketch-card { border: 1px solid var(--line); border-radius: 10px; background: #fff; padding: 14px 16px; margin: 10px 0; }
 .sketch-card h4 { margin: 0 0 6px; font-size: 15px; font-weight: 600; }
@@ -25,6 +25,14 @@
 .src-badge.nolink { background: transparent; color: #c3ccd8; border: 1px dashed #e5eaf1; }
 .src-badge.link { text-decoration: none; cursor: pointer; }
 .src-badge.date { background: transparent; color: #94a3b8; font-size: 11px; }
+.area-group { margin: 0 0 8px; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.area-head { width: 100%; text-align: left; padding: 13px 16px; font-size: 15px; font-weight: 700; background: var(--card); border: 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+.area-head .n { font-size: 12px; color: var(--muted); font-weight: 400; }
+.area-head .arrow { color: var(--muted); font-size: 12px; margin-left: 8px; transition: transform .15s; }
+.area-group.open .area-head .arrow { transform: rotate(180deg); }
+.area-items { display: none; padding: 2px 12px 8px; }
+.area-group.open .area-items { display: block; }
+.sketch-card { margin: 10px 0; }
 </style>
 </head>
 <body>
@@ -46,6 +54,9 @@
 <main class="wrap">
   <h2 class="section">프로젝트 현장 스케치</h2>
   <p class="lead">살며 삽질하며.. 그날의 기록들</p>
+  <div class="searchbar" style="margin:12px 0 16px">
+    <input id="sq" type="search" placeholder="스케치 검색 (예: 부분반제, 연결회계, BSEG)" aria-label="스케치 검색">
+  </div>
   <div id="sketch-sections"></div>
   <script>
   (function () {
@@ -76,12 +87,48 @@
         ${rel.length ? `<div class="rel-line">관련: ${rel.join(' · ')}</div>` : ''}
       </div>`;
     }
-    document.getElementById('sketch-sections').innerHTML = ORDER
-      .filter(cat => byCat[cat])
-      .map(cat => `<h3 class="section" style="margin-top:26px">${esc(cat)} <span style="font-size:12px;color:var(--muted);font-weight:400">· ${byCat[cat].length}</span></h3>` +
-        byCat[cat].map(card).join(''))
-      .join('') +
-      `<div class="note" style="margin-top:28px">이 목록은 계속 엮어 나갑니다. 비교 가이드 항목과 연결되는 글을 추가 중입니다.</div>`;
+    const sectionsEl = document.getElementById('sketch-sections');
+    const cats = ORDER.filter(cat => byCat[cat]);
+    sectionsEl.innerHTML = cats.map((cat, idx) =>
+      `<div class="area-group${idx === 0 ? ' open' : ''}" data-cat="${esc(cat)}">` +
+      `<button class="area-head">${esc(cat)} <span><span class="n">· ${byCat[cat].length}</span><span class="arrow">▼</span></span></button>` +
+      `<div class="area-items">${byCat[cat].map(card).join('')}</div></div>`
+    ).join('') +
+    `<div class="note" style="margin-top:28px">이 목록은 계속 엮어 나갑니다. 비교 가이드 항목과 연결되는 글을 추가 중입니다.</div>`;
+    sectionsEl.addEventListener('click', ev => {
+      const head = ev.target.closest('.area-head');
+      if (head) head.closest('.area-group').classList.toggle('open');
+    });
+    // 검색: 제목+요약 기준 필터, 검색 중에는 매칭 그룹만 펼침
+    const q = document.getElementById('sq');
+    q.addEventListener('input', () => {
+      const kw = q.value.trim().toLowerCase();
+      sectionsEl.querySelectorAll('.area-group').forEach((g, idx) => {
+        if (!kw) {
+          g.style.display = '';
+          g.classList.toggle('open', idx === 0);
+          g.querySelectorAll('.sketch-card').forEach(c => c.style.display = '');
+          return;
+        }
+        let hit = 0;
+        g.querySelectorAll('.sketch-card').forEach(c => {
+          const ok = c.textContent.toLowerCase().includes(kw);
+          c.style.display = ok ? '' : 'none';
+          if (ok) hit++;
+        });
+        g.style.display = hit ? '' : 'none';
+        g.classList.add('open');
+      });
+    });
+    // 딥링킹: #sk-아이디 로 바로 열기 (용어집·비교표에서 넘어올 때)
+    const initial = location.hash.replace('#', '');
+    if (initial) {
+      const cardEl = document.getElementById(CSS.escape(initial));
+      if (cardEl) {
+        cardEl.closest('.area-group').classList.add('open');
+        setTimeout(() => cardEl.scrollIntoView({ block: 'center', behavior: 'smooth' }), 100);
+      }
+    }
   })();
   </script>
 </main>
