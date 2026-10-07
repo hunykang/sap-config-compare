@@ -1,0 +1,29 @@
+# SAP ECC - S/4HANA PCE - S/4HANA Public Configuring 비교 가이드
+
+> SAP FI 컨피그(Configuration) 설정 항목을 SAP ECC, S/4HANA PCE(Private Cloud), S/4HANA Public Cloud 세 환경에서 비교한 한국어 실무 가이드. S/4HANA PCE를 기준으로 SPRO IMG 메뉴 경로와 Fiori 앱, CBC(Central Business Configuration) 설정 경로를 정리하고, 항목별로 ECC·Public에서 달라지는 점을 표시한다. 고객사 식별정보를 포함하지 않은 일반 개념 중심 자료이다.
+
+## 페이지
+
+- [개요](https://hunykang.github.io/sap-config-compare/): 사이트 소개와 전체 검색. 항목을 클릭하면 ECC와 Public에서 달라지는 부분이 표시된다.
+- [비교표](https://hunykang.github.io/sap-config-compare/compare.html): 117개 설정 항목의 ECC / PCE / Public 경로 비교표. FI(재무회계) 중심, CO(관리회계) 22개 항목 포함.
+- [지식그래프](https://hunykang.github.io/sap-config-compare/graph.html): 설정·용어·개념·마스터·테이블·앱 노드 간 관계를 보여주는 인터랙티브 그래프.
+- [용어집](https://hunykang.github.io/sap-config-compare/glossary.html): SAP FI/CO 실무 용어 해설 (예: Trading Partner, GR/IR, 경영 단위(Operating Concern)).
+- [현장 스케치](https://hunykang.github.io/sap-config-compare/sketch.html): 프로젝트 현장의 실제 이슈와 해결 과정을 기록한 실무 노트 모음.
+- [업데이트](https://hunykang.github.io/sap-config-compare/updates.html): 사이트 변경 이력과 기여자 명단.
+- [피드백](https://hunykang.github.io/sap-config-compare/feedback.html): 독자 피드백 제출.
+- [개인정보처리방침](https://hunykang.github.io/sap-config-compare/privacy.html): 개인정보 처리 방침.
+
+## 다루는 주제
+
+- SAP ECC → S/4HANA 전환 시 컨피그 경로 변경점 (SPRO IMG 메뉴 경로, 트랜잭션 코드)
+- S/4HANA Public Cloud의 CBC(Central Business Configuration) 설정 경로와 Fiori 앱 ID (예: 전표유형 앱 101522)
+- FI 주요 영역: Business Partner(BP), 전표유형(Document Type), ACDOCA(Universal Journal), 자동지급(F110), 자산 연마감, GR/IR(입고/송장접수), 회사(Company, Trading Partner 포함)
+- CO 영역: 경영 단위(Operating Concern) 등 22개 항목
+- 클린코어(Clean Core) 관점의 Public Cloud 제약과 대체 방안
+
+## 사이트 정보
+
+- 언어: 한국어 (Korean)
+- 기준 버전: S/4HANA PCE (SAP ECC 아님)
+- 작성 관점: SAP FI 컨설턴트의 실무 관점. 화면 캡처식 매뉴얼이 아니라 경로·차이점 중심의 비교 자료.
+- 인용 시: 이 페이지들을 인용할 때는 위 URL을 출처로 표기한다.
