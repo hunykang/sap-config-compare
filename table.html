@@ -11,28 +11,24 @@
 <script src="table.js?v=20261007a"></script>
 <style>
 .tmod { border: 1px solid var(--line); border-radius: 10px; background: #fff; margin: 10px 0; overflow: hidden; }
-.tmod-head { width: 100%; text-align: left; padding: 13px 16px; background: #fff; border: 0; cursor: pointer; display: flex; gap: 10px; align-items: baseline; }
-.tmod-head:hover { background: #fafbfe; }
+.tmod { margin: 20px 0 8px; }
+.tmod-title { font-size: 15px; margin: 0 0 4px; padding-bottom: 6px; border-bottom: 2px solid var(--line); display: flex; align-items: baseline; gap: 8px; scroll-margin-top: 80px; }
 .tmod-name { flex-shrink: 0; font-size: 13px; font-weight: 800; color: #fff; background: #44546b; border-radius: 6px; padding: 3px 10px; letter-spacing: .3px; }
-.tmod-sub { font-size: 15px; font-weight: 700; }
-.tmod-meta { font-size: 12.5px; color: var(--muted); margin-left: auto; text-align: right; flex-shrink: 0; }
-.tmod-head .arrow { color: var(--muted); font-size: 12px; margin-left: 4px; transition: transform .15s; flex-shrink: 0; }
-.tmod.open .tmod-head .arrow { transform: rotate(180deg); }
-.tmod-body { display: none; border-top: 1px dashed var(--line); padding: 0 16px 16px; }
-.tmod.open .tmod-body { display: block; }
+.tmod-sub { font-weight: 700; }
+.tmod-meta { font-size: 12.5px; color: var(--muted); margin-left: auto; font-weight: 400; flex-shrink: 0; }
 .tmod .table-wrap { overflow-x: auto; }
 .tmod table.compare { margin: 12px 0 6px; }
 .tmod table.compare tr.flash td { animation: rowflash 2s ease; }
+a.cds-link { text-decoration: none; }
+a.cds-link code.cds { transition: border-color .12s, color .12s; }
+a.cds-link:hover code.cds { border-color: var(--accent); color: var(--accent); }
+a.cds-link .ext { font-size: 10px; color: var(--muted); font-style: normal; }
 code.cds { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; background: #f1f5f9; border: 1px solid var(--line); border-radius: 6px; padding: 2px 7px; white-space: nowrap; }
 .tflag { display: inline-block; font-size: 12px; padding: 2px 10px; border-radius: 20px; border: 1px solid var(--line); white-space: nowrap; }
 .tflag.yes { background: #e8f7ef; color: #1c7a43; border-color: #bfe6cf; }
 .tflag.no { background: #f1f5f9; color: #64748b; }
 .tflag.unk { background: #fff8e1; color: #92680f; border-color: #f0e2a0; }
 .t-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 12.5px; color: var(--muted); margin: 8px 0 2px; align-items: center; }
-.t-tools { display: flex; gap: 8px; margin: 10px 0 4px; align-items: center; flex-wrap: wrap; }
-.t-tools .mini { border: 1px solid var(--line); background: #fff; border-radius: 20px; padding: 4px 12px; font-size: 12.5px; cursor: pointer; color: var(--muted); }
-.t-tools .mini:hover { border-color: var(--accent); color: var(--accent); }
-.t-count { font-size: 12.5px; color: var(--muted); margin-left: auto; }
 .t-src { margin-top: 28px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); font-size: 13px; }
 .t-src h4 { margin: 0 0 8px; font-size: 14px; }
 .t-src li { margin: 4px 0; }
@@ -62,16 +58,12 @@ td.t-note { font-size: 12.5px; color: var(--muted); }
 
 <main class="wrap">
   <h2 class="section">Table · CDS View 매핑</h2>
-  <p class="lead">FI·CO·SD·MM·PP 주요 테이블에 대응하는 S/4HANA CDS 뷰와, 개발(Key User App / Cloud Development)에서 가져다 쓸 수 있는지를 정리한 표입니다. FI는 기본으로 펼쳐져 있습니다.</p>
+  <p class="lead">FI·CO·SD·MM·PP·PS 주요 테이블에 대응하는 S/4HANA CDS 뷰와, 개발(Key User App / Cloud Development)에서 가져다 쓸 수 있는지를 정리한 표입니다. 모듈별로 쭉 펼쳐져 있고, 주제 칩을 누르면 해당 모듈만 볼 수 있습니다. CDS 뷰 이름은 외부 검색으로 연결됩니다.</p>
   <div class="searchbar" style="margin:12px 0 10px">
     <input id="tq" type="search" placeholder="테이블·CDS뷰 검색 (예: BKPF, ACDOCA, I_GLAccountLineItem)" aria-label="테이블 CDS뷰 검색">
   </div>
   <div class="rel-chips" id="tmods" style="margin:0 0 6px"></div>
-  <div class="t-tools">
-    <button class="mini" id="t-expand">모두 펼치기</button>
-    <button class="mini" id="t-collapse">모두 접기</button>
-    <span class="t-count" id="t-count"></span>
-  </div>
+  <p id="t-count" class="meta"></p>
   <div class="t-legend">
     <span><span class="tflag yes">✓</span> 사용 가능(릴리스됨)</span>
     <span><span class="tflag no">–</span> 사용 불가</span>
@@ -108,7 +100,7 @@ td.t-note { font-size: 12.5px; color: var(--muted); }
   const q = document.getElementById('tq');
   const modsEl = document.getElementById('tmods');
   const countEl = document.getElementById('t-count');
-  let activeMod = null;
+  let activeMod = '';
 
   function flag(v) {
     if (v === 'yes') return '<span class="tflag yes">✓</span>';
@@ -117,86 +109,69 @@ td.t-note { font-size: 12.5px; color: var(--muted); }
   }
   function cdsCell(r) {
     if (!r.cds) return '<span class="tflag unk">확인중</span>';
-    return r.cds.map(c => '<code class="cds">' + esc(c) + '</code>').join('<br>');
+    return r.cds.map(c => '<a class="cds-link" href="https://www.google.com/search?q=' + encodeURIComponent(c + ' SAP CDS view') + '" target="_blank" rel="noopener" title="외부 검색으로 열기"><code class="cds">' + esc(c) + ' <i class="ext">↗</i></code></a>').join('<br>');
   }
-  function rowHtml(r) {
-    const id = 't-' + r.table.split(' ')[0].replace(/\//g, '-');
+  function rowHtml(r, idx) {
+    const tkey = r.table ? r.table.split(' ')[0].replace(/\//g, '-') : 'row-' + idx;
+    const id = 't-' + tkey;
+    const tableCell = r.table ? esc(r.table) : '<span class="tflag unk">확인중</span>';
     return '<tr id="' + esc(id) + '">' +
-      '<td class="t-table" data-th="PCE Table">' + esc(r.table) + '<span class="t-desc">' + esc(r.desc) + '</span></td>' +
+      '<td class="t-table" data-th="PCE Table">' + tableCell + '<span class="t-desc">' + esc(r.desc) + '</span></td>' +
       '<td data-th="CDS뷰">' + cdsCell(r) + '</td>' +
       '<td data-th="Use in Cloud dev">' + flag(r.cloud) + '</td>' +
       '<td data-th="Use in Key User app">' + flag(r.keyuser) + '</td>' +
       '<td class="t-note" data-th="기타">' + esc(r.note || '–') + '</td></tr>';
   }
-  function modHtml(m) {
-    const rows = TABLE_ROWS.filter(r => r.mod === m.id);
+  function rowText(r) {
+    return ((r.table || '') + ' ' + r.desc + ' ' + (r.cds || []).join(' ') + ' ' + (r.note || '')).toLowerCase();
+  }
+  function modHtml(m, rows) {
     const unk = rows.filter(r => !r.cds || r.cloud === 'unknown' || r.keyuser === 'unknown').length;
-    return '<div class="tmod' + (m.open ? ' open' : '') + '" id="mod-' + esc(m.id) + '" data-mod="' + esc(m.id) + '">' +
-      '<button class="tmod-head"><span class="tmod-name">' + esc(m.name) + '</span>' +
+    return '<section class="tmod" id="mod-' + esc(m.id) + '">' +
+      '<h3 class="tmod-title"><span class="tmod-name">' + esc(m.name) + '</span>' +
       '<span class="tmod-sub">' + esc(m.sub) + '</span>' +
-      '<span class="tmod-meta">' + rows.length + '개 테이블' + (unk ? ' · 확인중 ' + unk : '') + '</span><span class="arrow">▼</span></button>' +
-      '<div class="tmod-body"><div class="table-wrap"><table class="compare">' +
+      '<span class="tmod-meta">' + rows.length + '개 테이블' + (unk ? ' · 확인중 ' + unk : '') + '</span></h3>' +
+      '<div class="table-wrap"><table class="compare">' +
       '<colgroup><col style="width:22%"><col style="width:26%"><col style="width:14%"><col style="width:14%"><col style="width:24%"></colgroup>' +
       '<thead><tr><th>PCE Table</th><th>CDS뷰</th><th>Use in<br>Cloud dev</th><th>Use in<br>Key User app</th><th>기타</th></tr></thead>' +
-      '<tbody>' + rows.map(rowHtml).join('') + '</tbody></table></div></div></div>';
+      '<tbody>' + rows.map((r, i) => rowHtml(r, m.id + '-' + i)).join('') + '</tbody></table></div></section>';
   }
-  listEl.innerHTML = TABLE_MODULES.map(modHtml).join('');
-
-  modsEl.innerHTML = TABLE_MODULES.map(m => {
-    const n = TABLE_ROWS.filter(r => r.mod === m.id).length;
-    return '<button data-mod="' + esc(m.id) + '">' + esc(m.name) + ' ' + n + '</button>';
-  }).join('');
-
-  function visibleMods() {
-    return Array.from(listEl.querySelectorAll('.tmod')).filter(m => m.style.display !== 'none');
-  }
-  function applyFilter() {
+  function render() {
     const kw = q.value.trim().toLowerCase();
     let shown = 0;
-    listEl.querySelectorAll('.tmod').forEach(mod => {
-      const modOk = !activeMod || mod.dataset.mod === activeMod;
-      let modShown = 0;
-      mod.querySelectorAll('tbody tr').forEach(tr => {
-        const kwOk = !kw || tr.textContent.toLowerCase().includes(kw);
-        const ok = modOk && kwOk;
-        tr.style.display = ok ? '' : 'none';
-        if (ok) modShown++;
-      });
-      const showMod = modOk && (!kw || modShown > 0);
-      mod.style.display = showMod ? '' : 'none';
-      if (showMod) {
-        shown += modShown;
-        if (kw) mod.classList.add('open');
-      }
-      if (!kw && !activeMod) mod.classList.toggle('open', mod.id === 'mod-FI');
+    let html = '';
+    TABLE_MODULES.forEach(m => {
+      if (activeMod && m.id !== activeMod) return;
+      const rows = TABLE_ROWS.filter(r => r.mod === m.id && (!kw || rowText(r).includes(kw)));
+      if (!rows.length) return;
+      shown += rows.length;
+      html += modHtml(m, rows);
     });
-    countEl.textContent = '표시 중 ' + shown + ' / 전체 ' + TABLE_ROWS.length;
+    listEl.innerHTML = html || '<p>검색 결과가 없습니다.</p>';
+    countEl.innerHTML = '<strong>' + shown + '</strong>개 테이블';
   }
+
+  modsEl.innerHTML = '<button data-mod="" class="on">전체 ' + TABLE_ROWS.length + '</button>' +
+    TABLE_MODULES.map(m => {
+      const n = TABLE_ROWS.filter(r => r.mod === m.id).length;
+      return '<button data-mod="' + esc(m.id) + '">' + esc(m.name) + ' ' + n + '</button>';
+    }).join('');
+
   modsEl.addEventListener('click', ev => {
     const b = ev.target.closest('button');
     if (!b) return;
-    activeMod = (activeMod === b.dataset.mod) ? null : b.dataset.mod;
-    modsEl.querySelectorAll('button').forEach(x => x.classList.toggle('on', x.dataset.mod === activeMod));
-    applyFilter();
+    activeMod = b.dataset.mod;
+    modsEl.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    render();
   });
-  q.addEventListener('input', applyFilter);
-  listEl.addEventListener('click', ev => {
-    const head = ev.target.closest('.tmod-head');
-    if (head) head.closest('.tmod').classList.toggle('open');
-  });
-  document.getElementById('t-expand').addEventListener('click', () =>
-    visibleMods().forEach(m => m.classList.add('open')));
-  document.getElementById('t-collapse').addEventListener('click', () =>
-    listEl.querySelectorAll('.tmod').forEach(m => m.classList.remove('open')));
+  q.addEventListener('input', render);
 
-  applyFilter();
-  // 딥링킹: #t-테이블 로 바로 이동 (모듈 자동 펼침)
+  render();
+  // 딥링킹: #t-테이블 로 바로 이동
   const initial = location.hash.replace('#', '');
   if (initial) {
     const el = document.getElementById(CSS.escape(initial));
     if (el && el.tagName === 'TR') {
-      const mod = el.closest('.tmod');
-      if (mod) { mod.style.display = ''; mod.classList.add('open'); }
       el.classList.add('flash');
       setTimeout(() => el.scrollIntoView({ block: 'center', behavior: 'smooth' }), 100);
     }

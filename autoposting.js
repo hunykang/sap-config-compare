@@ -511,3 +511,68 @@ const AUTOPOST_SOURCES = [
   { label: '네이버 블로그 mondawy — MM-FI Automatic Posting 정리', url: 'https://blog.naver.com/mondawy/30078028402' },
   { label: '네이버 블로그 밝마맑마(hsland) — MM-FI Automatic Posting 정리', url: 'http://blog.naver.com/hsland/40022024950' }
 ];
+/* 항목별 관련 링크 (비교표 / 용어집 / 현장 스케치) */
+const AUTOPOST_LINKS = {
+  ako:  { terms: ['obyc'], sk: ['sk-autoposting-456'] },
+  aum:  { terms: ['obyc'], sk: ['sk-autoposting-456'] },
+  bo1:  { terms: ['obyc', 'gr-ir'], sk: ['sk-grir-settle-461'] },
+  bo2:  { terms: ['obyc'], sk: [] },
+  bsv:  { terms: ['obyc'], sk: ['sk-autoposting-456'] },
+  bsx:  { terms: ['obyc', 'gr-ir'], sk: ['sk-blog-10', 'sk-mvtype-obyc-514'] },
+  dif:  { terms: ['obyc', 'invoice-verification'], sk: ['sk-miro-split'] },
+  ein:  { terms: ['obyc'], sk: ['sk-purchase-acct-515'] },
+  ekg:  { terms: ['obyc'], sk: ['sk-purchase-acct-515'] },
+  fr1:  { terms: ['obyc', 'gr-ir'], sk: ['sk-grir-settle-461'] },
+  fr2:  { terms: ['obyc'], sk: [] },
+  fr3:  { terms: ['obyc'], sk: [] },
+  fr4:  { terms: ['obyc'], sk: [] },
+  fre:  { terms: ['obyc'], sk: ['sk-purchase-acct-515'] },
+  frl:  { terms: ['obyc'], sk: [] },
+  frn:  { terms: ['obyc'], sk: [] },
+  'gbb-aua': { terms: ['obyc'], sk: ['sk-autoposting-456', 'sk-mvtype-obyc-514'] },
+  'gbb-auf': { terms: ['obyc'], sk: ['sk-autoposting-456'] },
+  'gbb-bsa': { terms: ['obyc'], sk: ['sk-mvtype-obyc-514'] },
+  'gbb-inv': { terms: ['obyc'], sk: [] },
+  'gbb-vax': { terms: ['obyc'], sk: ['sk-blog-11'] },
+  'gbb-vay': { terms: ['obyc'], sk: ['sk-blog-11'] },
+  'gbb-vbo': { terms: ['obyc'], sk: ['sk-autoposting-456'] },
+  'gbb-vbr': { terms: ['obyc'], sk: ['sk-autoposting-456'] },
+  'gbb-vka': { terms: ['obyc'], sk: [] },
+  'gbb-vng': { terms: ['obyc'], sk: [] },
+  'gbb-vqp': { terms: ['obyc'], sk: [] },
+  'gbb-vqy': { terms: ['obyc'], sk: [] },
+  'gbb-zob': { terms: ['obyc'], sk: [] },
+  'gbb-zof': { terms: ['obyc'], sk: [] },
+  kbs:  { terms: ['obyc'], sk: [] },
+  kdm:  { terms: ['obyc', 'gr-ir'], sk: [] },
+  kdr:  { terms: ['obyc'], sk: [] },
+  kon:  { terms: ['obyc'], sk: ['sk-autoposting-456'] },
+  ktr:  { terms: ['obyc'], sk: [] },
+  prd:  { terms: ['obyc'], sk: ['sk-autoposting-456'] },
+  ppk:  { terms: ['obyc', 'material-ledger'], sk: ['sk-material-ledger-act', 'sk-ml-table'] },
+  pry:  { terms: ['obyc', 'material-ledger'], sk: ['sk-material-ledger-act', 'sk-ml-table'] },
+  umb:  { terms: ['obyc'], sk: [] },
+  wrx:  { terms: ['obyc', 'gr-ir', 'invoice-verification'], sk: ['sk-blog-05', 'sk-grir-settle-461'] }
+};
+/* 관련 대상 이름표 */
+const AUTOPOST_NAMES = {
+  cmp: { 'xmod-obyc': 'MM-FI 자동계정결정 (OBYC)' },
+  terms: {
+    'obyc': '자동계정결정 (OBYC)',
+    'gr-ir': 'GR/IR',
+    'material-ledger': '자재원장 (ML)',
+    'invoice-verification': '송장검증'
+  },
+  sk: {
+    'sk-autoposting-456': 'Autoposting',
+    'sk-mvtype-obyc-514': '이동유형 OBYC 관련',
+    'sk-purchase-acct-515': 'Purchase account 관련',
+    'sk-grir-settle-461': 'GRIR 정산',
+    'sk-blog-05': 'F.19 GR/IR 미착대체 관련',
+    'sk-blog-10': 'MM 입고시 회계전표 안나오게 설정',
+    'sk-blog-11': 'OBYC GBB-VAX GBB-VAY 관련',
+    'sk-ml-table': 'ML Table 관련',
+    'sk-miro-split': 'MIRO 송장처리 시 FI전표 분할 관련',
+    'sk-material-ledger-act': 'Material Ledgers/ Actual Costing 관련'
+  }
+};

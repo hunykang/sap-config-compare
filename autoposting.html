@@ -8,22 +8,27 @@
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9919904969420259" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="style.css?v=202610061759">
-<script src="autoposting.js?v=20261007a"></script>
+<script src="autoposting.js?v=20261008a"></script>
 <style>
-.ap-card { border: 1px solid var(--line); border-radius: 10px; background: #fff; margin: 10px 0; overflow: hidden; }
-.ap-head { width: 100%; text-align: left; padding: 13px 16px; background: #fff; border: 0; cursor: pointer; display: flex; gap: 10px; align-items: baseline; }
-.ap-head:hover { background: #fafbfe; }
-.ap-key { flex-shrink: 0; font-size: 12px; font-weight: 800; color: #fff; background: #44546b; border-radius: 6px; padding: 3px 8px; letter-spacing: .3px; }
-.ap-title { font-size: 15px; font-weight: 700; }
-.ap-title .en { font-weight: 400; font-size: 12px; color: var(--muted); margin-left: 6px; }
-.ap-sum { font-size: 13px; color: var(--muted); margin-left: auto; text-align: right; max-width: 46%; }
-.ap-head .arrow { color: var(--muted); font-size: 12px; margin-left: 4px; transition: transform .15s; flex-shrink: 0; }
-.ap-card.open .ap-head .arrow { transform: rotate(180deg); }
-.ap-body { display: none; padding: 4px 16px 16px; border-top: 1px dashed var(--line); }
-.ap-card.open .ap-body { display: block; }
-.ap-desc { font-size: 13.5px; color: #334155; margin: 10px 0; }
+.ap-search { display: flex; gap: 8px; margin: 14px 0 6px; }
+.ap-search input { flex: 1; padding: 10px 14px; font-size: 14px; border: 1px solid var(--line); border-radius: 8px; }
+.ap-search input:focus { outline: none; border-color: var(--accent); }
+.area-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 4px; }
+.area-chips button { border: 1px solid var(--line); background: #f8fafc; border-radius: 20px; padding: 6px 14px; font-size: 13px; cursor: pointer; }
+.area-chips button:hover { border-color: #0b5fff; color: #0b5fff; }
+.area-chips button.on { background: #0b5fff; border-color: #0b5fff; color: #fff; }
+.ap-cat-h { font-size: 15px; margin: 20px 0 4px; padding-bottom: 6px; border-bottom: 2px solid var(--line); }
+.ap-list { display: grid; gap: 10px; margin: 12px 0 8px; }
+.ap-card { border: 1px solid var(--line); border-radius: 10px; background: var(--card); padding: 14px 16px; scroll-margin-top: 80px; }
+.ap-card.flash { animation: apflash 2s ease; }
+@keyframes apflash { 0%, 60% { background: #fef9c3; } 100% { background: var(--card); } }
+.ap-card h3 { margin: 0 0 2px; font-size: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ap-key { font-size: 12px; font-weight: 800; color: #fff; background: #44546b; border-radius: 6px; padding: 3px 8px; letter-spacing: .3px; }
+.ap-card h3 .en { font-size: 12px; color: var(--muted); font-weight: 400; }
+.ap-sum { font-size: 13.5px; color: var(--muted); margin: 6px 0 2px; }
+.ap-desc { font-size: 14px; margin: 8px 0; line-height: 1.6; color: #334155; }
 .ap-desc p { margin: 6px 0; }
-.je { border: 1px solid var(--line); border-radius: 8px; margin: 10px 0; background: #fbfcfe; }
+.je { border: 1px solid var(--line); border-radius: 8px; margin: 10px 0; background: #fff; }
 .je-head { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; font-size: 13px; font-weight: 700; border-bottom: 1px solid var(--line); }
 .je-copy { border: 1px solid var(--line); background: #fff; border-radius: 6px; font-size: 12px; padding: 3px 10px; cursor: pointer; color: var(--muted); }
 .je-copy:hover { border-color: var(--accent); color: var(--accent); }
@@ -33,15 +38,15 @@
 .je-side .lbl { display: inline-block; font-size: 11px; font-weight: 800; width: 20px; height: 20px; line-height: 20px; text-align: center; border-radius: 50%; background: #eef4ff; color: var(--accent); margin-right: 6px; }
 .je-side.cr .lbl { background: #e8f7ef; color: var(--pub); }
 .je-side div { margin: 3px 0; }
-.ap-tools { display: flex; gap: 8px; margin: 10px 0 4px; align-items: center; flex-wrap: wrap; }
-.ap-tools .mini { border: 1px solid var(--line); background: #fff; border-radius: 20px; padding: 4px 12px; font-size: 12.5px; cursor: pointer; color: var(--muted); }
-.ap-tools .mini:hover { border-color: var(--accent); color: var(--accent); }
-.ap-count { font-size: 12.5px; color: var(--muted); margin-left: auto; }
-.ap-src { margin-top: 28px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); font-size: 13px; }
+.g-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.g-chips a { font-size: 12px; padding: 3px 10px; border-radius: 20px; background: var(--accent-soft); text-decoration: none; color: inherit; }
+.g-chips a:hover { background: #dbe4f0; }
+.g-chips .lbl { font-size: 12px; color: var(--muted); align-self: center; margin-right: 2px; }
+.ap-src { margin-top: 28px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font-size: 13px; }
 .ap-src h4 { margin: 0 0 8px; font-size: 14px; }
 .ap-src li { margin: 4px 0; }
+.meta { font-size: 12.5px; color: var(--muted); }
 @media (max-width: 640px) {
-  .ap-sum { display: none; }
   .je-grid { grid-template-columns: 1fr; }
   .je-side:first-child { border-right: 0; border-bottom: 1px solid var(--line); }
 }
@@ -59,7 +64,6 @@
       <a href="table.html">Table(CDS View)</a>
       <a href="autoposting.html" class="active">Auto-posting</a>
       <a href="sketch.html">현장 스케치</a>
-
       <a href="updates.html">업데이트</a>
       <a href="feedback.html">피드백</a>
     </nav>
@@ -68,16 +72,12 @@
 
 <main class="wrap">
   <h2 class="section">MM-FI Auto-posting</h2>
-  <p class="lead">자동계정결정(OBYC) 트랜잭션 키별 설명과 회계분개. 관련 설정은 <a href="compare.html#row-xmod-obyc">비교표 MM-FI 자동계정결정(OBYC)</a> 참조.</p>
-  <div class="searchbar" style="margin:12px 0 10px">
+  <p class="lead">자동계정결정(OBYC) 트랜잭션 키 40종의 설명과 회계분개. 항목 → 비교표·용어집·현장 스케치로 서로 오갈 수 있습니다.</p>
+  <div class="ap-search">
     <input id="aq" type="search" placeholder="Auto-posting 검색 (예: GBB, GR/IR, 위탁자재)" aria-label="Auto-posting 검색">
   </div>
-  <div class="rel-chips" id="ap-cats" style="margin:0 0 6px"></div>
-  <div class="ap-tools">
-    <button class="mini" id="ap-expand">모두 펼치기</button>
-    <button class="mini" id="ap-collapse">모두 접기</button>
-    <span class="ap-count" id="ap-count"></span>
-  </div>
+  <div class="area-chips" id="ap-cats"></div>
+  <p id="ap-count" class="meta"></p>
   <div id="ap-list"></div>
 
   <div class="ap-src">
@@ -85,6 +85,7 @@
     <ul id="ap-src-list" style="margin:0;padding-left:18px"></ul>
     <p style="margin:8px 0 0;color:var(--muted);font-size:12.5px">분개 예시의 금액·통화는 원자료와 다르게 변형한 교육용 예시입니다.</p>
   </div>
+  <div class="note" style="margin-top:20px">Auto-posting 항목 추가·수정 제안은 <a href="feedback.html">피드백</a>으로 보내주세요.</div>
 </main>
 
 <footer class="site-footer">
@@ -104,7 +105,20 @@
   const q = document.getElementById('aq');
   const catsEl = document.getElementById('ap-cats');
   const countEl = document.getElementById('ap-count');
-  let activeCat = null;
+  let curCat = '';
+
+  const catCount = {};
+  AUTOPOSTINGS.forEach(a => { catCount[a.cat] = (catCount[a.cat] || 0) + 1; });
+  catsEl.innerHTML = [`<button data-c="" class="on">전체 ${AUTOPOSTINGS.length}</button>`]
+    .concat(AUTOPOST_CATS.filter(c => catCount[c]).map(c =>
+      `<button data-c="${esc(c)}">${esc(c)} ${catCount[c]}</button>`)).join('');
+  catsEl.addEventListener('click', ev => {
+    const b = ev.target.closest('button[data-c]');
+    if (!b) return;
+    curCat = b.dataset.c;
+    catsEl.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    render();
+  });
 
   function jeHtml(e) {
     const side = (lbl, cls, arr) =>
@@ -115,74 +129,65 @@
       `<button class="je-copy" data-copy="${esc(copyText)}">복사</button></div>` +
       `<div class="je-grid">${side('차', '', e.dr)}${side('대', 'cr', e.cr)}</div></div>`;
   }
+  function relChips(a) {
+    const L = (typeof AUTOPOST_LINKS !== 'undefined' ? AUTOPOST_LINKS[a.id] : null) || { terms: [], sk: [] };
+    const N = (typeof AUTOPOST_NAMES !== 'undefined' ? AUTOPOST_NAMES : { cmp: {}, terms: {}, sk: {} });
+    let h = `<div class="g-chips"><span class="lbl">📋 관련 설정</span>` +
+      `<a href="compare.html#row-xmod-obyc">${esc(N.cmp['xmod-obyc'] || 'xmod-obyc')}</a></div>`;
+    if (L.terms && L.terms.length) {
+      h += `<div class="g-chips"><span class="lbl">🔗 관련 용어</span>` + L.terms.map(id =>
+        `<a href="glossary.html#term-${esc(id)}">${esc((N.terms || {})[id] || id)}</a>`).join('') + '</div>';
+    }
+    if (L.sk && L.sk.length) {
+      h += `<div class="g-chips"><span class="lbl">🎙 현장 스케치</span>` + L.sk.map(id =>
+        `<a href="sketch.html#sk-${esc(id)}">${esc((N.sk || {})[id] || id)}</a>`).join('') + '</div>';
+    }
+    return h;
+  }
   function card(a) {
     const body = (a.desc || []).map(p => `<p>${esc(p)}</p>`).join('');
     const jes = (a.entries || []).map(jeHtml).join('');
-    return `<div class="ap-card" id="ap-${esc(a.id)}" data-cat="${esc(a.cat)}">` +
-      `<button class="ap-head"><span class="ap-key">${esc(a.key)}</span>` +
-      `<span class="ap-title">${esc(a.kr)}<span class="en">${esc(a.en)}</span></span>` +
-      `<span class="ap-sum">${esc(a.summary)}</span><span class="arrow">▼</span></button>` +
-      `<div class="ap-body"><div class="ap-desc">${body}</div>${jes}</div></div>`;
+    return `<div class="ap-card" id="ap-${esc(a.id)}">` +
+      `<h3><span class="ap-key">${esc(a.key)}</span>${esc(a.kr)}<span class="en">${esc(a.en)}</span></h3>` +
+      `<p class="ap-sum">${esc(a.summary)}</p>` +
+      `<div class="ap-desc">${body}</div>${jes}${relChips(a)}</div>`;
   }
   function render() {
-    listEl.innerHTML = AUTOPOSTINGS.map(card).join('');
-  }
-  render();
-
-  catsEl.innerHTML = AUTOPOST_CATS.map(c => {
-    const n = AUTOPOSTINGS.filter(a => a.cat === c).length;
-    return `<button data-cat="${esc(c)}">${esc(c)} ${n}</button>`;
-  }).join('');
-
-  function applyFilter() {
     const kw = q.value.trim().toLowerCase();
-    let shown = 0;
-    listEl.querySelectorAll('.ap-card').forEach(c => {
-      const catOk = !activeCat || c.dataset.cat === activeCat;
-      const kwOk = !kw || c.textContent.toLowerCase().includes(kw);
-      const ok = catOk && kwOk;
-      c.style.display = ok ? '' : 'none';
-      if (ok) { shown++; c.classList.toggle('open', !!kw); }
-      else c.classList.remove('open');
-    });
-    countEl.textContent = shown + ' / ' + AUTOPOSTINGS.length;
+    const items = AUTOPOSTINGS.filter(a =>
+      (!curCat || a.cat === curCat) &&
+      (!kw || (a.key + ' ' + a.kr + ' ' + a.en + ' ' + a.summary + ' ' +
+        (a.desc || []).join(' ') + ' ' +
+        (a.entries || []).map(e => e.t + ' ' + e.dr.join(' ') + ' ' + e.cr.join(' ')).join(' ')
+      ).toLowerCase().includes(kw)));
+    countEl.innerHTML = `<strong>${items.length}</strong>개 항목`;
+    if (!curCat && !kw) {
+      listEl.innerHTML = AUTOPOST_CATS.filter(c => catCount[c]).map(c => {
+        const ts = items.filter(a => a.cat === c);
+        return ts.length ? `<h3 class="ap-cat-h">${esc(c)} <span class="meta">${ts.length}개</span></h3>` +
+          `<div class="ap-list">${ts.map(card).join('')}</div>` : '';
+      }).join('') || '<p>검색 결과가 없습니다.</p>';
+    } else {
+      listEl.innerHTML = `<div class="ap-list">${items.map(card).join('')}</div>` || '<p>검색 결과가 없습니다.</p>';
+      if (!items.length) listEl.innerHTML = '<p>검색 결과가 없습니다.</p>';
+    }
   }
-  catsEl.addEventListener('click', ev => {
-    const b = ev.target.closest('button');
-    if (!b) return;
-    activeCat = (activeCat === b.dataset.cat) ? null : b.dataset.cat;
-    catsEl.querySelectorAll('button').forEach(x => x.classList.toggle('on', x.dataset.cat === activeCat));
-    applyFilter();
-  });
-  q.addEventListener('input', applyFilter);
+  q.addEventListener('input', render);
   listEl.addEventListener('click', ev => {
     const cp = ev.target.closest('.je-copy');
     if (cp) {
       navigator.clipboard.writeText(cp.dataset.copy).then(() => {
         cp.textContent = '복사됨'; setTimeout(() => cp.textContent = '복사', 1200);
       });
-      return;
     }
-    const head = ev.target.closest('.ap-head');
-    if (head) head.closest('.ap-card').classList.toggle('open');
   });
-  document.getElementById('ap-expand').addEventListener('click', () =>
-    listEl.querySelectorAll('.ap-card:not([style*="none"])').forEach(c => c.classList.add('open')));
-  document.getElementById('ap-collapse').addEventListener('click', () =>
-    listEl.querySelectorAll('.ap-card').forEach(c => c.classList.remove('open')));
-
   document.getElementById('ap-src-list').innerHTML =
     AUTOPOST_SOURCES.map(s => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a></li>`).join('');
-
-  applyFilter();
-  // 딥링킹: #ap-키 로 바로 열기
-  const initial = location.hash.replace('#', '');
-  if (initial) {
-    const el = document.getElementById(CSS.escape(initial));
-    if (el && el.classList.contains('ap-card')) {
-      el.classList.add('open');
-      setTimeout(() => el.scrollIntoView({ block: 'center', behavior: 'smooth' }), 100);
-    }
+  render();
+  // 딥링크 #ap-xxx 로 들어오면 해당 카드로 이동
+  if (location.hash.startsWith('#ap-')) {
+    const cardEl = document.getElementById(location.hash.slice(1));
+    if (cardEl) { cardEl.scrollIntoView({ block: 'center' }); cardEl.classList.add('flash'); }
   }
 })();
 </script>

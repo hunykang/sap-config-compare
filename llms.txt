@@ -8,7 +8,7 @@
 - [비교표](https://hunykang.github.io/sap-config-compare/compare.html): 117개 설정 항목의 ECC / PCE / Public 경로 비교표. FI(재무회계) 중심, CO(관리회계) 22개 항목 포함.
 - [지식그래프](https://hunykang.github.io/sap-config-compare/graph.html): 설정·용어·개념·마스터·테이블·앱 노드 간 관계를 보여주는 인터랙티브 그래프.
 - [용어집](https://hunykang.github.io/sap-config-compare/glossary.html): SAP FI/CO 실무 용어 해설 (예: Trading Partner, GR/IR, 경영 단위(Operating Concern)).
-- [Table(CDS View)](https://hunykang.github.io/sap-config-compare/table.html): FI·CO·SD·MM·PP 주요 테이블과 S/4HANA CDS 뷰 매핑. Cloud Development / Key User App 사용 가능 여부 표시, 모듈별 펼치기·검색 지원.
+- [Table(CDS View)](https://hunykang.github.io/sap-config-compare/table.html): FI·CO·SD·MM·PP·PS 주요 테이블과 S/4HANA CDS 뷰 매핑. Cloud Development / Key User App 사용 가능 여부 표시, 모듈별 펼치기·검색 지원.
 - [현장 스케치](https://hunykang.github.io/sap-config-compare/sketch.html): 프로젝트 현장의 실제 이슈와 해결 과정을 기록한 실무 노트 모음.
 - [Auto-posting](https://hunykang.github.io/sap-config-compare/autoposting.html): MM-FI 자동계정결정(OBYC) 트랜잭션 키 40종의 설명·회계분개 레퍼런스. 검색·카테고리 필터 지원.
 - [업데이트](https://hunykang.github.io/sap-config-compare/updates.html): 사이트 변경 이력과 기여자 명단.
