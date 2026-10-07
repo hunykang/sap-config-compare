@@ -8,7 +8,7 @@
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9919904969420259" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="style.css?v=20261007j">
-<script src="table.js?v=20261007a"></script>
+<script src="table.js?v=20261008a"></script>
 <style>
 .tmod { border: 1px solid var(--line); border-radius: 10px; background: #fff; margin: 10px 0; overflow: hidden; }
 .tmod { margin: 20px 0 8px; }
@@ -36,6 +36,10 @@ code.cds { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace
 td.t-table { font-weight: 700; white-space: nowrap; }
 td.t-table .t-desc { display: block; font-weight: 400; font-size: 12.5px; color: var(--muted); white-space: normal; margin-top: 2px; }
 td.t-note { font-size: 12.5px; color: var(--muted); }
+.t-links { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; align-items: center; }
+.t-links .lbl { font-size: 11.5px; color: var(--muted); margin-right: 2px; }
+.t-links a { font-size: 11.5px; padding: 2px 9px; border-radius: 20px; background: var(--accent-soft); text-decoration: none; color: inherit; white-space: nowrap; }
+.t-links a:hover { background: #dbe4f0; }
 </style>
 </head>
 <body>
@@ -95,6 +99,8 @@ td.t-note { font-size: 12.5px; color: var(--muted); }
   </div>
 </footer>
 <script src="counter.js?v=202610061759"></script>
+<script src="data.js?v=202610061759"></script>
+<script src="glossary.js?v=202610061759"></script>
 <script>
 (function () {
   function esc(x) { return String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
@@ -114,6 +120,16 @@ td.t-note { font-size: 12.5px; color: var(--muted); }
     if (!r.cds) return '<span class="tflag unk">확인중</span>';
     return r.cds.map(c => '<a class="cds-link" href="https://www.google.com/search?q=' + encodeURIComponent(c + ' SAP CDS view') + '" target="_blank" rel="noopener" title="외부 검색으로 열기"><code class="cds">' + esc(c) + ' <i class="ext">↗</i></code></a>').join('<br>');
   }
+  const cfgName = id => { const e = (typeof GUIDE_DATA !== 'undefined') ? GUIDE_DATA.find(x => x.id === id) : null; return e ? (e.item || id) : id; };
+  const termName = id => { const t = (typeof GLOSSARY !== 'undefined') ? GLOSSARY.find(x => x.id === id) : null; return t ? t.kr : id; };
+  function linkChips(r) {
+    let h = '';
+    if (r.items && r.items.length) h += '<div class="t-links"><span class="lbl">📋 관련 설정</span>' +
+      r.items.map(id => '<a href="compare.html#row-' + esc(id) + '">' + esc(cfgName(id)) + '</a>').join('') + '</div>';
+    if (r.terms && r.terms.length) h += '<div class="t-links"><span class="lbl">📖 관련 용어</span>' +
+      r.terms.map(id => '<a href="glossary.html#term-' + id + '">' + esc(termName(id)) + '</a>').join('') + '</div>';
+    return h;
+  }
   function rowHtml(r, idx) {
     const tkey = r.table ? r.table.split(' ')[0].replace(/\//g, '-') : 'row-' + idx;
     const id = 't-' + tkey;
@@ -123,7 +139,7 @@ td.t-note { font-size: 12.5px; color: var(--muted); }
       '<td data-th="CDS뷰">' + cdsCell(r) + '</td>' +
       '<td data-th="Use in Cloud dev">' + flag(r.cloud) + '</td>' +
       '<td data-th="Use in Key User app">' + flag(r.keyuser) + '</td>' +
-      '<td class="t-note" data-th="기타">' + esc(r.note || '–') + '</td></tr>';
+      '<td class="t-note" data-th="기타">' + esc(r.note || '–') + linkChips(r) + '</td></tr>';
   }
   function rowText(r) {
     return ((r.table || '') + ' ' + r.desc + ' ' + (r.cds || []).join(' ') + ' ' + (r.note || '')).toLowerCase();
