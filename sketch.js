@@ -1155,4 +1155,15 @@ const SKETCHES = [
     configs: [],
     terms: ["general-ledger"],
   },
+  {
+    id: "sk-acdoct-report-810",
+    category: "결산·마감",
+    date: "20X3.11",
+    title: "ACDOCT 리포트페인터 관련",
+    source: "blog",
+    url: "https://hksap.tistory.com/810",
+    comment: "ACDOCT 테이블에 Report Painter를 쓰지 말아야 하는 이유를 정리한 참고자료를 소개한 글이다. S/4 프로젝트에서 분석팀과 리포팅을 맞추며 겪은 경험을 담은 외부 글을 링크했다.",
+    configs: [],
+    terms: ["general-ledger"],
+  },
 ];
