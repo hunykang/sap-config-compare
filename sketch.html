@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="style.css?v=202610061759">
 <script src="data.js?v=202610061759"></script>
 <script src="glossary.js?v=202610061759"></script>
-<script src="sketch.js?v=20261007f"></script>
+<script src="sketch.js?v=20261007g"></script>
 <style>
 .sketch-card { border: 1px solid var(--line); border-radius: 10px; background: #fff; padding: 14px 16px; margin: 10px 0; }
 .sketch-card h4 { margin: 0 0 6px; font-size: 15px; font-weight: 600; }
@@ -54,9 +54,10 @@
 <main class="wrap">
   <h2 class="section">프로젝트 현장 스케치</h2>
   <p class="lead">살며 삽질하며.. 그날의 기록들</p>
-  <div class="searchbar" style="margin:12px 0 16px">
+  <div class="searchbar" style="margin:12px 0 10px">
     <input id="sq" type="search" placeholder="스케치 검색 (예: 부분반제, 연결회계, BSEG)" aria-label="스케치 검색">
   </div>
+  <div class="rel-chips" id="cat-chips" style="margin:0 0 16px"></div>
   <div id="sketch-sections"></div>
   <script>
   (function () {
@@ -99,12 +100,16 @@
       const head = ev.target.closest('.area-head');
       if (head) head.closest('.area-group').classList.toggle('open');
     });
-    // 검색: 제목+요약 기준 필터, 검색 중에는 매칭 그룹만 펼침
+    // 검색 + 주제 칩 필터: 제목·요약·관련 칩 이름 기준, 매칭 그룹만 펼침
     const q = document.getElementById('sq');
-    q.addEventListener('input', () => {
+    const chipsEl = document.getElementById('cat-chips');
+    let activeCat = null;
+    chipsEl.innerHTML = cats.map(cat => `<button data-cat="${esc(cat)}">${esc(cat)}</button>`).join('');
+    function applyFilter() {
       const kw = q.value.trim().toLowerCase();
       sectionsEl.querySelectorAll('.area-group').forEach((g, idx) => {
-        if (!kw) {
+        if (activeCat && g.dataset.cat !== activeCat) { g.style.display = 'none'; return; }
+        if (!kw && !activeCat) {
           g.style.display = '';
           g.classList.toggle('open', idx === 0);
           g.querySelectorAll('.sketch-card').forEach(c => c.style.display = '');
@@ -112,14 +117,22 @@
         }
         let hit = 0;
         g.querySelectorAll('.sketch-card').forEach(c => {
-          const ok = c.textContent.toLowerCase().includes(kw);
+          const ok = !kw || c.textContent.toLowerCase().includes(kw);
           c.style.display = ok ? '' : 'none';
           if (ok) hit++;
         });
         g.style.display = hit ? '' : 'none';
         g.classList.add('open');
       });
+    }
+    chipsEl.addEventListener('click', ev => {
+      const b = ev.target.closest('button');
+      if (!b) return;
+      activeCat = (activeCat === b.dataset.cat) ? null : b.dataset.cat;
+      chipsEl.querySelectorAll('button').forEach(x => x.classList.toggle('on', x.dataset.cat === activeCat));
+      applyFilter();
     });
+    q.addEventListener('input', applyFilter);
     // 딥링킹: #sk-아이디 로 바로 열기 (용어집·비교표에서 넘어올 때)
     const initial = location.hash.replace('#', '');
     if (initial) {
