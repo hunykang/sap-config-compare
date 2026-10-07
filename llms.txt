@@ -9,6 +9,7 @@
 - [지식그래프](https://hunykang.github.io/sap-config-compare/graph.html): 설정·용어·개념·마스터·테이블·앱 노드 간 관계를 보여주는 인터랙티브 그래프.
 - [용어집](https://hunykang.github.io/sap-config-compare/glossary.html): SAP FI/CO 실무 용어 해설 (예: Trading Partner, GR/IR, 경영 단위(Operating Concern)).
 - [현장 스케치](https://hunykang.github.io/sap-config-compare/sketch.html): 프로젝트 현장의 실제 이슈와 해결 과정을 기록한 실무 노트 모음.
+- [Auto-posting](https://hunykang.github.io/sap-config-compare/autoposting.html): MM-FI 자동계정결정(OBYC) 트랜잭션 키 40종의 설명·회계분개 레퍼런스. 검색·카테고리 필터 지원.
 - [업데이트](https://hunykang.github.io/sap-config-compare/updates.html): 사이트 변경 이력과 기여자 명단.
 - [피드백](https://hunykang.github.io/sap-config-compare/feedback.html): 독자 피드백 제출.
 - [개인정보처리방침](https://hunykang.github.io/sap-config-compare/privacy.html): 개인정보 처리 방침.

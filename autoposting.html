@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MM-FI Auto-posting | SAP Config 비교 가이드</title>
+<meta name="description" content="MM-FI 자동계정결정(OBYC) 트랜잭션 키별 설명과 회계분개. 검색으로 바로 찾는 Auto-posting 레퍼런스.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9919904969420259" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="style.css?v=202610061759">
+<script src="autoposting.js?v=20261007a"></script>
+<style>
+.ap-card { border: 1px solid var(--line); border-radius: 10px; background: #fff; margin: 10px 0; overflow: hidden; }
+.ap-head { width: 100%; text-align: left; padding: 13px 16px; background: #fff; border: 0; cursor: pointer; display: flex; gap: 10px; align-items: baseline; }
+.ap-head:hover { background: #fafbfe; }
+.ap-key { flex-shrink: 0; font-size: 12px; font-weight: 800; color: #fff; background: #44546b; border-radius: 6px; padding: 3px 8px; letter-spacing: .3px; }
+.ap-title { font-size: 15px; font-weight: 700; }
+.ap-title .en { font-weight: 400; font-size: 12px; color: var(--muted); margin-left: 6px; }
+.ap-sum { font-size: 13px; color: var(--muted); margin-left: auto; text-align: right; max-width: 46%; }
+.ap-head .arrow { color: var(--muted); font-size: 12px; margin-left: 4px; transition: transform .15s; flex-shrink: 0; }
+.ap-card.open .ap-head .arrow { transform: rotate(180deg); }
+.ap-body { display: none; padding: 4px 16px 16px; border-top: 1px dashed var(--line); }
+.ap-card.open .ap-body { display: block; }
+.ap-desc { font-size: 13.5px; color: #334155; margin: 10px 0; }
+.ap-desc p { margin: 6px 0; }
+.je { border: 1px solid var(--line); border-radius: 8px; margin: 10px 0; background: #fbfcfe; }
+.je-head { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; font-size: 13px; font-weight: 700; border-bottom: 1px solid var(--line); }
+.je-copy { border: 1px solid var(--line); background: #fff; border-radius: 6px; font-size: 12px; padding: 3px 10px; cursor: pointer; color: var(--muted); }
+.je-copy:hover { border-color: var(--accent); color: var(--accent); }
+.je-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.je-side { padding: 10px 12px; font-size: 13.5px; }
+.je-side:first-child { border-right: 1px solid var(--line); }
+.je-side .lbl { display: inline-block; font-size: 11px; font-weight: 800; width: 20px; height: 20px; line-height: 20px; text-align: center; border-radius: 50%; background: #eef4ff; color: var(--accent); margin-right: 6px; }
+.je-side.cr .lbl { background: #e8f7ef; color: var(--pub); }
+.je-side div { margin: 3px 0; }
+.ap-tools { display: flex; gap: 8px; margin: 10px 0 4px; align-items: center; flex-wrap: wrap; }
+.ap-tools .mini { border: 1px solid var(--line); background: #fff; border-radius: 20px; padding: 4px 12px; font-size: 12.5px; cursor: pointer; color: var(--muted); }
+.ap-tools .mini:hover { border-color: var(--accent); color: var(--accent); }
+.ap-count { font-size: 12.5px; color: var(--muted); margin-left: auto; }
+.ap-src { margin-top: 28px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); font-size: 13px; }
+.ap-src h4 { margin: 0 0 8px; font-size: 14px; }
+.ap-src li { margin: 4px 0; }
+@media (max-width: 640px) {
+  .ap-sum { display: none; }
+  .je-grid { grid-template-columns: 1fr; }
+  .je-side:first-child { border-right: 0; border-bottom: 1px solid var(--line); }
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">SAP FI Configuring Guide <span class="brand-sub">- ECC/PCE/PUBLIC</span></a>
+    <nav class="nav">
+      <a href="index.html">개요</a>
+      <a href="compare.html">비교표</a>
+      <a href="graph.html">지식그래프</a>
+      <a href="glossary.html">용어집</a>
+      <a href="sketch.html">현장 스케치</a>
+      <a href="autoposting.html" class="active">Auto-posting</a>
+      <a href="updates.html">업데이트</a>
+      <a href="feedback.html">피드백</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h2 class="section">MM-FI Auto-posting</h2>
+  <p class="lead">자동계정결정(OBYC) 트랜잭션 키별 설명과 회계분개. 관련 설정은 <a href="compare.html#row-xmod-obyc">비교표 MM-FI 자동계정결정(OBYC)</a> 참조.</p>
+  <div class="searchbar" style="margin:12px 0 10px">
+    <input id="aq" type="search" placeholder="Auto-posting 검색 (예: GBB, GR/IR, 위탁자재)" aria-label="Auto-posting 검색">
+  </div>
+  <div class="rel-chips" id="ap-cats" style="margin:0 0 6px"></div>
+  <div class="ap-tools">
+    <button class="mini" id="ap-expand">모두 펼치기</button>
+    <button class="mini" id="ap-collapse">모두 접기</button>
+    <span class="ap-count" id="ap-count"></span>
+  </div>
+  <div id="ap-list"></div>
+
+  <div class="ap-src">
+    <h4>참고 · 출처</h4>
+    <ul id="ap-src-list" style="margin:0;padding-left:18px"></ul>
+    <p style="margin:8px 0 0;color:var(--muted);font-size:12.5px">분개 예시의 금액·통화는 원자료와 다르게 변형한 교육용 예시입니다.</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span><a href="https://hksap.tistory.com" target="_blank" rel="noopener">hksap</a> | <a href="https://x.com/hunykang" target="_blank" rel="noopener">@hunykang</a> | <a href="https://www.linkedin.com/in/heonkyu-kang-2a615031/" target="_blank" rel="noopener">LinkedIn</a> | 살며삽질하며.. | My issue log | Since 2006</span>
+    <a href="feedback.html">피드백 보내기</a>
+    <a href="privacy.html">개인정보처리방침</a>
+    <a href="updates.html">업데이트 로그</a>
+    <span id="visit-counter" style="display:none;margin-left:auto"></span>
+  </div>
+</footer>
+<script src="counter.js?v=202610061759"></script>
+<script>
+(function () {
+  function esc(x) { return String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  const listEl = document.getElementById('ap-list');
+  const q = document.getElementById('aq');
+  const catsEl = document.getElementById('ap-cats');
+  const countEl = document.getElementById('ap-count');
+  let activeCat = null;
+
+  function jeHtml(e) {
+    const side = (lbl, cls, arr) =>
+      `<div class="je-side ${cls}"><span class="lbl">${lbl}</span>` +
+      arr.map(x => `<div>${esc(x)}</div>`).join('') + '</div>';
+    const copyText = '차) ' + e.dr.join(' / ') + '\n대) ' + e.cr.join(' / ');
+    return `<div class="je"><div class="je-head"><span>${esc(e.t)}</span>` +
+      `<button class="je-copy" data-copy="${esc(copyText)}">복사</button></div>` +
+      `<div class="je-grid">${side('차', '', e.dr)}${side('대', 'cr', e.cr)}</div></div>`;
+  }
+  function card(a) {
+    const body = (a.desc || []).map(p => `<p>${esc(p)}</p>`).join('');
+    const jes = (a.entries || []).map(jeHtml).join('');
+    return `<div class="ap-card" id="ap-${esc(a.id)}" data-cat="${esc(a.cat)}">` +
+      `<button class="ap-head"><span class="ap-key">${esc(a.key)}</span>` +
+      `<span class="ap-title">${esc(a.kr)}<span class="en">${esc(a.en)}</span></span>` +
+      `<span class="ap-sum">${esc(a.summary)}</span><span class="arrow">▼</span></button>` +
+      `<div class="ap-body"><div class="ap-desc">${body}</div>${jes}</div></div>`;
+  }
+  function render() {
+    listEl.innerHTML = AUTOPOSTINGS.map(card).join('');
+  }
+  render();
+
+  catsEl.innerHTML = AUTOPOST_CATS.map(c => {
+    const n = AUTOPOSTINGS.filter(a => a.cat === c).length;
+    return `<button data-cat="${esc(c)}">${esc(c)} ${n}</button>`;
+  }).join('');
+
+  function applyFilter() {
+    const kw = q.value.trim().toLowerCase();
+    let shown = 0;
+    listEl.querySelectorAll('.ap-card').forEach(c => {
+      const catOk = !activeCat || c.dataset.cat === activeCat;
+      const kwOk = !kw || c.textContent.toLowerCase().includes(kw);
+      const ok = catOk && kwOk;
+      c.style.display = ok ? '' : 'none';
+      if (ok) { shown++; c.classList.toggle('open', !!kw); }
+      else c.classList.remove('open');
+    });
+    countEl.textContent = shown + ' / ' + AUTOPOSTINGS.length;
+  }
+  catsEl.addEventListener('click', ev => {
+    const b = ev.target.closest('button');
+    if (!b) return;
+    activeCat = (activeCat === b.dataset.cat) ? null : b.dataset.cat;
+    catsEl.querySelectorAll('button').forEach(x => x.classList.toggle('on', x.dataset.cat === activeCat));
+    applyFilter();
+  });
+  q.addEventListener('input', applyFilter);
+  listEl.addEventListener('click', ev => {
+    const cp = ev.target.closest('.je-copy');
+    if (cp) {
+      navigator.clipboard.writeText(cp.dataset.copy).then(() => {
+        cp.textContent = '복사됨'; setTimeout(() => cp.textContent = '복사', 1200);
+      });
+      return;
+    }
+    const head = ev.target.closest('.ap-head');
+    if (head) head.closest('.ap-card').classList.toggle('open');
+  });
+  document.getElementById('ap-expand').addEventListener('click', () =>
+    listEl.querySelectorAll('.ap-card:not([style*="none"])').forEach(c => c.classList.add('open')));
+  document.getElementById('ap-collapse').addEventListener('click', () =>
+    listEl.querySelectorAll('.ap-card').forEach(c => c.classList.remove('open')));
+
+  document.getElementById('ap-src-list').innerHTML =
+    AUTOPOST_SOURCES.map(s => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a></li>`).join('');
+
+  applyFilter();
+  // 딥링킹: #ap-키 로 바로 열기
+  const initial = location.hash.replace('#', '');
+  if (initial) {
+    const el = document.getElementById(CSS.escape(initial));
+    if (el && el.classList.contains('ap-card')) {
+      el.classList.add('open');
+      setTimeout(() => el.scrollIntoView({ block: 'center', behavior: 'smooth' }), 100);
+    }
+  }
+})();
+</script>
+</body>
+</html>
