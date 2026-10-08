@@ -53,11 +53,11 @@ const TABLE_ROWS = [
   // ---- MM ----
   { mod: 'MM', table: 'MARA', desc: '자재 마스터(기본)', cds: ['I_Product'], cloud: 'unknown', keyuser: 'yes', note: '', terms: ['material-master', 'mm-module'], items: [] },
   { mod: 'MM', table: 'MARC', desc: '자재 마스터(플랜트)', cds: ['I_ProductPlant'], cloud: 'unknown', keyuser: 'yes', note: '', terms: ['material-master', 'mm-module'], items: ['xmod-plant'] },
-  { mod: 'MM', table: 'MBEW', desc: '자재 평가', cds: ['I_ProductValuation', 'I_PRODUCTVALUATIONACCT'], cloud: 'unknown', keyuser: 'mix', note: 'KeyUser ✓: I_ProductValuation', terms: ['standard-cost-valuation', 'inventory-accounting'], items: ['xmod-ml'] },
+  { mod: 'MM', table: 'MBEW', desc: '자재 평가', cds: ['I_ProductValuation', 'I_PRODUCTVALUATIONACCT', 'I_ValuationArea', 'I_ProductValuationBasic'], cloud: 'unknown', keyuser: 'mix', note: 'KeyUser ✓: I_ProductValuation', terms: ['standard-cost-valuation', 'inventory-accounting'], items: ['xmod-ml'] },
   { mod: 'MM', table: 'MKPF / MSEG', desc: '자재문서 헤더 / 아이템', cds: ['I_MaterialDocumentHeader', 'I_MaterialDocumentItem'], cloud: 'unknown', keyuser: 'yes', note: '', terms: ['inventory-accounting', 'mm-module'], items: ['xmod-obyc'] },
   { mod: 'MM', table: 'EKKO / EKPO', desc: '구매오더 헤더 / 아이템', cds: ['I_PurchaseOrder', 'I_PurchaseOrderItem'], cloud: 'unknown', keyuser: 'yes', note: '', terms: ['p2p', 'invoice-verification'], items: [] },
   { mod: 'MM', table: 'EKBE', desc: '구매오더 이력', cds: ['I_PurchaseOrderHistory', 'I_GRIRPROCESSHISTORY'], cloud: 'mix', keyuser: 'mix', note: 'Cloud ✓: I_GRIRPROCESSHISTORY(신규 릴리스) · KeyUser ✓: I_PurchaseOrderHistory', terms: ['gr-ir', 'invoice-verification'], items: ['close-grir'] },
-  { mod: 'MM', table: 'MLDOC', desc: '수불부(자재원장)', cds: ['I_ActlCostgMatlValueChainItem', 'I_MATERIALLEDGERCUBE_LIT'], cloud: 'unknown', keyuser: 'unknown', note: '실제원가·단가 큐브', terms: ['material-ledger', 'actual-costing'], items: ['xmod-ml', 'co-ml'] },
+  { mod: 'MM', table: 'MLDOC', desc: '수불부(자재원장)', cds: ['I_ActlCostgMatlValueChainItem', 'I_MATERIALLEDGERCUBE_LIT', 'I_ActCostingRunTypeVH'], cloud: 'unknown', keyuser: 'unknown', note: '실제원가·단가 큐브', terms: ['material-ledger', 'actual-costing'], items: ['xmod-ml', 'co-ml'] },
   { mod: 'MM', table: 'RSEG', desc: '임시송장(공급업체 송장 귀속)', cds: ['I_SUPPLIERINVOICEACCOUNTASSGMT'], cloud: 'unknown', keyuser: 'unknown', note: '', terms: ['invoice-verification', 'gr-ir'], items: ['xmod-obyc'] },
   // ---- PP ----
   { mod: 'PP', table: 'AFKO / AFPO', desc: '생산오더 헤더 / 오퍼레이션', cds: null, cloud: 'unknown', keyuser: 'unknown', note: 'MRP용 PPH_MRP_* 뷰는 별도 존재', terms: ['production-costing', 'wip-accounting'], items: [] },
