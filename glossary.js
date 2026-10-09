@@ -2434,5 +2434,545 @@ const GLOSSARY = [
    "intercompany-elimination",
    "consolidation"
   ]
- }
+ },
+  {
+    "id": "ara",
+    "kr": "ARA",
+    "en": "Access Risk Analysis",
+    "abbr": "ARA",
+    "desc": "사용자·역할·프로필·HR 개체에 숨어 있는 SoD 충돌과 위험 권한을 찾아내는 분석 기능이다. 실시간·오프라인·교차 시스템 분석과 변경 시뮬레이션을 지원한다.",
+    "area": "grc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "arm",
+    "kr": "ARM",
+    "en": "Access Request Management",
+    "abbr": "ARM",
+    "desc": "권한 요청과 승인을 티켓 기반 워크플로로 관리하는 기능이다. 요청·승인 단계에서 위험 분석을 함께 수행할 수 있다.",
+    "area": "grc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "sod",
+    "kr": "SoD",
+    "en": "Segregation of Duties",
+    "abbr": "SoD",
+    "desc": "서로 견제해야 하는 직무를 한 사람이 겸하지 못하게 나누는 원칙이다. 대표 예로 벤더마스터 생성과 송장 전기의 분리가 있다.",
+    "area": "grc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "mitigating-control",
+    "kr": "완화통제",
+    "en": "Mitigating Control",
+    "abbr": "",
+    "desc": "SoD 충돌을 없앨 수 없을 때 대신 두는 보완 장치다. 위험과 연결해 유효기간·승인자·모니터를 정하고, 이상 행위 시 알림을 보낸다.",
+    "area": "grc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "preventive-control",
+    "kr": "예방통제",
+    "en": "Preventive Control",
+    "abbr": "",
+    "desc": "위험한 권한 조합이 애초에 생기지 않게 막는 통제다. 예: 벤더마스터 생성 권한과 송장 전기 권한을 같은 사용자에게 주지 않는다.",
+    "area": "grc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "detective-control",
+    "kr": "적발통제",
+    "en": "Detective Control",
+    "abbr": "",
+    "desc": "위험 조합이 이미 존재할 때 사후에 찾아내어 점검하는 통제다. 예: 위험 권한 보유자의 벤더마스터 생성·송장 전기 내역을 주기적으로 확인한다.",
+    "area": "grc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "firefighter",
+    "kr": "파이어파이터",
+    "en": "Firefighter",
+    "abbr": "",
+    "desc": "긴급 상황에 한시적으로 부여하는 강력한 권한이다. 사용 내역이 모두 기록되어 감사 추적이 가능하다.",
+    "area": "grc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "master-role",
+    "kr": "마스터 역할",
+    "en": "Master Role",
+    "abbr": "",
+    "desc": "여러 회사코드에 공통으로 쓸 권한의 원본이 되는 역할이다. 조직값은 비워 두고 템플릿으로 사용한다.",
+    "area": "grc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "derived-role",
+    "kr": "파생 역할",
+    "en": "Derived Role",
+    "abbr": "",
+    "desc": "마스터 역할을 복사해 회사코드 등 조직값을 채워 만든 실제 사용 역할이다. 마스터의 권한 변경분을 버튼 하나로 전파받을 수 있다.",
+    "area": "grc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "business-role",
+    "kr": "비즈니스 역할",
+    "en": "Business Role",
+    "abbr": "",
+    "desc": "기술적인 단일 역할들을 업무 관점의 논리적인 하나로 묶은 역할이다. 사용자가 기술 역할명을 몰라도 업무 단위로 권한을 요청할 수 있다.",
+    "area": "grc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "role-certification",
+    "kr": "역할 인증",
+    "en": "Role Certification",
+    "abbr": "",
+    "desc": "역할 소유자에게 담당 역할을 주기적으로 재확인하게 하는 워크플로 기반 점검이다. 불필요한 권한이 쌓이는 것을 막는다.",
+    "area": "grc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "uar",
+    "kr": "UAR",
+    "en": "User Access Review",
+    "abbr": "UAR",
+    "desc": "사용자가 가진 역할이 지금도 정당한지 주기적으로 확인하는 워크플로 기반 검토다.",
+    "area": "grc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "hr-trigger",
+    "kr": "HR 트리거",
+    "en": "HR Trigger",
+    "abbr": "",
+    "desc": "입사·퇴사·부서 이동 같은 인사 이벤트를 권한 요청의 출발점으로 쓰는 연동 방식이다. SuccessFactors 같은 HR 시스템과 연결해 프로비저닝 수작업을 줄인다.",
+    "area": "grc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "ml-periodic-price",
+    "kr": "주기적 단가",
+    "en": "Periodic Unit Price",
+    "abbr": "",
+    "desc": "ML 실제원가계산 런에서 계산되는 자재의 진짜 단가. 누적 재고의 표준원가에 해당 기간의 가격·환율 차이를 더해 구한다. 다음 기간 재고 재평가의 기준이 된다.",
+    "area": "co",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "ml-single-level",
+    "kr": "단일수준 가격결정",
+    "en": "Single-Level Price Determination",
+    "abbr": "",
+    "desc": "자재 자체 수준에서 발생한 가격·환율 차이만으로 실제원가를 계산하는 단계. 하위 자재의 영향은 반영하지 않는다. CKMLCP 3단계.",
+    "area": "co",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "ml-multilevel",
+    "kr": "다수준 가격결정",
+    "en": "Multilevel Price Determination",
+    "abbr": "",
+    "desc": "하위 자재의 차이를 그것을 소비한 상위 자재에 비례 배분하는 단계. 순서 결정 단계에서 정한 제조 수준 계층을 따라 BOM을 거슬러 올라가며 차이를 안분한다. CKMLCP 4단계.",
+    "area": "co",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "ml-consumption-revaluation",
+    "kr": "소비재평가",
+    "en": "Revaluation of Consumption",
+    "abbr": "",
+    "desc": "코스트센터·WBS·매출원가 같은 비자재 입고처로 소비된 자재의 차이를 해당 처에 비례 배분하는 절차. CKMLCP 5단계이며, 켜면 FI 계정에도 다시 반영된다.",
+    "area": "co",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "ml-wip-revaluation",
+    "kr": "WIP 재평가",
+    "en": "WIP Revaluation",
+    "abbr": "",
+    "desc": "아직 끝나지 않은 생산오더에서 소비된 자재의 차이를 재공품 계정에 배분하는 절차. DLV(납품)·TECO(기술적 완료) 상태가 아닌 오더가 대상이다. CKMLCP 6단계.",
+    "area": "co",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "ml-actual-bom",
+    "kr": "실제 BOM",
+    "en": "Actual BOM",
+    "abbr": "",
+    "desc": "표준 BOM이 아니라 해당 기간에 실제로 투입된 자재·활동 수량 구조. CKMLQS 리포트로 조회하며, 다수준 가격결정이 어떤 투입 구조로 실제원가를 계산했는지 보여준다.",
+    "area": "co",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "ml-price-control",
+    "kr": "가격통제(S/V)",
+    "en": "Price Control",
+    "abbr": "",
+    "desc": "자재의 재고 평가 방식을 나타내는 구분. S는 표준원가, V는 이동평균가를 뜻한다. ML 사후마감에서 재고 재평가를 선택하면 마감 기간의 가격통제가 S에서 V로 전환된다.",
+    "area": "co",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "ml-movement-group",
+    "kr": "이동유형그룹",
+    "en": "Movement Type Group",
+    "abbr": "",
+    "desc": "이동유형마다 소비재평가 방식을 묶어 지정하는 그룹. 차이가 계정별로만(CC) 재평가되는지, 계정+원가대상별로(CF) 재평가되는지를 이동유형 단위로 정한다.",
+    "area": "co",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "ml-post-closing",
+    "kr": "사후마감",
+    "en": "Postclosing",
+    "abbr": "",
+    "desc": "CKMLCP 실제원가계산 런의 마지막 전기 단계. 앞 단계들의 계산 결과를 총계정원장에 전기하고 자재 상태를 '마감 입력 완료'로 바꾼다. 이후 해당 기간의 재고 전기는 막힌다.",
+    "area": "co",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "ml-parallel-valuation",
+    "kr": "병렬 평가",
+    "en": "Parallel Valuation",
+    "abbr": "",
+    "desc": "하나의 재고를 법적 평가(회사코드 통화)와 그룹 평가(그룹 통화) 등 여러 관점으로 병행해 평가하는 방식. ML이 있어야 가능하며, S/4HANA에서는 ML이 필수라 기본 전제가 된다.",
+    "area": "co",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "lease-liability",
+    "kr": "리스부채",
+    "en": "Lease Liability",
+    "abbr": "",
+    "desc": "리스 기간 동안 지급할 리스료를 현재가치로 환산해 계상한 부채. 보증 예상 금액이 변동되면 주기적으로 재검토해 사용권자산과 함께 조정한다.",
+    "area": "aa",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "guaranteed-residual-value",
+    "kr": "보증잔존가치",
+    "en": "Guaranteed Residual Value",
+    "abbr": "",
+    "desc": "리스 종료 시점 자산의 잔존가치 중 리스이용자가 보증한 금액. 리스부채 측정에는 포함되지만, 사용권자산의 감가상각비를 계산할 때는 차감하지 않는다.",
+    "area": "aa",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "bp-relcat",
+    "kr": "BP 관계 카테고리",
+    "en": "BP Relationship Category",
+    "abbr": "",
+    "desc": "Business Partner 사이의 관계(예: 연락처 담당자, 본사-지사)를 구분하는 카테고리. 커스텀 관계 카테고리를 만들면 CVI를 통해 고객·공급처처 마스터의 연락처(KNVK) 등으로 동기화되는 지점에 영향을 준다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "cvi-mapping",
+    "kr": "CVI 매핑",
+    "en": "CVI Mapping",
+    "abbr": "",
+    "desc": "BP의 관계·역할 정보가 고객·공급처처 마스터의 어떤 테이블·필드로 넘어가는지를 정하는 매핑. 예: BP의 연락처 관계 유형(rel_type_contact)은 KNVK(거래처처 연락처)로 매핑된다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "mass-doc",
+    "kr": "대량전표",
+    "en": "Mass Document Upload",
+    "abbr": "",
+    "desc": "많은 전표를 파일 형태로 만들어 일괄 전기하는 방식. 온라인몰의 일일 매출·수금 정산 내역을 SAP에 반영할 때 쓴다. 오류가 나면 오류내역을 검토·수정하고 다시 올린다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "return-fault",
+    "kr": "귀책판정",
+    "en": "Return Fault Determination",
+    "abbr": "",
+    "desc": "반품 사유의 책임 소재(고객 변심·상품 불량·협력업체·물류 등)를 판정하는 절차. 판정 결과에 따라 환불 처리와 재고 이동 방향이 갈린다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "daily-settlement",
+    "kr": "일일 정산",
+    "en": "Daily Settlement",
+    "abbr": "",
+    "desc": "하루 동안의 매출·수금 내역을 모아 입금내역 확인→정산내역 조회→대량전표 파일 생성→미수금 반제→회계전표 제출·승인 순서로 마감하는 일일 루틴.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "pg-settle",
+    "kr": "PG정산",
+    "en": "PG Settlement",
+    "abbr": "PG",
+    "desc": "PG(결제대행사)사의 정산내역을 확인하고 정산금액을 확정한 뒤 정산전표를 발행해 회계에 반영하는 처리. 자사몰 일일 정산의 한 축이다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "tax-invoice-issue",
+    "kr": "세금계산서 발행",
+    "en": "Tax Invoice Issuance",
+    "abbr": "",
+    "desc": "주문·출고 내역을 점검하고 발행금액을 확인한 뒤 세금계산서를 발행하는 절차. 미발행건을 점검하는 단계가 별도로 있다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "investment-program",
+    "kr": "투자 프로그램",
+    "en": "Investment Program",
+    "abbr": "",
+    "desc": "연간 투자 계획을 계층 구조(최대 99레벨)로 묶어 관리하는 투자관리 최상위 마스터. 프로그램 정의·구조·위치로 구성된다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "appropriation-request",
+    "kr": "지출요청",
+    "en": "Appropriation Request",
+    "abbr": "",
+    "desc": "투자 계획·의사결정 단계에서 원하는 투자나 개발 아이디어를 금액과 함께 등록하는 문서. 수익성 분석과 승인 절차를 거친 뒤 투자 프로그램에 편입된다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "investment-measure",
+    "kr": "조치",
+    "en": "Investment Measure",
+    "abbr": "",
+    "desc": "투자를 실제로 집행하는 단위. 내부오더·설비오더·프로젝트의 WBS 요소가 될 수 있으며, 비용이 모였다가 자산이나 코스트센터로 정산된다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "availability-control",
+    "kr": "가용성 통제",
+    "en": "Availability Control",
+    "abbr": "",
+    "desc": "조치에 예산을 초과해 전기하지 못하도록 막는 통제. 가용 자금을 넘어서는 발주·전표 입력을 시스템이 차단한다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "approval-year",
+    "kr": "승인 연도",
+    "en": "Approval Year",
+    "abbr": "",
+    "desc": "투자 프로그램에 들어 있는 값이 승인된 회계연도. 반드시 그 해에만 쓰는 값이라는 뜻은 아니다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "auc",
+    "kr": "건설중인자산",
+    "en": "Assets Under Construction",
+    "abbr": "AUC",
+    "desc": "아직 준공되지 않은 건설·제작 중인 자산의 대차대조표 항목. 자본화 대상 비용이 먼저 모였다가 준공 시 본자산으로 대체된다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "depreciation-chart",
+    "kr": "감가상각 차트",
+    "en": "Chart of Depreciation",
+    "abbr": "",
+    "desc": "국가별로 장부·세무·관리회계 등 목적에 맞는 감가상각 방법을 모아 놓은 설정. 자산이 내용연수에 들어가면 이 차트 기준으로 상각한다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "business-partner-role",
+    "kr": "BP 역할",
+    "en": "Business Partner Role",
+    "abbr": "",
+    "desc": "대화상자에서 어떤 기능을 쓸지 지정하기 위해 비즈니스 파트너에게 할당하는 역할. 6자리 영숫자 키로 정의한다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "bp-role-category",
+    "kr": "역할 범주",
+    "en": "Role Category",
+    "abbr": "",
+    "desc": "BP 역할들을 묶는 상위 분류. 역할과 1:n 관계이며, 프로그래밍에서 하나의 역할만 읽히도록 표준 역할을 지정할 수 있다. BUT100 테이블(전달클래스 E)에 저장된다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "business-data-toolset",
+    "kr": "BDT",
+    "en": "Business Data Toolset",
+    "abbr": "BDT",
+    "desc": "비즈니스 파트너 화면을 제어하는 도구. 선택된 역할에 따라 대화상자에 표시될 BP 데이터를 정의하는 데 쓰인다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "bp-role-grouping",
+    "kr": "BP 역할 그룹화",
+    "en": "BP Role Grouping",
+    "abbr": "",
+    "desc": "대화상자에서 한 번에 선택할 수 있도록 여러 BP 역할을 함께 묶는 설정. 역할 제외 그룹에 든 두 역할은 같은 그룹에 속할 수 없다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "bp-role-exclusion-group",
+    "kr": "역할 제외 그룹",
+    "en": "BP Role Exclusion Group",
+    "abbr": "",
+    "desc": "한 BP가 동시에 수행하면 안 되는 역할들을 묶는 설정. 각 역할은 하나의 제외 그룹에만 속할 수 있고, 그룹 안에서 허용된 역할 전환(순서)을 정의한다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "simplification-item",
+    "kr": "단순화 항목",
+    "en": "Simplification Item",
+    "abbr": "",
+    "desc": "ECC→S/4HANA 전환 시 바뀌거나 없어지는 기능 목록의 한 건. 준비 상태 확인 보고서에서 점검한다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "readiness-check",
+    "kr": "준비 상태 확인",
+    "en": "Readiness Check",
+    "abbr": "",
+    "desc": "시스템이 S/4HANA 전환을 받을 준비가 됐는지 점검하는 보고서. SE38에서 /SDF/RC_START_CHECK를 실행한다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "sum-upgrade",
+    "kr": "SUM",
+    "en": "Software Update Manager",
+    "abbr": "SUM",
+    "desc": "릴리스 업그레이드·향상 패키지·지원 패키지 스택 적용에 쓰는 소프트웨어 업그레이드 관리자.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "cutover",
+    "kr": "컷오버",
+    "en": "Cutover",
+    "abbr": "",
+    "desc": "테스트 시스템을 끄고 프로덕션으로 본전환하는 작업. SIT·UAT 승인 뒤 일정에 따라 수행한다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "sit-uat",
+    "kr": "SIT·UAT",
+    "en": "System Integration Testing / User Acceptance Testing",
+    "abbr": "SIT·UAT",
+    "desc": "시스템 통합 테스트와 사용자 인수 테스트. 두 승인이 떨어져야 컷오버 계획을 시작할 수 있다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "sap-activate",
+    "kr": "SAP Activate",
+    "en": "SAP Activate",
+    "abbr": "",
+    "desc": "S/4HANA 구축용 SAP 공식 방법론. Discover·Prepare·Explore·Realize·Deploy and Run 6단계로 구성된다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "fit-to-standard",
+    "kr": "Fit-to-Standard",
+    "en": "Fit-to-Standard",
+    "abbr": "",
+    "desc": "표준 프로세스에 우리 업무를 맞추는 분석 방식. Explore 단계에서 수행하며, Public에서는 필수다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "explore-phase",
+    "kr": "Explore 단계",
+    "en": "Explore Phase",
+    "abbr": "",
+    "desc": "SAP Activate의 세 번째 단계. 표준 프로세스를 보여주며 Fit-to-Standard 분석으로 갭을 확정한다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "realize-phase",
+    "kr": "Realize 단계",
+    "en": "Realize Phase",
+    "abbr": "",
+    "desc": "SAP Activate의 네 번째 단계. 솔루션 구성·레거시 데이터 이관·통합·확장 개발·테스트를 수행한다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
+  {
+    "id": "deploy-run-phase",
+    "kr": "Deploy and Run 단계",
+    "en": "Deploy and Run Phases",
+    "abbr": "",
+    "desc": "SAP Activate의 마지막 단계들. 최종 사용자 교육과 본가동을 거쳐 분기 릴리스로 지속 혁신을 이어간다.",
+    "area": "etc",
+    "items": [],
+    "terms": []
+  },
 ];

@@ -14,7 +14,8 @@ const AUTOPOSTINGS = [
   summary: '자재 입출고로 재고자산이 변동할 때 기표되는 재고자산 계정',
   desc: [
     '자재의 입출고로 인한 재고자산의 변동 시 사용하는 재고자산 계정을 지정한다.',
-    'MM-FI 자동전표의 가장 기본이 되는 키로, 입고 시 차변에 재고자산이 기표된다.'
+    'MM-FI 자동전표의 가장 기본이 되는 키로, 입고 시 차변에 재고자산이 기표된다.',
+    'ML 사후마감에서 재고 재평가를 선택하면 기간 차이가 이 재고계정으로 롤링된다.'
   ],
   entries: [
     { t: '자재 입고 시', dr: ['원재료(BSX) 350'], cr: ['GR/IR Clearing(WRX) 350'] }
@@ -504,7 +505,33 @@ const AUTOPOSTINGS = [
     { t: '입고 시 (GR)', dr: ['재고자산(BSX) 750'], cr: ['GR/IR Clearing(WRX) 750'] },
     { t: '매입채무 확정 시 (IV)', dr: ['GR/IR Clearing(WRX) 750'], cr: ['A/P 750'] }
   ]
-}
+},
+{
+  id: 'lkw', key: 'LKW', en: 'Accrual Account for Non-Revaluated Stock',
+  kr: '미재평가 발생계정',
+  cat: '가격차이',
+  summary: 'ML 사후마감에서 재고 재평가를 선택하지 않을 때 차이가 귀속되는 발생계정',
+  desc: [
+    'ML 사후마감(실제원가계산 마감) 시 재고 재평가를 선택하지 않으면, 기간 차이가 재고가 아닌 이 발생(Accrual) 계정으로 롤링된다.',
+    '재고로 올릴지 비용성 계정으로 둘지의 선택에 따라 BSX와 짝을 이루어 사용한다.'
+  ],
+  entries: [
+    { t: '재평가 미선택 시', dr: ['가격차이(LKW) 120'], cr: ['GR/IR Clearing(WRX) 120'] }
+  ]
+},
+{
+  id: 'coc', key: 'COC', en: 'Designated Account for Consumption Revaluation',
+  kr: '소비재평가 지정계정',
+  cat: '가격차이',
+  summary: '소비재평가 시 오리지날 계정이 아닌 지정 계정으로 차이를 강제 전송',
+  desc: [
+    '소비재평가 단계에서 오리지날 계정이 아니라 여기서 지정한 계정으로 차이를 강제 전송하고 싶을 때 사용한다.',
+    '이동유형그룹(CC/CF) 설정과 함께 사용하며, 감모손실처럼 특정 성격의 차이를 별도 계정에 모을 때 쓴다.'
+  ],
+  entries: [
+    { t: '소비재평가 지정 시', dr: ['감모손실(COC) 80'], cr: ['재고자산(BSX) 80'] }
+  ]
+},
 ];
 /* 출처 */
 const AUTOPOST_SOURCES = [

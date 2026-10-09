@@ -65,4 +65,12 @@ const TABLE_ROWS = [
   { mod: 'PP', table: 'PLKO / PLPO', desc: '작업순서 헤더 / 공정', cds: null, cloud: 'unknown', keyuser: 'unknown', note: '', terms: ['activity-type'], items: ['co-acttype'] },
   // ---- PS ----
   { mod: 'PS', table: 'PRPS', desc: 'WBS 요소', cds: ['I_EnterpriseProjectElement'], cloud: 'unknown', keyuser: 'unknown', note: '', terms: [], items: [] },
+  { mod: 'FI', table: 'USOBT_C', desc: '트랜잭션 코드별 권한 개체(오브젝트) 관계를 담는 테이블. 역할 설계 시 어떤 권한 개체를 손봐야 하는지 여기서 확인한다.', cds: [], cloud: 'unknown', keyuser: 'unknown', note: 'Basis/GRC 보안 테이블이라 모듈 구분은 병합 시 판단 필요. CDS뷰 미확인.', terms: [], items: [] },
+  { mod: 'MM', table: 'MATDOC', desc: '자재 이동 통합 테이블', cds: [], cloud: 'unknown', keyuser: 'unknown', note: 'MKPF+MSEG 통합. 합계는 저장하지 않고 조회 시 실시간 계산. MARC/MARD 분산 저장 불필요(HANA 컬럼 구조)', terms: ['material-ledger', 'inventory-accounting'], items: ['xmod-ml', 'co-ml'] },
+  { mod: 'MM', table: 'MLDOCCCS', desc: '자재원장 원가요소 분할 테이블', cds: [], cloud: 'unknown', keyuser: 'unknown', note: 'MLDOC와 함께 실제원가 항목의 원가요소별 분석에 사용', terms: ['material-ledger', 'actual-cost-splitting'], items: ['co-ml'] },
+  { mod: 'MM', table: 'FCML_* (구 보고 테이블)', desc: 'ML 드릴다운 리포팅용 보고 테이블군', cds: ['FCML_MAT_V', 'FCML_REP_V', 'FCML_CCS_REP_V'], cloud: 'unknown', keyuser: 'unknown', note: '1610부터 CDS뷰가 MLDOC·MLDOCCCS에서 동적 조회로 대체. 구 트랜잭션 FCML_FILL 폐지. KKBML 수정 시 원가요소별 표시 가능', terms: ['material-ledger'], items: ['co-ml'] },
+  { mod: 'MM', table: 'CKMLHD / CKMLPR / CKMLPP / CKMLCR', desc: '자재원장 마스터 데이터 테이블군', cds: [], cloud: 'unknown', keyuser: 'unknown', note: 'M10 마이그레이션(Migrate Material Ledger Master Data)에서 ML 통화로 채워지고 ACDOCA로 이관', terms: ['material-ledger'], items: ['co-ml'] },
+  { mod: 'MM', table: 'XBEW', desc: '구 재고 평가 테이블', cds: [], cloud: 'unknown', keyuser: 'unknown', note: 'S/4HANA 전환 시 ACDOCA·ACDOCA_M_EXTRACT로 이관 (M10)', terms: ['material-ledger', 'inventory-accounting'], items: ['xmod-ml'] },
+  { mod: 'MM', table: 'KKBML', desc: 'ML 드릴다운 리포트 정의 테이블', cds: [], cloud: 'unknown', keyuser: 'unknown', note: 'KKMLV 전역변수에 원가요소 구조를 가져오도록 수정하면 드릴다운 리포트를 원가요소별로 볼 수 있음', terms: ['material-ledger'], items: ['co-ml'] },
+  { mod: 'SD', table: 'KNVK', desc: '거래처처(고객) 연락처 마스터 테이블. BP의 연락처 관계가 CVI 동기화를 통해 이 테이블로 넘어간다. 커스텀 BP 관계 카테고리를 만들 때 동기화 지점으로 함께 봐야 한다.', cds: [], cloud: 'unknown', keyuser: 'unknown', note: '커스텀 BP 관계 카테고리 동기화 지점', terms: [], items: [] },
 ];

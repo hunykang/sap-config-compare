@@ -126,8 +126,8 @@
   </div>
 </footer>
 
-<script src="data.js?v=202610061759"></script>
-<script src="glossary.js?v=202610061759"></script>
+<script src="data.js?v=20261009b"></script>
+<script src="glossary.js?v=20261009b"></script>
 <script src="graph-widget.js?v=20261009a"></script>
 <script src="graph-panel.js?v=202610061759"></script>
 <script>
@@ -169,7 +169,7 @@ document.getElementById('graph-reset').addEventListener('click', ev => {
 })();
 </script>
 <script>
-const AREAS = ["조직구조", "G/L", "AP", "AR", "은행", "자산회계", "세금", "CO", "타모듈 연결", "결산"];
+const AREAS = ["조직구조", "G/L", "AP", "AR", "은행", "자산회계", "세금", "CO", "타모듈 연결", "결산", "내부통제"];
 const AREA_DESC = {
   "조직구조": "회사·회사코드·사업영역·기능영역",
   "G/L": "총계정원장 — 원장, 전표, 전기기간, 전표분할",
@@ -180,7 +180,8 @@ const AREA_DESC = {
   "세금": "세금코드, 세금계정, 원천세",
   "CO": "관리회계 — 관리영역, 원가요소, 코스트센터",
   "타모듈 연결": "FI컨 필수 — MM/SD/HR 연계",
-  "결산": "결산 — 외화평가, 결산 콕핏, 이월"
+  "결산": "결산 — 외화평가, 결산 콕핏, 이월",
+  "내부통제": "GRC — SoD, 권한, 파이어파이터"
 };
 const listEl = document.getElementById('list');
 const sideEl = document.getElementById('side');

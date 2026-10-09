@@ -67,8 +67,8 @@
   </div>
 </footer>
 
-<script src="data.js?v=202610061759"></script>
-<script src="glossary.js?v=202610061759"></script>
+<script src="data.js?v=20261009b"></script>
+<script src="glossary.js?v=20261009b"></script>
 <script src="graph-widget.js?v=20261009a"></script>
 <script src="graph-panel.js?v=202610061759"></script>
 <script>
@@ -86,7 +86,7 @@
     }
   });
   // 영역 필터 칩
-  const areas = ['전체', '조직구조', 'G/L', 'AP', 'AR', '은행', '자산회계', '세금', 'CO', '타모듈 연결', '결산'];
+  const areas = ['전체', '조직구조', 'G/L', 'AP', 'AR', '은행', '자산회계', '세금', 'CO', '타모듈 연결', '결산', '내부통제'];
   const chipsBox = document.getElementById('area-chips');
   chipsBox.innerHTML = areas.map((a, i) =>
     `<button data-area="${a === '전체' ? '' : a}" class="${i === 0 ? 'on' : ''}">${a}</button>`).join('');
