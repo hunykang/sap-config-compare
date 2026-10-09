@@ -82,8 +82,8 @@ const qInput = document.getElementById('gq');
 const list = document.getElementById('glist');
 const chipsBox = document.getElementById('achips');
 const byId = Object.fromEntries(GLOSSARY.map(t => [t.id, t]));
-const AREA_LABEL = { org: '조직구조', gl: 'G/L', ap: 'AP', ar: 'AR', bank: '은행', aa: '자산회계', tax: '세금', co: 'CO', xmod: '타모듈 연결', close: '결산' };
-const AREA_ORDER = ['org', 'gl', 'ap', 'ar', 'bank', 'aa', 'tax', 'co', 'xmod', 'close'];
+const AREA_LABEL = { org: '조직구조', gl: 'G/L', ap: 'AP', ar: 'AR', bank: '은행', aa: '자산회계', tax: '세금', co: 'CO', xmod: '타모듈 연결', close: '결산', grc: '내부통제', etc: '기타' };
+const AREA_ORDER = ['org', 'gl', 'ap', 'ar', 'bank', 'aa', 'tax', 'co', 'xmod', 'close', 'grc', 'etc'];
 let curArea = '';
 const areaCount = {};
 GLOSSARY.forEach(t => { areaCount[t.area] = (areaCount[t.area] || 0) + 1; });
@@ -150,7 +150,8 @@ list.addEventListener('click', ev => {
 render();
 // 딥링크 #term-xxx 로 들어오면 해당 카드로 이동
 if (location.hash.startsWith('#term-')) {
-  const card = document.getElementById(location.hash.slice(1));
+  let card = document.getElementById(location.hash.slice(1));
+  if (!card) { qInput.value = ''; curArea = ''; chipsBox.querySelectorAll('button').forEach(x => x.classList.toggle('on', x.dataset.a === '')); render(); card = document.getElementById(location.hash.slice(1)); }
   if (card) { card.scrollIntoView({ block: 'center' }); card.classList.add('flash'); }
 }
 </script>
