@@ -9,7 +9,7 @@ function initGraph(canvasId, opts) {
   opts = opts || {};
   const HEIGHT = opts.height || 520;
   const onSelect = opts.onSelect || function () {};
-  const TYPE_COLOR = { entry: '#475569', term: '#7c3aed', concept: '#0ea5e9', master: '#0b5fff', table: '#b45309', app: '#0a7a42' };
+  const TYPE_COLOR = { entry: '#86BC25', term: '#a3aec2', concept: '#9fb6bd', master: '#b5aea1', table: '#c0a98a', app: '#93b295' };
   const TYPE_LABEL = { entry: '설정', term: '용어', concept: '개념', master: '마스터', table: '테이블', app: '앱' };
   const TYPE_BASE_R = { entry: 7, term: 6, concept: 10, master: 10, table: 10, app: 10 };
   // 용어 area 코드 → 영역 필터 한글명
