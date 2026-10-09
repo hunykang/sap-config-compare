@@ -1197,7 +1197,7 @@ const SKETCHES = [
     url: "",
     comment: "ML 마감 후 소비재평가 전표가 예상과 다른 계정(COC 지정 계정)으로 생성된 것을 보고 원인을 찾았더니, 701·702 이동유형에 이동유형그룹이 지정돼 있지 않았다. 이동유형그룹을 지정하니 ML 마감 때 지정한 계정으로 전표가 정상 발생했다.",
     configs: [],
-    terms: ["ml-movement-group", "ml-consumption-revaluation"],
+    terms: ["coc", "ml-movement-group", "ml-consumption-revaluation"],
   },
   {
     id: "sk-ml-note-2",
@@ -1208,7 +1208,7 @@ const SKETCHES = [
     url: "",
     comment: "소비재평가 체크박스를 안 찍으면 차이가 어디로 가는 거지? 현장 메모에는 '소비재평가는 무조건 찍어야 함'이라고 적혀 있다. 안 찍고 마감했다가 차이 행방을 뒤쫓은 기록.",
     configs: [],
-    terms: ["ml-consumption-revaluation", "ml-movement-group"],
+    terms: ["coc", "ml-consumption-revaluation", "ml-movement-group"],
   },
   {
     id: "sk-ml-note-3",

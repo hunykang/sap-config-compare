@@ -2049,7 +2049,7 @@ const GLOSSARY = [
   "id": "consumption-revaluation",
   "kr": "소비재평가",
   "en": "Consumption Revaluation",
-  "abbr": "COC",
+  "abbr": "",
   "desc": "자재원장 결산에서 가격차이를 이미 쓴(소비된) 수량에 나눠 실제 원가로 고치는 단계. 기말재고가 아닌 당기 소비분에 대한 차이를 손익 쪽에 반영한다.",
   "area": "close",
   "items": [
@@ -2058,7 +2058,8 @@ const GLOSSARY = [
   "terms": [
    "material-ledger-closing",
    "price-variance",
-   "movement-type-grouping"
+   "movement-type-grouping",
+   "coc"
   ]
  },
  {
@@ -2664,6 +2665,35 @@ const GLOSSARY = [
     "area": "co",
     "items": ["ml-parallel-valuation"],
     "terms": ["ml-price-control"]
+  },
+  {
+    "id": "coc",
+    "kr": "소비재평가 지정계정",
+    "en": "Designated Account for Consumption Revaluation",
+    "abbr": "COC",
+    "desc": "소비재평가 단계에서 가격차이를 오리지날 계정이 아니라 여기서 지정한 계정으로 강제 전송하고 싶을 때 쓰는 OBYC 자동전표 키. 이동유형그룹(CC/CF) 설정과 함께 사용한다.",
+    "area": "co",
+    "items": ["ml-consumption-cc-cf"],
+    "terms": [
+     "consumption-revaluation",
+     "ml-consumption-revaluation",
+     "ml-movement-group",
+     "lkw"
+    ]
+  },
+  {
+    "id": "lkw",
+    "kr": "미재평가 발생계정",
+    "en": "Accrual Account for Non-Revaluated Stock",
+    "abbr": "LKW",
+    "desc": "ML 사후마감(실제원가계산 마감) 시 재고 재평가를 선택하지 않으면, 기간 차이가 재고가 아닌 이 발생(Accrual) 계정으로 롤링되는 OBYC 자동전표 키.",
+    "area": "co",
+    "items": ["ml-ckmlcp-steps"],
+    "terms": [
+     "coc",
+     "ml-periodic-price",
+     "ml-post-closing"
+    ]
   },
   {
     "id": "lease-liability",
