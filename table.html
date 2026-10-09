@@ -23,6 +23,9 @@ a.cds-link { text-decoration: none; }
 a.cds-link code.cds { transition: border-color .12s, color .12s; }
 a.cds-link:hover code.cds { border-color: var(--accent); color: var(--accent); }
 a.cds-link .ext { font-size: 10px; color: var(--muted); font-style: normal; }
+a.tbl-link { text-decoration: none; color: inherit; }
+a.tbl-link:hover { color: var(--accent); }
+a.tbl-link .ext { font-size: 10px; color: var(--muted); font-style: normal; }
 .cds-wrap { display: inline-flex; align-items: center; }
 .copy-btn { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; margin-left: 3px; padding: 0; border: 0; background: transparent; color: #a8b3c2; cursor: pointer; border-radius: 6px; vertical-align: middle; flex-shrink: 0; }
 .copy-btn:hover { color: #475569; background: #eef2f7; }
@@ -105,7 +108,7 @@ td.t-note { font-size: 12.5px; color: var(--muted); }
 </footer>
 <script src="counter.js?v=202610061759"></script>
 <script src="data.js?v=20261009b"></script>
-<script src="glossary.js?v=20261009b"></script>
+<script src="glossary.js?v=20261009d"></script>
 <script>
 (function () {
   function esc(x) { return String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
@@ -162,7 +165,9 @@ td.t-note { font-size: 12.5px; color: var(--muted); }
   function rowHtml(r, idx) {
     const tkey = r.table ? r.table.split(' ')[0].replace(/\//g, '-') : 'row-' + idx;
     const id = 't-' + tkey;
-    const tableCell = r.table ? esc(r.table) : '<span class="tflag unk">확인중</span>';
+    const tableCell = r.table
+      ? '<a class="tbl-link" href="https://www.google.com/search?q=' + encodeURIComponent(r.table + ' SAP table') + '" target="_blank" rel="noopener" title="구글 검색으로 열기">' + esc(r.table) + ' <i class="ext">↗</i></a>'
+      : '<span class="tflag unk">확인중</span>';
     return '<tr id="' + esc(id) + '">' +
       '<td class="t-table" data-th="PCE Table">' + tableCell + '<span class="t-desc">' + esc(r.desc) + '</span></td>' +
       '<td data-th="CDS뷰">' + cdsCell(r) + '</td>' +
