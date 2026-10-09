@@ -27,8 +27,10 @@ function gpDiffBadges(e) {
 }
 
 function gpDetailHTML(e, extra) {
+  const gUrl = 'https://www.google.com/search?q=' + encodeURIComponent('SAP ' + e.item);
+  const gIcon = `<a class="g-link" href="${gUrl}" target="_blank" rel="noopener" title="Google에서 '${gpEsc(e.item)}' 검색" style="vertical-align:middle"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></a>`;
   return `
-    <h3>${gpEsc(e.item)}</h3>
+    <h3>${gpEsc(e.item)} ${gIcon}</h3>
     <div style="font-size:12px;color:#666;margin-bottom:10px">${gpEsc(e.area)} · ${e.tags.map(t => `<a href="compare.html?q=${encodeURIComponent(t)}">${gpEsc(t)}</a>`).join(', ')}</div>
     <div style="margin-bottom:10px">${gpDiffBadges(e)}</div>
     <p><span class="badge pce">PCE 기준</span><br>${gpEsc(e.pce)}</p>

@@ -7,7 +7,7 @@
 <meta name="description" content="S/4HANA PCE 기준 컨피그 경로 가이드. 항목을 클릭하면 ECC와 Public에서 달라지는 부분이 표시됩니다. SAP FI 실무 비교 가이드.">
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9919904969420259" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="style.css?v=20261007j">
+<link rel="stylesheet" href="style.css?v=20261009c">
 <style>
 .area-group { margin: 0 0 8px; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
 .area-head {
@@ -18,12 +18,17 @@
 .area-items { display: none; }
 .area-group.open .area-items { display: block; }
 .cfg-item {
-  width: 100%; text-align: left; padding: 12px 18px; font-size: 14px; background: #fff;
-  border: 0; border-top: 1px solid var(--line); cursor: pointer; display: flex; gap: 10px; align-items: baseline;
+  width: 100%; text-align: left; padding: 0; font-size: 14px; background: #fff;
+  border: 0; border-top: 1px solid var(--line); display: flex; gap: 6px; align-items: center;
+}
+.cfg-sel {
+  flex: 1; text-align: left; padding: 12px 0 12px 18px; font: inherit; color: inherit; background: none;
+  border: 0; cursor: pointer; display: flex; gap: 10px; align-items: baseline; min-width: 0;
 }
 .cfg-item:hover { background: var(--accent-soft); }
 .cfg-item.active { background: var(--accent-soft); box-shadow: inset 3px 0 0 var(--accent); }
 .cfg-item .t { color: var(--muted); font-size: 12px; margin-left: auto; white-space: nowrap; }
+.cfg-item .g-link { margin-right: 10px; }
 .diff-badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; margin: 2px 4px 2px 0; }
 .diff-badge.yes { background: #fff8e1; color: #7a6c00; border: 1px solid #f0e2a0; }
 .diff-badge.same { background: #eef1f4; color: #666; border: 1px solid #dfe3e8; }
@@ -129,7 +134,7 @@
 <script src="data.js?v=20261009b"></script>
 <script src="glossary.js?v=20261009b"></script>
 <script src="graph-widget.js?v=20261009a"></script>
-<script src="graph-panel.js?v=202610061759"></script>
+<script src="graph-panel.js?v=20261009c"></script>
 <script>
 // 맨 위 지식그래프: 클릭하면 오른쪽 패널에 설명 표시 (스크롤 이동 없음)
 let graphPanel = null;
@@ -187,6 +192,9 @@ const listEl = document.getElementById('list');
 const sideEl = document.getElementById('side');
 
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+function gIcon(item) {
+  return `<a class="g-link" href="https://www.google.com/search?q=${encodeURIComponent('SAP ' + item)}" target="_blank" rel="noopener" title="Google에서 '${esc(item)}' 검색"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></a>`;
+}
 
 AREAS.forEach((a, idx) => {
   const items = GUIDE_DATA.filter(e => e.area === a);
@@ -195,13 +203,14 @@ AREAS.forEach((a, idx) => {
   g.className = 'area-group' + (idx === 0 ? ' open' : '');
   g.innerHTML = `<button class="area-head">${esc(a)} <span class="n">${esc(AREA_DESC[a] || '')} · ${items.length}개</span></button>
     <div class="area-items">${items.map(e =>
-      `<button class="cfg-item" data-id="${e.id}"><span>${esc(e.item)}</span><span class="t">${e.tags.map(esc).join(' · ')}</span></button>`
+      `<div class="cfg-item" data-id="${e.id}"><button class="cfg-sel"><span>${esc(e.item)}</span><span class="t">${e.tags.map(esc).join(' · ')}</span></button>${gIcon(e.item)}</div>`
     ).join('')}</div>`;
   g.querySelector('.area-head').addEventListener('click', () => g.classList.toggle('open'));
   listEl.appendChild(g);
 });
 
 listEl.addEventListener('click', ev => {
+  if (ev.target.closest('.g-link')) return;
   const btn = ev.target.closest('.cfg-item');
   if (btn) selectItem(btn.dataset.id, true);
 });

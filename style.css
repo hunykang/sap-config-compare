@@ -167,3 +167,8 @@ tr.flash td { animation: rowflash 2s ease; }
 .g-terms a { color: #0b5fff; text-decoration: none; }
 .g-terms a:hover { text-decoration: underline; }
 .nouse { color: #b3261e; font-weight: 600; }
+
+/* 구글 아웃링크 아이콘 (개요 리스트·사이드바) */
+.g-link { color: #9aa5b1; opacity: .55; flex-shrink: 0; display: inline-flex; padding: 4px; border-radius: 6px; vertical-align: middle; }
+.g-link:hover { color: var(--accent); opacity: 1; background: #eef4ff; }
+.g-link svg { display: block; }
