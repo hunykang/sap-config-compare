@@ -24,6 +24,9 @@
 .t-tools .mini { border: 1px solid var(--line); background: #fff; border-radius: 20px; padding: 4px 12px; font-size: 12.5px; cursor: pointer; color: var(--muted); }
 .t-tools .mini:hover { border-color: var(--accent); color: var(--accent); }
 .t-count { font-size: 12.5px; color: var(--muted); margin-left: auto; }
+.item-link { color: inherit; text-decoration: none; }
+.item-link:hover { color: #0b5fff; }
+.item-link .ext { font-size: 10px; color: var(--muted); font-style: normal; }
 </style>
 </head>
 <body>
@@ -100,7 +103,7 @@ function esc(s) {
 function rowHtml(e) {
   return `
     <tr id="row-${e.id}">
-      <td class="item" data-th="항목">${esc(e.item)}<br><span class="checking">${esc(e.area)} · ${e.tags.map(esc).join(', ')}</span>${(TERMS_BY_ITEM[e.id] || []).length ? `<br><span class="g-terms">📖 ` + TERMS_BY_ITEM[e.id].map(t => `<a href="glossary.html#term-${t.id}">${esc(t.kr)}</a>`).join(' · ') + `</span>` : ''}</td>
+      <td class="item" data-th="항목"><a class="item-link" href="https://www.google.com/search?q=${encodeURIComponent('s/4hana config ' + e.item)}" target="_blank" rel="noopener" title="구글 검색으로 열기">${esc(e.item)} <i class="ext">↗</i></a><br><span class="checking">${esc(e.area)} · ${e.tags.map(esc).join(', ')}</span>${(TERMS_BY_ITEM[e.id] || []).length ? `<br><span class="g-terms">📖 ` + TERMS_BY_ITEM[e.id].map(t => `<a href="glossary.html#term-${t.id}">${esc(t.kr)}</a>`).join(' · ') + `</span>` : ''}</td>
       <td data-th="ECC 경로">${esc(e.ecc)}</td>
       <td data-th="PCE 경로">${esc(e.pce)}</td>
       <td data-th="Public 경로">${esc(e.pub).replace(/확인 중/g, '<span class="checking">확인 중</span>').replace(/사용불가/g, '<span class="nouse">사용불가</span>')}</td>

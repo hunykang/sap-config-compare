@@ -17,6 +17,9 @@
 @keyframes gflash { 0%, 60% { background: #fef9c3; } 100% { background: var(--card); } }
 .g-card h3 { margin: 0 0 2px; font-size: 16px; }
 .g-card h3 .en { font-size: 12px; color: var(--muted); font-weight: 400; margin-left: 8px; }
+.term-link { color: inherit; text-decoration: none; }
+.term-link:hover { color: #0b5fff; }
+.term-link .ext { font-size: 11px; color: var(--muted); font-style: normal; }
 .g-card .desc { font-size: 14px; margin: 8px 0; line-height: 1.6; }
 .g-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 .g-chips a { font-size: 12px; padding: 3px 10px; border-radius: 20px; background: var(--accent-soft); text-decoration: none; color: inherit; }
@@ -104,7 +107,7 @@ function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
 function cardHTML(t) {
   return `
     <div class="g-card" id="term-${t.id}">
-      <h3>${esc(t.kr)}${t.abbr ? ` (${esc(t.abbr)})` : ''}<span class="en">${esc(t.en)}</span></h3>
+      <h3><a class="term-link" href="https://www.google.com/search?q=${encodeURIComponent(t.kr + ' SAP')}" target="_blank" rel="noopener" title="구글 검색으로 열기">${esc(t.kr)}${t.abbr ? ` (${esc(t.abbr)})` : ''} <i class="ext">↗</i></a><span class="en">${esc(t.en)}</span></h3>
       <p class="desc">${esc(t.desc)}</p>
       ${(t.items && t.items.length) ? `<div class="g-chips"><span class="lbl">📋 관련 설정</span>${t.items.map(id =>
         `<a href="compare.html#row-${id}">${esc(itemName(id))}</a>`).join('')}</div>` : ''}
