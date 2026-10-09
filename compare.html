@@ -30,6 +30,8 @@
 .pub-link { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; margin-left: 3px; padding: 0; color: #a8b3c2; border-radius: 6px; vertical-align: middle; text-decoration: none; }
 .pub-link:hover { color: #475569; background: #eef2f7; }
 .pub-link svg { width: 13px; height: 13px; display: block; }
+.why-link { display: inline-flex; align-items: center; height: 20px; margin-left: 3px; padding: 0 6px; color: #a8b3c2; border-radius: 6px; vertical-align: middle; text-decoration: none; font-size: 11px; font-style: italic; }
+.why-link:hover { color: #475569; background: #eef2f7; }
 </style>
 </head>
 <body>
@@ -84,7 +86,7 @@
 </footer>
 
 <script src="data.js?v=20261009b"></script>
-<script src="glossary.js?v=20261009b"></script>
+<script src="glossary.js?v=20261009d"></script>
 <script>
 // 용어집 역인덱스: 설정 항목 id -> 용어 목록
 const TERMS_BY_ITEM = {};
@@ -106,7 +108,7 @@ function esc(s) {
 function rowHtml(e) {
   return `
     <tr id="row-${e.id}">
-      <td class="item" data-th="항목"><a class="item-link" href="https://www.google.com/search?q=${encodeURIComponent('s/4hana config ' + e.item)}" target="_blank" rel="noopener" title="구글 검색으로 열기">${esc(e.item)} <i class="ext">↗</i></a><a class="pub-link" href="https://www.google.com/search?q=${encodeURIComponent('s/4hana public config ' + e.item)}" target="_blank" rel="noopener" title="Public Edition 설정 구글 검색"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4.8 13a3.3 3.3 0 0 1-.5-6.56A4.6 4.6 0 0 1 13.2 8 2.9 2.9 0 0 1 12.6 13H4.8z"/></svg></a><br><span class="checking">${esc(e.area)} · ${e.tags.map(esc).join(', ')}</span>${(TERMS_BY_ITEM[e.id] || []).length ? `<br><span class="g-terms">📖 ` + TERMS_BY_ITEM[e.id].map(t => `<a href="glossary.html#term-${t.id}">${esc(t.kr)}</a>`).join(' · ') + `</span>` : ''}</td>
+      <td class="item" data-th="항목"><a class="item-link" href="https://www.google.com/search?q=${encodeURIComponent('s/4hana config ' + e.item)}" target="_blank" rel="noopener" title="구글 검색으로 열기">${esc(e.item)} <i class="ext">↗</i></a><a class="pub-link" href="https://www.google.com/search?q=${encodeURIComponent('s/4hana public config ' + e.item)}" target="_blank" rel="noopener" title="Public Edition 설정 구글 검색"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4.8 13a3.3 3.3 0 0 1-.5-6.56A4.6 4.6 0 0 1 13.2 8 2.9 2.9 0 0 1 12.6 13H4.8z"/></svg></a><a class="why-link" href="https://www.google.com/search?q=${encodeURIComponent('s/4hana config why ' + e.item)}" target="_blank" rel="noopener" title="왜 필요한지 구글 검색">why</a><br><span class="checking">${esc(e.area)} · ${e.tags.map(esc).join(', ')}</span>${(TERMS_BY_ITEM[e.id] || []).length ? `<br><span class="g-terms">📖 ` + TERMS_BY_ITEM[e.id].map(t => `<a href="glossary.html#term-${t.id}">${esc(t.kr)}</a>`).join(' · ') + `</span>` : ''}</td>
       <td data-th="ECC 경로">${esc(e.ecc)}</td>
       <td data-th="PCE 경로">${esc(e.pce)}</td>
       <td data-th="Public 경로">${esc(e.pub).replace(/확인 중/g, '<span class="checking">확인 중</span>').replace(/사용불가/g, '<span class="nouse">사용불가</span>')}</td>
