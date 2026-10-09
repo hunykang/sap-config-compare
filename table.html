@@ -8,7 +8,7 @@
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9919904969420259" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="style.css?v=20261007j">
-<script src="table.js?v=20261008d"></script>
+<script src="table.js?v=20261008e"></script>
 <style>
 .tmod { border: 1px solid var(--line); border-radius: 10px; background: #fff; margin: 10px 0; overflow: hidden; }
 .tmod { margin: 20px 0 8px; }
@@ -23,6 +23,11 @@ a.cds-link { text-decoration: none; }
 a.cds-link code.cds { transition: border-color .12s, color .12s; }
 a.cds-link:hover code.cds { border-color: var(--accent); color: var(--accent); }
 a.cds-link .ext { font-size: 10px; color: var(--muted); font-style: normal; }
+.cds-wrap { display: inline-flex; align-items: center; }
+.copy-btn { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; margin-left: 3px; padding: 0; border: 0; background: transparent; color: #a8b3c2; cursor: pointer; border-radius: 6px; vertical-align: middle; flex-shrink: 0; }
+.copy-btn:hover { color: #475569; background: #eef2f7; }
+.copy-btn svg { width: 13px; height: 13px; display: block; }
+.copy-btn.ok { color: #1c7a43; }
 code.cds { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; background: #f1f5f9; border: 1px solid var(--line); border-radius: 6px; padding: 2px 7px; white-space: nowrap; }
 .tflag { display: inline-block; font-size: 12px; padding: 2px 10px; border-radius: 20px; border: 1px solid var(--line); white-space: nowrap; }
 .tflag.yes { background: #e8f7ef; color: #1c7a43; border-color: #bfe6cf; }
@@ -116,9 +121,33 @@ td.t-note { font-size: 12.5px; color: var(--muted); }
     if (v === 'mix') return '<span class="tflag mix">혼합</span>';
     return '<span class="tflag unk">확인중</span>';
   }
+  const COPY_SVG = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4.5" y="3.5" width="9" height="11" rx="2"/><rect x="6.5" y="1.5" width="5" height="3.2" rx="1"/></svg>';
+  const CHECK_SVG = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8.5l3.5 3.5L13 4.5"/></svg>';
   function cdsCell(r) {
     if (!r.cds) return '<span class="tflag unk">확인중</span>';
-    return r.cds.map(c => '<a class="cds-link" href="https://www.google.com/search?q=' + encodeURIComponent(c + ' SAP CDS view') + '" target="_blank" rel="noopener" title="외부 검색으로 열기"><code class="cds">' + esc(c) + ' <i class="ext">↗</i></code></a>').join('<br>');
+    return r.cds.map(c => '<span class="cds-wrap"><a class="cds-link" href="https://www.google.com/search?q=' + encodeURIComponent(c + ' SAP CDS view') + '" target="_blank" rel="noopener" title="외부 검색으로 열기"><code class="cds">' + esc(c) + ' <i class="ext">↗</i></code></a>' +
+      '<button type="button" class="copy-btn" data-copy="' + esc(c) + '" title="CDS뷰 이름 복사" aria-label="' + esc(c) + ' 이름 복사">' + COPY_SVG + '</button></span>').join('<br>');
+  }
+  function flashCopy(btn) {
+    btn.classList.add('ok');
+    const old = btn.innerHTML;
+    btn.innerHTML = CHECK_SVG;
+    btn.title = '복사됨';
+    setTimeout(() => { btn.classList.remove('ok'); btn.innerHTML = old; btn.title = 'CDS뷰 이름 복사'; }, 1200);
+  }
+  function copyName(text, btn) {
+    const done = () => flashCopy(btn);
+    const legacy = () => {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); } catch (e) { /* 복사 실패 시 조용히 무시 */ }
+      document.body.removeChild(ta);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done).catch(legacy);
+    else legacy();
   }
   const cfgName = id => { const e = (typeof GUIDE_DATA !== 'undefined') ? GUIDE_DATA.find(x => x.id === id) : null; return e ? (e.item || id) : id; };
   const termName = id => { const t = (typeof GLOSSARY !== 'undefined') ? GLOSSARY.find(x => x.id === id) : null; return t ? t.kr : id; };
@@ -184,6 +213,10 @@ td.t-note { font-size: 12.5px; color: var(--muted); }
     render();
   });
   q.addEventListener('input', render);
+  listEl.addEventListener('click', ev => {
+    const b = ev.target.closest('.copy-btn');
+    if (b) { ev.preventDefault(); copyName(b.dataset.copy, b); }
+  });
 
   render();
   // 딥링킹: #t-테이블 로 바로 이동
