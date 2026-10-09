@@ -20,6 +20,8 @@
 .term-link { color: inherit; text-decoration: none; }
 .term-link:hover { color: #0b5fff; }
 .term-link .ext { font-size: 11px; color: var(--muted); font-style: normal; }
+.why-link { display: inline-flex; align-items: center; height: 20px; margin-left: 4px; padding: 0 6px; color: #8b96a9; border-radius: 6px; vertical-align: middle; text-decoration: none; font-size: 11.5px; font-weight: 600; }
+.why-link:hover { color: #475569; background: #eef2f7; }
 .g-card .desc { font-size: 14px; margin: 8px 0; line-height: 1.6; }
 .g-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 .g-chips a { font-size: 12px; padding: 3px 10px; border-radius: 20px; background: var(--accent-soft); text-decoration: none; color: inherit; }
@@ -107,7 +109,7 @@ function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
 function cardHTML(t) {
   return `
     <div class="g-card" id="term-${t.id}">
-      <h3><a class="term-link" href="https://www.google.com/search?q=${encodeURIComponent(t.kr + ' SAP')}" target="_blank" rel="noopener" title="구글 검색으로 열기">${esc(t.kr)}${t.abbr ? ` (${esc(t.abbr)})` : ''} <i class="ext">↗</i></a><span class="en">${esc(t.en)}</span></h3>
+      <h3><a class="term-link" href="https://www.google.com/search?q=${encodeURIComponent(t.kr + ' SAP')}" target="_blank" rel="noopener" title="구글 검색으로 열기">${esc(t.kr)}${t.abbr ? ` (${esc(t.abbr)})` : ''} <i class="ext">↗</i></a><a class="why-link" href="https://www.google.com/search?q=${encodeURIComponent('s/4hana config why ' + t.kr)}" target="_blank" rel="noopener" title="왜 필요한지 구글 검색">why?</a><span class="en">${esc(t.en)}</span></h3>
       <p class="desc">${esc(t.desc)}</p>
       ${(t.items && t.items.length) ? `<div class="g-chips"><span class="lbl">📋 관련 설정</span>${t.items.map(id =>
         `<a href="compare.html#row-${id}">${esc(itemName(id))}</a>`).join('')}</div>` : ''}
