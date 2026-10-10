@@ -55,6 +55,7 @@ const GUIDE_DATA = [
 },
 {
   id: "org-fm-area", area: "조직구조", item: "재무관리영역 유지보수",
+  flag: "FM 모듈 사용 시에만 적용 · FM 활성화 시에만 적용 가능",
   ecc: "기업 구조 > 정의 > 재무회계 > 재무관리영역 유지보수",
   pce: "기업 구조 > 정의 > 재무회계",
   pub: "확인 중",
@@ -65,6 +66,7 @@ const GUIDE_DATA = [
 },
 {
   id: "org-fm-ccode", area: "조직구조", item: "재무관리영역에 회사코드 지정",
+  flag: "FM 모듈 사용 시에만 적용 · FM 활성화 시에만 적용 가능",
   ecc: "기업 구조 > 지정 > 재무회계 > 재무관리영역에 회사코드 지정",
   pce: "기업 구조 > 지정 > 재무회계",
   pub: "확인 중",
@@ -465,6 +467,7 @@ const GUIDE_DATA = [
 },
 {
   id: "ar-interest", area: "AR", item: "이자계산",
+  flag: "국내 프로젝트 적용 드묾 · 상대가 이자를 안 줌",
   ecc: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 이자계산",
   pce: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 이자계산",
   pub: "SAP Business Configuration > 채무 및 채권 관리 > 미결 항목 관리 > 이자 계산",
@@ -475,6 +478,7 @@ const GUIDE_DATA = [
 },
 {
   id: "ar-dunning", area: "AR", item: "독촉 절차",
+  flag: "국내 프로젝트 적용 드묾 · Dunning보다 전화로 독촉함",
   ecc: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 독촉",
   pce: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 독촉",
   pub: "CBC > Payables and Receivables Management > Open Item Management > Dunning > Define your dunning procedures > Define Dunning Procedures (102302)",
@@ -505,6 +509,7 @@ const GUIDE_DATA = [
 },
 {
   id: "ar-reason", area: "AR", item: "사유코드 정의",
+  flag: "국내 프로젝트 적용 드묾 · 끝까지 추적함",
   ecc: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 사유코드",
   pce: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 사유코드",
   pub: "확인 중",
@@ -515,6 +520,7 @@ const GUIDE_DATA = [
 },
 {
   id: "ar-cashdisc", area: "AR", item: "현금할인/지급차이 처리",
+  flag: "국내 프로젝트 적용 드묾 · 현금할인하면 세금계산서 재발행해야 함",
   ecc: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 현금할인",
   pce: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션",
   pub: "확인 중",
@@ -525,6 +531,7 @@ const GUIDE_DATA = [
 },
 {
   id: "ar-overunder", area: "AR", item: "초과/미달지급 처리",
+  flag: "국내 프로젝트 적용 드묾 · 끝까지 받아냄",
   ecc: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 초과/미달 지급",
   pce: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션",
   pub: "확인 중",
@@ -535,6 +542,7 @@ const GUIDE_DATA = [
 },
 {
   id: "ar-dispute", area: "AR", item: "분쟁관리 (FSCM)",
+  flag: "별도 보관 (나중에 사용) · 별도 솔루션, 추가 조사 필요",
   ecc: "해당 없음 (ECC 분쟁관리는 별도 컴포넌트)",
   pce: "재무회계 > 채권 및 채무 > FSCM 분쟁관리",
   pub: "확인 중",
@@ -565,6 +573,7 @@ const GUIDE_DATA = [
 },
 {
   id: "bank-check", area: "은행", item: "수표번호 및 무효사유",
+  flag: "최근 국내 프로젝트 적용 드묾 · 한국은 펌뱅킹·CMS 사용, 수표 잘 안 씀",
   ecc: "재무회계 > 은행 회계 > 지급수단 > 수표 로트/무효사유 정의",
   pce: "재무회계 > 은행 회계",
   pub: "확인 중",
@@ -955,6 +964,7 @@ const GUIDE_DATA = [
 },
 {
   id: "xmod-payroll", area: "타모듈 연결", item: "급여전기 (HR→FI)",
+  flag: "별도 보관 · 별도 e-HR 솔루션 사용이 많음",
   ecc: "인적자원관리 > 급여 > 평가 > 회계로의 전기",
   pce: "인적자원관리 > 급여관리 > 회계로의 전기",
   pub: "확인 중",
@@ -1145,6 +1155,7 @@ const GUIDE_DATA = [
 },
 {
   id: "co-payroll", area: "CO", item: "급여전기 (HR→FI/CO 연계)",
+  flag: "별도 보관 · 별도 e-HR 솔루션 사용이 많음",
   ecc: "인사관리 > 급여 > FI/CO 전기 (HR 모듈 연계)",
   pce: "인사관리 연계",
   pub: "확인 중",
