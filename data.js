@@ -913,16 +913,6 @@ const GUIDE_DATA = [
   eccSame: true
 },
 {
-  id: "co-auc-settle", area: "CO", item: "AuC 정산 (건설가계정 → 자산)",
-  ecc: "자산회계 > 기말결산 > 건설가계정(AuC) 정산",
-  pce: "자산회계 > 기말결산",
-  pub: "IMG 표시 > 회계 > 자본 비용 관리 > 자본 비용 정산",
-  diff: "건설 중인 자산(AuC)에 모인 원가를 본자산으로 정산하는 AA-CO 연계의 대표 케이스. 자산 정산프로파일(aa-settlement)과 함께 본다.",
-  help: [],
-  tags: ["CO"], related: ["aa-settlement", "co-settle", "co-order", "aa-acctdet"],
-  eccSame: true
-},
-{
   id: "close-cockpit", area: "결산", item: "결산콕핏",
   ecc: "재무회계 > 총계정원장 회계 > 정기 처리 > 결산콕핏 (작업 템플릿·태스크 정의)",
   pce: "재무회계 > 총계정원장 회계 > 정기 처리 > 결산콕핏",
@@ -1100,6 +1090,16 @@ const GUIDE_DATA = [
   diff: "건설가계정(AuC) 정산 규칙. AA-CO 연계의 핵심으로 ECC와 개념 동일.",
   help: [],
   tags: ["자산"], related: ["aa-class", "co-settle"],
+  eccSame: true
+},
+{
+  id: "co-auc-settle", area: "자산회계", item: "AuC 정산 (건설가계정 → 자산)",
+  ecc: "자산회계 > 기말결산 > 건설가계정(AuC) 정산",
+  pce: "자산회계 > 기말결산",
+  pub: "IMG 표시 > 회계 > 자본 비용 관리 > 자본 비용 정산",
+  diff: "건설 중인 자산(AuC)에 모인 원가를 본자산으로 정산하는 AA-CO 연계의 대표 케이스. 자산 정산프로파일(aa-settlement)과 함께 본다.",
+  help: [],
+  tags: ["CO"], related: ["aa-settlement", "co-settle", "co-order", "aa-acctdet"],
   eccSame: true
 },
 {
