@@ -63,7 +63,9 @@ a:hover { text-decoration: underline; }
   padding: 10px 12px; font-size: 14px; border: 1px solid var(--line); border-radius: 8px;
 }
 .toolbar input { flex: 1; min-width: 200px; }
-table.compare { width: 100%; border-collapse: collapse; font-size: 14px; margin: 10px 0 40px; table-layout: fixed; }
+table.compare th { white-space: nowrap; }
+.compare td.src .flag { margin: 2px 0 6px; }
+.compare { width: 100%; border-collapse: collapse; font-size: 14px; margin: 10px 0 40px; table-layout: fixed; }
 table.compare th, table.compare td {
   border: 1px solid var(--line); padding: 10px 12px; vertical-align: top; text-align: left;
   overflow-wrap: anywhere;
