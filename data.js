@@ -903,16 +903,6 @@ const GUIDE_DATA = [
   eccSame: false
 },
 {
-  id: "close-jobs", area: "결산", item: "결산 작업 스케줄링",
-  ecc: "SM36/SM37 배치잡 직접 실행",
-  pce: "Fiori 'Schedule General Ledger Jobs' 앱 / Application Jobs",
-  pub: "Fiori 'Schedule General Ledger Jobs' 앱 (Scope Item J58)",
-  diff: "S/4HANA에서는 결산 프로그램 실행이 Fiori 작업 스케줄링으로 전환. 실행 이력·모니터링이 앱에서 일원화.",
-  help: [],
-  tags: ["결산", "Fiori", "전환"], related: ["close-cockpit"],
-  eccSame: false
-},
-{
   id: "xmod-obyc", area: "타모듈 연결", item: "MM-FI 자동계정결정 (OBYC)",
   ecc: "자재관리 > 평가 및 계정지정 > 계정결정 > 계정결정 마법사",
   pce: "자재관리 > 평가 및 계정지정 > 계정결정 > 계정결정 마법사",
@@ -1172,16 +1162,6 @@ const GUIDE_DATA = [
   diff: "건설 중인 자산(AuC)에 모인 원가를 본자산으로 정산하는 AA-CO 연계의 대표 케이스. 자산 정산프로파일(aa-settlement)과 함께 본다.",
   help: [],
   tags: ["CO"], related: ["aa-settlement", "co-settle", "co-order", "aa-acctdet"],
-  eccSame: true
-},
-{
-  id: "co-close", area: "CO", item: "CO 기말결산 스케줄",
-  ecc: "관리회계 > 각 컴포넌트 > 기말결산 (코스트센터·오더·COPA 등)",
-  pce: "관리회계 > 기말결산",
-  pub: "확인 중",
-  diff: "CO 모듈별 기말 작업(배부·정산·실제원가계산)의 순서와 스케줄. FI 결산 스케줄과 맞물려 돌아가므로 결산 캘린더에 함께 관리한다.",
-  help: [],
-  tags: ["CO"], related: ["co-alloc", "co-settle", "co-ml", "close-cockpit"],
   eccSame: true
 },
   {

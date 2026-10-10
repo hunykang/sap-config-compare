@@ -1327,8 +1327,7 @@ const GLOSSARY = [
   "items": [
    "co-settle",
    "aa-settlement",
-   "co-auc-settle",
-   "co-close"
+   "co-auc-settle"
   ],
   "terms": [
    "internal-order",
@@ -1390,8 +1389,7 @@ const GLOSSARY = [
   "desc": "월말·연말 결산 작업들을 한 화면에서 순서대로 실행·모니터링하는 도구다. 작업 간 의존성을 정해 두면 순서대로 자동 실행된다.",
   "area": "close",
   "items": [
-   "close-cockpit",
-   "close-jobs"
+   "close-cockpit"
   ],
   "terms": [
    "balance-carryforward",
@@ -2086,8 +2084,7 @@ const GLOSSARY = [
   "desc": "결산 때 해야 할 일(감가상각·외화평가·GR/IR조정 등)의 진행 상태를 한 화면에서 보는 기능. 누가 어디까지 했는지 보여줘 결산을 빨리 닫게 돕는다.",
   "area": "close",
   "items": [
-   "close-cockpit",
-   "close-jobs"
+   "close-cockpit"
   ],
   "terms": [
    "closing-cockpit",
@@ -2103,8 +2100,7 @@ const GLOSSARY = [
   "desc": "반복되는 결산 작업을 스케줄로 돌려 사람이 손대지 않게 하는 것. 결산콕핏의 작업 목록을 자동 실행해 결산 기간을 단축한다.",
   "area": "close",
   "items": [
-   "close-cockpit",
-   "close-jobs"
+   "close-cockpit"
   ],
   "terms": [
    "closing-cockpit",

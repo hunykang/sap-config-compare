@@ -175,7 +175,7 @@ const SKETCHES = [
     source: "facebook",
     url: "",
     comment: "CO 결산 검증 중 타계정이 원계정을 따라가지 않은 이슈. 배부·분배 로직에서 계정 매핑이 어긋나면 생기는 전형적인 결산 트러블이다.",
-    configs: ["co-alloc", "co-close"],
+    configs: ["co-alloc"],
     terms: ["allocation"],
   },
   {
