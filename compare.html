@@ -108,7 +108,7 @@ function esc(s) {
 function rowHtml(e) {
   return `
     <tr id="row-${e.id}">
-      <td class="item" data-th="항목"><a class="item-link" href="https://www.google.com/search?q=${encodeURIComponent('s/4hana config ' + e.item)}" target="_blank" rel="noopener" title="구글 검색으로 열기">${esc(e.item)} <i class="ext">↗</i></a><a class="pub-link" href="https://www.google.com/search?q=${encodeURIComponent('s/4hana public config ' + e.item)}" target="_blank" rel="noopener" title="Public Edition 설정 구글 검색"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4.8 13a3.3 3.3 0 0 1-.5-6.56A4.6 4.6 0 0 1 13.2 8 2.9 2.9 0 0 1 12.6 13H4.8z"/></svg></a><a class="why-link" href="https://www.google.com/search?q=${encodeURIComponent('s/4hana config why ' + e.item)}" target="_blank" rel="noopener" title="왜 필요한지 구글 검색">why?</a>${e.flag ? `<br><span class="flag">` + "🏷️" + ` ${esc(e.flag)}</span>` : ``}<br><span class="checking">${esc(e.area)} · ${e.tags.map(esc).join(', ')}</span>${(TERMS_BY_ITEM[e.id] || []).length ? `<br><span class="g-terms">📖 ` + TERMS_BY_ITEM[e.id].map(t => `<a href="glossary.html#term-${t.id}">${esc(t.kr)}</a>`).join(' · ') + `</span>` : ''}</td>
+      <td class="item" data-th="항목"><a class="item-link" href="https://www.google.com/search?q=${encodeURIComponent('s/4hana config ' + e.item)}" target="_blank" rel="noopener" title="구글 검색으로 열기">${esc(e.item)} <i class="ext">↗</i></a><a class="pub-link" href="https://www.google.com/search?q=${encodeURIComponent('s/4hana public config ' + e.item)}" target="_blank" rel="noopener" title="Public Edition 설정 구글 검색"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4.8 13a3.3 3.3 0 0 1-.5-6.56A4.6 4.6 0 0 1 13.2 8 2.9 2.9 0 0 1 12.6 13H4.8z"/></svg></a><a class="why-link" href="https://www.google.com/search?q=${encodeURIComponent('s/4hana config why ' + e.item)}" target="_blank" rel="noopener" title="왜 필요한지 구글 검색">why?</a><br><span class="checking">${esc(e.area)} · ${e.tags.map(esc).join(', ')}</span>${(TERMS_BY_ITEM[e.id] || []).length ? `<br><span class="g-terms">📖 ` + TERMS_BY_ITEM[e.id].map(t => `<a href="glossary.html#term-${t.id}">${esc(t.kr)}</a>`).join(' · ') + `</span>` : ''}</td>
       <td data-th="ECC 경로">${esc(e.ecc)}</td>
       <td data-th="PCE 경로">${esc(e.pce)}</td>
       <td data-th="Public 경로">${esc(e.pub).replace(/확인 중/g, '<span class="checking">확인 중</span>').replace(/사용불가/g, '<span class="nouse">사용불가</span>')}</td>
@@ -117,7 +117,7 @@ function rowHtml(e) {
         const r = GUIDE_DATA.find(x => x.id === id);
         return r ? `<a href="#row-${id}" data-rel="${id}">${esc(r.item)}</a>` : '';
       }).join('')}</div></td>
-      <td class="src" data-th="출처">${e.help.map(u => `<a href="${u}" target="_blank" rel="noopener">SAP 공식 ↗</a>`).join('<br>')}</td>
+      <td class="src" data-th="출처 및 비고">${e.flag ? `<span class="flag">` + "🏷️" + ` ${esc(e.flag)}</span><br>` : ``}${e.help.map(u => `<a href="${u}" target="_blank" rel="noopener">SAP 공식 ↗</a>`).join('<br>')}</td>
     </tr>`;
 }
 function areaHtml(area, idx) {
@@ -145,7 +145,7 @@ function areaHtml(area, idx) {
             <th><span class="badge pub">Public</span><br>경로</th>
             <th>달라지는 부분</th>
             <th>관련 항목</th>
-            <th>출처</th>
+            <th>출처 및 비고</th>
           </tr>
         </thead>
         <tbody>${rows.map(rowHtml).join('')}</tbody>
