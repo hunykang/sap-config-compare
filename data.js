@@ -541,17 +541,6 @@ const GUIDE_DATA = [
   eccSame: true
 },
 {
-  id: "ar-dispute", area: "AR", item: "분쟁관리 (FSCM)",
-  flag: "보관 중 · FSCM 라이선스가 따로 있어 나중에 다룸",
-  ecc: "해당 없음 (ECC 분쟁관리는 별도 컴포넌트)",
-  pce: "재무회계 > 채권 및 채무 > FSCM 분쟁관리",
-  pub: "확인 중",
-  diff: "S/4HANA에서는 FSCM 분쟁관리로 통합되어 사유코드·자동 케이스 생성 체계가 정비됨.",
-  help: [],
-  tags: ["AR", "BP"], related: ["ar-dunning", "ar-cust-group"],
-  eccSame: false
-},
-{
   id: "bank-master", area: "은행", item: "은행마스터 정의",
   ecc: "재무회계 > 은행 회계 > 은행 마스터 데이터",
   pce: "재무회계 > 은행 회계 > 은행 마스터 데이터",
@@ -759,7 +748,7 @@ const GUIDE_DATA = [
   pub: "확인 중",
   diff: "S/4HANA에서는 원가요소 마스터가 G/L계정 마스터와 통합. 1차 원가요소는 G/L계정 생성 시 자동 생성되며 별도 생성이 불필요.",
   help: ["https://help.sap.com/doc/0df2ffddebab40cf9338488b2f18dc41/2025.latest/en-US/SIMPL_OP2025.pdf"],
-  tags: ["CO", "마스터"], related: ["co-area", "co-okb9", "co-ccenter", "co-payroll"],
+  tags: ["CO", "마스터"], related: ["co-area", "co-okb9", "co-ccenter"],
   eccSame: false
 },
 {
@@ -953,17 +942,6 @@ const GUIDE_DATA = [
   eccSame: true
 },
 {
-  id: "xmod-payroll", area: "타모듈 연결", item: "급여전기 (HR→FI)",
-  flag: "보관 중 · 급여전기는 e-HR 솔루션이 주로 담당",
-  ecc: "인적자원관리 > 급여 > 평가 > 회계로의 전기",
-  pce: "인적자원관리 > 급여관리 > 회계로의 전기",
-  pub: "확인 중",
-  diff: "급여전기 결과의 FI 전표 생성 규칙. ECC와 개념 동일.",
-  help: [],
-  tags: ["연계", "전표"], related: ["gl-doc-type"],
-  eccSame: true
-},
-{
   id: "xmod-assetpo", area: "타모듈 연결", item: "자산구매오더 계정지정범주",
   ecc: "재무회계 > 자산 회계 > ... > 자산구매오더에 대한 계정지정범주 정의",
   pce: "재무회계 > 자산 회계 > 통합",
@@ -1141,17 +1119,6 @@ const GUIDE_DATA = [
   diff: "SD 청구 시 수익성분석으로 넘기는 값의 연결고리. FI/CO 컨설턴트가 꼭 알아야 하는 SD 연계 포인트.",
   help: [],
   tags: ["CO"], related: ["co-opcon", "co-margin", "xmod-vkoa", "xmod-copamap"],
-  eccSame: true
-},
-{
-  id: "co-payroll", area: "CO", item: "급여전기 (HR→FI/CO 연계)",
-  flag: "보관 중 · 급여전기는 e-HR 솔루션이 주로 담당",
-  ecc: "인사관리 > 급여 > FI/CO 전기 (HR 모듈 연계)",
-  pce: "인사관리 연계",
-  pub: "확인 중",
-  diff: "급여 계산 결과를 FI 전표와 CO 코스트센터로 전기하는 타모듈 연계. FI 컨설턴트가 실무에서 맞닥뜨리는 대표 HR 연결 포인트.",
-  help: [],
-  tags: ["CO", "전표"], related: ["co-ccenter", "co-celem", "org-company-code"],
   eccSame: true
 },
 {

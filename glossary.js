@@ -466,7 +466,6 @@ const GLOSSARY = [
   "desc": "참고용으로만 적어 두는 항목이다. 금액 집계에는 영향을 주지 않고, 나중에 실제 전표가 들어오면 연결해서 볼 수 있다.",
   "area": "xmod",
   "items": [
-   "ar-dispute"
   ],
   "terms": [
    "open-item-management",
@@ -1485,8 +1484,7 @@ const GLOSSARY = [
   "area": "ar",
   "items": [
    "ar-credit",
-   "org-credit-area",
-   "ar-dispute"
+   "org-credit-area"
   ],
   "terms": [
    "credit-control-area",
@@ -1502,7 +1500,6 @@ const GLOSSARY = [
   "desc": "송장에 이의가 제기된 건을 별도 케이스로 관리하는 기능이다. 분쟁 케이스가 열리면 해당 미결항목은 독촉·지급 대상에서 제외된다.",
   "area": "ar",
   "items": [
-   "ar-dispute"
   ],
   "terms": [
    "credit-management",
