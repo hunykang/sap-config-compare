@@ -330,7 +330,7 @@ const GUIDE_DATA = [
   ecc: "해당 없음 (ECC에는 BP 개념 없음)",
   pce: "어플리케이션 전반 컴포넌트 > SAP 비즈니스 파트너",
   pub: "SSCUI 500092 (그룹핑·번호범위 중심, 역할 정의는 제한적)",
-  diff: "ECC의 고객/공급처 마스터가 S/4HANA에서 비즈니스 파트너(BP)로 통합. 역할(Role)·역할범주·그룹핑 정의가 마스터 전략의 출발점.",
+  diff: "ECC의 고객/공급처 마스터가 S/4HANA에서 비즈니스 파트너(BP)로 통합. 역할(Role)·역할범주·그룹핑 정의가 마스터 전략의 출발점. 참고로 BP는 S/4HANA에서 처음 생긴 개념이 아니다. ECC의 주 FI·CO·SD·MM 영역에서는 vendor/customer를 각각 관리했지만, TR(금융기관·거래상대방)이나 대학교 캠퍼스매니지먼트(CM, 학생 BP·역할 PSCM10) 같은 영역에서는 이미 ECC 때부터 BP를 썼다.",
   help: [],
   tags: ["AP", "BP", "마스터"], related: ["ap-bp-num", "ap-cvi", "ap-vendor-group"],
   eccSame: false
@@ -340,7 +340,7 @@ const GUIDE_DATA = [
   ecc: "해당 없음",
   pce: "어플리케이션 전반 컴포넌트 > SAP 비즈니스 파트너 > 비즈니스 파트너 > 기본설정 > 번호범위 및 그룹핑",
   pub: "SSCUI 500092 '번호 범위 정의'",
-  diff: "BP 그룹핑별 내부/외부 번호범위 지정. Public은 SSCUI 500092에서 번호범위 정의 가능.",
+  diff: "BP 그룹핑별 내부/외부 번호범위 지정. Public은 SSCUI 500092에서 번호범위 정의 가능. Public은 기본적으로 BP·Customer·Vendor에 동일 번호를 쓰는 구조이며, CVI 번호 지정에서 BP→Customer, BP→Vendor의 동일 번호 사용 여부를 설정한다. 동일 번호를 쓰려면 번호 구간 정합성과 FI 쪽 외부 채번이 맞아야 한다. PCE에서는 BP·Vendor·Customer 번호를 각각 다르게 쓰는 고객사도 있었는데, 이 경우 외부시스템 I/F 설계 시 어느 번호를 기준으로 매핑할지 먼저 정해야 했다.",
   help: [],
   tags: ["AP", "BP"], related: ["ap-bp-role", "ap-vendor-num", "ap-cvi"],
   eccSame: false
@@ -350,7 +350,7 @@ const GUIDE_DATA = [
   ecc: "해당 없음 (전환 프로젝트에서만 해당)",
   pce: "어플리케이션 전반 컴포넌트 > 마스터데이터동기화 > 고객/공급업체 통합 > 비즈니스파트너 설정",
   pub: "확인 중",
-  diff: "S/4 전환 프로젝트의 필수 관문. BP와 고객/공급처 기술 마스터 간 번호·필드 동기화 방향을 정의.",
+  diff: "S/4 전환 프로젝트의 필수 관문. BP와 고객/공급처 기술 마스터 간 번호·필드 동기화 방향을 정의. BP로 통합한 이유는 중복 제거다. ECC에서는 한 회사가 고객이면서 공급처이면 마스터를 두 개 유지해야 했지만, BP에서는 일반 데이터를 공유하고 역할별 데이터만 분리한다. 하나의 BP에 고객·공급처 역할을 함께 부여할 수 있어 마스터 중복이 줄어든다.",
   help: ["https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/faq-cvi-customer-vendor-integration-for-system-conversion-to-sap-s-4hana/ba-p/13740757"],
   tags: ["AP", "BP", "전환", "마스터"], related: ["ap-bp-role", "ap-vendor-group", "ar-cust-group", "ap-vendor-num"],
   eccSame: false
@@ -440,7 +440,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 대체 조정 계정로 전기 > 기타 특별 G/L 거래 > 구매처에 대한 대체조정계정 정의",
   pce: "재무회계 > 채권 및 채무 > 공급업체 계정",
   pub: "CBC > Accounting (회계) > General Ledger (총계정원장) > Account Determination (계정 결정) > Account Determination in General Ledger (총계정원장 계정 결정) > Define Alternative Reconciliation Accounts (대체 조정 계정 정의) (102631)",
-  diff: "ECC와 개념 동일. Public은 SSCUI 500043에서 정의.",
+  diff: "ECC와 개념 동일. Public은 SSCUI 500043에서 정의. Public YCOA에서 대체조정계정 유형 필드를 직접 지정할 수 있는 계정그룹은 RECN뿐이다. ABST는 조정계정 그룹이지만 해당 필드가 숨겨져 있어 시스템이 정해준 대로만 써야 한다. 외부 전표 시스템과 연동할 때는 대체조정계정을 고정 드롭다운으로 관리하지 말고, IMG의 대체조정계정 테이블을 RFC나 OData 커스텀 API로 전달해 선택 목록이 자동으로 따라오게 설계하는 것이 원칙이다.",
   help: [],
   tags: ["AP", "BP"], related: ["ap-vendor-group", "xmod-obyc"],
   eccSame: true
@@ -471,7 +471,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 이자계산",
   pce: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 이자계산",
   pub: "SAP Business Configuration > 채무 및 채권 관리 > 미결 항목 관리 > 이자 계산",
-  diff: "연체 이자 계산 유형·이자율 정의. ECC와 개념 동일.",
+  diff: "연체 이자 계산 유형·이자율 정의. ECC와 개념 동일. 국내에서는 외상값에 이자를 부과하는 관행이 드물어 실무적으로 거의 쓰지 않는다. 해외에서는 연체 이자 기능이 실무에서 살아 있다.",
   help: [],
   tags: ["AR", "BP"], related: ["ar-dunning"],
   eccSame: true
@@ -482,7 +482,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 독촉",
   pce: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 독촉",
   pub: "CBC > Payables and Receivables Management (채무 및 채권 관리) > Open Item Management (미결 항목 관리) > Dunning (독촉) > Define your dunning procedures (독촉 절차 정의) > Define Dunning Procedures (독촉 절차 정의) (102302)",
-  diff: "독촉 레벨·간격·문구 설정. 실행은 PCE에서 F150과 Fiori 앱 병행.",
+  diff: "독촉 레벨·간격·문구 설정. 실행은 PCE에서 F150과 Fiori 앱 병행. 국내에서는 독촉장보다 전화 대응이 일반적이라 거의 사용하지 않는다. 해외에서는 외국 vendor로부터 dunning letter를 DHL·TNT 특송으로 받는 경우가 많았다.",
   help: [],
   tags: ["AR", "BP"], related: ["ar-interest", "ar-cust-group"],
   eccSame: true
@@ -492,7 +492,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 채권 및 채무 > 신용관리 (신용관리영역·신용한도)",
   pce: "재무회계 > 채권 및 채무 > 신용관리 (FSCM)",
   pub: "SAP Business Configuration > 채무 및 채권 관리 > 여신 관리",
-  diff: "ECC의 신용관리는 S/4HANA에서 FSCM 신용관리로 이관. 신용한도·위험범주·체크 규칙 체계가 변경됨.",
+  diff: "ECC의 신용관리는 S/4HANA에서 FSCM 신용관리로 이관. 신용한도·위험범주·체크 규칙 체계가 변경됨. 실무에서는 FI가 IMG의 여신관리영역 등 기본 틀만 설정하고, 담보·선수금 같은 회사별 추가 여신 기능은 SD에서 CBO로 개발하는 경우가 많다. 담보가 있으면 한도를 늘리고 선수금이 들어오면 한도를 풀어주는 등 회사 정책을 표준 기능만으로 담기 어렵기 때문이다.",
   help: [],
   tags: ["AR", "BP"], related: ["org-credit-area", "ar-cust-group"],
   eccSame: false
@@ -502,7 +502,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 대체 조정 계정로 전기 > 기타 특별 G/L 거래 > 고객에 대한 대체조정계정 정의",
   pce: "재무회계 > 채권 및 채무 > 고객 계정",
   pub: "CBC > Accounting (회계) > General Ledger (총계정원장) > Account Determination (계정 결정) > Account Determination in General Ledger (총계정원장 계정 결정) > Define Alternative Reconciliation Accounts (대체 조정 계정 정의) (102631)",
-  diff: "ECC와 개념 동일. Public은 SSCUI 500043에서 정의.",
+  diff: "ECC와 개념 동일. Public은 SSCUI 500043에서 정의. ABST와 RECN은 둘 다 조정계정 그룹이지만 필드 상태가 다르다. ABST는 조정계정 유형 필드가 숨겨져 있고, RECN은 열려 있어 고객용·공급처용을 직접 지정할 수 있다. 커스텀 조정계정을 만들 때는 RECN으로 만드는 것이 편하다.",
   help: [],
   tags: ["AR", "BP"], related: ["ar-cust-group", "ap-recon"],
   eccSame: true
@@ -524,7 +524,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 현금할인",
   pce: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션",
   pub: "확인 중",
-  diff: "조기 지급 할인 조건과 허용차이 한도. ECC와 개념 동일.",
+  diff: "조기 지급 할인 조건과 허용차이 한도. ECC와 개념 동일. 국내에서는 실무적으로 잘 쓰지 않는다. 결제조건에 따라 입금액이 달라지면 세금계산서를 다시 수정하거나 재발행해야 한다고 하는 고객사도 있어, 할인 한 번 하자고 세금계산서를 다시 끊는 번거로움 때문이다. 다만 새로 바뀐 실습형 SAP certification test에는 할인 전표 처리가 문제로 나오므로 컨설턴트는 개념 정도는 숙지할 필요가 있다.",
   help: [],
   tags: ["AR", "BP"], related: ["ar-overunder", "ar-reason"],
   eccSame: true
@@ -535,7 +535,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 초과/미달 지급",
   pce: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션",
   pub: "확인 중",
-  diff: "잔액 허용차이 내 자동 반제 규칙. ECC와 동일.",
+  diff: "잔액 허용차이 내 자동 반제 규칙. ECC와 동일. 국내에서는 실무적으로 잘 쓰지 않는다. 1원도 안 놓치고 끝까지 받아내는 문화라 허용차이로 자동 처리하는 경우가 드물다. 다만 새로 바뀐 실습형 SAP certification test에는 이 항목이 문제로 나오므로 컨설턴트는 알아둘 필요는 있다.",
   help: [],
   tags: ["AR", "BP", "전표"], related: ["ar-cashdisc", "ar-reason"],
   eccSame: true
@@ -1077,7 +1077,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 미결 항목 반제 > 환율차이에 대한 계정 정의",
   pce: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 미결 항목 반제",
   pub: "확인 중",
-  diff: "외화 반제 시 환율차이 자동 전기 계정. 외화평가 설정과 함께 확인. ECC와 동일.",
+  diff: "외화 반제 시 환율차이 자동 전기 계정. 외화평가 설정과 함께 확인. ECC와 동일. 참고로 단순 월말 외화평가로는 RXD 분개가 발생하지 않는다. 전년도 연평가로 환율평가를 굳힌 뒤 당기에 반제·부분반제가 일어나면 RXD 조정 분개가 발생한다. 월말 평가는 미실현 평가로 다음 달에 역분개되는 흐름과 구분된다.",
   help: [],
   tags: ["G/L", "전표"], related: ["close-fxval"],
   eccSame: true
