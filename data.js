@@ -721,6 +721,7 @@ const GUIDE_DATA = [
   tags: ["세금"], related: ["wth-type", "wth-account"],
   eccSame: true
 },
+
 {
   id: "co-area", area: "CO", item: "관리영역 정의",
   ecc: "관리회계 > 관리회계 기본 설정 > 조직 > 관리영역 유지보수",
@@ -750,6 +751,26 @@ const GUIDE_DATA = [
   help: ["https://help.sap.com/doc/0df2ffddebab40cf9338488b2f18dc41/2025.latest/en-US/SIMPL_OP2025.pdf"],
   tags: ["CO", "마스터"], related: ["co-area", "co-okb9", "co-ccenter"],
   eccSame: false
+},
+{
+  id: "co-version", area: "CO", item: "CO 버전 유지보수",
+  ecc: "관리회계 > 관리회계 기본 설정 > 버전 유지보수",
+  pce: "관리회계 > 관리회계 기본 설정 > 버전",
+  pub: "확인 중",
+  diff: "계획 버전 관리. ECC와 동일.",
+  help: [],
+  tags: ["CO"], related: ["co-area", "co-order-budget"],
+  eccSame: true
+},
+{
+  id: "co-okb9", area: "CO", item: "OKB9 자동계정결정 (CO 오브젝트)",
+  ecc: "재무회계 > 총계정원장 > 자동계정결정 > OKB9 (CO 오브젝트 기본값)",
+  pce: "재무회계 > 총계정원장 > 자동계정결정",
+  pub: "확인 중",
+  diff: "외화평가·GR/IR 등 FI 자동전기 시 코스트센터 같은 CO 오브젝트가 필수인 경우 기본값을 지정하는 설정. FI-CO 연계의 실무 핵심 포인트.",
+  help: [],
+  tags: ["CO", "전표"], related: ["co-ccenter", "co-celem", "xmod-obyc", "close-fxval"],
+  eccSame: true
 },
 {
   id: "co-ccenter", area: "CO", item: "코스트센터/표준계층",
@@ -792,13 +813,43 @@ const GUIDE_DATA = [
   eccSame: true
 },
 {
-  id: "co-opcon", area: "CO", item: "경영단위 정의",
-  ecc: "관리회계 > 수익성 분석 > 구조 > 경영단위 유지보수",
-  pce: "관리회계 > 수익성 분석 > 구조",
-  pub: "확인 중",
-  diff: "ECC와 개념 동일.",
+  id: "co-alloc", area: "CO", item: "배부/분배 사이클 정의",
+  ecc: "관리회계 > 코스트센터 회계 > 기말결산 > 실제전기 > 배부/분배",
+  pce: "관리회계 > 코스트센터 회계 > 기말결산",
+  pub: "IMG 표시 > 회계 > 간접비 > 간접비 프로세스 > 기결산 > 배부 구조 유지보수",
+  diff: "코스트센터에 모인 간접비를 배부기준(통계지표 등)으로 나누는 기말 작업. ECC와 개념은 동일하나, S/4HANA에서는 유니버설 배부(Universal Allocation)로 통합되는 추세.",
   help: [],
-  tags: ["CO"], related: ["co-area", "xmod-copamap", "co-margin", "co-sd-copa"],
+  tags: ["CO"], related: ["co-ccenter", "co-skf", "co-repost", "close-jobs"],
+  eccSame: true
+},
+{
+  id: "co-skf", area: "CO", item: "통계지표 정의",
+  ecc: "관리회계 > 코스트센터 회계 > 마스터 데이터 > 통계지표",
+  pce: "관리회계 > 코스트센터 회계 > 마스터 데이터",
+  pub: "확인 중",
+  diff: "인원수·면적 등 배부기준이 되는 마스터 데이터. 배부/분배 사이클에서 간접비를 나누는 기준으로 사용한다.",
+  help: [],
+  tags: ["CO", "마스터"], related: ["co-ccenter", "co-alloc", "co-acttype"],
+  eccSame: true
+},
+{
+  id: "co-repost", area: "CO", item: "정기 재전기",
+  ecc: "관리회계 > 코스트센터 회계 > 기말결산 > 실제전기 > 정기 재전기",
+  pce: "관리회계 > 코스트센터 회계 > 기말결산",
+  pub: "확인 중",
+  diff: "코스트센터에 잘못 집계된 비용을 다른 코스트센터로 옮기는 기말 조정 작업. 원전표는 그대로 두고 CO 내에서만 재분류한다.",
+  help: [],
+  tags: ["CO", "전표"], related: ["co-ccenter", "co-alloc", "close-jobs"],
+  eccSame: true
+},
+{
+  id: "co-order-budget", area: "CO", item: "내부오더 예산관리",
+  ecc: "관리회계 > 내부오더 > 예산 > 예산관리",
+  pce: "관리회계 > 내부오더",
+  pub: "IMG 표시 > 회계 > 재무 계획 > 예산 편성 및 가용성 관리",
+  diff: "내부오더별 예산 편성과 통제. 가용성 체크와 연계되어 예산 초과 전기를 막는 실무 필수 기능.",
+  help: [],
+  tags: ["CO", "전표"], related: ["co-order", "co-settle", "co-version"],
   eccSame: true
 },
 {
@@ -812,13 +863,53 @@ const GUIDE_DATA = [
   eccSame: false
 },
 {
-  id: "co-version", area: "CO", item: "CO 버전 유지보수",
-  ecc: "관리회계 > 관리회계 기본 설정 > 버전 유지보수",
-  pce: "관리회계 > 관리회계 기본 설정 > 버전",
-  pub: "확인 중",
-  diff: "계획 버전 관리. ECC와 동일.",
+  id: "co-ml", area: "CO", item: "자재원장 활성화/실제원가계산",
+  ecc: "관리회계 > 자재원장 > 자재원장 활성화",
+  pce: "관리회계 > 자재원장",
+  pub: "IMG 표시 > 회계 > 재고 회계 > 평가 방법 > 실제 원가계산 > 자재원장의 이동유형그룹 지정",
+  diff: "자재의 실제원가를 주기 단위로 계산하는 FI-MM-CO 3자 연계 영역. S/4HANA에서는 자재원장이 필수 요소이며 실제원가계산으로 다자재·다통화 평가가 가능.",
   help: [],
-  tags: ["CO"], related: ["co-area", "co-order-budget"],
+  tags: ["CO", "자재원장"], related: ["co-costvar", "xmod-obyc", "co-close", "co-area"],
+  eccSame: true
+},
+{
+  id: "co-costvar", area: "CO", item: "원가계산 변형",
+  ecc: "관리회계 > 제품원가 관리 > 원가계산 > 원가계산 변형 정의",
+  pce: "관리회계 > 제품원가 관리",
+  pub: "IMG 표시 > 회계 > 재고 회계 > 비즈니스 역할 템플릿 재고 회계 > 원가계산 변형 정의",
+  diff: "제조원가 계산의 뼈대(평가전략·수량구조·부가가치 등)를 정하는 설정. CO-PC(제품원가관리) 영역의 출발점.",
+  help: [],
+  tags: ["CO"], related: ["co-ml", "co-area", "xmod-obyc"],
+  eccSame: true
+},
+{
+  id: "co-opcon", area: "CO", item: "경영단위 정의",
+  ecc: "관리회계 > 수익성 분석 > 구조 > 경영단위 유지보수",
+  pce: "관리회계 > 수익성 분석 > 구조",
+  pub: "확인 중",
+  diff: "ECC와 개념 동일.",
+  help: [],
+  tags: ["CO"], related: ["co-area", "xmod-copamap", "co-margin", "co-sd-copa"],
+  eccSame: true
+},
+{
+  id: "co-margin", area: "CO", item: "마진분석 (계정기반 수익성분석)",
+  ecc: "관리회계 > 수익성 분석 > 경영단위 (계정기반)",
+  pce: "관리회계 > 수익성 분석",
+  pub: "IMG 표시 > 회계 > 마진 분석 > 마진 분석 프로세스 > 하향식 분배 > 하향식 배부 템플릿 정의",
+  diff: "S/4HANA의 표준 수익성분석. Costing-based COPA와 달리 별도 값필드 없이 G/L계정 기준으로 분석한다. Public에서는 Costing-based를 쓸 수 없어 마진분석이 필수.",
+  help: [],
+  tags: ["CO"], related: ["co-opcon", "co-sd-copa", "co-prctr", "xmod-vkoa"],
+  eccSame: true
+},
+{
+  id: "co-sd-copa", area: "CO", item: "SD 조건유형 → COPA 값필드 매핑",
+  ecc: "관리회계 > 수익성 분석 > 플로우 > SD 인터페이스 > 조건유형을 값필드에 매핑",
+  pce: "관리회계 > 수익성 분석 > SD 인터페이스",
+  pub: "확인 중",
+  diff: "SD 청구 시 수익성분석으로 넘기는 값의 연결고리. FI/CO 컨설턴트가 꼭 알아야 하는 SD 연계 포인트.",
+  help: [],
+  tags: ["CO"], related: ["co-opcon", "co-margin", "xmod-vkoa", "xmod-copamap"],
   eccSame: true
 },
 {
@@ -1009,96 +1100,6 @@ const GUIDE_DATA = [
   diff: "원천세 유형별 납부 계정 결정. ECC와 동일.",
   help: [],
   tags: ["세금"], related: ["wth-type"],
-  eccSame: true
-},
-{
-  id: "co-alloc", area: "CO", item: "배부/분배 사이클 정의",
-  ecc: "관리회계 > 코스트센터 회계 > 기말결산 > 실제전기 > 배부/분배",
-  pce: "관리회계 > 코스트센터 회계 > 기말결산",
-  pub: "IMG 표시 > 회계 > 간접비 > 간접비 프로세스 > 기결산 > 배부 구조 유지보수",
-  diff: "코스트센터에 모인 간접비를 배부기준(통계지표 등)으로 나누는 기말 작업. ECC와 개념은 동일하나, S/4HANA에서는 유니버설 배부(Universal Allocation)로 통합되는 추세.",
-  help: [],
-  tags: ["CO"], related: ["co-ccenter", "co-skf", "co-repost", "close-jobs"],
-  eccSame: true
-},
-{
-  id: "co-okb9", area: "CO", item: "OKB9 자동계정결정 (CO 오브젝트)",
-  ecc: "재무회계 > 총계정원장 > 자동계정결정 > OKB9 (CO 오브젝트 기본값)",
-  pce: "재무회계 > 총계정원장 > 자동계정결정",
-  pub: "확인 중",
-  diff: "외화평가·GR/IR 등 FI 자동전기 시 코스트센터 같은 CO 오브젝트가 필수인 경우 기본값을 지정하는 설정. FI-CO 연계의 실무 핵심 포인트.",
-  help: [],
-  tags: ["CO", "전표"], related: ["co-ccenter", "co-celem", "xmod-obyc", "close-fxval"],
-  eccSame: true
-},
-{
-  id: "co-margin", area: "CO", item: "마진분석 (계정기반 수익성분석)",
-  ecc: "관리회계 > 수익성 분석 > 경영단위 (계정기반)",
-  pce: "관리회계 > 수익성 분석",
-  pub: "IMG 표시 > 회계 > 마진 분석 > 마진 분석 프로세스 > 하향식 분배 > 하향식 배부 템플릿 정의",
-  diff: "S/4HANA의 표준 수익성분석. Costing-based COPA와 달리 별도 값필드 없이 G/L계정 기준으로 분석한다. Public에서는 Costing-based를 쓸 수 없어 마진분석이 필수.",
-  help: [],
-  tags: ["CO"], related: ["co-opcon", "co-sd-copa", "co-prctr", "xmod-vkoa"],
-  eccSame: true
-},
-{
-  id: "co-ml", area: "CO", item: "자재원장 활성화/실제원가계산",
-  ecc: "관리회계 > 자재원장 > 자재원장 활성화",
-  pce: "관리회계 > 자재원장",
-  pub: "IMG 표시 > 회계 > 재고 회계 > 평가 방법 > 실제 원가계산 > 자재원장의 이동유형그룹 지정",
-  diff: "자재의 실제원가를 주기 단위로 계산하는 FI-MM-CO 3자 연계 영역. S/4HANA에서는 자재원장이 필수 요소이며 실제원가계산으로 다자재·다통화 평가가 가능.",
-  help: [],
-  tags: ["CO", "자재원장"], related: ["co-costvar", "xmod-obyc", "co-close", "co-area"],
-  eccSame: true
-},
-{
-  id: "co-skf", area: "CO", item: "통계지표 정의",
-  ecc: "관리회계 > 코스트센터 회계 > 마스터 데이터 > 통계지표",
-  pce: "관리회계 > 코스트센터 회계 > 마스터 데이터",
-  pub: "확인 중",
-  diff: "인원수·면적 등 배부기준이 되는 마스터 데이터. 배부/분배 사이클에서 간접비를 나누는 기준으로 사용한다.",
-  help: [],
-  tags: ["CO", "마스터"], related: ["co-ccenter", "co-alloc", "co-acttype"],
-  eccSame: true
-},
-{
-  id: "co-repost", area: "CO", item: "정기 재전기",
-  ecc: "관리회계 > 코스트센터 회계 > 기말결산 > 실제전기 > 정기 재전기",
-  pce: "관리회계 > 코스트센터 회계 > 기말결산",
-  pub: "확인 중",
-  diff: "코스트센터에 잘못 집계된 비용을 다른 코스트센터로 옮기는 기말 조정 작업. 원전표는 그대로 두고 CO 내에서만 재분류한다.",
-  help: [],
-  tags: ["CO", "전표"], related: ["co-ccenter", "co-alloc", "close-jobs"],
-  eccSame: true
-},
-{
-  id: "co-order-budget", area: "CO", item: "내부오더 예산관리",
-  ecc: "관리회계 > 내부오더 > 예산 > 예산관리",
-  pce: "관리회계 > 내부오더",
-  pub: "IMG 표시 > 회계 > 재무 계획 > 예산 편성 및 가용성 관리",
-  diff: "내부오더별 예산 편성과 통제. 가용성 체크와 연계되어 예산 초과 전기를 막는 실무 필수 기능.",
-  help: [],
-  tags: ["CO", "전표"], related: ["co-order", "co-settle", "co-version"],
-  eccSame: true
-},
-{
-  id: "co-costvar", area: "CO", item: "원가계산 변형",
-  ecc: "관리회계 > 제품원가 관리 > 원가계산 > 원가계산 변형 정의",
-  pce: "관리회계 > 제품원가 관리",
-  pub: "IMG 표시 > 회계 > 재고 회계 > 비즈니스 역할 템플릿 재고 회계 > 원가계산 변형 정의",
-  diff: "제조원가 계산의 뼈대(평가전략·수량구조·부가가치 등)를 정하는 설정. CO-PC(제품원가관리) 영역의 출발점.",
-  help: [],
-  tags: ["CO"], related: ["co-ml", "co-area", "xmod-obyc"],
-  eccSame: true
-},
-{
-  id: "co-sd-copa", area: "CO", item: "SD 조건유형 → COPA 값필드 매핑",
-  ecc: "관리회계 > 수익성 분석 > 플로우 > SD 인터페이스 > 조건유형을 값필드에 매핑",
-  pce: "관리회계 > 수익성 분석 > SD 인터페이스",
-  pub: "확인 중",
-  diff: "SD 청구 시 수익성분석으로 넘기는 값의 연결고리. FI/CO 컨설턴트가 꼭 알아야 하는 SD 연계 포인트.",
-  help: [],
-  tags: ["CO"], related: ["co-opcon", "co-margin", "xmod-vkoa", "xmod-copamap"],
   eccSame: true
 },
 {
