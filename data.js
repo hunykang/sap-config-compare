@@ -1258,7 +1258,7 @@ const GUIDE_DATA = [
   },
   {
     "id": "im-invest-program",
-    "area": "PS",
+    "area": "CO",
     "item": "투자 프로그램 정의",
     "ecc": "",
     "pce": "",
