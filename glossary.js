@@ -121,7 +121,6 @@ const GLOSSARY = [
   "area": "gl",
   "items": [
    "gl-clear-prep",
-   "close-autoclear"
   ],
   "terms": [
    "open-item-management",
@@ -139,7 +138,6 @@ const GLOSSARY = [
   "area": "gl",
   "items": [
    "gl-clear-prep",
-   "close-autoclear"
   ],
   "terms": [
    "gr-ir",
@@ -156,7 +154,6 @@ const GLOSSARY = [
   "area": "gl",
   "items": [
    "gl-clear-prep",
-   "close-autoclear"
   ],
   "terms": [
    "clearing",
@@ -398,7 +395,6 @@ const GLOSSARY = [
   "area": "gl",
   "items": [
    "gl-clear-prep",
-   "close-autoclear"
   ],
   "terms": [
    "clearing",
@@ -481,7 +477,6 @@ const GLOSSARY = [
   "desc": "반제할 때 금액이 다 맞지 않으면, 차액을 새 미결항목으로 남기는 방식이다. 예를 들어 100 중 70만 입금되면 70은 반제되고 30이 잔여항목으로 남는다.",
   "area": "gl",
   "items": [
-   "close-autoclear",
    "gl-clear-prep"
   ],
   "terms": [
@@ -1124,7 +1119,6 @@ const GLOSSARY = [
   "area": "xmod",
   "items": [
    "xmod-griradj",
-   "close-grir"
   ],
   "terms": [
    "clearing-account",
@@ -1881,7 +1875,6 @@ const GLOSSARY = [
   "desc": "공급처가 보낸 청구서와 실제 입고 내역을 대조해 지급할 금액을 확정하는 절차(MIRO). 입고·발주·송장 세 가지를 맞추는 3자 대조로 틀린 청구를 걸러낸다.",
   "area": "xmod",
   "items": [
-   "close-grir"
   ],
   "terms": [
    "gr-ir",

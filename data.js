@@ -862,16 +862,6 @@ const GUIDE_DATA = [
   eccSame: true
 },
 {
-  id: "close-autoclear", area: "결산", item: "자동반제 실행",
-  ecc: "F.13 (반제규칙 OBIA/OBIB)",
-  pce: "F.13 유지",
-  pub: "확인 중",
-  diff: "로직은 유지, 실행 채널이 Fiori로 이동 중.",
-  help: [],
-  tags: ["결산", "전표"], related: ["gl-clear-prep", "close-grir"],
-  eccSame: true
-},
-{
   id: "close-recurr", area: "결산", item: "정기/반복전표",
   ecc: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 정기전표",
   pce: "Fiori 'Manage Recurring Journal Entries' 앱",
@@ -880,16 +870,6 @@ const GUIDE_DATA = [
   help: [],
   tags: ["결산", "전표", "Fiori"], related: ["gl-doc-type"],
   eccSame: true
-},
-{
-  id: "close-grir", area: "결산", item: "GR/IR 미결관리",
-  ecc: "F.13/MR11 (반제·잔액조정)",
-  pce: "Fiori 'Reconcile GR/IR Accounts' 앱",
-  pub: "Fiori 'Reconcile GR/IR Accounts' 앱 (Scope Item 2VB)",
-  diff: "반제 로직은 유지되나 S/4HANA에서 Fiori 앱(2VB)으로 모니터링이 강화됨.",
-  help: [],
-  tags: ["결산", "전표", "Fiori"], related: ["xmod-griradj", "close-autoclear"],
-  eccSame: false
 },
 {
   id: "xmod-obyc", area: "타모듈 연결", item: "MM-FI 자동계정결정 (OBYC)",
@@ -968,7 +948,7 @@ const GUIDE_DATA = [
   pub: "확인 중",
   diff: "GR/IR 반제 시 차이 조정용 수정계정. ECC와 동일.",
   help: [],
-  tags: ["연계", "전표"], related: ["xmod-obyc", "close-grir"],
+  tags: ["연계", "전표"], related: ["xmod-obyc"],
   eccSame: true
 },
 {
@@ -1122,7 +1102,7 @@ const GUIDE_DATA = [
   eccSame: true
 },
 {
-  id: "co-auc-settle", area: "CO", item: "AuC 정산 (건설가계정 → 자산)",
+  id: "co-auc-settle", area: "자산회계", item: "AuC 정산 (건설가계정 → 자산)",
   ecc: "자산회계 > 기말결산 > 건설가계정(AuC) 정산",
   pce: "자산회계 > 기말결산",
   pub: "IMG 표시 > 회계 > 자본 비용 관리 > 자본 비용 정산",
