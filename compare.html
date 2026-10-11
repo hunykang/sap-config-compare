@@ -64,7 +64,7 @@
   <div class="t-tools">
     <button class="mini" id="expand-all">모두 펼치기</button>
     <button class="mini" id="collapse-all">모두 접기</button>
-    <span class="t-count" id="count-note"></span>
+    <span class="t-count" id="count-note" role="status" aria-live="polite"></span>
   </div>
 
   <div id="area-list"></div>
@@ -127,7 +127,7 @@ function areaHtml(area, idx) {
   const rows = GUIDE_DATA.filter(e => e.area === area);
   return `
   <div class="cmod${idx === 0 ? ' open' : ''}" data-area="${esc(area)}">
-    <button class="cmod-head"><span class="cmod-name">${esc(area)}</span>
+    <button class="cmod-head" aria-expanded="${idx === 0 ? 'true' : 'false'}"><span class="cmod-name">${esc(area)}</span>
       <span class="cmod-meta">${rows.length}개 항목</span><span class="arrow">▼</span></button>
     <div class="cmod-body"><div class="table-wrap">
       <table class="compare">
@@ -159,7 +159,7 @@ function areaHtml(area, idx) {
 listEl.innerHTML = areas.map(areaHtml).join('');
 chipsEl.innerHTML = areas.map(a => {
   const n = GUIDE_DATA.filter(e => e.area === a).length;
-  return `<button data-area="${esc(a)}">${esc(a)} ${n}</button>`;
+  return `<button data-area="${esc(a)}" aria-pressed="false">${esc(a)} ${n}</button>`;
 }).join('');
 
 function visibleMods() {
@@ -191,13 +191,13 @@ chipsEl.addEventListener('click', ev => {
   const b = ev.target.closest('button');
   if (!b) return;
   activeArea = (activeArea === b.dataset.area) ? null : b.dataset.area;
-  chipsEl.querySelectorAll('button').forEach(x => x.classList.toggle('on', x.dataset.area === activeArea));
+  chipsEl.querySelectorAll('button').forEach(x => { const on = x.dataset.area === activeArea; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); });
   applyFilter();
 });
 qInput.addEventListener('input', applyFilter);
 listEl.addEventListener('click', ev => {
   const head = ev.target.closest('.cmod-head');
-  if (head) { head.closest('.cmod').classList.toggle('open'); return; }
+  if (head) { const mod = head.closest('.cmod'); mod.classList.toggle('open'); head.setAttribute('aria-expanded', mod.classList.contains('open')); return; }
   const a = ev.target.closest('a[data-rel]');
   if (!a) return;
   ev.preventDefault();
@@ -205,7 +205,7 @@ listEl.addEventListener('click', ev => {
   // 필터에 가려져 있으면 필터 초기화 후 다시 렌더
   qInput.value = '';
   activeArea = null;
-  chipsEl.querySelectorAll('button').forEach(x => x.classList.remove('on'));
+  chipsEl.querySelectorAll('button').forEach(x => { x.classList.remove('on'); x.setAttribute('aria-pressed', 'false'); });
   applyFilter();
   const row = document.getElementById('row-' + id);
   if (row) {
@@ -226,7 +226,7 @@ document.getElementById('collapse-all').addEventListener('click', () =>
 if (params.get('q')) qInput.value = params.get('q');
 if (params.get('area') && areas.includes(params.get('area'))) {
   activeArea = params.get('area');
-  chipsEl.querySelectorAll('button').forEach(x => x.classList.toggle('on', x.dataset.area === activeArea));
+  chipsEl.querySelectorAll('button').forEach(x => { const on = x.dataset.area === activeArea; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); });
 }
 applyFilter();
 

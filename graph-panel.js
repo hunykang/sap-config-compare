@@ -101,7 +101,7 @@ function initGraphPanel(g, panel, opts) {
         }).join('')}</div>` : ''}
       ${terms.length ? `<p style="margin-top:10px"><strong>관련 용어</strong></p>
       <div class="rel-chips">${terms.slice(0, 8).map(x => `<button data-goto-term="${x.id}">${gpEsc(x.kr)}</button>`).join('')}</div>` : ''}
-      <p style="margin-top:12px;font-size:13px"><a href="glossary.html#${encodeURIComponent(t.id)}">📖 용어집에서 보기 →</a> · <a href="feedback.html">✏️ 오류 제보하기</a></p>`;
+      <p style="margin-top:12px;font-size:13px"><a href="glossary.html#term-${encodeURIComponent(t.id)}">📖 용어집에서 보기 →</a> · <a href="feedback.html">✏️ 오류 제보하기</a></p>`;
     if (slide) panel.classList.add('open');
     else if (window.innerWidth <= 760) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }

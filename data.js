@@ -180,7 +180,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 재무회계 기본세팅 > 전표 > 전표유형 > 데이터 입력뷰의 전표유형 정의",
   pce: "재무회계 > 재무회계 전역 설정 > 전표 > 전표유형",
   pub: "CBC > Accounting (회계) > General Ledger (총계정원장) > General Ledger Processes (총계정원장 프로세스) > General Journal Entries (일반 전표 입력) > Define Document Types (전표 유형 정의) (101522)",
-  diff: "ECC와 개념 동일. Public은 SSCUI 500242에서 정의.",
+  diff: "ECC와 개념 동일.",
   help: [],
   tags: ["G/L", "전표"], related: ["gl-doc-number", "gl-pp-variant", "gl-doc-change"],
   eccSame: true
@@ -280,7 +280,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항 > 재무제표버전 정의",
   pce: "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정",
   pub: "CBC > Accounting (회계) > General Ledger (총계정원장) > Chart of Accounts (계정과목표) > Chart of Accounts & Financial Statements (계정과목표 및 재무제표) > Define Financial Statement Versions (재무제표 버전 정의) (102669)",
-  diff: "ECC와 개념 동일. Public은 SSCUI 500043에서 정의, Fiori 'Balance Sheet/Income Statement' 앱(J58)으로 조회.",
+  diff: "ECC와 개념 동일. Fiori 'Balance Sheet/Income Statement' 앱(J58)으로 조회.",
   help: [],
   tags: ["G/L"], related: ["gl-coa", "gl-acct-group", "gl-retained"],
   eccSame: true
@@ -290,7 +290,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 전표분할 > 전표분할 활성화/분류/제로잔액계정 정의",
   pce: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 전표 분할",
   pub: "CBC > Accounting (회계) > General Ledger (총계정원장) > Reporting and Analytics for General Ledger (총계정원장 보고 및 분석) > Financial Reports Based on Profit Centers (이익 중심 기준 재무 보고) > Define Document Splitting Characteristics for General Ledger Accounting (총계정원장 전표 분할 특성 정의) (102322)",
-  diff: "S/4HANA에서는 세그먼트 보고를 위해 전표분할이 사실상 필수 설정. 제로잔액 임시계정 정의가 선행되어야 함. 전표 입력 뷰와 BSEG는 999라인 한도지만, 총계정원장 뷰에서는 전표분할·감가상각 같은 자동 생성 라인으로 999를 넘을 수 있다.",
+  diff: "S/4HANA에서는 세그먼트 보고를 위해 전표분할이 사실상 필수 설정. 제로밸런스 대상 특성을 활성화한 경우 제로잔액 임시계정 정의가 선행되어야 함. 전표 입력 뷰와 BSEG는 999라인 한도지만, 총계정원장 뷰에서는 전표분할·감가상각 같은 자동 생성 라인으로 999를 넘을 수 있다.",
   help: ["https://help.sap.com/doc/0df2ffddebab40cf9338488b2f18dc41/2025.latest/en-US/SIMPL_OP2025.pdf"],
   tags: ["G/L", "전표"], related: ["gl-doc-type", "org-business-area"],
   eccSame: false
@@ -400,7 +400,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 자동 아웃고잉 지급 > 지급 방법/회사코드 설정",
   pce: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 자동 아웃고잉 지급",
   pub: "CBC > Payables and Receivables Management (채무 및 채권 관리) > Payment Processing (지급 처리) > Company-Initiated Payment and Clearing (회사 개시 지급 및 반제) > You use automatic payments and payment media formats (자동 지급·지급 매체 형식 사용) > Set Up Payment Methods for Each Country/Region for Payment Transactions (국가/지역별 지급 방법 설정) (101972)",
-  diff: "ECC와 로직 동일. Public은 SSCUI 500137에서 설정.",
+  diff: "ECC와 로직 동일.",
   help: [],
   tags: ["AP", "BP"], related: ["ap-paymethod-ccode", "ap-bank-determ"],
   eccSame: true
@@ -410,7 +410,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 자동 아웃고잉 지급 > 지급 방법/회사코드 설정",
   pce: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 자동 아웃고잉 지급",
   pub: "CBC > Payables and Receivables Management (채무 및 채권 관리) > Payment Processing (지급 처리) > Company-Initiated Payment and Clearing (회사 개시 지급 및 반제) > You use automatic payments and payment media formats (자동 지급·지급 매체 형식 사용) > Set Up Payment Methods per Company Code for Payment Transactions (회사 코드별 지급 방법 설정) (101044)",
-  diff: "ECC와 로직 동일. Public은 SSCUI 500012에서 설정.",
+  diff: "ECC와 로직 동일.",
   help: [],
   tags: ["AP", "BP"], related: ["ap-paymethod-country", "ap-bank-determ", "ap-housebank"],
   eccSame: true
@@ -420,7 +420,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 자동 아웃고잉 지급 > 은행결정",
   pce: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 자동 아웃고잉 지급 > 은행결정",
   pub: "CBC > Payables and Receivables Management (채무 및 채권 관리) > Payment Processing (지급 처리) > Company-Initiated Payment and Clearing (회사 개시 지급 및 반제) > You use automatic payments and payment media formats (자동 지급·지급 매체 형식 사용) > Set Up Bank Determination for Payment Transactions (지급 거래 은행 결정 설정) (101045)",
-  diff: "지급 프로그램의 순위·은행계좌·지급용 G/L계정 결정. ECC와 로직 동일. Public 프로젝트에서는 F110 제안·실행 후 Public 자체 워크플로우를 거쳐 최종 승인이 나면 지급내역을 OData API로 은행 펌뱅킹 솔루션에 인터페이스하는 구조를 쓴 사례가 있다. 자동지급 완료 즉시 은행으로 보내지 않고 승인 프로세스를 관문으로 두는 설계가 핵심이다.",
+  diff: "지급 프로그램의 순위·은행계좌·지급용 G/L계정 결정. ECC와 로직 동일. Public 프로젝트에서는 'Manage Automatic Payments' 앱으로 제안·실행 후 Public 자체 워크플로우를 거쳐 최종 승인이 나면 지급내역을 OData API로 은행 펌뱅킹 솔루션에 인터페이스하는 구조를 쓴 사례가 있다. 자동지급 완료 즉시 은행으로 보내지 않고 승인 프로세스를 관문으로 두는 설계가 핵심이다.",
   help: [],
   tags: ["AP", "BP"], related: ["ap-housebank", "ap-paymethod-ccode", "bank-glstruct"],
   eccSame: true
@@ -653,7 +653,7 @@ const GUIDE_DATA = [
 },
 {
   id: "aa-yearend", area: "자산회계", item: "자산 연마감/이월 (AJAB)",
-  ecc: "AJRW (자산 연마감)",
+  ecc: "AJAB (자산 연말마감)",
   pce: "재무회계 > 자산 회계 > 정기 처리 > 연마감 (AJAB)",
   pub: "확인 중",
   diff: "New AA에서는 별도 자산 이월이 불필요 — FI 잔액이월(FAGLGVTR)이 자산 잔액까지 같이 넘긴다. 연말마감(AJAB)은 존속. PCE·Public 모두 자산 회계연도를 최대 2개년도까지 열 수 있으며, 다음 연도를 열려면 전전년도를 먼저 마감해야 한다(2026년을 열려면 2024년 마감).",
