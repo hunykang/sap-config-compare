@@ -58,8 +58,8 @@ const GUIDE_DATA = [
   flag: "FM 전용 · FM 안 쓰면 이 페이지는 패스",
   ecc: "기업 구조 > 정의 > 재무회계 > 재무관리영역 유지보수",
   pce: "기업 구조 > 정의 > 재무회계",
-  pub: "확인 중",
-  diff: "자금관리(FM) 조직 단위. ECC와 동일.",
+  pub: "비PSM Public에는 PSM-FM 재무관리영역 설정이 없음. 코스트센터 예산은 스콥아이템 2I3·J54, 프로젝트 예산은 1NT로 가용성 통제. 미국 공공부문 PSM 스콥 번들에서는 Budget Management·Fund Accounting·Grants Management 제공",
+  diff: "자금관리(FM) 조직 단위. 대학교 교비회계·산학협력단회계·법인회계 같은 비영리 조직의 SAP 프로젝트에서 주로 사용하고, 일반회사 중에도 CO exit으로 예산통제를 개발하기보다 SAP 표준 FM 예산통제를 정책으로 채택한 사례가 있다. S/4HANA에서는 Former Budgeting이 아니라 BCS(Budget Control System)로 예산편성·가용성 통제·차년도 예산 이월을 관리한다.",
   help: [],
   tags: ["조직"], related: ["org-company-code", "org-fm-ccode"],
   eccSame: true
@@ -69,8 +69,8 @@ const GUIDE_DATA = [
   flag: "FM 전용 · FM 안 쓰면 이 페이지는 패스",
   ecc: "기업 구조 > 지정 > 재무회계 > 재무관리영역에 회사코드 지정",
   pce: "기업 구조 > 지정 > 재무회계",
-  pub: "확인 중",
-  diff: "ECC와 동일.",
+  pub: "비PSM Public에는 PSM-FM 재무관리영역 설정이 없어 해당 없음 (org-fm-area 참조)",
+  diff: "ECC와 동일. Public 비PSM 환경에서는 재무관리영역 지정 자체가 해당 없다.",
   help: [],
   tags: ["조직"], related: ["org-fm-area", "org-company-code"],
   eccSame: true
@@ -79,8 +79,8 @@ const GUIDE_DATA = [
   id: "org-credit-area", area: "조직구조", item: "신용관리영역에 회사코드 지정",
   ecc: "기업 구조 > 지정 > 재무회계 > 신용관리영역에 회사코드 지정",
   pce: "기업 구조 > 지정 > 재무회계",
-  pub: "확인 중",
-  diff: "신용관리 조직 단위 지정. S/4HANA에서는 FSCM 신용관리로 기능이 이관되어 연계 확인이 필요.",
+  pub: "CBC > Payables and Receivables Management (채무 및 채권 관리) > Credit Management (여신 관리) — FI는 기본 틀 설정, 실제 규칙·한도는 SD 프로세스와 함께 설계",
+  diff: "신용관리 조직 단위 지정. S/4HANA에서는 FSCM 신용관리로 기능이 이관되어 연계 확인이 필요. 실무에서 FI는 IMG의 여신관리영역 등 기본 틀만 설정하고, 실제 신용 체크 규칙·한도 관리는 보통 SD 프로세스와 함께 설계한다. 해외법인의 현지 고객 여신 초과 시 국내 본사에서 본사→해외법인 영업오더까지 통제해 달라고 요청한 사례가 있는데, 통제 범위·시점은 현업과 충분히 논의해야 한다.",
   help: [],
   tags: ["조직"], related: ["org-company-code", "ar-credit"],
   eccSame: false
@@ -90,7 +90,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 재무회계 기본세팅 > 원장 > 필드 > 필드상태변형 정의",
   pce: "재무회계 > 재무회계 전역 설정 > 원장 > 필드",
   pub: "CBC > Accounting (회계) > General Ledger (총계정원장) > General Ledger Processes (총계정원장 프로세스) > General Journal Entries (일반 전표 입력) > Define Field Status Variants (필드 상태 변형 정의) (102393)",
-  diff: "전표 입력 화면의 필드 제어(필수/선택/숨김) 정의. ECC와 개념·설정 체계 동일.",
+  diff: "전표 입력 화면의 필드 제어(필수/선택/숨김) 정의. ECC와 개념·설정 체계 동일. 필드 상태는 전표 입력의 가드레일 — 규칙으로 전표가 마음대로 쳐지지 않게 미리 틀을 잡는 개념이다. GR/IR 계정에 코스트센터를 필수로 두면 코스트센터가 없는 MIGO 입고 전표가 막히므로 FI·MM이 함께 점검해야 한다.",
   help: [],
   tags: ["G/L", "전표"], related: ["gl-field-status-assign", "gl-acct-group", "gl-posting-key"],
   eccSame: true
@@ -110,7 +110,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 재무회계 기본세팅 > 원장 > 원장 > 총계정원장 회계에 대한 원장 정의",
   pce: "재무회계 > 재무회계 전역 설정 > 원장 > 원장",
   pub: "확인 중",
-  diff: "ECC New GL의 원장 개념은 유지되나, S/4HANA에서는 Universal Journal(ACDOCA) 단일 테이블이 실제 전기 원천. 원장은 회계기준별 병렬회계 용도로 정의.",
+  diff: "ECC New GL의 원장 개념은 유지되나, S/4HANA에서는 Universal Journal(ACDOCA) 단일 테이블이 실제 전기 원천. 원장은 회계기준별 병렬회계 용도로 정의. 원장 테이블 변천사는 R/3 GLT0(총계) → ECC New GL FAGLFLEXA(라인)·FAGLFLEXT(총계) → S/4HANA ACDOCA(라인) + ACDOCT(CDS 총계 뷰). FM을 적용한 프로젝트에서는 공공부문용 총계 테이블 FMGLFLEXT를 쓰던 사례도 있다.",
   help: ["https://help.sap.com/doc/0df2ffddebab40cf9338488b2f18dc41/2025.latest/en-US/SIMPL_OP2025.pdf"],
   tags: ["G/L", "전표"], related: ["gl-ledger-group", "gl-acct-principle", "gl-fiscal-year"],
   eccSame: false
@@ -210,7 +210,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 재무회계 기본세팅 > 전표 > 허용한도그룹 > 종업원에 대한 허용한도그룹 정의",
   pce: "재무회계 > 재무회계 전역 설정 > 전표 > 허용 한도 그룹",
   pub: "CBC > Payables and Receivables Management (채무 및 채권 관리) > Payment Processing (지급 처리) > Business Partner-Initiated Payment and Clearing (BP 개시 지급 및 반제) > Business-Partner-Initiated Payments (BP 개시 지급) > Define Tolerance Groups for Employees (직원 허용오차 그룹 정의) (102832)",
-  diff: "전표 입력 금액 한도 그룹. ECC와 동일.",
+  diff: "전표 입력 금액 한도 그룹. ECC와 동일. 한도를 초과하면 경고/에러 메시지로 전기가 차단되며, 승인 워크플로우는 별개의 흐름이다.",
   help: [],
   tags: ["G/L", "전표"], related: ["org-company-code", "gl-posting-key"],
   eccSame: true
@@ -230,7 +230,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 재무회계 기본세팅 > 전표 > 전표변경규칙 > 전표변경규칙, 전표헤더/개별항목",
   pce: "재무회계 > 재무회계 전역 설정 > 전표 > 전표 변경 규칙",
   pub: "SAP Business Configuration > 회계 > 총계정원장 > 총계정원장 프로세스 > 일반 분개 > 분개 변경 규칙 정의",
-  diff: "전기 후 변경 가능 필드 규칙. ECC와 동일.",
+  diff: "전기 후 변경 가능 필드 규칙. ECC와 동일. OB32에서 변경 가능으로 허용한 필드는 전기 후 FB02로 수정하면 BSEG는 물론 총계 테이블에도 함께 반영된다. 단, 금액·코스트오브젝트 같은 핵심 필드는 변경 규칙으로 열 수 없다.",
   help: [],
   tags: ["G/L", "전표"], related: ["gl-doc-type"],
   eccSame: true
@@ -240,7 +240,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항 > 계정과목표 리스트 편집",
   pce: "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항",
   pub: "SAP Business Configuration > 회계 > 총계정원장 > 계정과목표 > 계정과목표 및 재무제표 > 계정과목표 관리",
-  diff: "ECC와 개념 동일. Public은 SSCUI 500043에서 계정과목표 관리.",
+  diff: "ECC와 개념 동일. Public은 SSCUI 500043에서 계정과목표 관리. Public 2608 기준 운영 시스템에서는 COA를 직접 유지보수하지 않고, 커스터마이징/개발 시스템에서 계정 복사·생성·변경·미사용 표시 후 CTS로 테스트→운영에 반영한다. Renumber G/L Accounts 앱으로 프로젝트 초기에 번호 체계를 고객사 체계에 맞게 바꿀 수 있으나, 한 번이라도 전기된 계정은 리넘버링할 수 없고 운영 중 리넘버링은 다운타임이 수반되므로 초기에 확정하는 것이 좋다.",
   help: [],
   tags: ["G/L"], related: ["gl-coa-assign", "gl-acct-group", "gl-retained"],
   eccSame: true
@@ -260,7 +260,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항 > 계정그룹 정의",
   pce: "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항",
   pub: "SAP Business Configuration > 회계 > 총계정원장 > 계정과목표 > 계정과목표 및 재무제표 > 계정그룹정의",
-  diff: "계정 마스터의 필드 제어·번호범위 그룹. ECC와 동일, Public은 Fiori 앱으로 마스터 관리.",
+  diff: "계정 마스터의 필드 제어·번호범위 그룹. ECC와 동일, Public은 Fiori 앱으로 마스터 관리. 계정그룹은 계정번호 범위와 계정 마스터 필드 제어용이고, 전표 입력 화면의 필드 제어는 필드상태그룹(OBC4)과 전기키가 담당한다 — 헷갈리기 쉬운 포인트.",
   help: [],
   tags: ["G/L", "마스터"], related: ["gl-coa", "gl-field-status"],
   eccSame: true
@@ -290,7 +290,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 전표분할 > 전표분할 활성화/분류/제로잔액계정 정의",
   pce: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 전표 분할",
   pub: "CBC > Accounting (회계) > General Ledger (총계정원장) > Reporting and Analytics for General Ledger (총계정원장 보고 및 분석) > Financial Reports Based on Profit Centers (이익 중심 기준 재무 보고) > Define Document Splitting Characteristics for General Ledger Accounting (총계정원장 전표 분할 특성 정의) (102322)",
-  diff: "S/4HANA에서는 세그먼트 보고를 위해 전표분할이 사실상 필수 설정. 제로잔액 임시계정 정의가 선행되어야 함.",
+  diff: "S/4HANA에서는 세그먼트 보고를 위해 전표분할이 사실상 필수 설정. 제로잔액 임시계정 정의가 선행되어야 함. 전표 입력 뷰와 BSEG는 999라인 한도지만, 총계정원장 뷰에서는 전표분할·감가상각 같은 자동 생성 라인으로 999를 넘을 수 있다.",
   help: ["https://help.sap.com/doc/0df2ffddebab40cf9338488b2f18dc41/2025.latest/en-US/SIMPL_OP2025.pdf"],
   tags: ["G/L", "전표"], related: ["gl-doc-type", "org-business-area"],
   eccSame: false
@@ -299,8 +299,8 @@ const GUIDE_DATA = [
   id: "gl-validation", area: "G/L", item: "회계전표 유효성 확인",
   ecc: "재무회계 > 재무회계 기본세팅 > 툴 > 유효성 확인 / 대체 > 회계전표에서 유효성 확인",
   pce: "재무회계 > 재무회계 전역 설정 > 툴 > 유효성 확인 / 대체",
-  pub: "확인 중",
-  diff: "전기 시 조건 체크 규칙. ECC와 동일.",
+  pub: "Fiori 'Manage Substitution/Validation Rules' 앱 (F4406)",
+  diff: "전기 시 조건 체크 규칙. ECC와 동일. Public에서는 F4406 앱으로 사용자 정의 유효성 검사를 만든다. 당일 환율이 입력되지 않은 상태의 외화 전표를 막는 규칙을 적용한 프로젝트 사례가 있다.",
   help: [],
   tags: ["G/L", "전표"], related: ["gl-substitution", "gl-doc-type"],
   eccSame: true
@@ -309,8 +309,8 @@ const GUIDE_DATA = [
   id: "gl-substitution", area: "G/L", item: "회계전표 대체",
   ecc: "재무회계 > 재무회계 기본세팅 > 툴 > 유효성 확인 / 대체 > 회계전표내 대체",
   pce: "재무회계 > 재무회계 전역 설정 > 툴 > 유효성 확인 / 대체",
-  pub: "확인 중",
-  diff: "전기 시 필드값 자동 대체 규칙. ECC와 동일.",
+  pub: "Fiori 'Manage Substitution/Validation Rules' 앱 (F4406)",
+  diff: "전기 시 필드값 자동 대체 규칙. ECC와 동일. 대체는 사용자가 모르는 사이 값을 바꿀 수 있으므로 규칙은 최소화하고 문서로 남기는 것이 좋다.",
   help: [],
   tags: ["G/L", "전표"], related: ["gl-validation", "gl-doc-type"],
   eccSame: true
@@ -380,7 +380,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 수령 송장 / 대변 메모 > 지급조건 유지보수",
   pce: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 지급조건",
   pub: "SSCUI 500137 '지급조건 유지보수'",
-  diff: "ECC와 개념 동일. Public은 SSCUI 500137에서 유지보수.",
+  diff: "ECC와 개념 동일. Public은 SSCUI 500137에서 유지보수. Public도 PCE와 동일하게 지급조건을 유지보수할 수 있다. '당월 15일까지 증빙은 다음 달 첫째 주 지급, 당월 말일까지 증빙은 다음 달 셋째 주 지급' 같은 고객사 지급 로직을 구현한 사례가 있다. 전표 API에는 지급조건 필드가 없고 지급방법(PaymentMethod)만 있으므로 e-Accounting 연동 설계 시 이를 고려하고 릴리즈별 지원 범위를 확인한다.",
   help: [],
   tags: ["AP", "BP"], related: ["ap-bank-determ", "ap-paymethod-ccode"],
   eccSame: true
@@ -420,7 +420,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 자동 아웃고잉 지급 > 은행결정",
   pce: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 자동 아웃고잉 지급 > 은행결정",
   pub: "CBC > Payables and Receivables Management (채무 및 채권 관리) > Payment Processing (지급 처리) > Company-Initiated Payment and Clearing (회사 개시 지급 및 반제) > You use automatic payments and payment media formats (자동 지급·지급 매체 형식 사용) > Set Up Bank Determination for Payment Transactions (지급 거래 은행 결정 설정) (101045)",
-  diff: "지급 프로그램의 순위·은행계좌·지급용 G/L계정 결정. ECC와 로직 동일.",
+  diff: "지급 프로그램의 순위·은행계좌·지급용 G/L계정 결정. ECC와 로직 동일. Public 프로젝트에서는 F110 제안·실행 후 Public 자체 워크플로우를 거쳐 최종 승인이 나면 지급내역을 OData API로 은행 펌뱅킹 솔루션에 인터페이스하는 구조를 쓴 사례가 있다. 자동지급 완료 즉시 은행으로 보내지 않고 승인 프로세스를 관문으로 두는 설계가 핵심이다.",
   help: [],
   tags: ["AP", "BP"], related: ["ap-housebank", "ap-paymethod-ccode", "bank-glstruct"],
   eccSame: true
@@ -440,7 +440,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 대체 조정 계정로 전기 > 기타 특별 G/L 거래 > 구매처에 대한 대체조정계정 정의",
   pce: "재무회계 > 채권 및 채무 > 공급업체 계정",
   pub: "CBC > Accounting (회계) > General Ledger (총계정원장) > Account Determination (계정 결정) > Account Determination in General Ledger (총계정원장 계정 결정) > Define Alternative Reconciliation Accounts (대체 조정 계정 정의) (102631)",
-  diff: "ECC와 개념 동일. Public은 SSCUI 102631에서 정의. Public YCOA에서 대체조정계정 유형 필드를 직접 지정할 수 있는 계정그룹은 RECN뿐이다. ABST는 조정계정 그룹이지만 해당 필드가 숨겨져 있어 시스템이 정해준 대로만 써야 한다. 외부 전표 시스템과 연동할 때는 대체조정계정을 고정 드롭다운으로 관리하지 말고, IMG의 대체조정계정 테이블을 RFC나 OData 커스텀 API로 전달해 선택 목록이 자동으로 따라오게 설계하는 것이 원칙이다.",
+  diff: "ECC와 개념 동일. Public은 SSCUI 102631에서 정의. Public YCOA에서 대체조정계정 유형 필드를 직접 지정할 수 있는 계정그룹은 RECN뿐이다. ABST는 조정계정 그룹이지만 해당 필드가 숨겨져 있어 시스템이 정해준 대로만 써야 한다. 외부 전표 시스템과 연동할 때는 대체조정계정을 고정 드롭다운으로 관리하지 말고, IMG의 대체조정계정 테이블을 RFC나 OData 커스텀 API로 전달해 선택 목록이 자동으로 따라오게 설계하는 것이 원칙이다. Public 2608 기준 전표작성 API는 특별 G/L을 지원하지 않으므로 e-Accounting 설계 시 주의가 필요하다. 특별 G/L 대신 대체조정계정을 쓰면 어음·선급금이 일반 AP와 섞여 표시되므로 G/L 기준 필터를 설계에 반영한다.",
   help: [],
   tags: ["AP", "BP"], related: ["ap-vendor-group", "xmod-obyc"],
   eccSame: true
@@ -482,7 +482,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 독촉",
   pce: "재무회계 > 채권 및 채무 > 고객 계정 > 비즈니스 트랜잭션 > 독촉",
   pub: "CBC > Payables and Receivables Management (채무 및 채권 관리) > Open Item Management (미결 항목 관리) > Dunning (독촉) > Define your dunning procedures (독촉 절차 정의) > Define Dunning Procedures (독촉 절차 정의) (102302)",
-  diff: "독촉 레벨·간격·문구 설정. 실행은 PCE에서 F150과 Fiori 앱 병행. 국내에서는 독촉장보다 전화 대응이 일반적이라 거의 사용하지 않는다. 해외에서는 외국 vendor로부터 dunning letter를 DHL·TNT 특송으로 받는 경우가 많았다.",
+  diff: "독촉 레벨·간격·문구 설정. 실행은 PCE에서 F150과 Fiori 앱 병행. 국내에서는 독촉장보다 전화 대응이 일반적이라 거의 사용하지 않는다. 해외에서는 외국 vendor로부터 dunning letter를 DHL·TNT 특송으로 받는 경우가 많았다. 외국 고객사가 언어별 양식을 스마트폼으로 요청하는 경우가 있는데 적용에 시간이 걸린다.",
   help: [],
   tags: ["AR", "BP"], related: ["ar-interest", "ar-cust-group"],
   eccSame: true
@@ -566,7 +566,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 은행 회계 > 지급수단 > 수표 로트/무효사유 정의",
   pce: "재무회계 > 은행 회계",
   pub: "확인 중",
-  diff: "수표 발행 번호대와 무효 사유코드. ECC와 동일.",
+  diff: "수표 발행 번호대와 무효 사유코드. 수표 로트는 ECC FCH1, S/4HANA에서는 FCHI. 국내 Public 프로젝트에서는 수표보다 펌뱅킹·은행 CMS를 주로 쓰고, 입출금내역·가상계좌·집금은 SOAP 표준 전표 API와 OData custom API로 연계한다. 프로젝트 초기에 은행 전산 담당과 인터페이스 방식을 확정하는 것이 좋다.",
   help: [],
   tags: ["은행"], related: ["ap-paymethod-country", "bank-master"],
   eccSame: true
@@ -636,7 +636,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 자산 회계 > 감가상각 > 평가방법 > 감가상각키 유지보수",
   pce: "재무회계 > 자산 회계 > 감가상각 > 평가방법",
   pub: "SSCUI 500309 (감가상각키·내용연수 설정)",
-  diff: "ECC와 개념 동일.",
+  diff: "ECC와 개념 동일. Public은 기본 SAP 제공 감가상각키를 사용하고, 필요한 키가 없으면 WCR 기반 expert configuration을 요청할 수 있다. 2608부터는 파일럿 고객에게 configurable depreciation profiles를 제공해 CBC에서 직접 구성·테스트할 수 있으며, 향후 기존 키를 profile로 대체할 예정이다.",
   help: [],
   tags: ["자산"], related: ["aa-deparea", "aa-class"],
   eccSame: true
@@ -646,7 +646,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 자산 회계 > 거래 > 취득/처분에 대한 거래유형 정의",
   pce: "재무회계 > 자산 회계 > 거래",
   pub: "확인 중",
-  diff: "취득·처분·대체 거래유형. ECC와 동일.",
+  diff: "취득·처분·대체 거래유형. ECC와 동일. Public에서는 새 거래유형을 추가할 수 없고 제공된 표준 유형을 사용해야 한다. S/4HANA에서는 거래유형을 감가상각영역별로 제한할 필요가 줄었다. 손상차손을 별도 거래유형의 비계획 상각으로 처리하려 했으나 거래유형 추가가 불가능했고, 비계획 상각 계정지정의 계정을 바꾸려 했지만 기존 지정 계정에 이미 전표가 있어 변경하지 못했던 사례가 있다. 프로젝트 초기에 계정 체계를 확정하는 것이 중요하다.",
   help: [],
   tags: ["자산"], related: ["aa-class"],
   eccSame: true
@@ -656,7 +656,7 @@ const GUIDE_DATA = [
   ecc: "AJRW (자산 연마감)",
   pce: "재무회계 > 자산 회계 > 정기 처리 > 연마감 (AJAB)",
   pub: "확인 중",
-  diff: "New AA에서는 별도 자산 이월이 불필요 — FI 잔액이월(FAGLGVTR)이 자산 잔액까지 같이 넘긴다. 연말마감(AJAB)은 존속.",
+  diff: "New AA에서는 별도 자산 이월이 불필요 — FI 잔액이월(FAGLGVTR)이 자산 잔액까지 같이 넘긴다. 연말마감(AJAB)은 존속. PCE·Public 모두 자산 회계연도를 최대 2개년도까지 열 수 있으며, 다음 연도를 열려면 전전년도를 먼저 마감해야 한다(2026년을 열려면 2024년 마감).",
   help: ["https://help.sap.com/doc/0df2ffddebab40cf9338488b2f18dc41/2025.latest/en-US/SIMPL_OP2025.pdf"],
   tags: ["자산"], related: ["aa-transtype"],
   eccSame: false
@@ -666,7 +666,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 재무회계 기본세팅 > 부가가치세 > 전기 > 세금코드 정의",
   pce: "재무회계 > 재무회계 전역 설정 > 세금 > 매출세/매입세 계산",
   pub: "SSCUI 101016 'Define Tax Codes for Sales and Purchases'",
-  diff: "ECC와 개념 동일. Public은 SSCUI 101016에서 유지보수.",
+  diff: "ECC와 개념 동일. Public은 SSCUI 101016에서 유지보수. Public 프로젝트의 세금신고는 SAP DRC 연계 방식이 있고, 별도 부가세 신고 솔루션을 쓸 때는 OData custom API를 개발해 인터페이스한다. 원천세 세금신고 파일 지원은 Public/DRC 공식 근거를 확인하지 못했으므로 단정하지 않는다.",
   help: [],
   tags: ["세금"], related: ["tax-account", "tax-procedure", "tax-nontax"],
   eccSame: true
@@ -1097,7 +1097,7 @@ const GUIDE_DATA = [
   ecc: "자산회계 > 기말결산 > 건설가계정(AuC) 정산",
   pce: "자산회계 > 기말결산",
   pub: "확인 중",
-  diff: "건설 중인 자산(AUC)에 모인 원가를 본자산으로 정산하는 AA-CO 연계의 대표 케이스. 내부오더·WBS에 모인 비용 중 자본화 대상은 AUC로 정산하고, 준공 시 본자산으로 대체한다. 자산 정산프로파일(aa-settlement)과 함께 본다.",
+  diff: "건설 중인 자산(AUC)에 모인 원가를 본자산으로 정산하는 AA-CO 연계의 대표 케이스. 내부오더·WBS에 모인 비용 중 자본화 대상은 AUC로 정산하고, 준공 시 본자산으로 대체한다. 자산 정산프로파일(aa-settlement)과 함께 본다. 비용이 투자오더에 모인 경우 KO88 오더정산 흐름을 타고, 투자관리 없이 AuC에 직접 전기한 경우에만 AIAB/AIBU를 쓴다. 투자오더로 AuC를 취득한 뒤 일반 자산 정산(AIAB/AIBU)으로 대체하려 했으나 오더정산만 가능했던 사례가 있다.",
   help: [],
   tags: ["CO", "자산", "정산", "AUC"], related: ["aa-settlement", "co-settle", "co-order", "aa-acctdet"],
   eccSame: true
