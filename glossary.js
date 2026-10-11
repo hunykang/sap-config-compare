@@ -253,7 +253,7 @@ const GLOSSARY = [
   "kr": "필드상태",
   "en": "Field Status",
   "abbr": "",
-  "desc": "전표 입력 화면에서 각 필드를 필수·선택·숨김 중 어떻게 보여줄지 정하는 설정이다. 계정그룹과 전기키의 조합으로 최종 필드상태가 결정된다.",
+  "desc": "전표 입력 화면에서 각 필드를 필수·선택·숨김 중 어떻게 보여줄지 정하는 설정이다. 필드상태그룹(OBC4)과 전기키의 조합으로 최종 필드상태가 결정된다.",
   "area": "gl",
   "items": ["gl-field-status", "gl-field-status-assign"],
   "terms": [
@@ -765,7 +765,7 @@ const GLOSSARY = [
   "kr": "허용오차그룹",
   "en": "Tolerance Group",
   "abbr": "",
-  "desc": "전표 입력 담당자별로 허용되는 차액 한도를 묶은 그룹이다. 한도를 넘는 전표는 전기되지 않고, 담당자 권한에 따라 결재 절차를 탄다.",
+  "desc": "전표 입력 담당자별로 허용되는 차액 한도를 묶은 그룹이다. 한도를 넘는 전표는 경고나 에러로 전기가 막힌다. 승인 워크플로우는 별개 기능이다.",
   "area": "gl",
   "items": ["gl-tolerance"],
   "terms": [
@@ -1276,7 +1276,7 @@ const GLOSSARY = [
   "kr": "사유코드",
   "en": "Reason Code",
   "abbr": "",
-  "desc": "지급차이나 역분개가 왜 일어났는지 구분하는 코드다. 사유코드별로 차액이 어느 계정으로 가는지가 정해진다.",
+  "desc": "지급차이가 왜 일어났는지 구분하는 코드다. 사유코드별로 차액이 어느 계정으로 가는지가 정해진다.",
   "area": "ar",
   "items": ["ar-reason", "ar-overunder", "gl-reversal-reason"],
   "terms": [

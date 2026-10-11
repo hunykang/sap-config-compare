@@ -327,7 +327,7 @@ const GUIDE_DATA = [
 },
 {
   id: "ap-bp-role", area: "AP", item: "BP 역할 활성화/정의",
-  ecc: "해당 없음 (ECC에는 BP 개념 없음)",
+  ecc: "BP 존재(선택 기능). FI·CO·SD·MM은 고객·공급처 마스터 중심",
   pce: "어플리케이션 전반 컴포넌트 > SAP 비즈니스 파트너",
   pub: "SSCUI 500092 (그룹핑·번호범위 중심, 역할 정의는 제한적)",
   diff: "ECC의 고객/공급처 마스터가 S/4HANA에서 비즈니스 파트너(BP)로 통합. 역할(Role)·역할범주·그룹핑 정의가 마스터 전략의 출발점. 참고로 BP는 S/4HANA에서 처음 생긴 개념이 아니다. ECC의 주 FI·CO·SD·MM 영역에서는 vendor/customer를 각각 관리했지만, TR(금융기관·거래상대방)이나 대학교 캠퍼스매니지먼트(CM, 학생 BP·역할 PSCM10) 같은 영역에서는 이미 ECC 때부터 BP를 썼다.",
@@ -440,7 +440,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 대체 조정 계정로 전기 > 기타 특별 G/L 거래 > 구매처에 대한 대체조정계정 정의",
   pce: "재무회계 > 채권 및 채무 > 공급업체 계정",
   pub: "CBC > Accounting (회계) > General Ledger (총계정원장) > Account Determination (계정 결정) > Account Determination in General Ledger (총계정원장 계정 결정) > Define Alternative Reconciliation Accounts (대체 조정 계정 정의) (102631)",
-  diff: "ECC와 개념 동일. Public은 SSCUI 500043에서 정의. Public YCOA에서 대체조정계정 유형 필드를 직접 지정할 수 있는 계정그룹은 RECN뿐이다. ABST는 조정계정 그룹이지만 해당 필드가 숨겨져 있어 시스템이 정해준 대로만 써야 한다. 외부 전표 시스템과 연동할 때는 대체조정계정을 고정 드롭다운으로 관리하지 말고, IMG의 대체조정계정 테이블을 RFC나 OData 커스텀 API로 전달해 선택 목록이 자동으로 따라오게 설계하는 것이 원칙이다.",
+  diff: "ECC와 개념 동일. Public은 SSCUI 102631에서 정의. Public YCOA에서 대체조정계정 유형 필드를 직접 지정할 수 있는 계정그룹은 RECN뿐이다. ABST는 조정계정 그룹이지만 해당 필드가 숨겨져 있어 시스템이 정해준 대로만 써야 한다. 외부 전표 시스템과 연동할 때는 대체조정계정을 고정 드롭다운으로 관리하지 말고, IMG의 대체조정계정 테이블을 RFC나 OData 커스텀 API로 전달해 선택 목록이 자동으로 따라오게 설계하는 것이 원칙이다.",
   help: [],
   tags: ["AP", "BP"], related: ["ap-vendor-group", "xmod-obyc"],
   eccSame: true
@@ -502,7 +502,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 대체 조정 계정로 전기 > 기타 특별 G/L 거래 > 고객에 대한 대체조정계정 정의",
   pce: "재무회계 > 채권 및 채무 > 고객 계정",
   pub: "CBC > Accounting (회계) > General Ledger (총계정원장) > Account Determination (계정 결정) > Account Determination in General Ledger (총계정원장 계정 결정) > Define Alternative Reconciliation Accounts (대체 조정 계정 정의) (102631)",
-  diff: "ECC와 개념 동일. Public은 SSCUI 500043에서 정의. ABST와 RECN은 둘 다 조정계정 그룹이지만 필드 상태가 다르다. ABST는 조정계정 유형 필드가 숨겨져 있고, RECN은 열려 있어 고객용·공급처용을 직접 지정할 수 있다. 커스텀 조정계정을 만들 때는 RECN으로 만드는 것이 편하다.",
+  diff: "ECC와 개념 동일. Public은 SSCUI 102631에서 정의. ABST와 RECN은 둘 다 조정계정 그룹이지만 필드 상태가 다르다. ABST는 조정계정 유형 필드가 숨겨져 있고, RECN은 열려 있어 고객용·공급처용을 직접 지정할 수 있다. 커스텀 조정계정을 만들 때는 RECN으로 만드는 것이 편하다.",
   help: [],
   tags: ["AR", "BP"], related: ["ar-cust-group", "ap-recon"],
   eccSame: true
@@ -656,7 +656,7 @@ const GUIDE_DATA = [
   ecc: "AJRW (자산 연마감)",
   pce: "재무회계 > 자산 회계 > 정기 처리 > 연마감 (AJAB)",
   pub: "확인 중",
-  diff: "New AA에서는 자산 연마감이 FI 연마감과 통합되어 AJAB로 일원화. ABST2(AA-FI 대사 리포트) 폐지.",
+  diff: "New AA에서는 별도 자산 이월이 불필요 — FI 잔액이월(FAGLGVTR)이 자산 잔액까지 같이 넘긴다. 연말마감(AJAB)은 존속.",
   help: ["https://help.sap.com/doc/0df2ffddebab40cf9338488b2f18dc41/2025.latest/en-US/SIMPL_OP2025.pdf"],
   tags: ["자산"], related: ["aa-transtype"],
   eccSame: false
@@ -665,8 +665,8 @@ const GUIDE_DATA = [
   id: "tax-code", area: "세금", item: "세금코드 정의",
   ecc: "재무회계 > 재무회계 기본세팅 > 부가가치세 > 전기 > 세금코드 정의",
   pce: "재무회계 > 재무회계 전역 설정 > 세금 > 매출세/매입세 계산",
-  pub: "SSCUI 500069 '세금코드 유지보수'",
-  diff: "ECC와 개념 동일. Public은 SSCUI 500069에서 유지보수.",
+  pub: "SSCUI 101016 'Define Tax Codes for Sales and Purchases'",
+  diff: "ECC와 개념 동일. Public은 SSCUI 101016에서 유지보수.",
   help: [],
   tags: ["세금"], related: ["tax-account", "tax-procedure", "tax-nontax"],
   eccSame: true
@@ -696,7 +696,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 재무회계 기본세팅 > 부가가치세 > 전기 > 비과세 거래에 대한 세금코드 정의",
   pce: "재무회계 > 재무회계 전역 설정 > 세금 > 매출세/매입세 계산",
   pub: "CBC > Accounting (회계) > Tax Management (세금 관리) > Tax on Goods and Services (재화·용역 세금) > Tax Codes for Sales and Purchases (매출·매입 세금 코드) > Assign Tax Codes for Non-Taxable Transactions (비과세 거래 세금 코드 지정) (102602)",
-  diff: "ECC와 개념 동일. Public은 SSCUI 500069에서 지정.",
+  diff: "ECC와 개념 동일. Public은 SSCUI 102602에서 지정.",
   help: [],
   tags: ["세금"], related: ["tax-code"],
   eccSame: true
@@ -934,7 +934,7 @@ const GUIDE_DATA = [
 },
 {
   id: "close-carryfwd", area: "결산", item: "잔액이월",
-  ecc: "FAGLGVTR (G/L), AJRW (자산)",
+  ecc: "F.16 (G/L), F.07 (AP/AR), AJRW (자산)",
   pce: "재무회계 > 총계정원장 회계 > 정기 처리 > 이월 (FAGLGVTR)",
   pub: "확인 중",
   diff: "New AA에서는 자산 잔액이월이 FI 이월과 통합되어 별도 자산 이월이 불필요.",
@@ -1067,7 +1067,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 조정 전기 / 역분개 > 역분개사유 정의",
   pce: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 조정 전기/역분개",
   pub: "CBC > Accounting (회계) > General Ledger (총계정원장) > General Ledger Processes (총계정원장 프로세스) > General Journal Entries (일반 전표 입력) > Define Reasons for Reversal (역분개 사유 정의) (101039)",
-  diff: "역분개 시 사유코드와 전기일 규칙. ECC와 동일.",
+  diff: "역분개 시 역분개사유와 전기일 규칙. ECC와 동일.",
   help: [],
   tags: ["G/L", "전표"], related: ["gl-doc-type", "gl-negative-posting"],
   eccSame: true
@@ -1096,7 +1096,7 @@ const GUIDE_DATA = [
   id: "co-auc-settle", area: "자산회계", item: "AUC 정산 (건설중인자산 → 본자산)",
   ecc: "자산회계 > 기말결산 > 건설가계정(AuC) 정산",
   pce: "자산회계 > 기말결산",
-  pub: "IMG 표시 > 회계 > 자본 비용 관리 > 자본 비용 정산",
+  pub: "확인 중",
   diff: "건설 중인 자산(AUC)에 모인 원가를 본자산으로 정산하는 AA-CO 연계의 대표 케이스. 내부오더·WBS에 모인 비용 중 자본화 대상은 AUC로 정산하고, 준공 시 본자산으로 대체한다. 자산 정산프로파일(aa-settlement)과 함께 본다.",
   help: [],
   tags: ["CO", "자산", "정산", "AUC"], related: ["aa-settlement", "co-settle", "co-order", "aa-acctdet"],
