@@ -38,7 +38,7 @@ const GUIDE_DATA = [
   ecc: "기업 구조 > 정의 > 재무회계 > 사업영역 정의",
   pce: "기업 구조 > 정의 > 재무회계",
   pub: "사용불가 (2608 버전 현재)",
-  diff: "S/4HANA Public(2608 버전 현재)에서는 사업영역을 사용할 수 없다. 사업영역 대신 손익센터(Profit Center)로 구분하는 것을 권장한다.",
+  diff: "S/4HANA Public(2608 버전 현재)에서는 사업영역을 사용할 수 없다. 사업영역 대신 손익센터(Profit Center)로 구분하는 것을 권장한다. 사업영역을 쓸지는 '할 수는 있지만 하지 않는다'는 판단이 필요하다. 기준은 SAP의 로드맵과 향후 전환 계획이다.",
   help: ["https://userapps.support.sap.com/sap/support/knowledge/en/2760863"],
   tags: ["조직"], related: ["org-company-code", "co-prctr", "gl-docsplit"],
   eccSame: true
@@ -150,7 +150,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 재무회계 기본세팅 > 원장 > 회계연도 및 전기 기간 > 회사코드를 회계연도변형에 지정",
   pce: "재무회계 > 재무회계 전역 설정 > 원장 > 회계연도 및 전기기간",
   pub: "SAP Business Configuration > 회계 > 총계정원장 > 회계연도 > 모든 회사 코드에 사용되는 회계연도 변형 > 원장 및 회사 코드에 회계연도 변형 지정",
-  diff: "ECC와 동일.",
+  diff: "ECC와 동일. 회사마다 결산월이 다르다. 대학 등 2월 결산 회사도 있고 일본계 회사는 3월 결산을 쓴다. 전기기간은 달력 월과 다를 수 있다 — V3 회계연도변형에서는 001이 4월이다.",
   help: [],
   tags: ["G/L"], related: ["gl-fiscal-year", "org-company-code", "gl-pp-variant"],
   eccSame: true
@@ -170,7 +170,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 재무회계 기본세팅 > 원장 > 회계연도 및 전기 기간 > 전기 기간 > 전기기간 개시 및 마감",
   pce: "재무회계 > 재무회계 전역 설정 > 원장 > 전기기간",
   pub: "Fiori 'Manage Posting Period' 앱 (Scope Item J58)",
-  diff: "PCE에서는 OB52로 개시/마감하며 개념은 ECC와 동일. Public은 Fiori 앱으로 수행.",
+  diff: "PCE에서는 OB52로 개시/마감하며 개념은 ECC와 동일. Public은 Fiori 앱으로 수행. 특별기간(13~16기)은 결산·감사·세무 조정용으로 나눠 쓰는 사례가 있다. OB52의 권한그룹(AuGr)과 권한 오브젝트 F_BKPF_BUP로 일반 유저와 결산 담당 회계 유저의 전기기간을 단계적으로 통제할 수 있다. FI(OB52)·CO(OKP1)·MM(MMPV)은 각각 기간을 통제하므로 하나라도 닫히면 관련 전표가 막힌다. 모듈별 마감 순서를 조율해야 한다.",
   help: [],
   tags: ["G/L", "전표", "Fiori"], related: ["gl-pp-variant", "close-carryfwd", "gl-doc-type"],
   eccSame: true
@@ -180,7 +180,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 재무회계 기본세팅 > 전표 > 전표유형 > 데이터 입력뷰의 전표유형 정의",
   pce: "재무회계 > 재무회계 전역 설정 > 전표 > 전표유형",
   pub: "CBC > Accounting (회계) > General Ledger (총계정원장) > General Ledger Processes (총계정원장 프로세스) > General Journal Entries (일반 전표 입력) > Define Document Types (전표 유형 정의) (101522)",
-  diff: "ECC와 개념 동일.",
+  diff: "ECC와 개념 동일. e-Accounting 연동 시 매출·매입·법인카드·일반차대변을 전표유형으로 구분해 인터페이스하고, SAP 전표의 헤더 참조 필드 XBLNR에 외부 문서번호를 받아 양쪽 시스템의 크로스체크·검색에 활용한다.",
   help: [],
   tags: ["G/L", "전표"], related: ["gl-doc-number", "gl-pp-variant", "gl-doc-change"],
   eccSame: true
@@ -190,7 +190,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 재무회계 기본세팅 > 전표 > 전표번호범위 > 데이터 입력뷰에 대한 전표 번호범위 정의",
   pce: "재무회계 > 재무회계 전역 설정 > 전표 > 전표유형",
   pub: "CBC > Accounting (회계) > General Ledger (총계정원장) > General Ledger Processes (총계정원장 프로세스) > General Journal Entries (일반 전표 입력) > Define Document Number Ranges (전표 번호 범위 정의) (101702)",
-  diff: "ECC와 동일.",
+  diff: "ECC와 동일. 원전표·역분개 번호정책은 ① 같은 전표유형·번호범위 사용, ② 유형·번호 모두 분리, ③ 유형은 달라도 동일 번호범위 할당 중 회사 정책·감사 추적 방식에 맞춰 결정한다. 연도와 무관하게 한 번호범위를 쓰면 연말 결산전표와 연초 신규전표가 번호 순서에 섞인다. 임시전표 삭제 시 BKPF 헤더는 상태값 Z로 남고 전표번호는 재사용되지 않으므로, e-Accounting 연동에서 승인·반려 시 임시전표를 삭제하면 번호 공백이 누적될 수 있다. ECC·PCE에서 번호범위의 현재 번호는 CTS에 함께 묶이므로 테스트·운영 서버별로 직접 관리하는 것이 안전하다. Public은 MIRO API로 임시전표(park) 형태로 받을 수 있다.",
   help: [],
   tags: ["G/L", "전표"], related: ["gl-doc-type"],
   eccSame: true
@@ -199,8 +199,8 @@ const GUIDE_DATA = [
   id: "gl-posting-key", area: "G/L", item: "전기키 정의",
   ecc: "재무회계 > 재무회계 기본세팅 > 전표 > 전기키 정의",
   pce: "재무회계 > 재무회계 전역 설정 > 전표 > 전표 번호 범위",
-  pub: "확인 중",
-  diff: "차/대변, 계정유형별 전기 규칙 정의. ECC와 동일. (EUG 문서에는 별도 항목 없음)",
+  pub: "표준 전기키 사용. 일반 분개 앱에서는 차변/대변 선택 (전기키 설정 변경 불가)",
+  diff: "차/대변, 계정유형별 전기 규칙 정의. ECC와 동일. (EUG 문서에는 별도 항목 없음) 전 세계 SAP 회사가 공통 표준 전기키를 쓰므로 변경 없이 사용하는 것이 교육·매뉴얼·외부연계 측면에서 유리하다. 표준을 그대로 쓰는 것이 장기적으로 가장 합리적인 선택이다. Public에서는 일반 분개 앱에서 전기키를 직접 선택하지 않고 차변/대변을 선택하며, 전기키 설정 변경은 열려 있지 않다.",
   help: [],
   tags: ["G/L", "전표"], related: ["gl-doc-type", "gl-field-status"],
   eccSame: true
@@ -280,7 +280,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항 > 재무제표버전 정의",
   pce: "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정",
   pub: "CBC > Accounting (회계) > General Ledger (총계정원장) > Chart of Accounts (계정과목표) > Chart of Accounts & Financial Statements (계정과목표 및 재무제표) > Define Financial Statement Versions (재무제표 버전 정의) (102669)",
-  diff: "ECC와 개념 동일. Fiori 'Balance Sheet/Income Statement' 앱(J58)으로 조회.",
+  diff: "ECC와 개념 동일. Fiori 'Balance Sheet/Income Statement' 앱(J58)으로 조회. Public은 OB58 대신 Manage Global Hierarchies 앱으로 재무제표 계층을 관리한다. 기존 FSV를 글로벌 계층으로 마이그레이션한 뒤에는 해당 앱에서만 수정할 수 있다.",
   help: [],
   tags: ["G/L"], related: ["gl-coa", "gl-acct-group", "gl-retained"],
   eccSame: true
@@ -320,7 +320,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 미결 항목 반제 > 자동반제준비",
   pce: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 미결 항목 반제",
   pub: "CBC > Accounting (회계) > General Ledger (총계정원장) > General Ledger Processes (총계정원장 프로세스) > Journal Entry Clearing (전표 반제) > Prepare Automatic Clearing (자동 반제 준비) (101971)",
-  diff: "자동반제 기준(반제규칙) 사전 준비. ECC와 동일.",
+  diff: "자동반제 기준(반제규칙) 사전 준비. ECC와 동일. 자동반제(F.13)에서는 차대변 라인 없이 헤더만 있는 반제전표가 생성될 수 있으며, 이는 표준 동작이다.",
   help: [],
   tags: ["G/L", "전표"], related: ["close-autoclear"],
   eccSame: true
@@ -330,7 +330,7 @@ const GUIDE_DATA = [
   ecc: "BP 존재(선택 기능). FI·CO·SD·MM은 고객·공급처 마스터 중심",
   pce: "어플리케이션 전반 컴포넌트 > SAP 비즈니스 파트너",
   pub: "SSCUI 500092 (그룹핑·번호범위 중심, 역할 정의는 제한적)",
-  diff: "ECC의 고객/공급처 마스터가 S/4HANA에서 비즈니스 파트너(BP)로 통합. 역할(Role)·역할범주·그룹핑 정의가 마스터 전략의 출발점. 참고로 BP는 S/4HANA에서 처음 생긴 개념이 아니다. ECC의 주 FI·CO·SD·MM 영역에서는 vendor/customer를 각각 관리했지만, TR(금융기관·거래상대방)이나 대학교 캠퍼스매니지먼트(CM, 학생 BP·역할 PSCM10) 같은 영역에서는 이미 ECC 때부터 BP를 썼다.",
+  diff: "ECC의 고객/공급처 마스터가 S/4HANA에서 비즈니스 파트너(BP)로 통합. 역할(Role)·역할범주·그룹핑 정의가 마스터 전략의 출발점. 참고로 BP는 S/4HANA에서 처음 생긴 개념이 아니다. ECC의 주 FI·CO·SD·MM 영역에서는 vendor/customer를 각각 관리했지만, TR(금융기관·거래상대방)이나 대학교 캠퍼스매니지먼트(CM, 학생 BP·역할 PSCM10) 같은 영역에서는 이미 ECC 때부터 BP를 썼다. ECC 시절 CM(학생 BP) 등록금 마감은 당해연도 2월로만 FI 전송이 가능해, 3월 수익인식이 필요하면 FI에서 2월분을 역분개한 뒤 코스트오브젝트 그대로 3월에 재전기하는 방식으로 시점을 맞췄던 사례가 있다.",
   help: [],
   tags: ["AP", "BP", "마스터"], related: ["ap-bp-num", "ap-cvi", "ap-vendor-group"],
   eccSame: false
@@ -706,7 +706,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 재무회계 기본세팅 > 원천세 > 확장된 원천세 > 원천세키/코드 정의",
   pce: "재무회계 > 재무회계 전역 설정 > 원천세 > 확장된 원천세",
   pub: "SSCUI 500351 '원천세코드정의', '원천세유형을 회사코드에 지정'",
-  diff: "ECC와 개념 동일. Public은 SSCUI 500351에서 정의.",
+  diff: "ECC와 개념 동일. Public은 SSCUI 500351에서 정의. 같은 달에 원천세 대상·비대상 거래가 섞이면 BP에는 원천세 활성화를 유지하고 비대상 건은 전표 입력 시 개별 비활성화한다. 전표 API에도 비대상 거래는 원천세를 공제하지 않도록 값을 전달한다. 테스트 시 '원천세정보가 일치하지 않으므로 항목을 활성화하지 않았습니다' 오류가 나면 RFWT0010(원천세 정보를 관련 유형에 맞게 조정)으로 전표의 원천세 정보를 맞춘다. 한국은 지급기준 원천세다.",
   help: [],
   tags: ["세금"], related: ["wth-account", "wth-section"],
   eccSame: true
@@ -917,7 +917,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 총계정원장 회계 > 정기 처리 > 결산콕핏 (작업 템플릿·태스크 정의)",
   pce: "재무회계 > 총계정원장 회계 > 정기 처리 > 결산콕핏",
   pub: "확인 중",
-  diff: "S/4HANA 결산콕핏은 Fiori 기반 스케줄링·모니터링으로 고도화. 작업 템플릿·의존성 정의 체계는 ECC와 유사.",
+  diff: "S/4HANA 결산콕핏은 Fiori 기반 스케줄링·모니터링으로 고도화. 작업 템플릿·의존성 정의 체계는 ECC와 유사. ECC 결산콕핏은 작업을 하나씩 등록해야 해 초기 설정 공수가 들고, 소규모 회계팀에서는 엑셀 체크리스트가 더 실용적이라 정착이 어려울 수 있다. Public은 표준 통합 콕핏 대신 별도 라이선스의 SAP Advanced Financial Closing과 4HG 연동을 검토한다.",
   help: ["https://blog.sap-press.com/key-changes-to-period-end-closing-in-s/4hana-finance"],
   tags: ["결산"], related: ["close-jobs"],
   eccSame: false
@@ -947,7 +947,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 총계정원장 회계 > 정기처리 > 기간손익/발생엔진 설정",
   pce: "재무회계 > 총계정원장 회계 > 정기 처리 > 발생엔진",
   pub: "확인 중",
-  diff: "발생유형·평가영역·규칙세트 정의 체계는 ECC와 동일. S/4HANA에서는 구매오더 발생액 Fiori 앱(2VB)과 연계.",
+  diff: "발생유형·평가영역·규칙세트 정의 체계는 ECC와 동일. S/4HANA에서는 구매오더 발생액 Fiori 앱(2VB)과 연계. S/4HANA Cloud Public Edition 2608 현재 재무 쪽 수기 발생엔진은 제공되지 않는다. 구매오더 기반 발생액(2VB)이 Accrual Engine 위에서 동작하며, MM 조달 프로세스를 쓰지 않는 회사에는 적용이 어려워 반복전표나 수기 전표를 검토한다.",
   help: [],
   tags: ["결산"], related: ["close-cockpit"],
   eccSame: true
@@ -957,7 +957,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 정기전표",
   pce: "Fiori 'Manage Recurring Journal Entries' 앱",
   pub: "Fiori 'Manage Recurring Journal Entries' 앱 (Scope Item J58)",
-  diff: "PCE에서는 GUI와 Fiori 병행, Public은 Fiori 앱 중심.",
+  diff: "PCE에서는 GUI와 Fiori 병행, Public은 Fiori 앱 중심. 반복전표는 매달 같은 금액을 전제로 하므로, 금액이 달라질 때마다 정의를 수정해야 해 변동 결산 항목에는 실익이 낮다. 변동 항목은 발생엔진이나 수기 전표를 검토한다.",
   help: [],
   tags: ["결산", "전표", "Fiori"], related: ["gl-doc-type"],
   eccSame: true
@@ -977,7 +977,7 @@ const GUIDE_DATA = [
   ecc: "기업 구조 > 지정 > 자재관리 > 플랜트를 회사코드에 지정",
   pce: "기업 구조 > 지정 > 자재관리",
   pub: "확인 중",
-  diff: "MM-FI 연결의 출발점. ECC와 동일.",
+  diff: "MM-FI 연결의 출발점. ECC와 동일. 사업장은 부가세 신고 단위다. 플랜트는 회사코드에 속하고(OX18), 회사코드 안에는 사업장이 여러 개 있을 수 있다. 한국에서는 플랜트-사업장 연결로 신고 사업장을 정하므로, MM 조직구조를 짤 때 사업장까지 같이 그리는 것이 좋다.",
   help: [],
   tags: ["연계"], related: ["org-company-code"],
   eccSame: true
@@ -997,7 +997,7 @@ const GUIDE_DATA = [
   ecc: "영업 및 유통 > 기본 기능 > 계정지정/원가계산 > 수익 계정 결정",
   pce: "영업 및 유통 > 기본 기능 > 계정지정/원가계산 > 수익 계정 결정",
   pub: "확인 중",
-  diff: "조건유형·계정키(ERL/ERS) 기반 G/L계정 결정. S/4HANA에서도 VKOA 체계 유지.",
+  diff: "조건유형·계정키(ERL/ERS) 기반 G/L계정 결정. S/4HANA에서도 VKOA 체계 유지. 표준 계정결정으로 안 되는 경우도 있다. 해외법인 간 매출이지만 국내 계산서 발행이 필요했던 해외 임가공 공장 거래에서는 표준 VKOA만으로 계정·부가세 처리가 어려워 SD 컨설턴트와 논의 후 exit(USEREXIT_ACCOUNT_PREP_KOMKCV, RV60AFZZ)으로 처리했던 사례가 있다.",
   help: [],
   tags: ["연계"], related: ["xmod-sdbill"],
   eccSame: true
@@ -1017,7 +1017,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 자산 회계 > ... > 자산구매오더에 대한 계정지정범주 정의",
   pce: "재무회계 > 자산 회계 > 통합",
   pub: "확인 중",
-  diff: "자산 구매오더의 계정지정 유형(A). ECC와 동일.",
+  diff: "자산 구매오더의 계정지정 유형(A). ECC와 동일. 계정지정범주 K(코스트센터)·A(자산)에서 GR-non Valuated를 체크하면 입고 시 자재문서만 생성되고 회계전표는 나오지 않으며, 송장(MIRO) 시 비용/자산·AP를 한 번에 전기한다. 이 경우 GR/IR 계정을 거치지 않는다. 국가물품 품목리스트를 MM 자재코드로 등록하고 입고는 비평가로 처리해 송장 시 비용/AP로 전기한 사례가 있다.",
   help: [],
   tags: ["연계"], related: ["aa-acctdet", "aa-class"],
   eccSame: true
@@ -1107,7 +1107,7 @@ const GUIDE_DATA = [
   ecc: "재무회계 > 재무회계 기본세팅 > 원천세 > 확장된 원천세 > 전기 > 원천세 계정 > 지급될 원천세에 대한 계정정의",
   pce: "재무회계 > 재무회계 전역 설정 > 원천세 > 확장된 원천세",
   pub: "확인 중",
-  diff: "원천세 유형별 납부 계정 결정. ECC와 동일.",
+  diff: "원천세 유형별 납부 계정 결정. ECC와 동일. 계정 정의 시 송장기준·지급기준 구분도 함께 고려한다. 송장기준은 청구서 전기 시 원천세를 떼고 지급 시 다시 떼지 않으며, 지급기준은 청구서 시 전액 채무로 잡고 지급 시 공제한다. 같은 계정이라도 전기가 일어나는 시점이 다르므로 테스트는 시점별로 나눠서 한다.",
   help: [],
   tags: ["세금"], related: ["wth-type"],
   eccSame: true
