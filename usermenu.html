@@ -8,7 +8,7 @@
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9919904969420259" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="style.css?v=20261020c">
-<script src="usermenu.js?v=20261020b"></script>
+<script src="usermenu.js?v=20261020c"></script>
 <style>
 .umod { margin: 20px 0 8px; }
 .umod-title { font-size: 15px; margin: 0 0 4px; padding-bottom: 6px; border-bottom: 2px solid var(--line); display: flex; align-items: baseline; gap: 8px; scroll-margin-top: 80px; }
@@ -30,6 +30,7 @@ td.u-app .u-appen { display: block; font-size: 11.5px; color: var(--muted); }
 td.u-note { font-size: 12.5px; color: var(--muted); }
 td.u-note .u-why { color: #3c4a5e; }
 td.u-note .u-appnote { font-size: 11.5px; }
+td.u-app .u-nonote { font-size: 11.5px; color: #5c6a7d; margin-top: 5px; line-height: 1.5; word-break: break-all; }
 .u-out { display: inline-flex; align-items: center; height: 20px; margin-left: 3px; padding: 0 6px; color: #8b96a9; border-radius: 6px; vertical-align: middle; text-decoration: none; font-size: 11.5px; font-weight: 600; }
 .u-out:hover { color: #475569; background: #eef2f7; }
 .scope-tag { display: inline-block; font-size: 11.5px; padding: 2px 9px; border-radius: 20px; background: #eef2ff; border: 1px solid #c7d4f5; color: #3b5bdb; text-decoration: none; margin: 1px 2px 1px 0; white-space: nowrap; }
@@ -135,7 +136,12 @@ td.u-note .u-appnote { font-size: 11.5px; }
 
   function appCell(e) {
     const a = e.app;
-    if (!a) return e.noapp ? '<span class="tflag unk">대응 없음</span>' : '<span class="tflag unk">확인중</span>';
+    if (!a) {
+      if (!e.noapp) return '<span class="tflag unk">확인중</span>';
+      let h = '<span class="tflag unk">대응 없음</span>';
+      if (e.nonote) h += '<div class="u-nonote">' + esc(e.nonote).replace(/\n/g, '<br>') + '</div>';
+      return h;
+    }
     const qstr = [a.id, a.en || a.ko].filter(Boolean).join(' ');
     const g = 'https://www.google.com/search?q=' + encodeURIComponent('s/4hana public ' + qstr);
     const whyQ = a.ko || a.en || '';
