@@ -65,7 +65,6 @@
   <div class="t-tools">
     <button class="mini" id="expand-all">모두 펼치기</button>
     <button class="mini" id="collapse-all">모두 접기</button>
-    <button class="mini" id="dl-unmapped">⬇ 매핑 안 된 항목 MD 다운로드</button>
     <span class="t-count" id="count-note" role="status" aria-live="polite"></span>
   </div>
 
@@ -224,23 +223,6 @@ document.getElementById('expand-all').addEventListener('click', () =>
   visibleMods().forEach(m => m.classList.add('open')));
 document.getElementById('collapse-all').addEventListener('click', () =>
   listEl.querySelectorAll('.cmod').forEach(m => m.classList.remove('open')));
-document.getElementById('dl-unmapped').addEventListener('click', () => {
-  const cell = s => String(s || '').replace(/\|/g, '\\|').replace(/\s*\n\s*/g, ' ');
-  const rows = GUIDE_DATA.filter(e => !e.pub || e.pub.includes('확인 중') || e.pub.includes('확인중'));
-  const today = new Date().toISOString().slice(0, 10);
-  const md = '# 비교표(SPRO) — Public 매핑 안 된 항목\n\n' +
-    '- 생성일: ' + today + '\n' +
-    '- 기준: Public 경로가 "확인 중"인 항목 (전체 ' + GUIDE_DATA.length + '개 중 ' + rows.length + '개)\n' +
-    '- 출처: https://hunykang.github.io/sap-config-compare/compare.html\n\n' +
-    '| 영역 | 항목 | ECC 경로 | PCE 경로 | Public |\n|---|---|---|---|---|\n' +
-    rows.map(e => '| ' + [e.area, e.item, e.ecc, e.pce, e.pub].map(cell).join(' | ') + ' |').join('\n') + '\n';
-  const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'compare-unmapped-public.md';
-  document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
-});
 
 if (params.get('q')) qInput.value = params.get('q');
 if (params.get('area') && areas.includes(params.get('area'))) {
