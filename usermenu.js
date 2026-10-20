@@ -740,7 +740,7 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "전표 입력 화면의 개인 기본값을 정하는 편집 옵션",
+  "why": "전표 입력 화면의 개인 기본값을 정하는 편집 옵션. 전표 완료로만 전기 체크박스 설정 가능 — 완료로 저장 설정해야 임시 전표에서 CO 전표가 나온다. 퍼블릭도 유사하다.",
   "noapp": true,
   "nonote": "단, Web GUI Direct URL로 접근 가능\nhttps://[my123456 테넌트 주소].s4hana.cloud.sap/sap/bc/gui/sap/its/webgui/?sap-client=100&sap-language=KO&~transaction=[FB00]\n하지만 계속 막히고 있는 중이다. FB00은 열려 있음 (2608 버전 현재)"
  },
