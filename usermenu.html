@@ -108,7 +108,7 @@ td.u-app .u-nonote { font-size: 11.5px; color: #5c6a7d; margin-top: 5px; line-he
 </footer>
 <script src="counter.js?v=202610061759"></script>
 <script src="data.js?v=20261016a"></script>
-<script src="glossary.js?v=20261009d"></script>
+<script src="glossary.js?v=20261021a"></script>
 <script>
 (function () {
   function esc(x) { return String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
@@ -177,8 +177,9 @@ td.u-app .u-nonote { font-size: 11.5px; color: #5c6a7d; margin-top: 5px; line-he
       '<a class="scope-tag" href="https://www.google.com/search?q=' + encodeURIComponent('s/4hana public scope item ' + s) + '" target="_blank" rel="noopener" title="Scope Item 구글 검색">' + esc(s) + '</a>'
     ).join('');
   }
+  const anchorOf = c => 'u-' + String(c).replace(/[^A-Za-z0-9_-]/g, '-');
   function rowHtml(e) {
-    return '<tr>' +
+    return '<tr id="' + anchorOf(e.tcode) + '">' +
       '<td class="u-n" data-th="순번">' + e.n + '</td>' +
       '<td class="u-tcode" data-th="PCE T-code">' + tcodeCell(e) + '</td>' +
       '<td class="u-app" data-th="Cloud 앱">' + appCell(e) + '</td>' +
@@ -235,6 +236,14 @@ td.u-app .u-nonote { font-size: 11.5px; color: #5c6a7d; margin-top: 5px; line-he
   });
   q.addEventListener('input', applyFilter);
   render();
+  // 딥링크 #u-<tcode> 로 들어오면 해당 행으로 이동
+  if (location.hash.startsWith('#u-')) {
+    const tr = document.getElementById(location.hash.slice(1));
+    if (tr) {
+      tr.scrollIntoView({ block: 'center' });
+      tr.classList.add('flash');
+    }
+  }
 })();
 </script>
 </body>
