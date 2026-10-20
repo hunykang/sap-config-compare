@@ -77,7 +77,7 @@
   </div>
 </footer>
 
-<script src="glossary.js?v=20261009d"></script>
+<script src="glossary.js?v=20261021a"></script>
 <script src="data.js?v=20261016a"></script>
 <script src="sketch.js?v=20261009d"></script>
 <script>
@@ -114,6 +114,8 @@ function cardHTML(t) {
       <p class="desc">${esc(t.desc)}</p>
       ${(t.items && t.items.length) ? `<div class="g-chips"><span class="lbl">📋 관련 설정</span>${t.items.map(id =>
         `<a href="compare.html#row-${id}">${esc(itemName(id))}</a>`).join('')}</div>` : ''}
+      ${(t.menus && t.menus.length) ? `<div class="g-chips"><span class="lbl">🧭 관련 T-code</span>${t.menus.map(c =>
+        `<a href="usermenu.html#u-${c.replace(/[^A-Za-z0-9_-]/g, '-')}">${esc(c)}</a>`).join('')}</div>` : ''}
       ${(t.terms && t.terms.length) ? `<div class="g-chips"><span class="lbl">🔗 관련 용어</span>${t.terms.map(id =>
         byId[id] ? `<a href="#term-${id}" data-term="${id}">${esc(byId[id].kr)}</a>` : '').join('')}</div>` : ''}
       ${(SKETCH_BY_TERM[t.id] || []).length ? `<div class="g-chips"><span class="lbl">🎙 현장 스케치</span>${SKETCH_BY_TERM[t.id].map(s =>
