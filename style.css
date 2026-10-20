@@ -23,9 +23,9 @@ a:hover { text-decoration: underline; }
 /* header */
 .site-header { border-bottom: 1px solid var(--line); background: #fff; position: sticky; top: 0; z-index: 50; }
 .site-header .wrap { display: flex; align-items: center; gap: 6px 16px; min-height: 60px; padding-top: 6px; padding-bottom: 6px; flex-wrap: wrap; }
-.brand { font-weight: 800; font-size: 17px; color: var(--ink); white-space: nowrap; flex-shrink: 0; }
+.brand { font-weight: 800; font-size: 16px; color: var(--ink); white-space: nowrap; flex-shrink: 0; }
 .brand .brand-sub { color: #44546b; }
-.nav { display: flex; gap: 6px 14px; margin-left: auto; font-size: 14px; flex-wrap: wrap; }
+.nav { display: flex; gap: 6px 10px; margin-left: auto; font-size: 13.5px; flex-wrap: wrap; }
 .nav a { color: var(--muted); white-space: nowrap; flex-shrink: 0; }
 .nav a.active, .nav a:hover { color: var(--ink); }
 
@@ -129,6 +129,9 @@ p.lead { color: var(--muted); }
   table.compare td.item::before { display: none; }
   table.compare tbody tr:nth-child(even) td { background: transparent; }
   table.compare tbody tr:nth-child(even) td.item { background: var(--card); }
+}
+@media (max-width: 1280px) {
+  .brand .brand-sub { display: none; }
 }
 @media (max-width: 560px) {
   .brand .brand-sub { display: none; }
