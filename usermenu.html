@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UserMenu(SE43) | SAP Config 비교 가이드</title>
+<meta name="description" content="PCE T-code와 S/4HANA Public 앱(App ID·이름) 매핑표. SE43 유저메뉴 레벨 기준으로 SAP 표준 T-code와 대응 Public 앱, Scope Item을 정리했습니다.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9919904969420259" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="style.css?v=20261007j">
+<script src="usermenu.js?v=20261020a"></script>
+<style>
+.umod { margin: 20px 0 8px; }
+.umod-title { font-size: 15px; margin: 0 0 4px; padding-bottom: 6px; border-bottom: 2px solid var(--line); display: flex; align-items: baseline; gap: 8px; scroll-margin-top: 80px; }
+.umod-name { flex-shrink: 0; font-size: 13px; font-weight: 800; color: #fff; background: #44546b; border-radius: 6px; padding: 3px 10px; letter-spacing: .3px; }
+.umod-meta { font-size: 12.5px; color: var(--muted); margin-left: auto; font-weight: 400; flex-shrink: 0; }
+.umod .table-wrap { overflow-x: auto; }
+.umod table.compare { margin: 12px 0 6px; }
+td.u-n { text-align: center; color: var(--muted); font-size: 12.5px; white-space: nowrap; }
+td.u-tcode { font-weight: 700; }
+.u-tc { display: inline-block; white-space: nowrap; }
+.u-tcdot { color: #b6bfcc; margin: 0 5px; }
+.u-tclbl { font-size: 11px; font-weight: 600; color: #5b7a99; background: #eef4fa; border-radius: 4px; padding: 1px 6px; margin-left: 3px; white-space: nowrap; }
+td.u-tcode .u-menu { display: block; font-weight: 400; font-size: 11.5px; color: var(--muted); white-space: normal; margin-top: 2px; }
+td.u-tcode .u-koname { display: block; font-weight: 400; font-size: 12.5px; color: inherit; white-space: normal; margin-top: 2px; }
+td.u-tcode .u-enname { display: block; font-weight: 400; font-size: 11.5px; color: var(--muted); white-space: normal; }
+td.u-app .u-appid { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; background: #f1f5f9; border: 1px solid var(--line); border-radius: 6px; padding: 2px 7px; white-space: nowrap; }
+td.u-app .u-appko { display: block; font-size: 12.5px; margin-top: 3px; }
+td.u-app .u-appen { display: block; font-size: 11.5px; color: var(--muted); }
+td.u-note { font-size: 12.5px; color: var(--muted); }
+td.u-note .u-why { color: #3c4a5e; }
+td.u-note .u-appnote { font-size: 11.5px; }
+.u-out { display: inline-flex; align-items: center; height: 20px; margin-left: 3px; padding: 0 6px; color: #8b96a9; border-radius: 6px; vertical-align: middle; text-decoration: none; font-size: 11.5px; font-weight: 600; }
+.u-out:hover { color: #475569; background: #eef2f7; }
+.scope-tag { display: inline-block; font-size: 11.5px; padding: 2px 9px; border-radius: 20px; background: #eef2ff; border: 1px solid #c7d4f5; color: #3b5bdb; text-decoration: none; margin: 1px 2px 1px 0; white-space: nowrap; }
+.scope-tag:hover { background: #dbe4f5; }
+.tflag { display: inline-block; font-size: 12px; padding: 2px 10px; border-radius: 20px; border: 1px solid var(--line); white-space: nowrap; }
+.tflag.unk { background: #fff8e1; color: #92680f; border-color: #f0e2a0; }
+.u-src { margin-top: 28px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); font-size: 13px; }
+.u-src h4 { margin: 0 0 8px; font-size: 14px; }
+.u-src li { margin: 4px 0; }
+@media (max-width: 760px) {
+  .umod table.compare thead { display: none; }
+  .umod table.compare, .umod table.compare tbody, .umod table.compare tr, .umod table.compare td { display: block; width: auto; }
+  .umod table.compare { border: 0; margin: 10px 0 20px; }
+  .umod table.compare tr { border: 1px solid var(--line); border-radius: 10px; margin: 0 0 12px; background: #fff; overflow: hidden; }
+  .umod table.compare td { border: 0; border-bottom: 1px solid var(--line); padding: 10px 14px; }
+  .umod table.compare td:last-child { border-bottom: 0; }
+  .umod table.compare td::before { content: attr(data-th); display: block; font-size: 12px; color: var(--muted); font-weight: 700; margin-bottom: 4px; }
+  .umod table.compare td.u-n { display: none; }
+  .umod table.compare td.u-note:empty, .umod table.compare td[data-th="기타"]:empty { display: none; }
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">SAP FI Configuring Guide <span class="brand-sub">- ECC/PCE/PUBLIC</span></a>
+    <nav class="nav">
+      <a href="index.html">개요</a>
+      <a href="compare.html">비교표</a>
+      <a href="graph.html">지식그래프</a>
+      <a href="glossary.html">용어집</a>
+      <a href="usermenu.html" class="active">UserMenu(SE43)</a>
+      <a href="table.html">Table(CDS View)</a>
+      <a href="autoposting.html">Auto-posting</a>
+      <a href="sketch.html">현장 스케치</a>
+
+      <a href="updates.html">업데이트</a>
+      <a href="feedback.html">피드백</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h2 class="section">UserMenu(SE43) · PCE T-code ↔ Public 앱</h2>
+  <p class="lead">PCE(SE43 유저메뉴 레벨)의 SAP 표준 T-code와 S/4HANA Public 대응 앱을 매핑한 표입니다. Z로 시작하는 커스텀 T-code는 제외했습니다. 메뉴 영역별로 묶여 있고, 칩을 누르면 해당 영역만 볼 수 있습니다. 대응 앱을 찾지 못한 항목은 <span class="tflag unk">확인중</span>으로 표시됩니다.</p>
+  <div class="searchbar" style="margin:12px 0 10px">
+    <input id="uq" type="search" placeholder="T-code·앱 이름 검색 (예: FB01, F0718, 일반 분개 전기)" aria-label="T-code 앱 검색">
+  </div>
+  <div class="rel-chips" id="ugroups" style="margin:0 0 6px" role="group" aria-label="메뉴 영역 필터"></div>
+  <p id="u-count" class="meta" role="status" aria-live="polite"></p>
+  <div id="u-list"></div>
+
+  <div class="u-src">
+    <h4>참고 · 출처</h4>
+    <ul style="margin:0;padding-left:18px">
+      <li>PCE T-code: <i>_S4 SAP T-CODE_맵핑.xlsx</i> DTVN_SE43 탭(SE43 유저메뉴 레벨) 기준, SAP 표준 T-code만 수록(Z 제외). FI와 연계되는 CO·SD·MM·PP 주요 표준 T-code는 [절차] 탭과 단위테스트 자료에서 보완했습니다.</li>
+      <li>Public 앱: <i>참고_App List_241003.xlsx</i>(앱 이름·Scope Item), <i>통합테스트 스크립트_V1.0.xlsx</i>(SCM 프로세스별 사용 앱), <i>_S4 SAP T-CODE_맵핑.xlsx</i> S4_APP 탭(앱 ID)을 대조했습니다.</li>
+      <li>대응 앱을 찾지 못한 항목은 <span class="tflag unk">확인중</span> 태그를 달았습니다. 잘못된 매핑이나 새로 확인된 앱은 <a href="feedback.html">피드백</a>으로 알려주세요.</li>
+    </ul>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span><a href="https://hksap.tistory.com" target="_blank" rel="noopener">hksap</a> | <a href="https://x.com/hunykang" target="_blank" rel="noopener">@hunykang</a> | <a href="https://www.linkedin.com/in/heonkyu-kang-2a615031/" target="_blank" rel="noopener">LinkedIn</a> | 살며삽질하며.. | My issue log | Since 2006</span>
+    <a href="feedback.html">피드백 보내기</a>
+    <a href="privacy.html">개인정보처리방침</a>
+    <a href="updates.html">업데이트 로그</a>
+    <span id="visit-counter" style="display:none;margin-left:auto"></span>
+  </div>
+</footer>
+<script src="counter.js?v=202610061759"></script>
+<script>
+(function () {
+  function esc(x) { return String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  const listEl = document.getElementById('u-list');
+  const q = document.getElementById('uq');
+  const groupsEl = document.getElementById('ugroups');
+  const countEl = document.getElementById('u-count');
+  let activeGroup = '';
+
+  const GROUPS = [];
+  USERMENU_DATA.forEach(e => { if (!GROUPS.includes(e.group)) GROUPS.push(e.group); });
+
+  function tcodeCell(e) {
+    const list = (e.tcodes && e.tcodes.length ? e.tcodes : [{ c: e.tcode, l: '' }]);
+    const codes = list.map(t =>
+      '<span class="u-tc"><a class="item-link" href="https://www.google.com/search?q=' + encodeURIComponent('sap ' + t.c) + '" target="_blank" rel="noopener" title="구글 검색으로 열기">' + esc(t.c) + ' <i class="ext">↗</i></a>' +
+      (t.l ? '<span class="u-tclbl">' + esc(t.l) + '</span>' : '') + '</span>'
+    ).join('<span class="u-tcdot">·</span>');
+    const why = 'https://www.google.com/search?q=' + encodeURIComponent('sap why ' + list[0].c);
+    return codes + '<a class="u-out" href="' + why + '" target="_blank" rel="noopener" title="왜 필요한지 구글 검색">why?</a>' +
+      (e.ko ? '<span class="u-koname">' + esc(e.ko) + '</span>' : '') +
+      (e.en ? '<span class="u-enname">' + esc(e.en) + '</span>' : '') +
+      (e.menu ? '<span class="u-menu">' + esc(e.menu) + '</span>' : '');
+  }
+  function noteHtml(e) {
+    let out = '';
+    if (e.why) out += '<span class="u-why">' + esc(e.why) + '</span>';
+    if (e.app && e.app.note) out += (out ? '<br>' : '') + '<span class="u-appnote">' + esc(e.app.note) + '</span>';
+    return out;
+  }
+
+  function appCell(e) {
+    const a = e.app;
+    if (!a) return e.noapp ? '<span class="tflag unk">대응 없음</span>' : '<span class="tflag unk">확인중</span>';
+    const qstr = [a.id, a.en || a.ko].filter(Boolean).join(' ');
+    const g = 'https://www.google.com/search?q=' + encodeURIComponent('s/4hana public ' + qstr);
+    const whyQ = a.ko || a.en || '';
+    const why = 'https://www.google.com/search?q=' + encodeURIComponent('s/4hana public why ' + whyQ);
+    let h = '';
+    if (a.id) h += '<a class="item-link" href="' + g + '" target="_blank" rel="noopener" title="구글 검색으로 열기"><span class="u-appid">' + esc(a.id) + '</span> <i class="ext">↗</i></a>';
+    h += '<a class="u-out" href="' + why + '" target="_blank" rel="noopener" title="왜 필요한지 구글 검색">why?</a>';
+    if (a.ko) h += '<span class="u-appko">' + esc(a.ko) + '</span>';
+    if (a.en) h += '<span class="u-appen">' + esc(a.en) + '</span>';
+    if (a.webgui) h += '<span class="u-webgui">(Web GUI)</span>';
+    return h;
+  }
+  function scopeCell(e) {
+    const a = e.app;
+    if (!a || !a.scopes || !a.scopes.length) return '';
+    return a.scopes.map(s =>
+      '<a class="scope-tag" href="https://www.google.com/search?q=' + encodeURIComponent('s/4hana public scope item ' + s) + '" target="_blank" rel="noopener" title="Scope Item 구글 검색">' + esc(s) + '</a>'
+    ).join('');
+  }
+  function rowHtml(e) {
+    return '<tr>' +
+      '<td class="u-n" data-th="순번">' + e.n + '</td>' +
+      '<td class="u-tcode" data-th="PCE T-code">' + tcodeCell(e) + '</td>' +
+      '<td class="u-app" data-th="Cloud 앱">' + appCell(e) + '</td>' +
+      '<td class="u-note" data-th="비고">' + noteHtml(e) + '</td>' +
+      '<td data-th="기타">' + scopeCell(e) + '</td>' +
+      '</tr>';
+  }
+  function groupHtml(grp) {
+    const rows = USERMENU_DATA.filter(e => e.group === grp);
+    const mapped = rows.filter(e => e.app).length;
+    return '<div class="umod" data-group="' + esc(grp) + '">' +
+      '<h3 class="umod-title"><span class="umod-name">' + esc(grp) + '</span>' +
+      '<span class="umod-meta">' + rows.length + '개 항목 · 매핑 ' + mapped + '</span></h3>' +
+      '<div class="table-wrap"><table class="compare">' +
+      '<colgroup><col style="width:6%"><col style="width:26%"><col style="width:30%"><col style="width:18%"><col style="width:20%"></colgroup>' +
+      '<thead><tr><th>순번</th><th>PCE T-code</th><th>Cloud 앱 (ID·이름)</th><th>비고 · 왜 쓰나 (한줄평)</th><th>기타 (Scope Item)</th></tr></thead>' +
+      '<tbody>' + rows.map(rowHtml).join('') + '</tbody></table></div></div>';
+  }
+
+  function render() {
+    listEl.innerHTML = GROUPS.map(groupHtml).join('');
+    groupsEl.innerHTML = GROUPS.map(gr =>
+      '<button data-g="' + esc(gr) + '" aria-pressed="false">' + esc(gr) + '</button>'
+    ).join('');
+    applyFilter();
+  }
+  function applyFilter() {
+    const kw = q.value.trim().toLowerCase();
+    let shown = 0;
+    listEl.querySelectorAll('.umod').forEach(mod => {
+      const gOk = !activeGroup || mod.dataset.group === activeGroup;
+      let modShown = 0;
+      mod.querySelectorAll('tbody tr').forEach(tr => {
+        const ok = gOk && (!kw || tr.textContent.toLowerCase().includes(kw));
+        tr.style.display = ok ? '' : 'none';
+        if (ok) modShown++;
+      });
+      const showMod = gOk && (!kw || modShown > 0);
+      mod.style.display = showMod ? '' : 'none';
+      if (showMod) shown += modShown;
+    });
+    countEl.innerHTML = '<strong>' + shown + '</strong> / ' + USERMENU_DATA.length + '개 항목 표시 중';
+  }
+  groupsEl.addEventListener('click', ev => {
+    const b = ev.target.closest('button');
+    if (!b) return;
+    activeGroup = (activeGroup === b.dataset.g) ? '' : b.dataset.g;
+    groupsEl.querySelectorAll('button').forEach(x => {
+      const on = x.dataset.g === activeGroup;
+      x.classList.toggle('on', on);
+      x.setAttribute('aria-pressed', on);
+    });
+    applyFilter();
+  });
+  q.addEventListener('input', applyFilter);
+  render();
+})();
+</script>
+</body>
+</html>
