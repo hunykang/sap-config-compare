@@ -75,6 +75,7 @@ td.t-note { font-size: 12.5px; color: var(--muted); }
   <p class="lead">FI·CO·SD·MM·PP·PS 주요 테이블에 대응하는 S/4HANA CDS 뷰와, 개발(Key User App / Cloud Development)에서 가져다 쓸 수 있는지를 정리한 표입니다. 모듈별로 쭉 펼쳐져 있고, 주제 칩을 누르면 해당 모듈만 볼 수 있습니다. CDS 뷰 이름은 외부 검색으로 연결됩니다.</p>
   <div class="searchbar" style="margin:12px 0 10px">
     <input id="tq" type="search" placeholder="테이블·CDS뷰 검색 (예: BKPF, ACDOCA, I_GLAccountLineItem)" aria-label="테이블 CDS뷰 검색">
+    <button id="dl-unmapped" style="border:1px solid var(--line);background:#fff;border-radius:20px;padding:6px 14px;font-size:12.5px;cursor:pointer;color:var(--muted);white-space:nowrap">⬇ 매핑 안 된 항목 MD 다운로드</button>
   </div>
   <div class="rel-chips" id="tmods" style="margin:0 0 6px"></div>
   <p id="t-count" class="meta"></p>
@@ -227,6 +228,23 @@ td.t-note { font-size: 12.5px; color: var(--muted); }
   });
 
   render();
+  document.getElementById('dl-unmapped').addEventListener('click', () => {
+    const cell = s => String(s || '').replace(/\|/g, '\\|').replace(/\s*\n\s*/g, ' ');
+    const rows = TABLE_ROWS.filter(r => !r.cds || !r.cds.length);
+    const today = new Date().toISOString().slice(0, 10);
+    const md = '# Table(CDS View) — Public CDS 매핑 안 된 항목\n\n' +
+      '- 생성일: ' + today + '\n' +
+      '- 기준: 대응 CDS View가 아직 매핑되지 않은 PCE 테이블 (전체 ' + TABLE_ROWS.length + '개 중 ' + rows.length + '개)\n' +
+      '- 출처: https://hunykang.github.io/sap-config-compare/table.html\n\n' +
+      '| 모듈 | PCE Table | 설명 | 비고 |\n|---|---|---|---|\n' +
+      rows.map(r => '| ' + [r.mod, r.table, r.desc, r.note].map(cell).join(' | ') + ' |').join('\n') + '\n';
+    const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'table-cds-unmapped.md';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  });
   // 딥링킹: #t-테이블 로 바로 이동
   const initial = location.hash.replace('#', '');
   if (initial) {
