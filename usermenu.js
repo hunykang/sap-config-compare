@@ -4117,6 +4117,30 @@ const USERMENU_DATA = [
   "n": 157
  },
  {
+  "tcode": "COGI",
+  "ko": "자재 이동 오류 재처리",
+  "en": "Reprocess Goods Movements",
+  "menu": "PP",
+  "group": "PP",
+  "src": "manual",
+  "why": "생산 확정 때 실패한 자재 이동을 모아 다시 전기한다.",
+  "tcodes": [
+   {
+    "c": "COGI",
+    "l": ""
+   }
+  ],
+  "app": {
+   "id": "",
+   "en": "Reprocess Goods Movements",
+   "ko": "자재 이동 재처리",
+   "scopes": [],
+   "note": "",
+   "webgui": true
+  },
+  "n": 158
+ },
+ {
   "tcode": "FGI0",
   "ko": "FI 리포트/폼",
   "en": "FI Report/Form",
@@ -4130,7 +4154,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "Report Painter 1:1 없음, 분석 앱으로 대체"
   },
-  "n": 158,
+  "n": 159,
   "tcodes": [
    {
     "c": "FGI0",
@@ -4177,7 +4201,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "재무제표"
   },
-  "n": 159,
+  "n": 160,
   "tcodes": [
    {
     "c": "S_ALR_87012284",
@@ -4207,7 +4231,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 160
+  "n": 161
  },
  {
   "tcode": "SQVI",
@@ -4223,7 +4247,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "View Browser·Custom CDS로 대체"
   },
-  "n": 161,
+  "n": 162,
   "tcodes": [
    {
     "c": "SQVI",
@@ -4261,7 +4285,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "Released CDS 기반 재설계"
   },
-  "n": 162
+  "n": 163
  },
  {
   "tcode": "PFCG",
@@ -4284,7 +4308,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 163
+  "n": 164
  },
  {
   "tcode": "SE43",
@@ -4307,7 +4331,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 164
+  "n": 165
  },
  {
   "tcode": "SM04",
@@ -4330,7 +4354,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 165
+  "n": 166
  },
  {
   "tcode": "SE09",
@@ -4353,7 +4377,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "임포트 F1432 · 엑스포트 F1433 (CTS 대신 소프트웨어 컬렉션 방식)"
   },
-  "n": 166
+  "n": 167
  },
  {
   "tcode": "STMS",
@@ -4376,7 +4400,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 167
+  "n": 168
  },
  {
   "tcode": "SE80",
@@ -4399,7 +4423,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "사용자정의오브젝트·사용자정의필드·사용자정의CDS뷰 포함, RAP 코드는 Eclipse"
   },
-  "n": 168
+  "n": 169
  },
  {
   "tcode": "GGB4",
@@ -4422,7 +4446,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 169
+  "n": 170
  },
  {
   "tcode": "FBZP",
@@ -4445,7 +4469,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "구현 액티비티 > 채권채무 > 지급 > 은행결정"
   },
-  "n": 170
+  "n": 171
  },
  {
   "tcode": "SIMG",
@@ -4468,6 +4492,6 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "PCE SPRO의 Public 대응은 CBC"
   },
-  "n": 171
+  "n": 172
  }
 ];
