@@ -137,7 +137,6 @@ td.u-app .u-nonote { font-size: 11.5px; color: #5c6a7d; margin-top: 5px; line-he
     let out = '';
     if (e.why) out += '<span class="u-why">' + esc(e.why) + '</span>';
     if (e.app && e.app.note) out += (out ? '<br>' : '') + '<span class="u-appnote">' + esc(e.app.note) + '</span>';
-    out += linkChips(e);
     return out;
   }
   const cfgName = id => { const x = (typeof GUIDE_DATA !== 'undefined') ? GUIDE_DATA.find(v => v.id === id) : null; return x ? (x.item || id) : id; };
@@ -184,7 +183,7 @@ td.u-app .u-nonote { font-size: 11.5px; color: #5c6a7d; margin-top: 5px; line-he
       '<td class="u-tcode" data-th="PCE T-code">' + tcodeCell(e) + '</td>' +
       '<td class="u-app" data-th="Cloud 앱">' + appCell(e) + '</td>' +
       '<td class="u-note" data-th="비고">' + noteHtml(e) + '</td>' +
-      '<td data-th="기타">' + scopeCell(e) + '</td>' +
+      '<td data-th="기타">' + scopeCell(e) + linkChips(e) + '</td>' +
       '</tr>';
   }
   function groupHtml(grp) {
