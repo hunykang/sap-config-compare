@@ -32,7 +32,10 @@ const USERMENU_DATA = [
     "l": "계정 목록"
    }
   ],
-  "why": "계정의 성격과 전기 규칙을 정하고, 일괄로 고치고, 목록으로 점검하는 G/L 계정 관리"
+  "why": "계정의 성격과 전기 규칙을 정하고, 일괄로 고치고, 목록으로 점검하는 G/L 계정 관리",
+  "terms": [
+   "gl-account"
+  ]
  },
  {
   "tcode": "FD01",
@@ -65,7 +68,12 @@ const USERMENU_DATA = [
     "l": "조회"
    }
   ],
-  "why": "매출채권의 시작, 고객의 회계 속성을 여는 곳"
+  "why": "매출채권의 시작, 고객의 회계 속성을 여는 곳",
+  "items": [
+   "ar-cust-group",
+   "ar-cust-num",
+   "ar-recon"
+  ]
  },
  {
   "tcode": "FD05",
@@ -94,7 +102,12 @@ const USERMENU_DATA = [
     "l": "삭제 표시"
    }
   ],
-  "why": "거래 중단 고객을 막고 정리 대상을 표시하는 안전장치"
+  "why": "거래 중단 고객을 막고 정리 대상을 표시하는 안전장치",
+  "items": [
+   "ar-cust-group",
+   "ar-cust-num",
+   "ar-recon"
+  ]
  },
  {
   "tcode": "FD33",
@@ -117,7 +130,10 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "고객 신용한도가 살아있는지 확인하는 화면"
+  "why": "고객 신용한도가 살아있는지 확인하는 화면",
+  "terms": [
+   "credit-management"
+  ]
  },
  {
   "tcode": "F.31",
@@ -140,7 +156,10 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "여신 현황 전체를 한 화면에서 조망하는 개요"
+  "why": "여신 현황 전체를 한 화면에서 조망하는 개요",
+  "terms": [
+   "credit-management"
+  ]
  },
  {
   "tcode": "FDK43",
@@ -163,7 +182,10 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "여신 마스터가 제대로 세팅됐는지 목록으로 검증"
+  "why": "여신 마스터가 제대로 세팅됐는지 목록으로 검증",
+  "terms": [
+   "credit-management"
+  ]
  },
  {
   "tcode": "XD01",
@@ -196,7 +218,12 @@ const USERMENU_DATA = [
     "l": "조회"
    }
   ],
-  "why": "영업과 회계가 함께 쓰는 고객 마스터의 본진"
+  "why": "영업과 회계가 함께 쓰는 고객 마스터의 본진",
+  "items": [
+   "ar-cust-group",
+   "ar-cust-num",
+   "ar-recon"
+  ]
  },
  {
   "tcode": "XD05",
@@ -225,7 +252,12 @@ const USERMENU_DATA = [
     "l": "삭제 표시"
    }
   ],
-  "why": "중앙 고객의 차단·삭제 표시를 거는 곳"
+  "why": "중앙 고객의 차단·삭제 표시를 거는 곳",
+  "items": [
+   "ar-cust-group",
+   "ar-cust-num",
+   "ar-recon"
+  ]
  },
  {
   "tcode": "S_ALR_87012179",
@@ -254,7 +286,12 @@ const USERMENU_DATA = [
     "l": "주소 목록"
    }
   ],
-  "why": "고객 전체 목록, 마스터 점검의 기본 자료"
+  "why": "고객 전체 목록, 마스터 점검의 기본 자료",
+  "items": [
+   "ar-cust-group",
+   "ar-cust-num",
+   "ar-recon"
+  ]
  },
  {
   "tcode": "S_ALR_87012182",
@@ -283,7 +320,12 @@ const USERMENU_DATA = [
     "l": "중요 변경"
    }
   ],
-  "why": "누가 언제 고객 정보를 바꿨는지 추적하는 변경 로그"
+  "why": "누가 언제 고객 정보를 바꿨는지 추적하는 변경 로그",
+  "items": [
+   "ar-cust-group",
+   "ar-cust-num",
+   "ar-recon"
+  ]
  },
  {
   "tcode": "FK01",
@@ -511,7 +553,12 @@ const USERMENU_DATA = [
     "l": "조회"
    }
   ],
-  "why": "자산 하나가 장부에 태어나는 곳"
+  "why": "자산 하나가 장부에 태어나는 곳",
+  "items": [
+   "aa-acctdet",
+   "aa-numrange",
+   "aa-transtype"
+  ]
  },
  {
   "tcode": "AS05",
@@ -540,7 +587,12 @@ const USERMENU_DATA = [
     "l": "삭제 표시"
    }
   ],
-  "why": "더 이상 쓰지 않는 자산을 잠그고 정리하는 표시"
+  "why": "더 이상 쓰지 않는 자산을 잠그고 정리하는 표시",
+  "items": [
+   "aa-acctdet",
+   "aa-numrange",
+   "aa-transtype"
+  ]
  },
  {
   "tcode": "AW01N",
@@ -565,7 +617,12 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "자산의 취득부터 상각까지 전 생애를 한 화면에서 추적"
+  "why": "자산의 취득부터 상각까지 전 생애를 한 화면에서 추적",
+  "items": [
+   "aa-acctdet",
+   "aa-numrange",
+   "aa-transtype"
+  ]
  },
  {
   "tcode": "FI12",
@@ -590,7 +647,10 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "자사 은행과 계좌를 등록해 자금 흐름의 출구를 만드는 곳"
+  "why": "자사 은행과 계좌를 등록해 자금 흐름의 출구를 만드는 곳",
+  "items": [
+   "bank-glstruct"
+  ]
  },
  {
   "tcode": "FI01",
@@ -623,7 +683,13 @@ const USERMENU_DATA = [
     "l": "조회"
    }
   ],
-  "why": "은행 마스터 자체를 여는 곳"
+  "why": "은행 마스터 자체를 여는 곳",
+  "items": [
+   "bank-glstruct"
+  ],
+  "terms": [
+   "bank-master"
+  ]
  },
  {
   "tcode": "FI04",
@@ -652,7 +718,10 @@ const USERMENU_DATA = [
     "l": "삭제 표시"
    }
   ],
-  "why": "은행 정보가 언제 어떻게 바뀌었는지 확인"
+  "why": "은행 정보가 언제 어떻게 바뀌었는지 확인",
+  "items": [
+   "bank-glstruct"
+  ]
  },
  {
   "tcode": "OB08",
@@ -798,7 +867,16 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "미결항목을 골라 반제하면서 전기하는 화면"
+  "why": "미결항목을 골라 반제하면서 전기하는 화면",
+  "items": [
+   "co-celem",
+   "xmod-griradj",
+   "etc-mass-clearing"
+  ],
+  "terms": [
+   "clearing",
+   "gl-account"
+  ]
  },
  {
   "tcode": "FB02",
@@ -829,7 +907,10 @@ const USERMENU_DATA = [
     "l": "조회"
    }
   ],
-  "why": "이미 전기된 전표의 내용을 손보고 확인하는 화면"
+  "why": "이미 전기된 전표의 내용을 손보고 확인하는 화면",
+  "items": [
+   "gl-doc-change"
+  ]
  },
  {
   "tcode": "FBV0",
@@ -904,7 +985,13 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "원장별 계정 잔액을 확인하는 잔액 조회"
+  "why": "원장별 계정 잔액을 확인하는 잔액 조회",
+  "items": [
+   "gl-ledger"
+  ],
+  "terms": [
+   "general-ledger"
+  ]
  },
  {
   "tcode": "FS10N",
@@ -927,7 +1014,10 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 34
+  "n": 34,
+  "terms": [
+   "gl-account"
+  ]
  },
  {
   "tcode": "FAGLL03",
@@ -952,7 +1042,14 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "G/L 개별항목을 조회하고 일부를 고치는 화면"
+  "why": "G/L 개별항목을 조회하고 일부를 고치는 화면",
+  "items": [
+   "gl-ledger"
+  ],
+  "terms": [
+   "general-ledger",
+   "gl-account"
+  ]
  },
  {
   "tcode": "FBL3N",
@@ -977,7 +1074,14 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "G/L 개별항목을 줄 단위로 보는 대표 조회"
+  "why": "G/L 개별항목을 줄 단위로 보는 대표 조회",
+  "items": [
+   "gl-ledger"
+  ],
+  "terms": [
+   "general-ledger",
+   "line-item"
+  ]
  },
  {
   "tcode": "FB08",
@@ -1008,7 +1112,10 @@ const USERMENU_DATA = [
     "l": "일괄"
    }
   ],
-  "why": "잘못된 전표를 개별 또는 일괄로 되돌리는 역분개"
+  "why": "잘못된 전표를 개별 또는 일괄로 되돌리는 역분개",
+  "terms": [
+   "reversal"
+  ]
  },
  {
   "tcode": "FBRA",
@@ -1031,7 +1138,14 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "잘못 반제된 건을 풀어 다시 반제할 수 있게 하는 유일한 방법"
+  "why": "잘못 반제된 건을 풀어 다시 반제할 수 있게 하는 유일한 방법",
+  "items": [
+   "xmod-griradj",
+   "etc-mass-clearing"
+  ],
+  "terms": [
+   "clearing"
+  ]
  },
  {
   "tcode": "S_ALR_87012310",
@@ -1108,7 +1222,10 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "계정 잔액만 빠르게 훑어보는 리포트"
+  "why": "계정 잔액만 빠르게 훑어보는 리포트",
+  "terms": [
+   "gl-account"
+  ]
  },
  {
   "tcode": "S_ALR_87012282",
@@ -1137,7 +1254,13 @@ const USERMENU_DATA = [
     "l": "항목 저널"
    }
   ],
-  "why": "G/L 개별항목을 뽑아 분석하는 기본 리포트"
+  "why": "G/L 개별항목을 뽑아 분석하는 기본 리포트",
+  "items": [
+   "gl-ledger"
+  ],
+  "terms": [
+   "general-ledger"
+  ]
  },
  {
   "tcode": "S_ALR_87012287",
@@ -1223,7 +1346,15 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "고객별 잔액이 얼마인지 한눈에 확인"
+  "why": "고객별 잔액이 얼마인지 한눈에 확인",
+  "items": [
+   "ar-cust-group",
+   "ar-cust-num",
+   "ar-recon"
+  ],
+  "terms": [
+   "line-item"
+  ]
  },
  {
   "tcode": "FBL5N",
@@ -1249,7 +1380,15 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "고객 미결·반제 항목을 줄 단위로 추적"
+  "why": "고객 미결·반제 항목을 줄 단위로 추적",
+  "items": [
+   "ar-cust-group",
+   "ar-cust-num",
+   "ar-recon"
+  ],
+  "terms": [
+   "line-item"
+  ]
  },
  {
   "tcode": "F-30",
@@ -1274,7 +1413,16 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "입금을 특정 미결항목에 정확히 붙여 반제"
+  "why": "입금을 특정 미결항목에 정확히 붙여 반제",
+  "items": [
+   "gl-substitution",
+   "xmod-griradj",
+   "etc-mass-clearing"
+  ],
+  "terms": [
+   "clearing",
+   "substitution"
+  ]
  },
  {
   "tcode": "S_ALR_87012172",
@@ -1316,7 +1464,15 @@ const USERMENU_DATA = [
     "l": "반제 항목"
    }
   ],
-  "why": "고객 잔액·미결·반제 항목을 뽑아 분석하는 리포트"
+  "why": "고객 잔액·미결·반제 항목을 뽑아 분석하는 리포트",
+  "items": [
+   "ar-cust-group",
+   "ar-cust-num",
+   "ar-recon"
+  ],
+  "terms": [
+   "line-item"
+  ]
  },
  {
   "tcode": "F-43",
@@ -1395,7 +1551,10 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "공급업체 미결·반제 항목을 줄 단위로 추적"
+  "why": "공급업체 미결·반제 항목을 줄 단위로 추적",
+  "terms": [
+   "line-item"
+  ]
  },
  {
   "tcode": "F-51",
@@ -1418,7 +1577,14 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "미결항목을 골라 반제 전기를 거는 화면"
+  "why": "미결항목을 골라 반제 전기를 거는 화면",
+  "items": [
+   "xmod-griradj",
+   "etc-mass-clearing"
+  ],
+  "terms": [
+   "clearing"
+  ]
  },
  {
   "tcode": "S_ALR_87012082",
@@ -1455,7 +1621,10 @@ const USERMENU_DATA = [
     "l": "반제 항목"
    }
   ],
-  "why": "공급업체 잔액·미결·반제 항목을 뽑아 분석하는 리포트"
+  "why": "공급업체 잔액·미결·반제 항목을 뽑아 분석하는 리포트",
+  "terms": [
+   "line-item"
+  ]
  },
  {
   "tcode": "F-90",
@@ -1480,7 +1649,11 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "공급업체 송장과 함께 자산을 취득 전기"
+  "why": "공급업체 송장과 함께 자산을 취득 전기",
+  "items": [
+   "aa-transtype",
+   "aa-acctdet"
+  ]
  },
  {
   "tcode": "AB08",
@@ -1503,7 +1676,15 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "자산 전표 한 건을 되돌리는 역분개"
+  "why": "자산 전표 한 건을 되돌리는 역분개",
+  "items": [
+   "aa-acctdet",
+   "aa-numrange",
+   "aa-transtype"
+  ],
+  "terms": [
+   "reversal"
+  ]
  },
  {
   "tcode": "AIAB",
@@ -1527,7 +1708,16 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "건설 중 자산을 본자산으로 자본화하는 배부 규칙 설정"
+  "why": "건설 중 자산을 본자산으로 자본화하는 배부 규칙 설정",
+  "items": [
+   "co-auc-settle",
+   "aa-acctdet",
+   "aa-numrange"
+  ],
+  "terms": [
+   "auc",
+   "allocation"
+  ]
  },
  {
   "tcode": "AIBU",
@@ -1551,7 +1741,16 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "건설 중 자산 정산을 실제로 실행"
+  "why": "건설 중 자산 정산을 실제로 실행",
+  "items": [
+   "co-auc-settle",
+   "aa-acctdet",
+   "aa-numrange"
+  ],
+  "terms": [
+   "settlement",
+   "auc"
+  ]
  },
  {
   "tcode": "AIST",
@@ -1574,7 +1773,16 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "잘못된 자본화 정산을 되돌리는 역분개"
+  "why": "잘못된 자본화 정산을 되돌리는 역분개",
+  "items": [
+   "aa-acctdet",
+   "aa-numrange",
+   "aa-transtype"
+  ],
+  "terms": [
+   "reversal",
+   "settlement"
+  ]
  },
  {
   "tcode": "ABUMN",
@@ -1597,7 +1805,13 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "회사 안에서 자산의 소속을 바꾸는 이체"
+  "why": "회사 안에서 자산의 소속을 바꾸는 이체",
+  "items": [
+   "gl-substitution"
+  ],
+  "terms": [
+   "substitution"
+  ]
  },
  {
   "tcode": "ABAVN",
@@ -1622,7 +1836,15 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "폐기된 자산을 장부에서 털어내는 스크랩 처리"
+  "why": "폐기된 자산을 장부에서 털어내는 스크랩 처리",
+  "items": [
+   "aa-acctdet",
+   "aa-numrange",
+   "aa-transtype"
+  ],
+  "terms": [
+   "asset-retirement"
+  ]
  },
  {
   "tcode": "ABAW",
@@ -1645,7 +1867,15 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 61
+  "n": 61,
+  "items": [
+   "aa-acctdet",
+   "aa-numrange",
+   "aa-transtype"
+  ],
+  "terms": [
+   "asset-revaluation"
+  ]
  },
  {
   "tcode": "ABAON",
@@ -1668,7 +1898,12 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 62
+  "n": 62,
+  "items": [
+   "ap-cvi",
+   "aa-acctdet",
+   "aa-numrange"
+  ]
  },
  {
   "tcode": "F-92",
@@ -1692,7 +1927,12 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "고객에게 팔면서 자산을 처분 전기"
+  "why": "고객에게 팔면서 자산을 처분 전기",
+  "items": [
+   "ap-cvi",
+   "ar-cust-group",
+   "ar-cust-num"
+  ]
  },
  {
   "tcode": "AR01",
@@ -1723,7 +1963,12 @@ const USERMENU_DATA = [
     "l": "편집"
    }
   ],
-  "why": "자산 작업을 묶어 목록으로 불러 조회·편집하는 워크리스트"
+  "why": "자산 작업을 묶어 목록으로 불러 조회·편집하는 워크리스트",
+  "items": [
+   "aa-acctdet",
+   "aa-numrange",
+   "aa-transtype"
+  ]
  },
  {
   "tcode": "S_ALR_87012004",
@@ -1777,7 +2022,12 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "자산 잔액(취득가·상각누계·장부가)을 한눈에 확인"
+  "why": "자산 잔액(취득가·상각누계·장부가)을 한눈에 확인",
+  "items": [
+   "aa-acctdet",
+   "aa-numrange",
+   "aa-transtype"
+  ]
  },
  {
   "tcode": "FB41",
@@ -1852,7 +2102,13 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "지급 제안부터 실행까지, 지급 업무 자동화의 심장"
+  "why": "지급 제안부터 실행까지, 지급 업무 자동화의 심장",
+  "items": [
+   "ap-bank-determ"
+  ],
+  "terms": [
+   "automatic-payment"
+  ]
  },
  {
   "tcode": "F-53",
@@ -2006,7 +2262,13 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "전기 기간을 열고 닫는 마감 통제의 첫 관문"
+  "why": "전기 기간을 열고 닫는 마감 통제의 첫 관문",
+  "items": [
+   "gl-posting-period"
+  ],
+  "terms": [
+   "posting-period"
+  ]
  },
  {
   "tcode": "VF04",
@@ -2075,7 +2337,15 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "같은 상대·금액끼리 자동 반제해 미결을 정리"
+  "why": "같은 상대·금액끼리 자동 반제해 미결을 정리",
+  "items": [
+   "gl-clear-prep",
+   "xmod-griradj",
+   "etc-mass-clearing"
+  ],
+  "terms": [
+   "clearing"
+  ]
  },
  {
   "tcode": "MB5S",
@@ -2098,7 +2368,13 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "입고는 됐는데 송장이 안 온 항목의 잔액을 확인하는 목록"
+  "why": "입고는 됐는데 송장이 안 온 항목의 잔액을 확인하는 목록",
+  "items": [
+   "xmod-griradj"
+  ],
+  "terms": [
+   "gr-ir"
+  ]
  },
  {
   "tcode": "F.19",
@@ -2121,7 +2397,14 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 80
+  "n": 80,
+  "items": [
+   "xmod-griradj"
+  ],
+  "terms": [
+   "gr-ir",
+   "clearing"
+  ]
  },
  {
   "tcode": "SM35",
@@ -2166,7 +2449,13 @@ const USERMENU_DATA = [
     "l": "문서조회"
    }
   ],
-  "why": "오래된 GR/IR 미결을 정리하고 결과를 확인하는 유지보수"
+  "why": "오래된 GR/IR 미결을 정리하고 결과를 확인하는 유지보수",
+  "items": [
+   "xmod-griradj"
+  ],
+  "terms": [
+   "gr-ir"
+  ]
  },
  {
   "tcode": "AFAB",
@@ -2193,7 +2482,12 @@ const USERMENU_DATA = [
     "l": "로그조회"
    }
   ],
-  "why": "한 달 상각비를 전기하고 결과를 로그로 검증"
+  "why": "한 달 상각비를 전기하고 결과를 로그로 검증",
+  "items": [
+   "aa-depkey",
+   "aa-deparea",
+   "aa-depchart-assign"
+  ]
  },
  {
   "tcode": "AFAR",
@@ -2216,7 +2510,12 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 84
+  "n": 84,
+  "items": [
+   "aa-acctdet",
+   "aa-numrange",
+   "aa-transtype"
+  ]
  },
  {
   "tcode": "SM37",
@@ -2276,7 +2575,13 @@ const USERMENU_DATA = [
     "l": "변경내역"
    }
   ],
-  "why": "매달 반복되는 전표의 원본을 만들어 두는 반복분개 관리"
+  "why": "매달 반복되는 전표의 원본을 만들어 두는 반복분개 관리",
+  "items": [
+   "close-recurr"
+  ],
+  "terms": [
+   "recurring-entry"
+  ]
  },
  {
   "tcode": "F.14",
@@ -2307,7 +2612,10 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 87
+  "n": 87,
+  "terms": [
+   "recurring-entry"
+  ]
  },
  {
   "tcode": "FBS1",
@@ -2379,7 +2687,10 @@ const USERMENU_DATA = [
     "l": "역분개"
    }
   ],
-  "why": "발생을 계산해 전표로 만드는 발생 엔진의 관리 화면"
+  "why": "발생을 계산해 전표로 만드는 발생 엔진의 관리 화면",
+  "terms": [
+   "accrual-engine"
+  ]
  },
  {
   "tcode": "FAGL_FCV",
@@ -2406,7 +2717,15 @@ const USERMENU_DATA = [
     "l": "전기"
    }
   ],
-  "why": "월말 외화 잔액을 새 환율로 평가해 전표로 전기"
+  "why": "월말 외화 잔액을 새 환율로 평가해 전표로 전기",
+  "items": [
+   "gl-ledger",
+   "ml-parallel-valuation"
+  ],
+  "terms": [
+   "general-ledger",
+   "foreign-currency-valuation"
+  ]
  },
  {
   "tcode": "FAGLGVTR",
@@ -2433,7 +2752,15 @@ const USERMENU_DATA = [
     "l": "이월·구"
    }
   ],
-  "why": "한 해 숫자를 다음 해로 넘기는 잔액 이월"
+  "why": "한 해 숫자를 다음 해로 넘기는 잔액 이월",
+  "items": [
+   "close-carryfwd",
+   "aa-yearend",
+   "gl-ledger"
+  ],
+  "terms": [
+   "general-ledger"
+  ]
  },
  {
   "tcode": "AJRW",
@@ -2464,7 +2791,12 @@ const USERMENU_DATA = [
     "l": "결산취소"
    }
   ],
-  "why": "자산 회계연도를 열고 닫고, 잘못 닫은 연도를 되돌리는 결산 관리"
+  "why": "자산 회계연도를 열고 닫고, 잘못 닫은 연도를 되돌리는 결산 관리",
+  "items": [
+   "close-carryfwd",
+   "aa-yearend",
+   "aa-acctdet"
+  ]
  },
  {
   "tcode": "KP27",
@@ -2511,7 +2843,10 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "실제 액티비티 단가를 계산해 원가를 확정"
+  "why": "실제 액티비티 단가를 계산해 원가를 확정",
+  "terms": [
+   "cost-center"
+  ]
  },
  {
   "tcode": "KSS2",
@@ -2534,7 +2869,10 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "공통비를 기준에 따라 코스트센터로 쪼개는 분할"
+  "why": "공통비를 기준에 따라 코스트센터로 쪼개는 분할",
+  "items": [
+   "ml-cogs-split"
+  ]
  },
  {
   "tcode": "KSU2",
@@ -2568,7 +2906,13 @@ const USERMENU_DATA = [
     "l": "실행"
    }
   ],
-  "why": "배부 규칙을 만들어 실제로 돌리는 배부 사이클 관리"
+  "why": "배부 규칙을 만들어 실제로 돌리는 배부 사이클 관리",
+  "items": [
+   "co-alloc"
+  ],
+  "terms": [
+   "allocation"
+  ]
  },
  {
   "tcode": "KL13",
@@ -2591,7 +2935,10 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "액티비티 유형이 무엇이 있는지 일괄 조회"
+  "why": "액티비티 유형이 무엇이 있는지 일괄 조회",
+  "items": [
+   "co-order"
+  ]
  },
  {
   "tcode": "KOB1",
@@ -2639,7 +2986,10 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "자재 하나의 원가를 미리 계산해 보는 추정"
+  "why": "자재 하나의 원가를 미리 계산해 보는 추정",
+  "items": [
+   "co-costvar"
+  ]
  },
  {
   "tcode": "CK24",
@@ -2662,7 +3012,10 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "계산된 원가를 표준원가로 확정하는 관문"
+  "why": "계산된 원가를 표준원가로 확정하는 관문",
+  "items": [
+   "co-costvar"
+  ]
  },
  {
   "tcode": "CK40N",
@@ -2687,7 +3040,10 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "전 자재 원가계산을 한 번에 돌리는 실행 화면"
+  "why": "전 자재 원가계산을 한 번에 돌리는 실행 화면",
+  "items": [
+   "co-costvar"
+  ]
  },
  {
   "tcode": "KA23",
@@ -2713,7 +3069,14 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "원가요소 목록을 일괄로 점검"
+  "why": "원가요소 목록을 일괄로 점검",
+  "items": [
+   "co-celem"
+  ],
+  "terms": [
+   "cost-element",
+   "gl-account"
+  ]
  },
  {
   "tcode": "KE51",
@@ -2768,7 +3131,13 @@ const USERMENU_DATA = [
     "l": "변경"
    }
   ],
-  "why": "비용이 모이는 그릇, 코스트센터를 여는 곳"
+  "why": "비용이 모이는 그릇, 코스트센터를 여는 곳",
+  "items": [
+   "co-ccenter"
+  ],
+  "terms": [
+   "cost-center"
+  ]
  },
  {
   "tcode": "KS13",
@@ -2794,7 +3163,13 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "코스트센터 전체 목록을 일괄 조회"
+  "why": "코스트센터 전체 목록을 일괄 조회",
+  "items": [
+   "co-ccenter"
+  ],
+  "terms": [
+   "cost-center"
+  ]
  },
  {
   "tcode": "KK04",
@@ -2817,7 +3192,10 @@ const USERMENU_DATA = [
     "l": ""
    }
   ],
-  "why": "통계지표(인원수·면적 등 배부 기준) 목록 조회"
+  "why": "통계지표(인원수·면적 등 배부 기준) 목록 조회",
+  "items": [
+   "co-skf"
+  ]
  },
  {
   "tcode": "MR22",
@@ -2840,7 +3218,10 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "차대변 전기 버튼"
   },
-  "n": 107
+  "n": 107,
+  "items": [
+   "ml-parallel-valuation"
+  ]
  },
  {
   "tcode": "CKM3N",
@@ -2888,7 +3269,16 @@ const USERMENU_DATA = [
    "note": "",
    "webgui": true
   },
-  "n": 109
+  "n": 109,
+  "items": [
+   "ml-ckmlcp-steps",
+   "ml-wip-revaluation",
+   "ml-price-marking"
+  ],
+  "terms": [
+   "actual-costing",
+   "material-ledger"
+  ]
  },
  {
   "tcode": "KKAO",
@@ -2969,7 +3359,14 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "WIP·차이·정산이 묶인 복합 기능이라 1:1 대응은 아님. 일정 실행은 제품 원가계산 작업 일정(F3683)"
   },
-  "n": 112
+  "n": 112,
+  "items": [
+   "co-settle",
+   "co-costvar"
+  ],
+  "terms": [
+   "settlement"
+  ]
  },
  {
   "tcode": "CO43",
@@ -3000,7 +3397,10 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 113
+  "n": 113,
+  "terms": [
+   "overhead-calculation"
+  ]
  },
  {
   "tcode": "KSB1",
@@ -3027,7 +3427,13 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 114
+  "n": 114,
+  "items": [
+   "co-ccenter"
+  ],
+  "terms": [
+   "cost-center"
+  ]
  },
  {
   "tcode": "KSU5",
@@ -3050,7 +3456,14 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "실행 결과는 배부 결과, 흐름은 배부 흐름 앱에서 조회"
   },
-  "n": 115
+  "n": 115,
+  "items": [
+   "co-alloc",
+   "ml-parallel-valuation"
+  ],
+  "terms": [
+   "allocation"
+  ]
  },
  {
   "tcode": "KSH1",
@@ -3112,7 +3525,13 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 117
+  "n": 117,
+  "items": [
+   "co-celem"
+  ],
+  "terms": [
+   "cost-element"
+  ]
  },
  {
   "tcode": "KBK6",
@@ -3193,7 +3612,10 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 120
+  "n": 120,
+  "items": [
+   "co-skf"
+  ]
  },
  {
   "tcode": "KB31N",
@@ -3224,7 +3646,10 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 121
+  "n": 121,
+  "items": [
+   "co-skf"
+  ]
  },
  {
   "tcode": "KB11N",
@@ -3274,7 +3699,13 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 123
+  "n": 123,
+  "items": [
+   "co-ccenter"
+  ],
+  "terms": [
+   "cost-center"
+  ]
  },
  {
   "tcode": "KE24",
@@ -3297,7 +3728,13 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 124
+  "n": 124,
+  "items": [
+   "co-margin"
+  ],
+  "terms": [
+   "profitability-analysis"
+  ]
  },
  {
   "tcode": "KE30",
@@ -3608,7 +4045,10 @@ const USERMENU_DATA = [
    "note": "",
    "webgui": true
   },
-  "n": 136
+  "n": 136,
+  "items": [
+   "xmod-obyc"
+  ]
  },
  {
   "tcode": "MB11",
@@ -3657,7 +4097,11 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 138
+  "n": 138,
+  "items": [
+   "gl-doc-number",
+   "xmod-assetpo"
+  ]
  },
  {
   "tcode": "MIR5",
@@ -3866,7 +4310,15 @@ const USERMENU_DATA = [
    "note": "Web GUI 앱",
    "webgui": true
   },
-  "n": 147
+  "n": 147,
+  "items": [
+   "gl-posting-period",
+   "gl-pp-variant",
+   "co-repost"
+  ],
+  "terms": [
+   "posting-period"
+  ]
  },
  {
   "tcode": "MMRV",
@@ -3890,7 +4342,15 @@ const USERMENU_DATA = [
    "note": "Web GUI 앱",
    "webgui": true
   },
-  "n": 148
+  "n": 148,
+  "items": [
+   "gl-posting-period",
+   "gl-pp-variant",
+   "co-repost"
+  ],
+  "terms": [
+   "posting-period"
+  ]
  },
  {
   "tcode": "MD61",
@@ -3948,7 +4408,10 @@ const USERMENU_DATA = [
     "l": "조회"
    }
   ],
-  "why": "제품을 무엇으로 만드는지 정의하고 확인하는 BOM"
+  "why": "제품을 무엇으로 만드는지 정의하고 확인하는 BOM",
+  "terms": [
+   "bom"
+  ]
  },
  {
   "tcode": "CA01",
@@ -4309,7 +4772,13 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 164
+  "n": 164,
+  "items": [
+   "ap-bp-role"
+  ],
+  "terms": [
+   "business-role"
+  ]
  },
  {
   "tcode": "SE43",
@@ -4447,7 +4916,14 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": ""
   },
-  "n": 170
+  "n": 170,
+  "items": [
+   "gl-substitution"
+  ],
+  "terms": [
+   "substitution",
+   "validation"
+  ]
  },
  {
   "tcode": "FBZP",
@@ -4470,7 +4946,10 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "구현 액티비티 > 채권채무 > 지급 > 은행결정"
   },
-  "n": 171
+  "n": 171,
+  "items": [
+   "ap-bank-determ"
+  ]
  },
  {
   "tcode": "SIMG",
