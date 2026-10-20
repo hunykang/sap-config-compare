@@ -22,11 +22,10 @@ a:hover { text-decoration: underline; }
 
 /* header */
 .site-header { border-bottom: 1px solid var(--line); background: #fff; position: sticky; top: 0; z-index: 50; }
-.site-header .wrap { display: flex; align-items: center; gap: 16px; height: 60px; flex-wrap: nowrap; }
+.site-header .wrap { display: flex; align-items: center; gap: 6px 16px; min-height: 60px; padding-top: 6px; padding-bottom: 6px; flex-wrap: wrap; }
 .brand { font-weight: 800; font-size: 17px; color: var(--ink); white-space: nowrap; flex-shrink: 0; }
 .brand .brand-sub { color: #44546b; }
-.nav { display: flex; gap: 14px; margin-left: auto; font-size: 14px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
-.nav::-webkit-scrollbar { display: none; }
+.nav { display: flex; gap: 6px 14px; margin-left: auto; font-size: 14px; flex-wrap: wrap; }
 .nav a { color: var(--muted); white-space: nowrap; flex-shrink: 0; }
 .nav a.active, .nav a:hover { color: var(--ink); }
 
@@ -116,8 +115,8 @@ p.lead { color: var(--muted); }
   .top-graph-layout .graph-side { width: auto; position: static; max-height: none; }
   .hero h1 { font-size: 24px; }
   .brand { font-size: 15px; }
-  .nav { gap: 12px; font-size: 13px; }
-  .site-header .wrap { height: 56px; }
+  .nav { gap: 6px 12px; font-size: 13px; margin-left: 0; width: 100%; }
+  .site-header .wrap { min-height: 56px; }
   /* 비교표 → 카드형 */
   table.compare thead { display: none; }
   table.compare, table.compare tbody, table.compare tr, table.compare td { display: block; width: auto; }
