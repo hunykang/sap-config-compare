@@ -8,7 +8,7 @@
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9919904969420259" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="style.css?v=20261020c">
-<script src="usermenu.js?v=20261020d"></script>
+<script src="usermenu.js?v=20261021a"></script>
 <style>
 .umod { margin: 20px 0 8px; }
 .umod-title { font-size: 15px; margin: 0 0 4px; padding-bottom: 6px; border-bottom: 2px solid var(--line); display: flex; align-items: baseline; gap: 8px; scroll-margin-top: 80px; }
@@ -31,6 +31,10 @@ td.u-note { font-size: 12.5px; color: var(--muted); }
 td.u-note .u-why { color: #3c4a5e; }
 td.u-note .u-appnote { font-size: 11.5px; }
 td.u-app .u-nonote { font-size: 11.5px; color: #5c6a7d; margin-top: 5px; line-height: 1.5; word-break: break-all; }
+.u-links { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; align-items: center; }
+.u-links .lbl { font-size: 11.5px; color: var(--muted); margin-right: 2px; }
+.u-links a { font-size: 11.5px; padding: 2px 9px; border-radius: 20px; background: var(--accent-soft); text-decoration: none; color: inherit; white-space: nowrap; }
+.u-links a:hover { background: #dbe4f0; }
 .u-out { display: inline-flex; align-items: center; height: 20px; margin-left: 3px; padding: 0 6px; color: #8b96a9; border-radius: 6px; vertical-align: middle; text-decoration: none; font-size: 11.5px; font-weight: 600; }
 .u-out:hover { color: #475569; background: #eef2f7; }
 .scope-tag { display: inline-block; font-size: 11.5px; padding: 2px 9px; border-radius: 20px; background: #eef2ff; border: 1px solid #c7d4f5; color: #3b5bdb; text-decoration: none; margin: 1px 2px 1px 0; white-space: nowrap; }
@@ -103,6 +107,8 @@ td.u-app .u-nonote { font-size: 11.5px; color: #5c6a7d; margin-top: 5px; line-he
   </div>
 </footer>
 <script src="counter.js?v=202610061759"></script>
+<script src="data.js?v=20261016a"></script>
+<script src="glossary.js?v=20261009d"></script>
 <script>
 (function () {
   function esc(x) { return String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
@@ -131,7 +137,18 @@ td.u-app .u-nonote { font-size: 11.5px; color: #5c6a7d; margin-top: 5px; line-he
     let out = '';
     if (e.why) out += '<span class="u-why">' + esc(e.why) + '</span>';
     if (e.app && e.app.note) out += (out ? '<br>' : '') + '<span class="u-appnote">' + esc(e.app.note) + '</span>';
+    out += linkChips(e);
     return out;
+  }
+  const cfgName = id => { const x = (typeof GUIDE_DATA !== 'undefined') ? GUIDE_DATA.find(v => v.id === id) : null; return x ? (x.item || id) : id; };
+  const termName = id => { const x = (typeof GLOSSARY !== 'undefined') ? GLOSSARY.find(v => v.id === id) : null; return x ? x.kr : id; };
+  function linkChips(e) {
+    let h = '';
+    if (e.items && e.items.length) h += '<div class="u-links"><span class="lbl">📋 관련 설정</span>' +
+      e.items.map(id => '<a href="compare.html#row-' + esc(id) + '">' + esc(cfgName(id)) + '</a>').join('') + '</div>';
+    if (e.terms && e.terms.length) h += '<div class="u-links"><span class="lbl">📖 관련 용어</span>' +
+      e.terms.map(id => '<a href="glossary.html#term-' + esc(id) + '">' + esc(termName(id)) + '</a>').join('') + '</div>';
+    return h;
   }
 
   function appCell(e) {
