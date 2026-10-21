@@ -642,7 +642,8 @@ function initGraph(canvasId, opts) {
       if (n === dragging || n.hidden || n.pinned) return;
       n.vx += (cx - n.x) * 0.0004;
       n.vy += (cy - n.y) * 0.0004;
-      n.vx *= 0.88; n.vy *= 0.88;
+      n.vx *= 0.92; n.vy *= 0.92;
+      if (Math.abs(n.vx) < 0.02 && Math.abs(n.vy) < 0.02) { n.vx = 0; n.vy = 0; }
       n.x += n.vx; n.y += n.vy;
     });
   }
@@ -656,7 +657,7 @@ function initGraph(canvasId, opts) {
     // 드래그 중인 노드는 부유를 멈춤 — 놓으면 다시 부유
     function floatOf(n) {
       if (n.hidden || n.pinned || n === dragging) return [0, 0];
-      return [Math.sin(tNow * 0.32 + n.x * 0.05) * 1.2, Math.cos(tNow * 0.27 + n.y * 0.05) * 1.2];
+      return [Math.sin(tNow * 0.16 + n.x * 0.05) * 1.2, Math.cos(tNow * 0.135 + n.y * 0.05) * 1.2];
     }
     edges.forEach(e => {
       const a = nodeById[e.a], b = nodeById[e.b];
