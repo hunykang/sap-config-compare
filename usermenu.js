@@ -1697,7 +1697,9 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Define Distribution Rules - Assets under Construction",
    "ko": "배부 규칙 정의 - 건설 중 자산",
-   "scopes": [],
+   "scopes": [
+    "BFH"
+   ],
    "note": "",
    "webgui": true
   },
@@ -2218,7 +2220,8 @@ const USERMENU_DATA = [
    "ko": "고급재무결산",
    "scopes": [
     "2V8",
-    "4HG"
+    "4HG",
+    "1I5"
    ],
    "note": "별도 라이선스(BTP 솔루션). 구 스코프 2V8은 표준에서 폐기, 연동 스코프 4HG"
   },
@@ -2358,7 +2361,9 @@ const USERMENU_DATA = [
    "id": "F3303",
    "en": "Monitor GR/IR Account Reconciliation",
    "ko": "GR/IR 계정 조정 모니터",
-   "scopes": [],
+   "scopes": [
+    "2VB"
+   ],
    "note": ""
   },
   "n": 79,
@@ -2394,7 +2399,9 @@ const USERMENU_DATA = [
    "id": "F3302",
    "en": "Reconcile GR/IR Accounts",
    "ko": "GR/IR 계정 조정",
-   "scopes": [],
+   "scopes": [
+    "2VB"
+   ],
    "note": ""
   },
   "n": 80,
@@ -2657,7 +2664,9 @@ const USERMENU_DATA = [
    "id": "F3778",
    "en": "Schedule Accruals Jobs",
    "ko": "발생 작업 일정",
-   "scopes": [],
+   "scopes": [
+    "2VB"
+   ],
    "note": "발생 앱군으로 재구성 (구매오더 발생 조회 F3778 등)"
   },
   "n": 89,
@@ -2832,7 +2841,9 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Calculate Actual Activity Rates - Cost Center",
    "ko": "실제 원가율 계산 - 코스트 센터",
-   "scopes": [],
+   "scopes": [
+    "33Q"
+   ],
    "note": "",
    "webgui": true
   },
@@ -2859,7 +2870,9 @@ const USERMENU_DATA = [
    "id": "F9080",
    "en": "Run Actual Cost Rate Calculation - Cost Centers",
    "ko": "실제 원가율 계산 실행 - 코스트 센터",
-   "scopes": [],
+   "scopes": [
+    "33Q"
+   ],
    "note": "분할 구조 기준으로 실제원가 분할 수행"
   },
   "n": 95,
@@ -2925,7 +2938,9 @@ const USERMENU_DATA = [
    "id": "F2212",
    "en": "Manage Activity Types",
    "ko": "액티비티 유형 관리",
-   "scopes": [],
+   "scopes": [
+    "BNN"
+   ],
    "note": ""
   },
   "n": 97,
@@ -2951,7 +2966,9 @@ const USERMENU_DATA = [
    "id": "F7288",
    "en": "Display Line Items - Production Accounting",
    "ko": "개별 항목 조회 - 생산 회계",
-   "scopes": [],
+   "scopes": [
+    "3F0"
+   ],
    "note": ""
   },
   "n": 98,
@@ -3215,7 +3232,9 @@ const USERMENU_DATA = [
    "id": "F2680",
    "en": "Manage Material Valuations",
    "ko": "자재 평가 관리",
-   "scopes": [],
+   "scopes": [
+    "1ZT"
+   ],
    "note": "차대변 전기 버튼"
   },
   "n": 107,
@@ -3265,7 +3284,9 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Edit Actual Costing Runs",
    "ko": "실제 원가계산 실행 편집",
-   "scopes": [],
+   "scopes": [
+    "33Q"
+   ],
    "note": "",
    "webgui": true
   },
@@ -3302,7 +3323,9 @@ const USERMENU_DATA = [
    "id": "F3498",
    "en": "WIP - Event-Based",
    "ko": "재공품 - 이벤트 기준",
-   "scopes": [],
+   "scopes": [
+    "3F0"
+   ],
    "note": "Public은 이벤트 기준 방식"
   },
   "n": 110
@@ -3325,7 +3348,9 @@ const USERMENU_DATA = [
    "id": "F4254",
    "en": "Order Cost Details - Event-Based",
    "ko": "오더 원가 세부사항 - 이벤트 기준",
-   "scopes": [],
+   "scopes": [
+    "3F0"
+   ],
    "note": ""
   },
   "n": 111
@@ -3356,7 +3381,9 @@ const USERMENU_DATA = [
    "id": "F3669",
    "en": "Post Event-Based Postings - Product Costing",
    "ko": "이벤트 기준 전기 후처리 - 제품 원가계산",
-   "scopes": [],
+   "scopes": [
+    "3F0"
+   ],
    "note": "WIP·차이·정산이 묶인 복합 기능이라 1:1 대응은 아님. 일정 실행은 제품 원가계산 작업 일정(F3683)"
   },
   "n": 112,
@@ -3491,7 +3518,9 @@ const USERMENU_DATA = [
    "id": "F2918",
    "en": "Manage Global Hierarchies",
    "ko": "글로벌 계층구조 관리",
-   "scopes": [],
+   "scopes": [
+    "2QL"
+   ],
    "note": "계층 유형별 T-code 상이 (생성/변경/조회 1·2·3, 재무제표 버전 OB58)"
   },
   "n": 116
@@ -3522,7 +3551,9 @@ const USERMENU_DATA = [
    "id": "F5373",
    "en": "Manage Cost Element Groups",
    "ko": "원가 요소 그룹 관리",
-   "scopes": [],
+   "scopes": [
+    "BNP"
+   ],
    "note": ""
   },
   "n": 117,
@@ -3816,7 +3847,11 @@ const USERMENU_DATA = [
    "id": "F1711",
    "en": "",
    "ko": "재무 계획 데이터 임포트",
-   "scopes": [],
+   "scopes": [
+    "1NT",
+    "1HB",
+    "35E"
+   ],
    "note": "Public은 CSV 임포트 방식, 1:1 대응 아님"
   },
   "n": 127
@@ -4973,5 +5008,47 @@ const USERMENU_DATA = [
    "note": "PCE SPRO의 Public 대응은 CBC"
   },
   "n": 172
+ },
+ {
+  "tcode": "SM12",
+  "ko": "잠금 항목 관리",
+  "en": "Lock Entries",
+  "menu": "",
+  "group": "(기타)",
+  "src": "manual",
+  "why": "남이 붙잡고 있는 전표의 잠금을 확인하고 푸는 화면",
+  "tcodes": [
+   {
+    "c": "SM12",
+    "l": ""
+   }
+  ],
+  "app": null,
+  "noapp": true,
+  "nonote": "Public(SaaS)에서는 잠금 항목을 사용자가 직접 관리하는 화면이 없다. 인프라성 잠금은 SAP가 관리한다.",
+  "n": 173
+ },
+ {
+  "tcode": "SM51",
+  "ko": "서버·프로세스 관리",
+  "en": "Application Servers",
+  "menu": "",
+  "group": "(기타)",
+  "src": "manual",
+  "why": "서버와 프로세스 상태를 보고 문제 프로세스를 종료하는 관리자 화면",
+  "tcodes": [
+   {
+    "c": "SM51",
+    "l": "서버 목록"
+   },
+   {
+    "c": "SM50",
+    "l": "프로세스 개요"
+   }
+  ],
+  "app": null,
+  "noapp": true,
+  "nonote": "Public(SaaS)에서는 인프라를 SAP가 운영하므로 대응 화면이 없다. 주로 BC 관리자의 영역이다.",
+  "n": 174
  }
 ];
