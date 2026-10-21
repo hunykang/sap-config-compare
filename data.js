@@ -2327,3 +2327,22 @@ const GUIDE_DATA = [
   "related": []
  }
 ];
+
+const GRAPH_CONCEPTS = [
+  {id: "c-acdoca", label: "ACDOCA", type: "table"},
+  {id: "c-bp", label: "Business Partner", type: "master"},
+  {id: "c-cvi", label: "CVI", type: "concept"},
+  {id: "c-fiori", label: "Fiori", type: "app"},
+  {id: "c-newaa", label: "New AA", type: "concept"},
+  {id: "c-ml", label: "Material Ledger", type: "concept"},
+  {id: "c-fcc", label: "결산 콕핏", type: "app"}
+];
+const GRAPH_LINKS = [
+  {from: "c-acdoca", to: "c-bp", label: "연관"},
+  {from: "c-bp", to: "c-cvi", label: "동기화"},
+  {from: "c-acdoca", to: "c-newaa", label: "연계"},
+  {from: "c-acdoca", to: "c-ml", label: "통합"},
+  {from: "c-fiori", to: "c-bp", label: "앱 제공"},
+  {from: "c-fiori", to: "c-fcc", label: "통합"},
+  {from: "c-newaa", to: "c-fcc", label: "이월 통합"}
+];
