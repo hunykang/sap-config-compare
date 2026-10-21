@@ -114,6 +114,23 @@ function initGraphPanel(g, panel, opts) {
     }
     if (n.ref.kind === 'entry') { showEntry(n.ref.entry.id); return; }
     if (n.ref.kind === 'term') { showTerm(n.ref.term); return; }
+    if (n.ref.kind === 'table' || n.ref.kind === 'app' || n.ref.kind === 'master') {
+      const rel = gpNeighbors(g, n.id);
+      panel.innerHTML = closeBtnHTML + `
+        <h3>${gpEsc(n.label)}</h3>
+        <div style="font-size:12px;color:#666;margin-bottom:10px">${gpEsc(gpTypeLabel(g, n))} 노드 · 연결 ${rel.length}개</div>
+        ${n.ref.desc ? `<p>${gpEsc(n.ref.desc)}</p>` : ''}
+        ${n.ref.cds ? `<p style="margin-top:8px"><span class="badge pub">대응 CDS</span><br>${gpEsc(n.ref.cds)}</p>` : ''}
+        ${rel.length ? `<p style="margin-top:10px"><strong>관련 설정 항목</strong></p>
+        <div class="rel-chips">${rel.slice(0, 20).map(id => {
+          const e = GUIDE_DATA.find(x => x.id === id);
+          return e ? `<button data-goto="${id}">${gpEsc(e.item)}</button>` : '';
+        }).join('')}</div>` : ''}
+        ${n.ref.href ? `<p style="margin-top:12px;font-size:13px"><a href="${gpEsc(n.ref.href)}">${n.ref.kind === 'table' ? '🗂 Table 페이지에서 보기' : '🧭 UserMenu에서 보기'} →</a></p>` : ''}`;
+      if (slide) panel.classList.add('open');
+      else if (window.innerWidth <= 760) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      return;
+    }
     const rel = gpNeighbors(g, n.id);
     panel.innerHTML = closeBtnHTML + `
       <h3>${gpEsc(n.label)}</h3>
