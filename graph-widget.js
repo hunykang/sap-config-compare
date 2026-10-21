@@ -148,6 +148,423 @@ function initGraph(canvasId, opts) {
     ['m-costcenter', 't-cost-center', '관련'], ['m-costcenter', 'e-co-ccenter', '설정']
   ];
   EXTRA_EDGES.forEach(([a, b, l]) => pushEdge(a, b, l));
+  // ---- 추가 허브 2차: 주요 테이블·트랜잭션 앱 확장 (UserMenu·Table 데이터 기반) ----
+  const EXTRA2_NODES = [
+ {
+  "id": "tb-t001",
+  "label": "T001",
+  "type": "table",
+  "ref": {
+   "kind": "table",
+   "desc": "회사코드",
+   "cds": "I_CompanyCode",
+   "href": "table.html#t-T001"
+  }
+ },
+ {
+  "id": "tb-t003",
+  "label": "T003",
+  "type": "table",
+  "ref": {
+   "kind": "table",
+   "desc": "전표유형",
+   "cds": "I_AccountingDocumentType",
+   "href": "table.html#t-T003"
+  }
+ },
+ {
+  "id": "tb-kna1",
+  "label": "KNA1",
+  "type": "table",
+  "ref": {
+   "kind": "table",
+   "desc": "고객 마스터",
+   "cds": "I_Customer",
+   "href": "table.html#t-KNA1"
+  }
+ },
+ {
+  "id": "tb-lfa1",
+  "label": "LFA1",
+  "type": "table",
+  "ref": {
+   "kind": "table",
+   "desc": "공급업체 마스터",
+   "cds": "I_Supplier",
+   "href": "table.html#t-LFA1"
+  }
+ },
+ {
+  "id": "tb-anla",
+  "label": "ANLA",
+  "type": "table",
+  "ref": {
+   "kind": "table",
+   "desc": "고정자산 마스터·평가",
+   "cds": "I_FixedAsset",
+   "href": "table.html#t-ANLA"
+  }
+ },
+ {
+  "id": "tb-reguh",
+  "label": "REGUH",
+  "type": "table",
+  "ref": {
+   "kind": "table",
+   "desc": "자동지급 지급프로그램 헤더",
+   "cds": "I_PaymentProposalPayment",
+   "href": "table.html#t-REGUH"
+  }
+ },
+ {
+  "id": "tb-cobk",
+  "label": "COBK",
+  "type": "table",
+  "ref": {
+   "kind": "table",
+   "desc": "CO 문서 헤더",
+   "cds": "I_JournalEntry",
+   "href": "table.html#t-COBK"
+  }
+ },
+ {
+  "id": "tb-mara",
+  "label": "MARA",
+  "type": "table",
+  "ref": {
+   "kind": "table",
+   "desc": "자재 마스터(기본)",
+   "cds": "I_Product",
+   "href": "table.html#t-MARA"
+  }
+ },
+ {
+  "id": "tb-mbew",
+  "label": "MBEW",
+  "type": "table",
+  "ref": {
+   "kind": "table",
+   "desc": "자재 평가",
+   "cds": "I_ProductValuation",
+   "href": "table.html#t-MBEW"
+  }
+ },
+ {
+  "id": "tb-cosp",
+  "label": "COSP · COSS",
+  "type": "table",
+  "ref": {
+   "kind": "table",
+   "desc": "기간 합계(외부 / 내부)",
+   "cds": "I_GLAcctBalanceCube",
+   "href": "table.html#t-COSP"
+  }
+ },
+ {
+  "id": "tb-vbak",
+  "label": "VBAK · VBAP",
+  "type": "table",
+  "ref": {
+   "kind": "table",
+   "desc": "판매오더 헤더 / 아이템",
+   "cds": "I_SalesDocument",
+   "href": "table.html#t-VBAK"
+  }
+ },
+ {
+  "id": "tb-ekko",
+  "label": "EKKO · EKPO",
+  "type": "table",
+  "ref": {
+   "kind": "table",
+   "desc": "구매오더 헤더 / 아이템",
+   "cds": "I_PurchaseOrder",
+   "href": "table.html#t-EKKO"
+  }
+ },
+ {
+  "id": "tb-acdocp",
+  "label": "ACDOCP",
+  "type": "table",
+  "ref": {
+   "kind": "table",
+   "desc": "계획 데이터",
+   "cds": "A_JournalEntryItemBasic",
+   "href": "table.html#t-ACDOCP"
+  }
+ },
+ {
+  "id": "tb-bsid",
+  "label": "BSID · BSAD",
+  "type": "table",
+  "ref": {
+   "kind": "table",
+   "desc": "고객 미결 / 반제 항목",
+   "cds": "I_ARLINEITEM",
+   "href": "table.html#t-BSID"
+  }
+ },
+ {
+  "id": "ap-f-04",
+  "label": "F-04 반제 전기",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "미결항목을 골라 반제하면서 전기하는 화면",
+   "href": "usermenu.html#u-F-04"
+  }
+ },
+ {
+  "id": "ap-fbl1n",
+  "label": "FBL1N 공급업체 항목",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "공급업체 미결·반제 항목을 줄 단위로 추적",
+   "href": "usermenu.html#u-FBL1N"
+  }
+ },
+ {
+  "id": "ap-fbl5n",
+  "label": "FBL5N 고객 항목",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "고객 미결·반제 항목을 줄 단위로 추적",
+   "href": "usermenu.html#u-FBL5N"
+  }
+ },
+ {
+  "id": "ap-ckmlcp",
+  "label": "CKMLCP 실제원가",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "실제 원가를 계산해 마감하는 실제원가계산 실행",
+   "href": "usermenu.html#u-CKMLCP"
+  }
+ },
+ {
+  "id": "ap-faglgvtr",
+  "label": "FAGLGVTR 잔액이월",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "한 해 숫자를 다음 해로 넘기는 잔액 이월",
+   "href": "usermenu.html#u-FAGLGVTR"
+  }
+ },
+ {
+  "id": "ap-as01",
+  "label": "AS01 자산 생성",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "자산 하나가 장부에 태어나는 곳",
+   "href": "usermenu.html#u-AS01"
+  }
+ },
+ {
+  "id": "ap-f-19",
+  "label": "F.19 GR/IR 재분류",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "월말에 GR/IR 잔액을 정리 전표로 자동 전기하는 실행",
+   "href": "usermenu.html#u-F.19"
+  }
+ },
+ {
+  "id": "ap-f-13",
+  "label": "F.13 자동반제",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "같은 상대·금액끼리 자동 반제해 미결을 정리",
+   "href": "usermenu.html#u-F.13"
+  }
+ },
+ {
+  "id": "ap-f-01",
+  "label": "F.01 재무제표",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "재무제표 버전 기준으로 재무상태표와 손익계산서를 뽑는 실행 화면",
+   "href": "usermenu.html#u-F.01"
+  }
+ },
+ {
+  "id": "ap-afab",
+  "label": "AFAB 감가상각",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "한 달 상각비를 전기하고 결과를 로그로 검증",
+   "href": "usermenu.html#u-AFAB"
+  }
+ },
+ {
+  "id": "ap-ajab",
+  "label": "AJAB 자산 연마감",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "자산 회계연도를 열고 닫고, 잘못 닫은 연도를 되돌리는 결산 관리",
+   "href": "usermenu.html#u-AJAB"
+  }
+ },
+ {
+  "id": "ap-ksb1",
+  "label": "KSB1 코스트센터 항목",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "코스트센터 실제 항목을 줄 단위로 추적하는 조회",
+   "href": "usermenu.html#u-KSB1"
+  }
+ },
+ {
+  "id": "ap-ksu5",
+  "label": "KSU5 배부 실행",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "평가(Assessment) 배부를 실제로 실행하는 화면",
+   "href": "usermenu.html#u-KSU5"
+  }
+ },
+ {
+  "id": "ap-vl01n",
+  "label": "VL01N 납품",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "판매오더를 출하로 바꾸는 납품 생성",
+   "href": "usermenu.html#u-VL01N"
+  }
+ },
+ {
+  "id": "ap-vf01",
+  "label": "VF01 청구",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "청구문서를 발행해 매출채권이 생기는 화면",
+   "href": "usermenu.html#u-VF01"
+  }
+ },
+ {
+  "id": "ap-me21n",
+  "label": "ME21N 구매오더",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "발주서를 만드는 구매오더 생성 화면",
+   "href": "usermenu.html#u-ME21N"
+  }
+ },
+ {
+  "id": "ap-mb51",
+  "label": "MB51 자재전표",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "자재가 언제 왜 움직였는지 문서로 추적",
+   "href": "usermenu.html#u-MB51"
+  }
+ },
+ {
+  "id": "ap-fb50",
+  "label": "FB50 전표 입력",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "모든 수기 전표의 기본이 되는 G/L 전기 화면",
+   "href": "usermenu.html#u-FB50"
+  }
+ },
+ {
+  "id": "ap-fb08",
+  "label": "FB08 역분개",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "잘못된 전표를 개별 또는 일괄로 되돌리는 역분개",
+   "href": "usermenu.html#u-FB08"
+  }
+ },
+ {
+  "id": "ap-f-53",
+  "label": "F-53 지급 전기",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "건별로 골라 수동으로 지급 전기",
+   "href": "usermenu.html#u-F-53"
+  }
+ },
+ {
+  "id": "ap-fb60",
+  "label": "FB60 매입송장",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "PO 없는 수기 매입송장을 입력하는 곳",
+   "href": "usermenu.html#u-FB60"
+  }
+ },
+ {
+  "id": "ap-fb70",
+  "label": "FB70 매출송장",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "SD를 거치지 않는 수기 매출송장을 발행하는 곳",
+   "href": "usermenu.html#u-FB70"
+  }
+ },
+ {
+  "id": "ap-f-28",
+  "label": "F-28 입금 전기",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "들어온 돈을 매출채권에 붙이는 입금 전기",
+   "href": "usermenu.html#u-F-28"
+  }
+ },
+ {
+  "id": "ap-f-90",
+  "label": "F-90 자산 취득",
+  "type": "app",
+  "ref": {
+   "kind": "app",
+   "desc": "공급업체 송장과 함께 자산을 취득 전기",
+   "href": "usermenu.html#u-F-90"
+  }
+ }
+];
+  EXTRA2_NODES.forEach(n => addNode(n.id, n.label, n.type, n.ref));
+  const EXTRA2_EDGES = [["tb-t001","e-org-company-code","설정"],["tb-t001","e-org-ccode-company","설정"],["tb-t001","t-company-code","관련"],["tb-t001","t-company","관련"],["tb-t001","c-bp","관련"],["tb-t003","e-gl-doc-type","설정"],["tb-t003","e-gl-doc-number","설정"],["tb-t003","t-document-type","관련"],["tb-t003","ap-miro","앱"],["tb-kna1","e-ar-cust-group","설정"],["tb-kna1","e-ar-cust-num","설정"],["tb-kna1","e-ap-cvi","설정"],["tb-kna1","t-business-partner","관련"],["tb-kna1","t-cvi","관련"],["tb-kna1","ap-f-92","앱"],["tb-kna1","ap-fd01","앱"],["tb-lfa1","e-ap-vendor-group","설정"],["tb-lfa1","e-ap-vendor-num","설정"],["tb-lfa1","e-ap-cvi","설정"],["tb-lfa1","t-business-partner","관련"],["tb-lfa1","t-cvi","관련"],["tb-lfa1","ap-abaon","앱"],["tb-lfa1","ap-f-92","앱"],["tb-anla","t-acquire-to-decommission","관련"],["tb-anla","m-asset","마스터"],["tb-reguh","e-ap-housebank","설정"],["tb-reguh","e-ap-paymethod-ccode","설정"],["tb-reguh","t-automatic-payment","관련"],["tb-reguh","t-house-bank","관련"],["tb-reguh","ap-f110","앱"],["tb-reguh","ap-f110","앱"],["tb-cobk","c-acdoca","통합"],["tb-cobk","tb-coep","관련"],["tb-mara","t-material-master","관련"],["tb-mara","t-mm-module","관련"],["tb-mara","m-material","마스터"],["tb-mbew","e-xmod-ml","설정"],["tb-mbew","t-standard-cost-valuation","관련"],["tb-mbew","t-inventory-accounting","관련"],["tb-cosp","e-co-ccenter","설정"],["tb-cosp","t-cost-center","관련"],["tb-cosp","ap-ks01","앱"],["tb-cosp","ap-ks13","앱"],["tb-vbak","e-xmod-sdbill","설정"],["tb-vbak","t-order-to-cash","관련"],["tb-vbak","t-sd-module","관련"],["tb-ekko","t-p2p","관련"],["tb-ekko","t-invoice-verification","관련"],["tb-acdocp","c-acdoca","관련"],["tb-bsid","e-ar-recon","설정"],["tb-bsid","e-gl-clear-prep","설정"],["tb-bsid","t-open-item-management","관련"],["tb-bsid","t-clearing","관련"],["tb-bsid","ap-f-13","앱"],["tb-bsid","ap-fd01","앱"],["ap-f-04","e-co-celem","설정"],["ap-f-04","e-xmod-griradj","설정"],["ap-f-04","e-etc-mass-clearing","설정"],["ap-f-04","t-clearing","관련"],["ap-f-04","t-gl-account","관련"],["ap-fbl1n","t-line-item","관련"],["ap-fbl5n","e-ar-cust-group","설정"],["ap-fbl5n","e-ar-cust-num","설정"],["ap-fbl5n","e-ar-recon","설정"],["ap-fbl5n","t-line-item","관련"],["ap-ckmlcp","e-ml-ckmlcp-steps","설정"],["ap-ckmlcp","e-ml-wip-revaluation","설정"],["ap-ckmlcp","e-ml-price-marking","설정"],["ap-ckmlcp","t-actual-costing","관련"],["ap-ckmlcp","t-material-ledger","관련"],["ap-faglgvtr","e-close-carryfwd","설정"],["ap-faglgvtr","e-aa-yearend","설정"],["ap-faglgvtr","e-gl-ledger","설정"],["ap-faglgvtr","t-general-ledger","관련"],["ap-as01","e-aa-acctdet","설정"],["ap-as01","e-aa-numrange","설정"],["ap-as01","e-aa-transtype","설정"],["ap-f-19","e-xmod-griradj","설정"],["ap-f-19","t-gr-ir","관련"],["ap-f-19","t-clearing","관련"],["ap-f-19","t-gr-ir","관련"],["ap-f-13","e-gl-clear-prep","설정"],["ap-f-13","e-xmod-griradj","설정"],["ap-f-13","e-etc-mass-clearing","설정"],["ap-f-13","t-clearing","관련"],["ap-f-01","c-acdoca","조회"],["ap-afab","e-aa-depkey","설정"],["ap-afab","e-aa-deparea","설정"],["ap-afab","e-aa-depchart-assign","설정"],["ap-ajab","e-close-carryfwd","설정"],["ap-ajab","e-aa-yearend","설정"],["ap-ajab","e-aa-acctdet","설정"],["ap-ajab","c-newaa","결산"],["ap-ksb1","e-co-ccenter","설정"],["ap-ksb1","t-cost-center","관련"],["ap-ksu5","e-co-alloc","설정"],["ap-ksu5","e-ml-parallel-valuation","설정"],["ap-ksu5","t-allocation","관련"],["ap-vf01","c-acdoca","전기"],["ap-me21n","ap-migo","입고"],["ap-mb51","tb-matdoc","테이블"],["ap-fb50","t-document","관련"],["ap-fb08","t-reversal","관련"],["ap-f-53","ap-f110","지급"],["ap-fb60","ap-miro","검증"],["ap-fb70","c-bp","마스터"],["ap-f-28","ap-fbl5n","조회"],["ap-f-90","e-aa-transtype","설정"],["ap-f-90","e-aa-acctdet","설정"]];
+  EXTRA2_EDGES.forEach(([a, b, l]) => pushEdge(a, b, l));
+  const EXTRA3_EDGES = [
+    ['ap-vl01n', 'tb-vbak', '테이블'], ['ap-vl01n', 'ap-vf01', '청구'],
+    ['tb-acdocp', 'e-co-version', '설정'],
+    ['ap-fbl1n', 'm-vendor', '마스터'],
+    ['ap-f-01', 'ap-faglb03', '조회'],
+    ['ap-vf01', 'tb-vbak', '테이블'],
+    ['ap-me21n', 'tb-ekko', '테이블'],
+    ['ap-mb51', 'ap-migo', '조회'],
+    ['ap-fb50', 'e-gl-doc-type', '설정'],
+    ['ap-fb08', 'tb-bkpf', '테이블'],
+    ['ap-f-53', 'm-vendor', '마스터'],
+    ['ap-fb60', 'm-vendor', '마스터'],
+    ['ap-fb70', 'm-customer', '마스터'],
+    ['ap-f-28', 'm-customer', '마스터']
+  ];
+  EXTRA3_EDGES.forEach(([a, b, l]) => pushEdge(a, b, l));
+
 
   // ---- 필터 / 포커스 / 검색 ----
   const adj = {};
