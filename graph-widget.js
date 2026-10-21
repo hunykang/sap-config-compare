@@ -102,6 +102,53 @@ function initGraph(canvasId, opts) {
     });
   }
 
+  // ---- 추가 허브 노드: 주요 테이블·앱(T-code)·마스터 (선별) ----
+  const EXTRA_NODES = [
+    // 테이블
+    { id: 'tb-bkpf', label: 'BKPF', type: 'table', ref: { kind: 'table', desc: '전표 헤더 테이블. 모든 회계 전표의 헤더가 쌓이며, S/4HANA에서는 ACDOCA와 함께 본다.', cds: 'I_JournalEntry', href: 'table.html#t-BKPF' } },
+    { id: 'tb-bseg', label: 'BSEG', type: 'table', ref: { kind: 'table', desc: '전표 라인아이템 테이블. S/4HANA에서는 ACDOCA 기반 CDS 뷰로 대체 조회한다.', cds: 'I_JournalEntryItem', href: 'table.html#t-BSEG' } },
+    { id: 'tb-matdoc', label: 'MATDOC', type: 'table', ref: { kind: 'table', desc: '자재 이동 통합 테이블. MKPF+MSEG를 하나로 합쳤고 합계는 조회 시 실시간 계산한다.', cds: 'I_MaterialDocumentItem_2', href: 'table.html#t-MATDOC' } },
+    { id: 'tb-ska1', label: 'SKA1 · SKB1', type: 'table', ref: { kind: 'table', desc: 'G/L 계정 마스터 테이블. SKA1은 계정과목표 레벨, SKB1은 회사코드 레벨 속성을 담는다.', cds: 'I_GLAccount', href: 'table.html#t-SKA1' } },
+    { id: 'tb-coep', label: 'COEP', type: 'table', ref: { kind: 'table', desc: 'CO 라인아이템(실적) 테이블. S/4HANA에서는 ACDOCA(Universal Journal)로 통합됐다.', cds: 'I_JournalEntryItem', href: 'table.html#t-COEP' } },
+    // 앱 (T-code)
+    { id: 'ap-f110', label: 'F110 자동지급', type: 'app', ref: { kind: 'app', desc: '자동지급 프로그램. 지급 제안부터 지급 실행까지 AP 지급을 한 번에 처리한다.', href: 'usermenu.html#u-F110' } },
+    { id: 'ap-miro', label: 'MIRO 송장 검증', type: 'app', ref: { kind: 'app', desc: '구매 송장 검증. GR/IR 계정이 여기서 반제되기 시작한다.', href: 'usermenu.html#u-MIRO' } },
+    { id: 'ap-migo', label: 'MIGO 자재 이동', type: 'app', ref: { kind: 'app', desc: '입고·출고·재고 이전 등 모든 자재 이동의 입구. 이동 유형이 회계 전표를 만든다.', href: 'usermenu.html#u-MIGO' } },
+    { id: 'ap-fs00', label: 'FS00 G/L계정', type: 'app', ref: { kind: 'app', desc: 'G/L 계정 마스터 관리. 계정의 성격과 전기 규칙을 정한다.', href: 'usermenu.html#u-FS00' } },
+    { id: 'ap-fbl3n', label: 'FBL3N 항목 조회', type: 'app', ref: { kind: 'app', desc: 'G/L 개별항목 조회. 전표 추적의 시작점.', href: 'usermenu.html#u-FBL3N' } },
+    { id: 'ap-faglb03', label: 'FAGLB03 잔액 조회', type: 'app', ref: { kind: 'app', desc: '원장별 계정 잔액 조회. ACDOCA 기반 잔액을 원장 단위로 본다.', href: 'usermenu.html#u-FAGLB03' } },
+    { id: 'ap-ks01', label: 'KS01 코스트센터', type: 'app', ref: { kind: 'app', desc: '코스트센터 마스터 관리. CO 배부와 리포트의 기준점.', href: 'usermenu.html#u-KS01' } },
+    // 마스터
+    { id: 'm-glacct', label: 'G/L 계정 마스터', type: 'master', ref: { kind: 'master', desc: '계정과목표와 회사코드 레벨로 관리되는 계정 마스터. 모든 전표 전기의 기준이다.' } },
+    { id: 'm-customer', label: '고객 마스터', type: 'master', ref: { kind: 'master', desc: 'AR의 기준 마스터. S/4HANA에서는 BP(비즈니스 파트너)로 통합 관리한다.' } },
+    { id: 'm-vendor', label: '공급업체 마스터', type: 'master', ref: { kind: 'master', desc: 'AP의 기준 마스터. 고객과 마찬가지로 BP로 통합 관리한다.' } },
+    { id: 'm-material', label: '자재 마스터', type: 'master', ref: { kind: 'master', desc: 'MM의 기준 마스터. 평가 클래스와 이동 유형이 FI 자동전기를 결정한다.' } },
+    { id: 'm-asset', label: '고정자산 마스터', type: 'master', ref: { kind: 'master', desc: '자산 클래스와 감가상각 키를 물고 있는 자산회계의 기준 마스터.' } },
+    { id: 'm-costcenter', label: '코스트센터', type: 'master', ref: { kind: 'master', desc: 'CO의 기본 책임 단위. 비용이 모이고 배부되는 출발점이다.' } }
+  ];
+  EXTRA_NODES.forEach(n => addNode(n.id, n.label, n.type, n.ref));
+  const EXTRA_EDGES = [
+    ['tb-bkpf', 'c-acdoca', '통합'], ['tb-bkpf', 't-document', '관련'], ['tb-bkpf', 't-document-type', '관련'], ['tb-bkpf', 'e-gl-doc-type', '설정'],
+    ['tb-bseg', 'c-acdoca', '통합'], ['tb-bseg', 't-line-item', '관련'], ['tb-bseg', 't-document', '관련'],
+    ['tb-matdoc', 't-material-ledger', '관련'], ['tb-matdoc', 'ap-migo', '앱'], ['tb-matdoc', 'm-material', '마스터'],
+    ['tb-ska1', 'm-glacct', '마스터'], ['tb-ska1', 't-gl-account', '관련'], ['tb-ska1', 'e-gl-coa', '설정'],
+    ['tb-coep', 'c-acdoca', '통합'], ['tb-coep', 't-cost-element', '관련'], ['tb-coep', 't-cost-center', '관련'], ['tb-coep', 'e-co-celem', '설정'],
+    ['ap-f110', 'e-ap-bank-determ', '설정'], ['ap-f110', 't-automatic-payment', '관련'],
+    ['ap-miro', 'e-xmod-griradj', '설정'], ['ap-miro', 't-gr-ir', '관련'],
+    ['ap-migo', 'e-xmod-obyc', '설정'],
+    ['ap-fs00', 'm-glacct', '마스터'], ['ap-fs00', 't-gl-account', '관련'],
+    ['ap-fbl3n', 'c-acdoca', '조회'], ['ap-fbl3n', 't-line-item', '관련'],
+    ['ap-faglb03', 'c-acdoca', '조회'], ['ap-faglb03', 't-general-ledger', '관련'], ['ap-faglb03', 'e-gl-ledger', '설정'],
+    ['ap-ks01', 'm-costcenter', '마스터'], ['ap-ks01', 't-cost-center', '관련'], ['ap-ks01', 'e-co-ccenter', '설정'],
+    ['m-glacct', 't-chart-of-accounts', '관련'], ['m-glacct', 'e-gl-coa', '설정'],
+    ['m-customer', 'c-bp', '통합'], ['m-customer', 'e-ar-cust-group', '설정'],
+    ['m-vendor', 'c-bp', '통합'], ['m-vendor', 'e-ap-vendor-group', '설정'],
+    ['m-material', 't-material-master', '관련'],
+    ['m-asset', 'c-newaa', '관련'], ['m-asset', 'e-aa-acctdet', '설정'],
+    ['m-costcenter', 't-cost-center', '관련'], ['m-costcenter', 'e-co-ccenter', '설정']
+  ];
+  EXTRA_EDGES.forEach(([a, b, l]) => pushEdge(a, b, l));
+
   // ---- 필터 / 포커스 / 검색 ----
   const adj = {};
   function buildAdj() {
@@ -178,7 +225,7 @@ function initGraph(canvasId, opts) {
       if (n === dragging || n.hidden || n.pinned) return;
       n.vx += (cx - n.x) * 0.0004;
       n.vy += (cy - n.y) * 0.0004;
-      n.vx *= 0.82; n.vy *= 0.82;
+      n.vx *= 0.88; n.vy *= 0.88;
       n.x += n.vx; n.y += n.vy;
     });
   }
@@ -192,7 +239,7 @@ function initGraph(canvasId, opts) {
     // 드래그 중인 노드는 부유를 멈춤 — 놓으면 다시 부유
     function floatOf(n) {
       if (n.hidden || n.pinned || n === dragging) return [0, 0];
-      return [Math.sin(tNow * 0.8 + n.x * 0.05) * 5, Math.cos(tNow * 0.7 + n.y * 0.05) * 5];
+      return [Math.sin(tNow * 0.32 + n.x * 0.05) * 1.2, Math.cos(tNow * 0.27 + n.y * 0.05) * 1.2];
     }
     edges.forEach(e => {
       const a = nodeById[e.a], b = nodeById[e.b];
