@@ -120,8 +120,10 @@ const USERMENU_DATA = [
    "id": "F4596",
    "en": "Manage Credit Accounts",
    "ko": "여신 계정 관리",
-   "scopes": [],
-   "note": ""
+   "scopes": [
+    "1EZ"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 4,
   "tcodes": [
@@ -146,8 +148,10 @@ const USERMENU_DATA = [
    "id": "F4596",
    "en": "Manage Credit Accounts",
    "ko": "여신 계정 관리",
-   "scopes": [],
-   "note": ""
+   "scopes": [
+    "1EZ"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 5,
   "tcodes": [
@@ -172,8 +176,10 @@ const USERMENU_DATA = [
    "id": "F4596",
    "en": "Manage Credit Accounts",
    "ko": "여신 계정 관리",
-   "scopes": [],
-   "note": ""
+   "scopes": [
+    "1EZ"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 6,
   "tcodes": [
@@ -400,7 +406,9 @@ const USERMENU_DATA = [
    "id": "FK09",
    "en": "Confirm Supplier List",
    "ko": "공급업체 리스트 확정",
-   "scopes": [],
+   "scopes": [
+    "J59"
+   ],
    "note": "민감 필드 이중 확인 승인/거절"
   },
   "n": 13,
@@ -486,7 +494,7 @@ const USERMENU_DATA = [
    "en": "Manage Mass Maintenance",
    "ko": "일괄 유지보수 관리",
    "scopes": [],
-   "note": "객체별 앱으로 분리 (제품 F9335 등)"
+   "note": "객체별 앱으로 분리 (제품 F9335 등) · Foundation — Scope Item 없이 기본 제공"
   },
   "n": 16,
   "tcodes": [
@@ -760,7 +768,7 @@ const USERMENU_DATA = [
    "en": "User Settings",
    "ko": "사용자 설정 (런치패드)",
    "scopes": [],
-   "note": "SU3 같은 1:1 앱은 없음, 런치패드 개인 설정"
+   "note": "SU3 같은 1:1 앱은 없음, 런치패드 개인 설정 · Foundation — Scope Item 없이 기본 제공"
   },
   "n": 25,
   "tcodes": [
@@ -783,7 +791,7 @@ const USERMENU_DATA = [
    "en": "Display Authorization Trace",
    "ko": "권한 추적 조회",
    "scopes": [],
-   "note": ""
+   "note": "Foundation — Scope Item 없이 기본 제공"
   },
   "n": 26,
   "tcodes": [
@@ -857,7 +865,9 @@ const USERMENU_DATA = [
    "id": "F1579",
    "en": "Clear G/L Accounts",
    "ko": "G/L계정 반제",
-   "scopes": [],
+   "scopes": [
+    "J58"
+   ],
    "note": ""
   },
   "n": 29,
@@ -950,7 +960,9 @@ const USERMENU_DATA = [
    "id": "F0717A",
    "en": "Manage Journal Entries",
    "ko": "분개 관리",
-   "scopes": [],
+   "scopes": [
+    "J58"
+   ],
    "note": "변경 가능 필드만 수정 (금액·계정은 불가)"
   },
   "n": 32,
@@ -1011,7 +1023,9 @@ const USERMENU_DATA = [
    "id": "F0707A",
    "en": "Display G/L Account Balances",
    "ko": "G/L 계정 잔액 조회",
-   "scopes": [],
+   "scopes": [
+    "J58"
+   ],
    "note": ""
   },
   "n": 34,
@@ -1128,7 +1142,9 @@ const USERMENU_DATA = [
    "id": "F2223",
    "en": "Reset Cleared Items",
    "ko": "반제된 항목 재설정",
-   "scopes": [],
+   "scopes": [
+    "J58"
+   ],
    "note": ""
   },
   "n": 38,
@@ -1194,7 +1210,9 @@ const USERMENU_DATA = [
    "id": "F0996",
    "en": "Trial Balance",
    "ko": "시산표",
-   "scopes": [],
+   "scopes": [
+    "J58"
+   ],
    "note": ""
   },
   "n": 40
@@ -1567,7 +1585,9 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Post Clearing",
    "ko": "반제 전기",
-   "scopes": [],
+   "scopes": [
+    "J58"
+   ],
    "note": "앱 검색으로 안 뜸 — 분개 관리에서 전표번호 클릭 → 추가 링크 → 반제 전기 앱"
   },
   "n": 52,
@@ -1666,7 +1686,9 @@ const USERMENU_DATA = [
    "id": "F3425A",
    "en": "Manage Fixed Assets",
    "ko": "고정 자산 관리",
-   "scopes": [],
+   "scopes": [
+    "J62"
+   ],
    "note": "자산가액 화면에서 자산전표 역분개"
   },
   "n": 55,
@@ -1732,7 +1754,9 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Execute Settlement - Assets under Construction",
    "ko": "정산 실행 - 건설 중 자산",
-   "scopes": [],
+   "scopes": [
+    "J62"
+   ],
    "note": "AUC 정산",
    "webgui": true
   },
@@ -1765,7 +1789,9 @@ const USERMENU_DATA = [
    "id": "F3425A",
    "en": "Manage Fixed Assets",
    "ko": "고정 자산 관리",
-   "scopes": [],
+   "scopes": [
+    "J62"
+   ],
    "note": "자산가액 화면에서 정산 역분개"
   },
   "n": 58,
@@ -1797,7 +1823,9 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Post Transfer - Within Company Code",
    "ko": "대체 전기 - 회사 코드 내",
-   "scopes": [],
+   "scopes": [
+    "J62"
+   ],
    "note": "자산 대체"
   },
   "n": 59,
@@ -1866,7 +1894,9 @@ const USERMENU_DATA = [
    "id": "F7775",
    "en": "Post Revaluation - Fixed Asset",
    "ko": "자산 재평가 전기",
-   "scopes": [],
+   "scopes": [
+    "J62"
+   ],
    "note": ""
   },
   "n": 61,
@@ -1897,7 +1927,9 @@ const USERMENU_DATA = [
    "id": "F7107",
    "en": "Post Retirement Fixed Asset",
    "ko": "자산 처분 전기",
-   "scopes": [],
+   "scopes": [
+    "J62"
+   ],
    "note": ""
   },
   "n": 62,
@@ -1918,7 +1950,9 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Post Retirement with Customer",
    "ko": "처분 전기(통합 AR) - 고객 포함",
-   "scopes": [],
+   "scopes": [
+    "J62"
+   ],
    "note": "",
    "webgui": true
   },
@@ -1947,7 +1981,9 @@ const USERMENU_DATA = [
    "id": "F3425A",
    "en": "Manage Fixed Assets",
    "ko": "고정 자산 관리",
-   "scopes": [],
+   "scopes": [
+    "J62"
+   ],
    "note": "워크리스트·리포트 앱으로 분산"
   },
   "n": 64,
@@ -2148,8 +2184,10 @@ const USERMENU_DATA = [
    "id": "FBWD",
    "en": "Returned Bill of Exchange Payable",
    "ko": "반환 지급 어음",
-   "scopes": [],
-   "note": ""
+   "scopes": [
+    "J59"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 하)"
   },
   "n": 71,
   "tcodes": [
@@ -2171,8 +2209,10 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Bill of Exchange Payment - Outgoing",
    "ko": "어음 지급 (발행)",
-   "scopes": [],
-   "note": "어음 스코프 활성화·국가별 가용성 확인 필요",
+   "scopes": [
+    "J59"
+   ],
+   "note": "어음 스코프 활성화·국가별 가용성 확인 필요 · Scope Item 유사 매핑 (신뢰도 하)",
    "webgui": true
   },
   "n": 72,
@@ -2195,8 +2235,10 @@ const USERMENU_DATA = [
    "id": "F2332",
    "en": "Cash Flow Analyzer",
    "ko": "현금 흐름 분석기",
-   "scopes": [],
-   "note": ""
+   "scopes": [
+    "BFB"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 73,
   "tcodes": [
@@ -2284,7 +2326,9 @@ const USERMENU_DATA = [
    "id": "F0798",
    "en": "Create Billing Documents - VF04",
    "ko": "청구 문서 생성 - VF04",
-   "scopes": [],
+   "scopes": [
+    "BD9"
+   ],
    "note": ""
   },
   "n": 76,
@@ -2307,7 +2351,9 @@ const USERMENU_DATA = [
    "id": "F0797",
    "en": "Manage Billing Documents",
    "ko": "청구 문서 관리",
-   "scopes": [],
+   "scopes": [
+    "BD9"
+   ],
    "note": "미전기 상태로 보류 문서 식별"
   },
   "n": 77,
@@ -2330,7 +2376,9 @@ const USERMENU_DATA = [
    "id": "F1240",
    "en": "Manage Application Jobs",
    "ko": "어플리케이션 작업",
-   "scopes": [],
+   "scopes": [
+    "J58"
+   ],
    "note": "자동반제 (작업 스케줄)"
   },
   "n": 78,
@@ -2442,8 +2490,10 @@ const USERMENU_DATA = [
    "id": "F3302",
    "en": "",
    "ko": "입고/송장 수령 계정 조정",
-   "scopes": [],
-   "note": ""
+   "scopes": [
+    "J58"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 82,
   "tcodes": [
@@ -2475,7 +2525,9 @@ const USERMENU_DATA = [
    "id": "F1914",
    "en": "Post Depreciation",
    "ko": "감가상각 전기",
-   "scopes": [],
+   "scopes": [
+    "J62"
+   ],
    "note": ""
   },
   "n": 83,
@@ -2514,7 +2566,9 @@ const USERMENU_DATA = [
    "id": "F1914",
    "en": "Schedule Asset Accounting Jobs",
    "ko": "자산 회계 작업 일정",
-   "scopes": [],
+   "scopes": [
+    "J62"
+   ],
    "note": ""
   },
   "n": 84,
@@ -2536,7 +2590,7 @@ const USERMENU_DATA = [
    "en": "Application Jobs",
    "ko": "어플리케이션 작업",
    "scopes": [],
-   "note": ""
+   "note": "Foundation — Scope Item 없이 기본 제공"
   },
   "n": 85,
   "tcodes": [
@@ -2616,7 +2670,9 @@ const USERMENU_DATA = [
    "id": "F1598",
    "en": "",
    "ko": "반복 분개 관리",
-   "scopes": [],
+   "scopes": [
+    "J58"
+   ],
    "note": ""
   },
   "n": 87,
@@ -2712,7 +2768,9 @@ const USERMENU_DATA = [
    "id": "F1927",
    "en": "Schedule General Ledger Jobs",
    "ko": "일반 원장 작업 일정",
-   "scopes": [],
+   "scopes": [
+    "J58"
+   ],
    "note": "고급 외화 평가(Advanced Valuation) 실행"
   },
   "n": 90,
@@ -2747,7 +2805,9 @@ const USERMENU_DATA = [
    "id": "F1927",
    "en": "Schedule General Ledger Jobs",
    "ko": "일반 원장 작업 일정",
-   "scopes": [],
+   "scopes": [
+    "J58"
+   ],
    "note": "잔액 이월 실행"
   },
   "n": 91,
@@ -2782,7 +2842,9 @@ const USERMENU_DATA = [
    "id": "F1914",
    "en": "Schedule Asset Accounting Jobs",
    "ko": "자산 회계 작업 일정",
-   "scopes": [],
+   "scopes": [
+    "J62"
+   ],
    "note": "여러 작업 템플릿 통합 앱 (회사코드 설정 F7312와 함께)"
   },
   "n": 92,
@@ -2818,8 +2880,10 @@ const USERMENU_DATA = [
    "id": "F3162",
    "en": "Manage Cost Rates - Plan",
    "ko": "원가율 관리 - 계획",
-   "scopes": [],
-   "note": ""
+   "scopes": [
+    "J54"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 93,
   "tcodes": [
@@ -3019,8 +3083,10 @@ const USERMENU_DATA = [
    "id": "CK24",
    "en": "Release Material Cost Estimates",
    "ko": "자재 원가 추정 릴리즈",
-   "scopes": [],
-   "note": "대량 실행은 원가계산 실행 관리(F1865)"
+   "scopes": [
+    "BEI"
+   ],
+   "note": "대량 실행은 원가계산 실행 관리(F1865) · Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 100,
   "tcodes": [
@@ -3199,7 +3265,9 @@ const USERMENU_DATA = [
    "id": "F1603A",
    "en": "Manage Statistical Key Figures",
    "ko": "통계 주요 지표 관리",
-   "scopes": [],
+   "scopes": [
+    "J54"
+   ],
    "note": ""
   },
   "n": 106,
@@ -3260,8 +3328,10 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Material Price Analysis",
    "ko": "자재 가격 분석",
-   "scopes": [],
-   "note": "",
+   "scopes": [
+    "33Q"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 중)",
    "webgui": true
   },
   "n": 108
@@ -3421,8 +3491,10 @@ const USERMENU_DATA = [
    "id": "F5763",
    "en": "Post Event-Based Postings - Overhead Calculation",
    "ko": "이벤트 기준 전기 후처리 - 간접비 계산",
-   "scopes": [],
-   "note": ""
+   "scopes": [
+    "3F7"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 하)"
   },
   "n": 113,
   "terms": [
@@ -3451,7 +3523,9 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Display Line Items - Cost Accounting",
    "ko": "개별 항목 조회 - 원가 회계",
-   "scopes": [],
+   "scopes": [
+    "J54"
+   ],
    "note": ""
   },
   "n": 114,
@@ -3480,7 +3554,9 @@ const USERMENU_DATA = [
    "id": "F3548",
    "en": "Run Allocations",
    "ko": "배부 실행",
-   "scopes": [],
+   "scopes": [
+    "J54"
+   ],
    "note": "실행 결과는 배부 결과, 흐름은 배부 흐름 앱에서 조회"
   },
   "n": 115,
@@ -3582,7 +3658,9 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Manage Activity Rates - Actual",
    "ko": "원가율 관리 - 실제",
-   "scopes": [],
+   "scopes": [
+    "J54"
+   ],
    "note": ""
   },
   "n": 118
@@ -3609,7 +3687,9 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Display Activity Rates",
    "ko": "원가율 조회",
-   "scopes": [],
+   "scopes": [
+    "J54"
+   ],
    "note": ""
   },
   "n": 119
@@ -3640,7 +3720,9 @@ const USERMENU_DATA = [
    "id": "F1603A",
    "en": "Manage Statistical Key Figures",
    "ko": "통계 주요 지표 관리",
-   "scopes": [],
+   "scopes": [
+    "J54"
+   ],
    "note": ""
   },
   "n": 120,
@@ -3674,7 +3756,9 @@ const USERMENU_DATA = [
    "id": "F3915",
    "en": "Manage Statistical Key Figure Values",
    "ko": "통계 주요 지표 값 관리",
-   "scopes": [],
+   "scopes": [
+    "J54"
+   ],
    "note": ""
   },
   "n": 121,
@@ -3704,8 +3788,10 @@ const USERMENU_DATA = [
    "id": "F2009A",
    "en": "Reassign Costs and Revenues",
    "ko": "원가 및 수익 재지정",
-   "scopes": [],
-   "note": ""
+   "scopes": [
+    "J54"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 122
  },
@@ -3727,7 +3813,9 @@ const USERMENU_DATA = [
    "id": "F0963A",
    "en": "Cost Centers - Actual",
    "ko": "코스트 센터 - 실제",
-   "scopes": [],
+   "scopes": [
+    "J54"
+   ],
    "note": ""
   },
   "n": 123,
@@ -3756,8 +3844,10 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Display Line Items - Margin Analysis",
    "ko": "개별 항목 조회 - 마진 분석",
-   "scopes": [],
-   "note": ""
+   "scopes": [
+    "1B6"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 124,
   "items": [
@@ -3785,8 +3875,10 @@ const USERMENU_DATA = [
    "id": "F0943A",
    "en": "Market Segments - Actual",
    "ko": "시장 세그먼트 - 실제",
-   "scopes": [],
-   "note": ""
+   "scopes": [
+    "1B6"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 125
  },
@@ -3820,8 +3912,10 @@ const USERMENU_DATA = [
    "id": "F3214",
    "en": "",
    "ko": "프로젝트 관리 - 엔터프라이즈 프로젝트",
-   "scopes": [],
-   "note": ""
+   "scopes": [
+    "J11"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 126
  },
@@ -3874,8 +3968,10 @@ const USERMENU_DATA = [
    "id": "F0936A",
    "en": "",
    "ko": "프로젝트 계획/실제",
-   "scopes": [],
-   "note": ""
+   "scopes": [
+    "J11"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 128
  },
@@ -3890,7 +3986,9 @@ const USERMENU_DATA = [
    "id": "F3893",
    "en": "Manage Sales Orders - Version 2",
    "ko": "판매 오더 관리 - 버전 2",
-   "scopes": [],
+   "scopes": [
+    "BD9"
+   ],
    "note": "판매오더 생성"
   },
   "n": 129,
@@ -3925,7 +4023,9 @@ const USERMENU_DATA = [
    "id": "F0869A",
    "en": "Create Outbound Deliveries - From Sales Orders",
    "ko": "출하 생성 - 판매 오더에서",
-   "scopes": [],
+   "scopes": [
+    "BD9"
+   ],
    "note": "납품 생성"
   },
   "n": 130,
@@ -3955,7 +4055,9 @@ const USERMENU_DATA = [
    "id": "F0869A",
    "en": "Create Outbound Deliveries - From Sales Orders",
    "ko": "출하 생성 - 판매 오더에서",
-   "scopes": [],
+   "scopes": [
+    "BD9"
+   ],
    "note": ""
   },
   "n": 131
@@ -3978,7 +4080,9 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Post Goods Issue",
    "ko": "출고 전기",
-   "scopes": [],
+   "scopes": [
+    "BD9"
+   ],
    "note": "",
    "webgui": true
   },
@@ -3995,7 +4099,9 @@ const USERMENU_DATA = [
    "id": "F0798",
    "en": "Create Billing Documents",
    "ko": "청구 문서 생성",
-   "scopes": [],
+   "scopes": [
+    "BD9"
+   ],
    "note": "빌링"
   },
   "n": 133,
@@ -4030,7 +4136,7 @@ const USERMENU_DATA = [
    "en": "Manage Product Master Data",
    "ko": "제품 마스터 데이터 관리",
    "scopes": [],
-   "note": ""
+   "note": "Foundation — Scope Item 없이 기본 제공"
   },
   "n": 134
  },
@@ -4052,7 +4158,9 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Create Purchase Order - Advanced",
    "ko": "구매 오더 생성 - 고급",
-   "scopes": [],
+   "scopes": [
+    "J45"
+   ],
    "note": "",
    "webgui": true
   },
@@ -4076,8 +4184,10 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Post Goods Movement",
    "ko": "자재 이동 전기",
-   "scopes": [],
-   "note": "",
+   "scopes": [
+    "BMC"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 중)",
    "webgui": true
   },
   "n": 136,
@@ -4096,8 +4206,10 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Post Goods Movement",
    "ko": "자재 이동 전기",
-   "scopes": [],
-   "note": "자재 출고",
+   "scopes": [
+    "BMC"
+   ],
+   "note": "자재 출고 · Scope Item 유사 매핑 (신뢰도 중)",
    "webgui": true
   },
   "n": 137,
@@ -4149,8 +4261,10 @@ const USERMENU_DATA = [
    "id": "F1060A",
    "en": "",
    "ko": "공급업체 송장 리스트",
-   "scopes": [],
-   "note": ""
+   "scopes": [
+    "J45"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 139,
   "tcodes": [
@@ -4172,7 +4286,9 @@ const USERMENU_DATA = [
    "id": "F2101A",
    "en": "Monitor Material Coverage",
    "ko": "자재 보충 모니터",
-   "scopes": [],
+   "scopes": [
+    "J44"
+   ],
    "note": "재고/소요량"
   },
   "n": 140,
@@ -4195,8 +4311,10 @@ const USERMENU_DATA = [
    "id": "F1077",
    "en": "Material Documents Overview",
    "ko": "자재 문서 개요",
-   "scopes": [],
-   "note": "자재문서 조회"
+   "scopes": [
+    "BMC"
+   ],
+   "note": "자재문서 조회 · Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 141,
   "tcodes": [
@@ -4218,8 +4336,10 @@ const USERMENU_DATA = [
    "id": "F1595",
    "en": "Stock - Multiple Materials",
    "ko": "재고 - 복수 자재",
-   "scopes": [],
-   "note": "창고 재고"
+   "scopes": [
+    "BMC"
+   ],
+   "note": "창고 재고 · Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 142,
   "tcodes": [
@@ -4241,8 +4361,10 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Stocks on Posting Date",
    "ko": "재고 수불부",
-   "scopes": [],
-   "note": "상세 이동은 MB51, 가치잔액은 MB5L",
+   "scopes": [
+    "BMC"
+   ],
+   "note": "상세 이동은 MB51, 가치잔액은 MB5L · Scope Item 유사 매핑 (신뢰도 중)",
    "webgui": true
   },
   "n": 143,
@@ -4265,8 +4387,10 @@ const USERMENU_DATA = [
    "id": "F1076",
    "en": "Stock - Single Material",
    "ko": "재고 - 단일 자재",
-   "scopes": [],
-   "note": "배치 상세는 배치 관리(F2462) 병행"
+   "scopes": [
+    "BMC"
+   ],
+   "note": "배치 상세는 배치 관리(F2462) 병행 · Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 144,
   "tcodes": [
@@ -4288,8 +4412,10 @@ const USERMENU_DATA = [
    "id": "F1595",
    "en": "Stock - Multiple Materials",
    "ko": "재고 - 복수 자재",
-   "scopes": [],
-   "note": "LIS 분석과 1:1 아님"
+   "scopes": [
+    "BMC"
+   ],
+   "note": "LIS 분석과 1:1 아님 · Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 145,
   "tcodes": [
@@ -4311,8 +4437,10 @@ const USERMENU_DATA = [
    "id": "F1595",
    "en": "Stock - Multiple Materials",
    "ko": "재고 - 복수 자재",
-   "scopes": [],
-   "note": "LIS 분석과 1:1 아님"
+   "scopes": [
+    "BMC"
+   ],
+   "note": "LIS 분석과 1:1 아님 · Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 146,
   "tcodes": [
@@ -4341,8 +4469,10 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Period Closing",
    "ko": "기간 마감",
-   "scopes": [],
-   "note": "Web GUI 앱",
+   "scopes": [
+    "J58"
+   ],
+   "note": "Web GUI 앱 · Scope Item 유사 매핑 (신뢰도 중)",
    "webgui": true
   },
   "n": 147,
@@ -4373,8 +4503,10 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Allow Posting to Previous Period",
    "ko": "이전 전기 기간에 허용",
-   "scopes": [],
-   "note": "Web GUI 앱",
+   "scopes": [
+    "J58"
+   ],
+   "note": "Web GUI 앱 · Scope Item 유사 매핑 (신뢰도 중)",
    "webgui": true
   },
   "n": 148,
@@ -4413,8 +4545,10 @@ const USERMENU_DATA = [
    "id": "F3445",
    "en": "Maintain PIRs",
    "ko": "PIR 유지보수",
-   "scopes": [],
-   "note": ""
+   "scopes": [
+    "J44"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 149
  },
@@ -4429,8 +4563,10 @@ const USERMENU_DATA = [
    "id": "F1813",
    "en": "Manage Bills of Material",
    "ko": "BOM 유지보수",
-   "scopes": [],
-   "note": "조회(CS03)는 자재 BOM 조회 앱"
+   "scopes": [
+    "BJ5"
+   ],
+   "note": "조회(CS03)는 자재 BOM 조회 앱 · Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 150,
   "tcodes": [
@@ -4459,8 +4595,10 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Manage Routings",
    "ko": "경로 관리",
-   "scopes": [],
-   "note": "작업순서 생성",
+   "scopes": [
+    "BJ5"
+   ],
+   "note": "작업순서 생성 · Scope Item 유사 매핑 (신뢰도 중)",
    "webgui": true
   },
   "n": 151,
@@ -4483,7 +4621,9 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Create Production Orders",
    "ko": "생산 오더 생성",
-   "scopes": [],
+   "scopes": [
+    "BJ5"
+   ],
    "note": "생산오더 생성",
    "webgui": true
   },
@@ -4514,7 +4654,9 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Display Production Order",
    "ko": "생산 오더 조회: 헤더",
-   "scopes": [],
+   "scopes": [
+    "BJ5"
+   ],
    "note": "cloud.sap",
    "webgui": true
   },
@@ -4531,7 +4673,9 @@ const USERMENU_DATA = [
    "id": "F3069",
    "en": "Confirm Production Order Operations",
    "ko": "생산 오더 작업 확인",
-   "scopes": [],
+   "scopes": [
+    "BJ5"
+   ],
    "note": "생산실적 확인"
   },
   "n": 154,
@@ -4561,7 +4705,9 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Cancel Production Order Confirmation",
    "ko": "생산 오더 확인 취소",
-   "scopes": [],
+   "scopes": [
+    "BJ5"
+   ],
    "note": "",
    "webgui": true
   },
@@ -4585,8 +4731,10 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Monitor Production / Planned Orders",
    "ko": "생산 실적 레포트 - 생산부",
-   "scopes": [],
-   "note": "",
+   "scopes": [
+    "BJ5"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 중)",
    "webgui": true
   },
   "n": 156
@@ -4609,8 +4757,10 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Confirm Repetitive Manufacturing",
    "ko": "반복 제조 확인",
-   "scopes": [],
-   "note": "",
+   "scopes": [
+    "BJ8"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 하)",
    "webgui": true
   },
   "n": 157
@@ -4633,8 +4783,10 @@ const USERMENU_DATA = [
    "id": "",
    "en": "Reprocess Goods Movements",
    "ko": "자재 이동 재처리",
-   "scopes": [],
-   "note": "",
+   "scopes": [
+    "BJ5"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 중)",
    "webgui": true
   },
   "n": 158
@@ -4651,7 +4803,7 @@ const USERMENU_DATA = [
    "en": "Custom Analytical Queries and Services",
    "ko": "사용자 정의 분석 쿼리",
    "scopes": [],
-   "note": "Report Painter 1:1 없음, 분석 앱으로 대체"
+   "note": "Report Painter 1:1 없음, 분석 앱으로 대체 · Foundation — Scope Item 없이 기본 제공"
   },
   "n": 159,
   "tcodes": [
@@ -4697,7 +4849,9 @@ const USERMENU_DATA = [
    "id": "F0708",
    "en": "Balance Sheet / Income Statement",
    "ko": "재무상태표/손익계산서",
-   "scopes": [],
+   "scopes": [
+    "J58"
+   ],
    "note": "재무제표"
   },
   "n": 160,
@@ -4727,7 +4881,9 @@ const USERMENU_DATA = [
    "id": "F0708",
    "en": "Balance Sheet / Income Statement",
    "ko": "재무상태표/손익계산서",
-   "scopes": [],
+   "scopes": [
+    "J58"
+   ],
    "note": ""
   },
   "n": 161
@@ -4744,7 +4900,7 @@ const USERMENU_DATA = [
    "en": "Custom Analytical Queries and Services",
    "ko": "사용자 정의 분석 쿼리",
    "scopes": [],
-   "note": "View Browser·Custom CDS로 대체"
+   "note": "View Browser·Custom CDS로 대체 · Foundation — Scope Item 없이 기본 제공"
   },
   "n": 162,
   "tcodes": [
@@ -4782,7 +4938,7 @@ const USERMENU_DATA = [
    "en": "Custom Analytical Queries and Services",
    "ko": "사용자 정의 분석 쿼리",
    "scopes": [],
-   "note": "Released CDS 기반 재설계"
+   "note": "Released CDS 기반 재설계 · Foundation — Scope Item 없이 기본 제공"
   },
   "n": 163
  },
@@ -4805,7 +4961,7 @@ const USERMENU_DATA = [
    "en": "Maintain Business Roles",
    "ko": "비즈니스 역할",
    "scopes": [],
-   "note": ""
+   "note": "Foundation — Scope Item 없이 기본 제공"
   },
   "n": 164,
   "items": [
@@ -4834,7 +4990,7 @@ const USERMENU_DATA = [
    "en": "Manage Launchpad Spaces",
    "ko": "런치패드 공간 관리",
    "scopes": [],
-   "note": ""
+   "note": "Foundation — Scope Item 없이 기본 제공"
   },
   "n": 165
  },
@@ -4857,7 +5013,7 @@ const USERMENU_DATA = [
    "en": "Maintain User Sessions",
    "ko": "사용자 세션 유지보수",
    "scopes": [],
-   "note": ""
+   "note": "Foundation — Scope Item 없이 기본 제공"
   },
   "n": 166
  },
@@ -4880,7 +5036,7 @@ const USERMENU_DATA = [
    "en": "Export / Import Software Collection",
    "ko": "소프트웨어 컬렉션 전송",
    "scopes": [],
-   "note": "임포트 F1432 · 엑스포트 F1433 (CTS 대신 소프트웨어 컬렉션 방식)"
+   "note": "임포트 F1432 · 엑스포트 F1433 (CTS 대신 소프트웨어 컬렉션 방식) · Foundation — Scope Item 없이 기본 제공"
   },
   "n": 167
  },
@@ -4903,7 +5059,7 @@ const USERMENU_DATA = [
    "en": "Import Collection",
    "ko": "컬렉션 임포트",
    "scopes": [],
-   "note": ""
+   "note": "Foundation — Scope Item 없이 기본 제공"
   },
   "n": 168
  },
@@ -4926,7 +5082,7 @@ const USERMENU_DATA = [
    "en": "Custom Logic",
    "ko": "사용자 정의 로직",
    "scopes": [],
-   "note": "사용자정의오브젝트·사용자정의필드·사용자정의CDS뷰 포함, RAP 코드는 Eclipse"
+   "note": "사용자정의오브젝트·사용자정의필드·사용자정의CDS뷰 포함, RAP 코드는 Eclipse · Foundation — Scope Item 없이 기본 제공"
   },
   "n": 169
  },
@@ -4948,8 +5104,10 @@ const USERMENU_DATA = [
    "id": "F4406",
    "en": "Manage Substitution/Validation Rules",
    "ko": "대체 및 유효성 확인 규칙 관리",
-   "scopes": [],
-   "note": ""
+   "scopes": [
+    "J58"
+   ],
+   "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 170,
   "items": [
@@ -4978,8 +5136,10 @@ const USERMENU_DATA = [
    "id": "",
    "en": "",
    "ko": "은행 계좌 설정 정의",
-   "scopes": [],
-   "note": "구현 액티비티 > 채권채무 > 지급 > 은행결정"
+   "scopes": [
+    "BFA"
+   ],
+   "note": "구현 액티비티 > 채권채무 > 지급 > 은행결정 · Scope Item 유사 매핑 (신뢰도 중)"
   },
   "n": 171,
   "items": [
@@ -5005,7 +5165,7 @@ const USERMENU_DATA = [
    "en": "Implementation Activities (CBC)",
    "ko": "구현 액티비티",
    "scopes": [],
-   "note": "PCE SPRO의 Public 대응은 CBC"
+   "note": "PCE SPRO의 Public 대응은 CBC · Foundation — Scope Item 없이 기본 제공"
   },
   "n": 172
  },
