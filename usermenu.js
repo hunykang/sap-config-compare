@@ -5179,6 +5179,44 @@ const USERMENU_DATA = [
   "n": 172
  },
  {
+  "tcode": "SCC1",
+  "ko": "클라이언트 복사 — 특수 선택",
+  "en": "Client Copy — Special Selections",
+  "menu": "",
+  "group": "(기타)",
+  "src": "manual",
+  "tcodes": [
+   {
+    "c": "SCC1",
+    "l": ""
+   }
+  ],
+  "app": null,
+  "noapp": true,
+  "nonote": "대응 없음 — Public은 멀티테넌트 구조라 클라이언트 간 복사라는 개념 자체가 없다",
+  "why": "특정 이관 요청의 커스터마이징만 골라 다른 클라이언트로 복사하는 화면. 전체 복사(SCCL)와 달리 요청 단위 부분 복사에 쓴다",
+  "n": 173
+ },
+ {
+  "tcode": "SCC4",
+  "ko": "클라이언트 관리",
+  "en": "Client Administration",
+  "menu": "",
+  "group": "(기타)",
+  "src": "manual",
+  "tcodes": [
+   {
+    "c": "SCC4",
+    "l": ""
+   }
+  ],
+  "app": null,
+  "noapp": true,
+  "nonote": "대응 없음 — Public은 클라이언트가 테넌트 구조로 고정돼 있어 클라이언트 단위 설정 화면이 없다",
+  "why": "클라이언트의 변경 허용 범위와 이관 통제를 정하는 관리 화면. 시스템 전체에 영향이 가서 권한이 가장 엄격하게 통제되는 화면 중 하나다",
+  "n": 174
+ },
+ {
   "tcode": "SE80",
   "ko": "오브젝트 네비게이터",
   "en": "Object Navigator",
@@ -5199,7 +5237,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "사용자정의오브젝트·사용자정의필드·사용자정의CDS뷰 포함, RAP 코드는 Eclipse · Foundation — Scope Item 없이 기본 제공"
   },
-  "n": 173
+  "n": 175
  },
  {
   "tcode": "SHDB",
@@ -5218,7 +5256,7 @@ const USERMENU_DATA = [
   "noapp": true,
   "nonote": "대응 없음 — Public에는 레코딩·BDC 개념이 없다. 데이터 이관은 Migration Cockpit, 대량 입력은 앱의 임포트 기능과 통합 API로 대체한다",
   "why": "화면 조작을 녹화해 BDC 프로그램(ZBDC)의 뼈대를 만드는 레코더. SM35 배치 입력 세션의 재료가 여기서 나온다",
-  "n": 174
+  "n": 176
  },
  {
   "tcode": "GGB4",
@@ -5243,7 +5281,7 @@ const USERMENU_DATA = [
    ],
    "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 175,
+  "n": 177,
   "items": [
    "gl-substitution"
   ],
@@ -5275,7 +5313,7 @@ const USERMENU_DATA = [
    ],
    "note": "구현 액티비티 > 채권채무 > 지급 > 은행결정 · Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 176,
+  "n": 178,
   "items": [
    "ap-bank-determ"
   ]
@@ -5301,7 +5339,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "PCE SPRO의 Public 대응은 CBC · Foundation — Scope Item 없이 기본 제공"
   },
-  "n": 177
+  "n": 179
  },
  {
   "tcode": "SM12",
@@ -5320,7 +5358,7 @@ const USERMENU_DATA = [
   "app": null,
   "noapp": true,
   "nonote": "Public(SaaS)에서는 잠금 항목을 사용자가 직접 관리하는 화면이 없다. 인프라성 잠금은 SAP가 관리한다.",
-  "n": 178
+  "n": 180
  },
  {
   "tcode": "SM51",
@@ -5343,6 +5381,6 @@ const USERMENU_DATA = [
   "app": null,
   "noapp": true,
   "nonote": "Public(SaaS)에서는 인프라를 SAP가 운영하므로 대응 화면이 없다. 주로 BC 관리자의 영역이다.",
-  "n": 179
+  "n": 181
  }
 ];
