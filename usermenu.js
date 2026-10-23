@@ -855,6 +855,35 @@ const USERMENU_DATA = [
   "why": "모든 수기 전표의 기본이 되는 G/L 전기 화면"
  },
  {
+  "tcode": "FB01",
+  "ko": "일반 전표 전기",
+  "en": "Post Document",
+  "menu": "GL (General Ledger) > G/L Document",
+  "group": "GL (General Ledger)",
+  "src": "se43",
+  "tcodes": [
+   {
+    "c": "FB01",
+    "l": ""
+   }
+  ],
+  "app": {
+   "id": "F0718",
+   "en": "Post General Journal Entries",
+   "ko": "일반 분개 전기",
+   "scopes": [
+    "J58"
+   ],
+   "note": ""
+  },
+  "why": "Enjoy(FB50) 이전의 고전 전표 입력 화면. 한 화면에 여러 라인을 쌓는 복합 전표에 강해 현업이 여전히 많이 쓴다",
+  "terms": [
+   "document",
+   "posting-key"
+  ],
+  "n": 29
+ },
+ {
   "tcode": "F-04",
   "ko": "G/L 미결항목 반제하여 전기",
   "en": "Post with Clearing",
@@ -870,7 +899,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 29,
+  "n": 30,
   "tcodes": [
    {
     "c": "F-04",
@@ -906,7 +935,7 @@ const USERMENU_DATA = [
    ],
    "note": "전표 변경"
   },
-  "n": 30,
+  "n": 31,
   "tcodes": [
    {
     "c": "FB02",
@@ -940,7 +969,7 @@ const USERMENU_DATA = [
    ],
    "note": "임시전표 전기"
   },
-  "n": 31,
+  "n": 32,
   "tcodes": [
    {
     "c": "FBV0",
@@ -948,6 +977,42 @@ const USERMENU_DATA = [
    }
   ],
   "why": "임시저장된 전표를 정식 전표로 바꾸는 관문"
+ },
+ {
+  "tcode": "FV50",
+  "ko": "임시전표 입력",
+  "en": "Enter Parked Document",
+  "menu": "GL (General Ledger) > G/L Document",
+  "group": "GL (General Ledger)",
+  "src": "se43",
+  "tcodes": [
+   {
+    "c": "FV50",
+    "l": "G/L"
+   },
+   {
+    "c": "FV60",
+    "l": "AP"
+   },
+   {
+    "c": "FV70",
+    "l": "AR"
+   }
+  ],
+  "app": {
+   "id": "F0717A",
+   "en": "Manage Journal Entries",
+   "ko": "분개 관리",
+   "scopes": [
+    "J58"
+   ],
+   "note": "임시전표 입력(Enjoy)"
+  },
+  "why": "승인 전에 임시로 걸어 두는 전표의 입력 화면 3종. 전기된 임시전표는 FBV0로 정식 전표가 된다",
+  "terms": [
+   "document"
+  ],
+  "n": 33
  },
  {
   "tcode": "FB09",
@@ -965,7 +1030,7 @@ const USERMENU_DATA = [
    ],
    "note": "변경 가능 필드만 수정 (금액·계정은 불가)"
   },
-  "n": 32,
+  "n": 34,
   "tcodes": [
    {
     "c": "FB09",
@@ -990,7 +1055,7 @@ const USERMENU_DATA = [
    ],
    "note": "계정 잔액 조회"
   },
-  "n": 33,
+  "n": 35,
   "tcodes": [
    {
     "c": "FAGLB03",
@@ -1028,7 +1093,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 34,
+  "n": 36,
   "terms": [
    "gl-account"
   ]
@@ -1049,7 +1114,7 @@ const USERMENU_DATA = [
    ],
    "note": "항목 조회"
   },
-  "n": 35,
+  "n": 37,
   "tcodes": [
    {
     "c": "FAGLL03",
@@ -1081,7 +1146,7 @@ const USERMENU_DATA = [
    ],
    "note": "G/L 개별항목"
   },
-  "n": 36,
+  "n": 38,
   "tcodes": [
    {
     "c": "FBL3N",
@@ -1115,7 +1180,7 @@ const USERMENU_DATA = [
    ],
    "note": "전표 역분개(개별)"
   },
-  "n": 37,
+  "n": 39,
   "tcodes": [
    {
     "c": "FB08",
@@ -1147,7 +1212,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 38,
+  "n": 40,
   "tcodes": [
    {
     "c": "FBRA",
@@ -1179,7 +1244,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 39,
+  "n": 41,
   "tcodes": [
    {
     "c": "S_ALR_87012310",
@@ -1215,7 +1280,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 40
+  "n": 42
  },
  {
   "tcode": "S_ALR_87012277",
@@ -1233,7 +1298,7 @@ const USERMENU_DATA = [
    ],
    "note": "G/L 계정 잔액"
   },
-  "n": 41,
+  "n": 43,
   "tcodes": [
    {
     "c": "S_ALR_87012277",
@@ -1261,7 +1326,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 42,
+  "n": 44,
   "tcodes": [
    {
     "c": "S_ALR_87012282",
@@ -1298,7 +1363,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 43,
+  "n": 45,
   "tcodes": [
    {
     "c": "S_ALR_87012287",
@@ -1327,7 +1392,7 @@ const USERMENU_DATA = [
    ],
    "note": "고객 송장"
   },
-  "n": 44,
+  "n": 46,
   "tcodes": [
    {
     "c": "F-22",
@@ -1339,6 +1404,31 @@ const USERMENU_DATA = [
    }
   ],
   "why": "SD를 거치지 않는 수기 매출송장을 발행하는 곳"
+ },
+ {
+  "tcode": "FB75",
+  "ko": "매출 대변메모 생성",
+  "en": "Create Customer Credit Memo",
+  "menu": "AR (Account Receivable) > AR Document",
+  "group": "AR (Account Receivable)",
+  "src": "se43",
+  "tcodes": [
+   {
+    "c": "FB75",
+    "l": "Enjoy"
+   }
+  ],
+  "app": {
+   "id": "",
+   "en": "Create Outgoing Credit Memo",
+   "ko": "발행 대변메모 생성",
+   "scopes": [
+    "J59"
+   ],
+   "note": "유사 매핑 — 대변메모 앱"
+  },
+  "why": "매출을 되돌리는 고객 대변메모 입력 화면. FB70(매출송장)의 짝이다",
+  "n": 47
  },
  {
   "tcode": "FD10N",
@@ -1357,7 +1447,7 @@ const USERMENU_DATA = [
    ],
    "note": "고객 잔액 조회"
   },
-  "n": 45,
+  "n": 48,
   "tcodes": [
    {
     "c": "FD10N",
@@ -1391,7 +1481,7 @@ const USERMENU_DATA = [
    ],
    "note": "고객 개별항목"
   },
-  "n": 46,
+  "n": 49,
   "tcodes": [
    {
     "c": "FBL5N",
@@ -1424,7 +1514,7 @@ const USERMENU_DATA = [
    ],
    "note": "고객 반제"
   },
-  "n": 47,
+  "n": 50,
   "tcodes": [
    {
     "c": "F-30",
@@ -1459,7 +1549,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 48,
+  "n": 51,
   "tcodes": [
    {
     "c": "S_ALR_87012172",
@@ -1508,7 +1598,7 @@ const USERMENU_DATA = [
    ],
    "note": "공급업체 송장"
   },
-  "n": 49,
+  "n": 52,
   "tcodes": [
    {
     "c": "F-43",
@@ -1520,6 +1610,31 @@ const USERMENU_DATA = [
    }
   ],
   "why": "PO 없는 수기 매입송장을 입력하는 곳"
+ },
+ {
+  "tcode": "FB65",
+  "ko": "매입 대변메모 생성",
+  "en": "Create Supplier Credit Memo",
+  "menu": "AP (Account Payable) > AP Document",
+  "group": "AP (Account Payable)",
+  "src": "se43",
+  "tcodes": [
+   {
+    "c": "FB65",
+    "l": "Enjoy"
+   }
+  ],
+  "app": {
+   "id": "",
+   "en": "Create Supplier Credit Memo",
+   "ko": "공급업체 대변메모 생성",
+   "scopes": [
+    "J60"
+   ],
+   "note": "유사 매핑 — 대변메모 앱"
+  },
+  "why": "매입을 되돌리는 공급업체 대변메모 입력 화면. FB60(매입송장)의 짝이다",
+  "n": 53
  },
  {
   "tcode": "FK10N",
@@ -1537,7 +1652,7 @@ const USERMENU_DATA = [
    ],
    "note": "공급업체 잔액 조회"
   },
-  "n": 50,
+  "n": 54,
   "tcodes": [
    {
     "c": "FK10N",
@@ -1562,7 +1677,7 @@ const USERMENU_DATA = [
    ],
    "note": "공급업체 개별항목"
   },
-  "n": 51,
+  "n": 55,
   "tcodes": [
    {
     "c": "FBL1N",
@@ -1590,7 +1705,7 @@ const USERMENU_DATA = [
    ],
    "note": "앱 검색으로 안 뜸 — 분개 관리에서 전표번호 클릭 → 추가 링크 → 반제 전기 앱"
   },
-  "n": 52,
+  "n": 56,
   "tcodes": [
    {
     "c": "F-51",
@@ -1622,7 +1737,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 53,
+  "n": 57,
   "tcodes": [
    {
     "c": "S_ALR_87012082",
@@ -1662,7 +1777,7 @@ const USERMENU_DATA = [
    ],
    "note": "자산 취득"
   },
-  "n": 54,
+  "n": 58,
   "tcodes": [
    {
     "c": "F-90",
@@ -1691,7 +1806,7 @@ const USERMENU_DATA = [
    ],
    "note": "자산가액 화면에서 자산전표 역분개"
   },
-  "n": 55,
+  "n": 59,
   "tcodes": [
    {
     "c": "AB08",
@@ -1725,7 +1840,7 @@ const USERMENU_DATA = [
    "note": "",
    "webgui": true
   },
-  "n": 56,
+  "n": 60,
   "tcodes": [
    {
     "c": "AIAB",
@@ -1760,7 +1875,7 @@ const USERMENU_DATA = [
    "note": "AUC 정산",
    "webgui": true
   },
-  "n": 57,
+  "n": 61,
   "tcodes": [
    {
     "c": "AIBU",
@@ -1794,7 +1909,7 @@ const USERMENU_DATA = [
    ],
    "note": "자산가액 화면에서 정산 역분개"
   },
-  "n": 58,
+  "n": 62,
   "tcodes": [
    {
     "c": "AIST",
@@ -1828,7 +1943,7 @@ const USERMENU_DATA = [
    ],
    "note": "자산 대체"
   },
-  "n": 59,
+  "n": 63,
   "tcodes": [
    {
     "c": "ABUMN",
@@ -1859,7 +1974,7 @@ const USERMENU_DATA = [
    ],
    "note": "자산 처분(스크랩)"
   },
-  "n": 60,
+  "n": 64,
   "tcodes": [
    {
     "c": "ABAVN",
@@ -1899,7 +2014,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 61,
+  "n": 65,
   "items": [
    "aa-acctdet",
    "aa-numrange",
@@ -1932,7 +2047,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 62,
+  "n": 66,
   "items": [
    "ap-cvi",
    "aa-acctdet",
@@ -1956,7 +2071,7 @@ const USERMENU_DATA = [
    "note": "",
    "webgui": true
   },
-  "n": 63,
+  "n": 67,
   "tcodes": [
    {
     "c": "F-92",
@@ -1986,7 +2101,7 @@ const USERMENU_DATA = [
    ],
    "note": "워크리스트·리포트 앱으로 분산"
   },
-  "n": 64,
+  "n": 68,
   "tcodes": [
    {
     "c": "AR01",
@@ -2024,7 +2139,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 65,
+  "n": 69,
   "tcodes": [
    {
     "c": "S_ALR_87012004",
@@ -2053,7 +2168,7 @@ const USERMENU_DATA = [
    ],
    "note": "자산 잔액"
   },
-  "n": 66,
+  "n": 70,
   "tcodes": [
    {
     "c": "S_ALR_87011994",
@@ -2083,7 +2198,7 @@ const USERMENU_DATA = [
    ],
    "note": "세금 전기"
   },
-  "n": 67,
+  "n": 71,
   "tcodes": [
    {
     "c": "FB41",
@@ -2108,7 +2223,7 @@ const USERMENU_DATA = [
    ],
    "note": "입금 전기"
   },
-  "n": 68,
+  "n": 72,
   "tcodes": [
    {
     "c": "F-28",
@@ -2133,7 +2248,7 @@ const USERMENU_DATA = [
    ],
    "note": "자동지급"
   },
-  "n": 69,
+  "n": 73,
   "tcodes": [
    {
     "c": "F110",
@@ -2164,7 +2279,7 @@ const USERMENU_DATA = [
    ],
    "note": "지급 전기"
   },
-  "n": 70,
+  "n": 74,
   "tcodes": [
    {
     "c": "F-53",
@@ -2189,7 +2304,7 @@ const USERMENU_DATA = [
    ],
    "note": "Scope Item 유사 매핑 (신뢰도 하)"
   },
-  "n": 71,
+  "n": 75,
   "tcodes": [
    {
     "c": "FBWD",
@@ -2215,7 +2330,7 @@ const USERMENU_DATA = [
    "note": "어음 스코프 활성화·국가별 가용성 확인 필요 · Scope Item 유사 매핑 (신뢰도 하)",
    "webgui": true
   },
-  "n": 72,
+  "n": 76,
   "tcodes": [
    {
     "c": "F-40",
@@ -2240,7 +2355,7 @@ const USERMENU_DATA = [
    ],
    "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 73,
+  "n": 77,
   "tcodes": [
    {
     "c": "FF7B",
@@ -2267,7 +2382,7 @@ const USERMENU_DATA = [
    ],
    "note": "별도 라이선스(BTP 솔루션). 구 스코프 2V8은 표준에서 폐기, 연동 스코프 4HG"
   },
-  "n": 74,
+  "n": 78,
   "tcodes": [
    {
     "c": "CLOCOC",
@@ -2300,7 +2415,7 @@ const USERMENU_DATA = [
    ],
    "note": "전기 기간 관리"
   },
-  "n": 75,
+  "n": 79,
   "tcodes": [
    {
     "c": "OB52",
@@ -2331,7 +2446,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 76,
+  "n": 80,
   "tcodes": [
    {
     "c": "VF04",
@@ -2356,7 +2471,7 @@ const USERMENU_DATA = [
    ],
    "note": "미전기 상태로 보류 문서 식별"
   },
-  "n": 77,
+  "n": 81,
   "tcodes": [
    {
     "c": "VFX3",
@@ -2381,7 +2496,7 @@ const USERMENU_DATA = [
    ],
    "note": "자동반제 (작업 스케줄)"
   },
-  "n": 78,
+  "n": 82,
   "tcodes": [
    {
     "c": "F.13",
@@ -2414,7 +2529,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 79,
+  "n": 83,
   "tcodes": [
    {
     "c": "MB5S",
@@ -2452,7 +2567,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 80,
+  "n": 84,
   "items": [
    "xmod-griradj"
   ],
@@ -2469,7 +2584,7 @@ const USERMENU_DATA = [
   "group": "Monthly Closing",
   "src": "se43",
   "app": null,
-  "n": 81,
+  "n": 85,
   "tcodes": [
    {
     "c": "SM35",
@@ -2495,7 +2610,7 @@ const USERMENU_DATA = [
    ],
    "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 82,
+  "n": 86,
   "tcodes": [
    {
     "c": "MR11",
@@ -2530,7 +2645,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 83,
+  "n": 87,
   "tcodes": [
    {
     "c": "AFAB",
@@ -2571,7 +2686,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 84,
+  "n": 88,
   "items": [
    "aa-acctdet",
    "aa-numrange",
@@ -2592,7 +2707,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "Foundation — Scope Item 없이 기본 제공"
   },
-  "n": 85,
+  "n": 89,
   "tcodes": [
    {
     "c": "SM37",
@@ -2617,7 +2732,7 @@ const USERMENU_DATA = [
    ],
    "note": "반복 전표 생성"
   },
-  "n": 86,
+  "n": 90,
   "tcodes": [
    {
     "c": "FBD1",
@@ -2675,7 +2790,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 87,
+  "n": 91,
   "terms": [
    "recurring-entry"
   ]
@@ -2696,7 +2811,7 @@ const USERMENU_DATA = [
    ],
    "note": "발생/이연 전표 입력"
   },
-  "n": 88,
+  "n": 92,
   "tcodes": [
    {
     "c": "FBS1",
@@ -2725,7 +2840,7 @@ const USERMENU_DATA = [
    ],
    "note": "발생 앱군으로 재구성 (구매오더 발생 조회 F3778 등)"
   },
-  "n": 89,
+  "n": 93,
   "tcodes": [
    {
     "c": "ACACTREE01",
@@ -2773,7 +2888,7 @@ const USERMENU_DATA = [
    ],
    "note": "고급 외화 평가(Advanced Valuation) 실행"
   },
-  "n": 90,
+  "n": 94,
   "tcodes": [
    {
     "c": "FAGL_FCV",
@@ -2810,7 +2925,7 @@ const USERMENU_DATA = [
    ],
    "note": "잔액 이월 실행"
   },
-  "n": 91,
+  "n": 95,
   "tcodes": [
    {
     "c": "FAGLGVTR",
@@ -2847,7 +2962,7 @@ const USERMENU_DATA = [
    ],
    "note": "여러 작업 템플릿 통합 앱 (회사코드 설정 F7312와 함께)"
   },
-  "n": 92,
+  "n": 96,
   "tcodes": [
    {
     "c": "AJRW",
@@ -2885,7 +3000,7 @@ const USERMENU_DATA = [
    ],
    "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 93,
+  "n": 97,
   "tcodes": [
    {
     "c": "KP27",
@@ -2911,7 +3026,7 @@ const USERMENU_DATA = [
    "note": "",
    "webgui": true
   },
-  "n": 94,
+  "n": 98,
   "tcodes": [
    {
     "c": "KSII",
@@ -2939,7 +3054,7 @@ const USERMENU_DATA = [
    ],
    "note": "분할 구조 기준으로 실제원가 분할 수행"
   },
-  "n": 95,
+  "n": 99,
   "tcodes": [
    {
     "c": "KSS2",
@@ -2968,7 +3083,7 @@ const USERMENU_DATA = [
    ],
    "note": "배부 사이클"
   },
-  "n": 96,
+  "n": 100,
   "tcodes": [
    {
     "c": "KSU2",
@@ -3007,7 +3122,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 97,
+  "n": 101,
   "tcodes": [
    {
     "c": "KL13",
@@ -3035,7 +3150,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 98,
+  "n": 102,
   "tcodes": [
    {
     "c": "KOB1",
@@ -3060,7 +3175,7 @@ const USERMENU_DATA = [
    ],
    "note": "원가 추정"
   },
-  "n": 99,
+  "n": 103,
   "tcodes": [
    {
     "c": "CK11N",
@@ -3088,7 +3203,7 @@ const USERMENU_DATA = [
    ],
    "note": "대량 실행은 원가계산 실행 관리(F1865) · Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 100,
+  "n": 104,
   "tcodes": [
    {
     "c": "CK24",
@@ -3116,7 +3231,7 @@ const USERMENU_DATA = [
    ],
    "note": "표준원가 추정"
   },
-  "n": 101,
+  "n": 105,
   "tcodes": [
    {
     "c": "CK40N",
@@ -3145,7 +3260,7 @@ const USERMENU_DATA = [
    ],
    "note": "원가요소 = G/L 계정으로 통합"
   },
-  "n": 102,
+  "n": 106,
   "tcodes": [
    {
     "c": "KA23",
@@ -3177,7 +3292,7 @@ const USERMENU_DATA = [
    ],
    "note": "이익센터 생성"
   },
-  "n": 103,
+  "n": 107,
   "tcodes": [
    {
     "c": "KE51",
@@ -3203,7 +3318,7 @@ const USERMENU_DATA = [
    ],
    "note": "코스트센터 생성"
   },
-  "n": 104,
+  "n": 108,
   "tcodes": [
    {
     "c": "KS01",
@@ -3239,7 +3354,7 @@ const USERMENU_DATA = [
    ],
    "note": "신규 버전 앱"
   },
-  "n": 105,
+  "n": 109,
   "tcodes": [
    {
     "c": "KS13",
@@ -3270,7 +3385,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 106,
+  "n": 110,
   "tcodes": [
    {
     "c": "KK04",
@@ -3305,7 +3420,7 @@ const USERMENU_DATA = [
    ],
    "note": "차대변 전기 버튼"
   },
-  "n": 107,
+  "n": 111,
   "items": [
    "ml-parallel-valuation"
   ]
@@ -3334,7 +3449,7 @@ const USERMENU_DATA = [
    "note": "Scope Item 유사 매핑 (신뢰도 중)",
    "webgui": true
   },
-  "n": 108
+  "n": 112
  },
  {
   "tcode": "CKMLCP",
@@ -3360,7 +3475,7 @@ const USERMENU_DATA = [
    "note": "",
    "webgui": true
   },
-  "n": 109,
+  "n": 113,
   "items": [
    "ml-ckmlcp-steps",
    "ml-wip-revaluation",
@@ -3398,7 +3513,7 @@ const USERMENU_DATA = [
    ],
    "note": "Public은 이벤트 기준 방식"
   },
-  "n": 110
+  "n": 114
  },
  {
   "tcode": "KKBC_ORD",
@@ -3423,7 +3538,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 111
+  "n": 115
  },
  {
   "tcode": "KKS1",
@@ -3456,7 +3571,7 @@ const USERMENU_DATA = [
    ],
    "note": "WIP·차이·정산이 묶인 복합 기능이라 1:1 대응은 아님. 일정 실행은 제품 원가계산 작업 일정(F3683)"
   },
-  "n": 112,
+  "n": 116,
   "items": [
    "co-settle",
    "co-costvar"
@@ -3496,7 +3611,7 @@ const USERMENU_DATA = [
    ],
    "note": "Scope Item 유사 매핑 (신뢰도 하)"
   },
-  "n": 113,
+  "n": 117,
   "terms": [
    "overhead-calculation"
   ]
@@ -3528,7 +3643,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 114,
+  "n": 118,
   "items": [
    "co-ccenter"
   ],
@@ -3559,7 +3674,7 @@ const USERMENU_DATA = [
    ],
    "note": "실행 결과는 배부 결과, 흐름은 배부 흐름 앱에서 조회"
   },
-  "n": 115,
+  "n": 119,
   "items": [
    "co-alloc",
    "ml-parallel-valuation"
@@ -3599,7 +3714,7 @@ const USERMENU_DATA = [
    ],
    "note": "계층 유형별 T-code 상이 (생성/변경/조회 1·2·3, 재무제표 버전 OB58)"
   },
-  "n": 116
+  "n": 120
  },
  {
   "tcode": "KAH1",
@@ -3632,7 +3747,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 117,
+  "n": 121,
   "items": [
    "co-celem"
   ],
@@ -3663,7 +3778,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 118
+  "n": 122
  },
  {
   "tcode": "KSBT",
@@ -3692,7 +3807,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 119
+  "n": 123
  },
  {
   "tcode": "KK01",
@@ -3725,7 +3840,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 120,
+  "n": 124,
   "items": [
    "co-skf"
   ]
@@ -3761,7 +3876,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 121,
+  "n": 125,
   "items": [
    "co-skf"
   ]
@@ -3793,7 +3908,7 @@ const USERMENU_DATA = [
    ],
    "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 122
+  "n": 126
  },
  {
   "tcode": "S_ALR_87013611",
@@ -3818,7 +3933,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 123,
+  "n": 127,
   "items": [
    "co-ccenter"
   ],
@@ -3849,7 +3964,7 @@ const USERMENU_DATA = [
    ],
    "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 124,
+  "n": 128,
   "items": [
    "co-margin"
   ],
@@ -3880,7 +3995,7 @@ const USERMENU_DATA = [
    ],
    "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 125
+  "n": 129
  },
  {
   "tcode": "CJ20N",
@@ -3917,7 +4032,7 @@ const USERMENU_DATA = [
    ],
    "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 126
+  "n": 130
  },
  {
   "tcode": "CJR2",
@@ -3948,7 +4063,7 @@ const USERMENU_DATA = [
    ],
    "note": "Public은 CSV 임포트 방식, 1:1 대응 아님"
   },
-  "n": 127
+  "n": 131
  },
  {
   "tcode": "S_ALR_87013532",
@@ -3973,7 +4088,7 @@ const USERMENU_DATA = [
    ],
    "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 128
+  "n": 132
  },
  {
   "tcode": "VA01",
@@ -3991,7 +4106,7 @@ const USERMENU_DATA = [
    ],
    "note": "판매오더 생성"
   },
-  "n": 129,
+  "n": 133,
   "tcodes": [
    {
     "c": "VA01",
@@ -4028,7 +4143,7 @@ const USERMENU_DATA = [
    ],
    "note": "납품 생성"
   },
-  "n": 130,
+  "n": 134,
   "tcodes": [
    {
     "c": "VL01N",
@@ -4060,7 +4175,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 131
+  "n": 135
  },
  {
   "tcode": "VL02N",
@@ -4086,7 +4201,7 @@ const USERMENU_DATA = [
    "note": "",
    "webgui": true
   },
-  "n": 132
+  "n": 136
  },
  {
   "tcode": "VF01",
@@ -4104,7 +4219,7 @@ const USERMENU_DATA = [
    ],
    "note": "빌링"
   },
-  "n": 133,
+  "n": 137,
   "tcodes": [
    {
     "c": "VF01",
@@ -4138,7 +4253,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "Foundation — Scope Item 없이 기본 제공"
   },
-  "n": 134
+  "n": 138
  },
  {
   "tcode": "ME21N",
@@ -4164,7 +4279,7 @@ const USERMENU_DATA = [
    "note": "",
    "webgui": true
   },
-  "n": 135
+  "n": 139
  },
  {
   "tcode": "MIGO",
@@ -4190,7 +4305,7 @@ const USERMENU_DATA = [
    "note": "Scope Item 유사 매핑 (신뢰도 중)",
    "webgui": true
   },
-  "n": 136,
+  "n": 140,
   "items": [
    "xmod-obyc"
   ]
@@ -4212,7 +4327,7 @@ const USERMENU_DATA = [
    "note": "자재 출고 · Scope Item 유사 매핑 (신뢰도 중)",
    "webgui": true
   },
-  "n": 137,
+  "n": 141,
   "tcodes": [
    {
     "c": "MB11",
@@ -4244,7 +4359,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 138,
+  "n": 142,
   "items": [
    "gl-doc-number",
    "xmod-assetpo"
@@ -4266,7 +4381,7 @@ const USERMENU_DATA = [
    ],
    "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 139,
+  "n": 143,
   "tcodes": [
    {
     "c": "MIR5",
@@ -4291,7 +4406,7 @@ const USERMENU_DATA = [
    ],
    "note": "재고/소요량"
   },
-  "n": 140,
+  "n": 144,
   "tcodes": [
    {
     "c": "MD04",
@@ -4316,7 +4431,7 @@ const USERMENU_DATA = [
    ],
    "note": "자재문서 조회 · Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 141,
+  "n": 145,
   "tcodes": [
    {
     "c": "MB51",
@@ -4341,7 +4456,7 @@ const USERMENU_DATA = [
    ],
    "note": "창고 재고 · Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 142,
+  "n": 146,
   "tcodes": [
    {
     "c": "MB52",
@@ -4367,7 +4482,7 @@ const USERMENU_DATA = [
    "note": "상세 이동은 MB51, 가치잔액은 MB5L · Scope Item 유사 매핑 (신뢰도 중)",
    "webgui": true
   },
-  "n": 143,
+  "n": 147,
   "tcodes": [
    {
     "c": "MB5B",
@@ -4392,7 +4507,7 @@ const USERMENU_DATA = [
    ],
    "note": "배치 상세는 배치 관리(F2462) 병행 · Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 144,
+  "n": 148,
   "tcodes": [
    {
     "c": "MMBE",
@@ -4417,7 +4532,7 @@ const USERMENU_DATA = [
    ],
    "note": "LIS 분석과 1:1 아님 · Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 145,
+  "n": 149,
   "tcodes": [
    {
     "c": "MC.A",
@@ -4442,7 +4557,7 @@ const USERMENU_DATA = [
    ],
    "note": "LIS 분석과 1:1 아님 · Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 146,
+  "n": 150,
   "tcodes": [
    {
     "c": "MCBE",
@@ -4475,7 +4590,7 @@ const USERMENU_DATA = [
    "note": "Web GUI 앱 · Scope Item 유사 매핑 (신뢰도 중)",
    "webgui": true
   },
-  "n": 147,
+  "n": 151,
   "items": [
    "gl-posting-period",
    "gl-pp-variant",
@@ -4509,7 +4624,7 @@ const USERMENU_DATA = [
    "note": "Web GUI 앱 · Scope Item 유사 매핑 (신뢰도 중)",
    "webgui": true
   },
-  "n": 148,
+  "n": 152,
   "items": [
    "gl-posting-period",
    "gl-pp-variant",
@@ -4550,7 +4665,7 @@ const USERMENU_DATA = [
    ],
    "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 149
+  "n": 153
  },
  {
   "tcode": "CS01",
@@ -4568,7 +4683,7 @@ const USERMENU_DATA = [
    ],
    "note": "조회(CS03)는 자재 BOM 조회 앱 · Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 150,
+  "n": 154,
   "tcodes": [
    {
     "c": "CS01",
@@ -4601,7 +4716,7 @@ const USERMENU_DATA = [
    "note": "작업순서 생성 · Scope Item 유사 매핑 (신뢰도 중)",
    "webgui": true
   },
-  "n": 151,
+  "n": 155,
   "tcodes": [
    {
     "c": "CA01",
@@ -4627,7 +4742,7 @@ const USERMENU_DATA = [
    "note": "생산오더 생성",
    "webgui": true
   },
-  "n": 152,
+  "n": 156,
   "tcodes": [
    {
     "c": "CO01",
@@ -4660,7 +4775,7 @@ const USERMENU_DATA = [
    "note": "cloud.sap",
    "webgui": true
   },
-  "n": 153
+  "n": 157
  },
  {
   "tcode": "CO11",
@@ -4678,7 +4793,7 @@ const USERMENU_DATA = [
    ],
    "note": "생산실적 확인"
   },
-  "n": 154,
+  "n": 158,
   "tcodes": [
    {
     "c": "CO11",
@@ -4711,7 +4826,7 @@ const USERMENU_DATA = [
    "note": "",
    "webgui": true
   },
-  "n": 155
+  "n": 159
  },
  {
   "tcode": "COOIS",
@@ -4737,7 +4852,7 @@ const USERMENU_DATA = [
    "note": "Scope Item 유사 매핑 (신뢰도 중)",
    "webgui": true
   },
-  "n": 156
+  "n": 160
  },
  {
   "tcode": "MFBF",
@@ -4763,7 +4878,7 @@ const USERMENU_DATA = [
    "note": "Scope Item 유사 매핑 (신뢰도 하)",
    "webgui": true
   },
-  "n": 157
+  "n": 161
  },
  {
   "tcode": "COGI",
@@ -4789,7 +4904,7 @@ const USERMENU_DATA = [
    "note": "Scope Item 유사 매핑 (신뢰도 중)",
    "webgui": true
   },
-  "n": 158
+  "n": 162
  },
  {
   "tcode": "FGI0",
@@ -4805,7 +4920,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "Report Painter 1:1 없음, 분석 앱으로 대체 · Foundation — Scope Item 없이 기본 제공"
   },
-  "n": 159,
+  "n": 163,
   "tcodes": [
    {
     "c": "FGI0",
@@ -4854,7 +4969,7 @@ const USERMENU_DATA = [
    ],
    "note": "재무제표"
   },
-  "n": 160,
+  "n": 164,
   "tcodes": [
    {
     "c": "S_ALR_87012284",
@@ -4886,7 +5001,7 @@ const USERMENU_DATA = [
    ],
    "note": ""
   },
-  "n": 161
+  "n": 165
  },
  {
   "tcode": "SQVI",
@@ -4902,7 +5017,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "View Browser·Custom CDS로 대체 · Foundation — Scope Item 없이 기본 제공"
   },
-  "n": 162,
+  "n": 166,
   "tcodes": [
    {
     "c": "SQVI",
@@ -4940,7 +5055,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "Released CDS 기반 재설계 · Foundation — Scope Item 없이 기본 제공"
   },
-  "n": 163
+  "n": 167
  },
  {
   "tcode": "PFCG",
@@ -4963,7 +5078,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "Foundation — Scope Item 없이 기본 제공"
   },
-  "n": 164,
+  "n": 168,
   "items": [
    "ap-bp-role"
   ],
@@ -4992,7 +5107,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "Foundation — Scope Item 없이 기본 제공"
   },
-  "n": 165
+  "n": 169
  },
  {
   "tcode": "SM04",
@@ -5015,7 +5130,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "Foundation — Scope Item 없이 기본 제공"
   },
-  "n": 166
+  "n": 170
  },
  {
   "tcode": "SE09",
@@ -5038,7 +5153,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "임포트 F1432 · 엑스포트 F1433 (CTS 대신 소프트웨어 컬렉션 방식) · Foundation — Scope Item 없이 기본 제공"
   },
-  "n": 167
+  "n": 171
  },
  {
   "tcode": "STMS",
@@ -5061,7 +5176,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "Foundation — Scope Item 없이 기본 제공"
   },
-  "n": 168
+  "n": 172
  },
  {
   "tcode": "SE80",
@@ -5084,7 +5199,26 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "사용자정의오브젝트·사용자정의필드·사용자정의CDS뷰 포함, RAP 코드는 Eclipse · Foundation — Scope Item 없이 기본 제공"
   },
-  "n": 169
+  "n": 173
+ },
+ {
+  "tcode": "SHDB",
+  "ko": "트랜잭션 레코딩",
+  "en": "Transaction Recorder",
+  "menu": "",
+  "group": "(기타)",
+  "src": "manual",
+  "tcodes": [
+   {
+    "c": "SHDB",
+    "l": ""
+   }
+  ],
+  "app": null,
+  "noapp": true,
+  "nonote": "대응 없음 — Public에는 레코딩·BDC 개념이 없다. 데이터 이관은 Migration Cockpit, 대량 입력은 앱의 임포트 기능과 통합 API로 대체한다",
+  "why": "화면 조작을 녹화해 BDC 프로그램(ZBDC)의 뼈대를 만드는 레코더. SM35 배치 입력 세션의 재료가 여기서 나온다",
+  "n": 174
  },
  {
   "tcode": "GGB4",
@@ -5109,7 +5243,7 @@ const USERMENU_DATA = [
    ],
    "note": "Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 170,
+  "n": 175,
   "items": [
    "gl-substitution"
   ],
@@ -5141,7 +5275,7 @@ const USERMENU_DATA = [
    ],
    "note": "구현 액티비티 > 채권채무 > 지급 > 은행결정 · Scope Item 유사 매핑 (신뢰도 중)"
   },
-  "n": 171,
+  "n": 176,
   "items": [
    "ap-bank-determ"
   ]
@@ -5167,7 +5301,7 @@ const USERMENU_DATA = [
    "scopes": [],
    "note": "PCE SPRO의 Public 대응은 CBC · Foundation — Scope Item 없이 기본 제공"
   },
-  "n": 172
+  "n": 177
  },
  {
   "tcode": "SM12",
@@ -5186,7 +5320,7 @@ const USERMENU_DATA = [
   "app": null,
   "noapp": true,
   "nonote": "Public(SaaS)에서는 잠금 항목을 사용자가 직접 관리하는 화면이 없다. 인프라성 잠금은 SAP가 관리한다.",
-  "n": 173
+  "n": 178
  },
  {
   "tcode": "SM51",
@@ -5209,6 +5343,6 @@ const USERMENU_DATA = [
   "app": null,
   "noapp": true,
   "nonote": "Public(SaaS)에서는 인프라를 SAP가 운영하므로 대응 화면이 없다. 주로 BC 관리자의 영역이다.",
-  "n": 174
+  "n": 179
  }
 ];
