@@ -1420,12 +1420,12 @@ const USERMENU_DATA = [
   ],
   "app": {
    "id": "",
-   "en": "Create Outgoing Credit Memo",
-   "ko": "발행 대변메모 생성",
+   "en": "Create Outgoing Invoice",
+   "ko": "발행 송장 생성",
    "scopes": [
     "J59"
    ],
-   "note": "유사 매핑 — 대변메모 앱"
+   "note": "대변메모는 같은 앱에서 Transaction 드롭다운으로 Credit Memo를 선택해 입력한다. 별도 대변메모 앱 없음"
   },
   "why": "매출을 되돌리는 고객 대변메모 입력 화면. FB70(매출송장)의 짝이다",
   "n": 47
@@ -1625,13 +1625,13 @@ const USERMENU_DATA = [
    }
   ],
   "app": {
-   "id": "",
-   "en": "Create Supplier Credit Memo",
-   "ko": "공급업체 대변메모 생성",
+   "id": "F0859",
+   "en": "Create Supplier Invoice",
+   "ko": "수령 송장 생성",
    "scopes": [
     "J60"
    ],
-   "note": "유사 매핑 — 대변메모 앱"
+   "note": "대변메모는 같은 앱에서 거래 유형(Transaction)을 Credit Memo로 선택해 입력한다. 별도 대변메모 앱·Web GUI 없음 (SAP Learning 확인)"
   },
   "why": "매입을 되돌리는 공급업체 대변메모 입력 화면. FB60(매입송장)의 짝이다",
   "n": 53
