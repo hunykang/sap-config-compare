@@ -72,7 +72,7 @@
     var dim = (overlay && st.layers.MC && n.mc === 0) || !matchesQ(n);
     var h = '<div class="node ' + (n.main ? "main" : "sub") + (st.sel === n.id ? " sel" : "") + (dim ? " dim" : "") + '" data-id="' + n.id + '" role="button" tabindex="0">';
     h += (n.main ? "◆ " : "") + esc(n.name);
-    if (n.post) h += '<span class="post">' + esc(n.post) + "</span>";
+    if (n.posting) h += '<span class="post">' + esc(n.posting) + "</span>";
     if (overlay) {
       if (st.layers.L2 && n.subs.length) h += '<ul class="sublist">' + n.subs.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul>";
       h += tcodeChips(n);
@@ -156,12 +156,12 @@
       ' <a class="item-link" href="' + gUrl("SAP " + n.name) + '" target="_blank" rel="noopener" title="구글 검색으로 열기"><i class="ext">↗</i></a> ' +
       whyLink("sap why " + n.name) +
       '<span class="en">' + esc(n.en || "") + "</span></h4>";
-    h += '<div class="meta">' + laneName(n.lane) + " · " + PROCESS_STEPS[n.step] + " 단계" + (n.post ? " · 전표: " + esc(n.post) : "") + "</div>";
+    h += '<div class="meta">' + laneName(n.lane) + " · " + PROCESS_STEPS[n.step] + " 단계" + (n.posting ? " · 전표: " + esc(n.posting) : "") + "</div>";
     h += "<p>" + esc(n.desc) + "</p>";
     if (n.subs.length) h += '<div class="row"><b>L2 서브:</b> ' + n.subs.map(esc).join(" · ") + "</div>";
     if (n.mc > 0) h += '<div class="row"><b>Model Company:</b> ' + esc(n.mcNote) + (n.mc === 1 ? " (연계)" : "") + "</div>";
     if (n.ext && n.ext.length) h += '<div class="row"><b>외부 연계:</b> ' + n.ext.map(esc).join(" · ") + ' <a class="chip-link" href="integrations.html">외부 연계 설명 페이지</a></div>';
-    if (n.cbo) h += '<div class="row"><b>CBO개발</b> <span class="meta">— 이 영역에 MC 전용 프로그램이 있었음을 표시합니다. 프로그램 코드는 표기하지 않습니다.</span></div>';
+    if (n.cbo) h += '<div class="row"><b>CBO개발</b> — ' + (n.cboNote ? esc(n.cboNote) + ' ' : '') + '<span class="meta">(MC 전용 프로그램, 코드 미표기)</span></div>';
     if (n.tcodes.length) {
       h += '<div class="row"><b>T-code</b> <span class="meta">(클릭하면 UserMenu 설명으로 이동)</span></div><ul class="tc-list">';
       n.tcodes.forEach(function (t) {
