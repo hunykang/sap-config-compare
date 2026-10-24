@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FI 외부 연계 설명 | SAP Config 비교 가이드</title>
+<meta name="description" content="SAP FI와 자주 연결되는 외부 시스템(e-Accounting, e-HR, 전자결재, 전자세금계산서, 부가세·원천세 신고)을 프로세스 지도에 녹여 설명합니다. 각 연계가 어느 노드에서 FI 전표와 만나는지, 무엇을 주의해야 하는지 정리했습니다.">
+<link rel="stylesheet" href="style.css?v=20261020c">
+<style>
+.ext-sec{border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:16px 0;background:#fff}
+.ext-sec h2{margin:0 0 6px;font-size:16px}
+.ext-sec h3{margin:14px 0 4px;font-size:13.5px}
+.ext-sec p,.ext-sec li{font-size:13.5px;line-height:1.7}
+.ext-sec ul{margin:4px 0;padding-left:18px}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;border-radius:999px;padding:1px 9px;background:#eef4ff;border:1px solid var(--line);margin-right:4px}
+.flow{font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;line-height:1.8}
+.flow b{color:var(--ink)}
+@media (max-width:760px){.ext-sec{padding:12px 14px}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">SAP FI Configuring Guide <span class="brand-sub">- ECC/PCE/PUBLIC</span></a>
+    <nav class="nav">
+      <a href="index.html">개요</a>
+      <a href="compare.html">비교표(SPRO)</a>
+      <a href="graph.html">지식그래프</a>
+      <a href="process.html">프로세스</a>
+      <a href="integrations.html" class="active">외부 연계</a>
+      <a href="glossary.html">용어집</a>
+      <a href="usermenu.html">UserMenu(SE43)</a>
+      <a href="table.html">Table(CDS View)</a>
+      <a href="autoposting.html">Auto-posting</a>
+      <a href="sketch.html">현장 스케치</a>
+      <a href="updates.html">업데이트</a>
+      <a href="feedback.html">피드백</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero" style="padding:32px 0 8px">
+    <h1>FI 외부 연계 설명</h1>
+    <p>FI는 혼자 돌지 않습니다. 경비·인사·결재·세금계산서·신고 업무는 바깥 시스템에서 일어나고, 그 결과가 FI 전표로 들어옵니다. 이 페이지는 그 외부 시스템을 <strong>프로세스 지도의 해당 노드에 스며들게</strong> 연결한 설명입니다. 특정 업체나 제품 이름은 쓰지 않고, 기능과 FI 접점만 정리했습니다.</p>
+    <p style="font-size:13px;color:var(--muted)">지도에서 노드를 누르면 상세 패널의 <strong>외부 연계</strong> 행에도 같은 내용이 뜹니다.</p>
+  </section>
+
+  <section class="ext-sec">
+    <h2>1. e-Accounting — 경비정산 · 매입세금계산서</h2>
+    <p><span class="tag">지도 연결</span> <a href="process.html#p-journal">일반전표·경비 처리</a> · <a href="process.html#p-iv">송장 검증</a></p>
+    <h3>하는 일</h3>
+    <ul>
+      <li>직원이 경비를 신청하면 증빙(영수증·세금계산서)을 붙여 정산합니다. 법인카드 사용분도 여기서 모입니다.</li>
+      <li>거래처가 보내온 매입세금계산서를 수취해 송장 검증과 매핑합니다. 금액·세액·공급자 정보가 맞아야 반제가 됩니다.</li>
+    </ul>
+    <h3>FI 접점</h3>
+    <div class="flow">경비 신청·승인 → <b>비용 / AP</b> (일반전표·경비 처리) · 법인카드 정산<br>매입세금계산서 수취 → <b>AP / GR-IR · 비용 / AP</b> (송장 검증) · 역발행세금계산서는 매입자 쪽에서 발행해 관리</div>
+    <h3>주의점</h3>
+    <ul>
+      <li>증빙 없는 경비는 전표가 되어도 나중에 세무에서 틀어집니다. 증빙 보관과 전표는 한 세트로 관리합니다.</li>
+      <li>매입세금계산서의 세액이 틀리면 부가세 신고까지 틀어지니, 수취 단계에서 매핑 검증이 중요합니다.</li>
+    </ul>
+  </section>
+
+  <section class="ext-sec">
+    <h2>2. e-HR — 조직정보 · 급여정보 · 복리후생</h2>
+    <p><span class="tag">지도 연결</span> <a href="process.html#p-org">조직·기준정보</a> · <a href="process.html#p-payroll">인건비·퇴직급여</a></p>
+    <h3>하는 일</h3>
+    <ul>
+      <li>조직·인사 정보를 관리합니다. 직원의 코스트센터(부서)가 여기서 정해집니다.</li>
+      <li>매월 급여를 계산하고, 4대보험 같은 복리후생비와 퇴직급여를 산정합니다.</li>
+    </ul>
+    <h3>FI 접점</h3>
+    <div class="flow">e-HR 월별 인건비 계산 → 전표 작성 → 회계팀 전송 → <b>급여 / 상여 · 미지급 인건비</b>, <b>예수금 - 원천세</b>, <b>복리후생비 - 4대보험 / 미지급비용일반</b><br>퇴직급여: 연초에 받은 계리액의 매월말 1/12씩 → <b>퇴직급여 / 퇴직급여충당금</b> (코스트센터 구분을 명확히)</div>
+    <h3>주의점</h3>
+    <ul>
+      <li>직원의 코스트센터를 e-HR과 SAP에서 항상 동일하게 정비해야 합니다. 여기가 어긋나면 부서별 비용이 전부 틀어집니다.</li>
+      <li>인건비 전표는 회계팀이 내역을 확인하고 승인한 뒤에 전기합니다.</li>
+    </ul>
+  </section>
+
+  <section class="ext-sec">
+    <h2>3. 전자결재 — 내부통제 기안 · 전자증빙 보관</h2>
+    <p><span class="tag">지도 연결</span> <a href="process.html#p-approve">전표 승인</a> · <a href="process.html#p-journal">일반전표·경비 처리</a></p>
+    <h3>하는 일</h3>
+    <ul>
+      <li>지출·계약·전표 관련 기안을 전자결재로 올리고 승인받습니다. 내부통제의 흔적이 기안-승인 이력으로 남습니다.</li>
+      <li>승인된 내역에 딸린 증빙을 전자 형태로 보관합니다. 종이 증빙을 찾는 일이 사라집니다.</li>
+    </ul>
+    <h3>FI 접점</h3>
+    <div class="flow">기안 → 승인 → <b>임시전표 전기</b> (전표 승인 노드) · 증빙은 전표와 함께 보관되어 나중에 조회 가능</div>
+    <h3>주의점</h3>
+    <ul>
+      <li>승인 전에 장부에 잡히면 안 됩니다. 임시전표 상태와 전기 상태를 구분하는 것이 통제의 핵심입니다.</li>
+      <li>증빙이 없는 승인은 나중에 감사에서 지적됩니다. 기안-증빙-전표 세 가지가 한 건으로 묶여야 합니다.</li>
+    </ul>
+  </section>
+
+  <section class="ext-sec">
+    <h2>4. 전자세금계산서발행 — 매출 · 영세율 · 계산서 · 역발행</h2>
+    <p><span class="tag">지도 연결</span> <a href="process.html#p-bill">대금청구·세금계산서</a> · <a href="process.html#p-iv">송장 검증</a></p>
+    <h3>하는 일</h3>
+    <ul>
+      <li>매출이 확정되면 매출세금계산서를 발행합니다. 수출처럼 영세율이 적용되는 거래는 영세율세금계산서로 나갑니다.</li>
+      <li>면세 거래에는 세금계산서가 아니라 계산서를 발행합니다.</li>
+      <li>역발행세금계산서는 매입자 쪽에서 발행하는 형태로, 송장 검증 쪽에서 관리합니다.</li>
+    </ul>
+    <h3>FI 접점</h3>
+    <div class="flow">대금청구 → <b>매출채권 / 매출 · 부가세</b> (매출세금계산서·영세율·계산서 발행)<br>역발행 수취 → <b>AP / GR-IR</b> (송장 검증)</div>
+    <h3>주의점</h3>
+    <ul>
+      <li>영세율과 면세(계산서)는 세법상 성격이 다릅니다. 세금계산서로 잘못 나가면 신고가 틀어집니다.</li>
+      <li>발행분과 수취분은 각각 매출·매입 합계표로 모여 부가세 신고의 재료가 됩니다.</li>
+    </ul>
+  </section>
+
+  <section class="ext-sec">
+    <h2>5. 부가세 및 원천세 신고</h2>
+    <p><span class="tag">지도 연결</span> <a href="process.html#p-report">재무제표·세무신고</a></p>
+    <h3>하는 일 — 월별 / 분기 주기로 합계표를 확인하고 전자 신고 파일을 만듭니다</h3>
+    <ul>
+      <li><strong>세금계산서 합계표</strong>: 세금계산서에 대한 부가세를 확인합니다.</li>
+      <li><strong>계산서 합계표</strong>: 계산서에 대한 부가세를 확인합니다.</li>
+      <li><strong>신용카드 수취명세서</strong>: 신용카드 사용분(매입·매출)의 부가세를 확인합니다.</li>
+      <li><strong>수출입 명세서</strong>: 영세율 내역을 확인합니다.</li>
+      <li><strong>부동산 임대공급 관련 신고</strong>: 간주임대료를 포함해 임대공급 내역을 정리합니다.</li>
+      <li><strong>공통매입세액 안분</strong>: 과세사업과 면세사업을 함께 영위하는 겸영사업자가, 공통으로 사용한 재화·용역의 매입세액을 과세 부분과 면세 부분으로 나눕니다. 근거는 부가가치세법 시행령 제61조 제1항이며, 예정신고 때 나눈 금액은 확정신고 때 정산합니다.</li>
+      <li><strong>원천세</strong>: 급여·사업소득 등에서 떼는 세금을 신고합니다. 급여 전표의 예수금-원천세와 연결됩니다.</li>
+    </ul>
+    <h3>FI 접점</h3>
+    <div class="flow">합계표 확인 (월별/분기) → <b>전자 신고 파일 생성 → 홈텍스 신고</b><br>공통매입세액 안분 → 불공제 매입세액 확정 → 확정신고 시 정산</div>
+    <h3>주의점</h3>
+    <ul>
+      <li>합계표가 틀리면 신고가 틀립니다. 신고 전에 세금계산서·계산서·신용카드 세 가지 합계표를 각각 확인하는 것이 순서입니다.</li>
+      <li>공통매입세액 안분은 사업장별로 계산한 뒤 합산해 신고하는 구조라, 사업장이 여럿이면 안분 기준을 먼저 통일해야 합니다.</li>
+    </ul>
+  </section>
+
+  <section class="ext-sec">
+    <h2>6. 연결회계 솔루션</h2>
+    <p><span class="tag">지도 연결</span> <a href="process.html#p-consolidation">연결회계</a></p>
+    <h3>하는 일</h3>
+    <ul>
+      <li>각 자회사·사업장의 결산 데이터를 모아 연결 대상을 확정합니다.</li>
+      <li>그룹 내부거래(내부 매출·매입, 내부 채권·채무)를 상계하고, 지분·투자 관련 연결 조정을 처리합니다.</li>
+      <li>상계·조정 결과를 모아 연결재무제표를 작성합니다.</li>
+    </ul>
+    <h3>FI 접점</h3>
+    <div class="flow">자회사 결산 데이터 수집 → <b>내부거래 상계 전표</b> (연결회계 노드) · 본지사 정리 → <b>연결재무제표 보고</b><br>상계가 안 맞으면 연결 단계에서 차이가 남으니, FI 내부거래 잔액이 먼저 맞아야 합니다.</div>
+    <h3>주의점</h3>
+    <ul>
+      <li>내부거래 상계는 양쪽 장부가 같은 금액·같은 기간이어야 성립합니다. 한쪽만 잡힌 내부거래가 연결에서 가장 많이 걸립니다.</li>
+      <li>자회사마다 결산 일정·통화가 다르면 연결 일정이 늦어지니, 연결 일정과 환산 기준을 먼저 통일해야 합니다.</li>
+      <li>연결 조정은 개별 회사 장부를 고치는 것이 아니라 연결 장부에서만 처리하는 것이 원칙입니다.</li>
+    </ul>
+  </section>
+
+  <section class="u-src" style="margin-top:28px;padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:var(--card);font-size:13px">
+    <h4 style="margin:0 0 8px;font-size:14px">출처 · 범위</h4>
+    <ul style="margin:0;padding-left:18px">
+      <li>부가세 관리: To-Be Process 정의서 FI-05-01(세금계산서·계산서·신용카드·수출입 합계표, 전자 신고 파일 → 홈텍스 신고, 월별/분기).</li>
+      <li>인건비·퇴직급여: To-Be Process 정의서 FI-04-02-04(e-HR 월별 인건비 전표 전송, 급여/상여·예수금-원천세·복리후생비-4대보험 분개, 코스트센터 동일 정비, 퇴직급여 연초 계리액의 매월 1/12).</li>
+      <li>경비·증빙·승인: Model Company 추적표 1.2.2 경비전표 및 증빙관리, To-Be FI 결산전표 항목.</li>
+      <li>공통매입세액 안분: 참고자료(부가가치세법 시행령 제61조 제1항, 예정→확정신고 정산).</li>
+      <li>연결회계: Model Company 추적표 1.7.4 연결회계, 이커머스·물류 리스트의 연결(그룹연결데이터관리·내부거래) 항목.</li>
+      <li>e-Accounting·전자결재 전용 정의서는 Drive에서 찾지 못했습니다. 그래서 이 두 영역은 기존 FI 정의서의 경비·증빙·승인 항목을 근거로 녹였고, 전용 자료가 나오면 그때 보강합니다.</li>
+      <li>특정 업체·제품명, 고객사·프로젝트·금액·담당자 정보는 포함하지 않습니다.</li>
+    </ul>
+  </section>
+</main>
+<script src="counter.js?v=202610061759"></script>
+</body>
+</html>
