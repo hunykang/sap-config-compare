@@ -177,7 +177,12 @@
     var linkRows = "";
     if (n.config.length) linkRows += '<div class="row"><b>관련 설정</b> ' + n.config.map(function (id) { return '<a class="chip-link" href="compare.html#row-' + esc(id) + '">' + esc(cfgName(id)) + "</a>"; }).join(" ") + "</div>";
     if (n.terms.length) linkRows += '<div class="row"><b>관련 용어</b> ' + n.terms.map(function (id) { return '<a class="chip-link" href="glossary.html#term-' + esc(id) + '">' + esc(termName(id)) + "</a>"; }).join(" ") + "</div>";
-    if (n.tables.length) linkRows += '<div class="row"><b>관련 테이블</b> ' + n.tables.map(function (t) { return '<a class="chip-link" href="' + gUrl("SAP table " + t) + '" target="_blank" rel="noopener">' + esc(t) + " ↗</a>"; }).join(" ") + ' <a class="chip-link" href="table.html">Table 페이지</a></div>';
+    if (n.tables.length) linkRows += '<div class="row"><b>관련 테이블</b> ' + n.tables.map(function (t) {
+      var onPage = (typeof TABLE_ROWS !== "undefined") && TABLE_ROWS.some(function (r) { return r.table && r.table.split(" ")[0].replace(/\//g, "-") === t; });
+      return onPage
+        ? '<a class="chip-link" href="table.html#t-' + esc(t) + '">' + esc(t) + '</a>'
+        : '<a class="chip-link" href="' + gUrl("SAP table " + t) + '" target="_blank" rel="noopener">' + esc(t) + " ↗</a>";
+    }).join(" ") + "</div>";
     var m = sketchMatches(n);
     if (m.length) linkRows += '<div class="row"><b>현장 스케치</b> ' + m.map(function (s) { return '<a class="chip-link" href="sketch.html#sk-' + esc(s.id) + '">' + esc(s.title) + "</a>"; }).join(" ") + "</div>";
     if (linkRows) h += linkRows;
