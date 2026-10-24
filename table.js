@@ -10,6 +10,7 @@ const TABLE_MODULES = [
   { id: 'PP', name: 'PP', sub: '생산관리' },
   { id: 'PS', name: 'PS', sub: '프로젝트시스템' },
 ];
+// 2026-10-24 Cloud dev 열: SAP GitHub SAP/abap-atc-cr-cv-s4hc objectReleaseInfoLatest.json (2026-09-04 기준) DDLS released 기준으로 확정
 const TABLE_ROWS = [
  {
   "mod": "FI",
@@ -18,7 +19,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_JournalEntry"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "yes",
   "note": "ACDOCA(Universal Journal) 기반",
   "terms": [
@@ -43,7 +44,7 @@ const TABLE_ROWS = [
    "I_JournalEntryItem",
    "I_OPERATIONALACCTGDOCITEM"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "mix",
   "note": "KeyUser ✓: I_JournalEntryItem · ACDOCA 기반",
   "terms": [
@@ -77,7 +78,7 @@ const TABLE_ROWS = [
   ],
   "cloud": "mix",
   "keyuser": "mix",
-  "note": "Cloud ✓: 큐브 4종 · KeyUser ✓: I_GLAccountLineItem·I_GLAcctBalanceCube(커뮤니티 확인) · FAGLFLEXT 총계테이블 대체 · 시산표 API(C_TRIALBALANCE_CDS)",
+  "note": "Cloud ✓: I_GLAccountLineItem·I_GLAccountLineItemRawData만 해당. 큐브 5종·C_TRIALBALANCE는 Cloud 미릴리스 · KeyUser ✓: I_GLAccountLineItem·I_GLAcctBalanceCube(커뮤니티 확인) · FAGLFLEXT 총계테이블 대체 · 시산표 API(C_TRIALBALANCE_CDS)",
   "terms": [
    "universal-journal",
    "general-ledger",
@@ -101,9 +102,9 @@ const TABLE_ROWS = [
   "cds": [
    "A_JournalEntryItemBasic"
   ],
-  "cloud": "unknown",
+  "cloud": "no",
   "keyuser": "unknown",
-  "note": "SAC 재무계획 연계용",
+  "note": "SAC 재무계획 연계용 · A_ 뷰는 OData API 엔터티로 CDS 재사용 대상이 아님",
   "terms": [],
   "items": []
  },
@@ -114,7 +115,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_GLAccount"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "yes",
   "note": "",
   "terms": [
@@ -140,11 +141,12 @@ const TABLE_ROWS = [
   "desc": "전표유형",
   "cds": [
    "I_AccountingDocumentType",
-   "I_FinancialDocumentTypeText"
+   "I_FinancialDocumentTypeText",
+   "I_AccountingDocumentTypeText"
   ],
-  "cloud": "unknown",
+  "cloud": "mix",
   "keyuser": "unknown",
-  "note": "공식 Released",
+  "note": "Cloud ✓: I_AccountingDocumentType·I_AccountingDocumentTypeText / Cloud –: I_FinancialDocumentTypeText",
   "terms": [
    "document-type"
   ],
@@ -164,7 +166,7 @@ const TABLE_ROWS = [
    "I_ChartOfAccounts",
    "I_ChartOfAccountsText"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "공식 Released",
   "terms": [
@@ -181,11 +183,12 @@ const TABLE_ROWS = [
   "cds": [
    "I_ARLINEITEM",
    "I_ARJrnlEntrItmAgingGrid",
-   "I_TotalAccountsReceivables"
+   "I_TotalAccountsReceivables",
+   "I_OperationalAcctgDocItem"
   ],
-  "cloud": "no",
+  "cloud": "mix",
   "keyuser": "yes",
-  "note": "TDD API State 확인값 (C0 Released) · 에이징/미결집계 뷰",
+  "note": "TDD API State 확인값 (C0 Released) · 에이징/미결집계 뷰 · Cloud ✓: I_OperationalAcctgDocItem(계정유형 D 필터)",
   "terms": [
    "open-item-management",
    "clearing",
@@ -208,11 +211,12 @@ const TABLE_ROWS = [
   "desc": "공급업체 미결 / 반제 항목",
   "cds": [
    "I_APLINEITEM",
-   "I_APJrnlEntrItmAgingGrid"
+   "I_APJrnlEntrItmAgingGrid",
+   "I_OperationalAcctgDocItem"
   ],
-  "cloud": "unknown",
+  "cloud": "mix",
   "keyuser": "yes",
-  "note": "에이징 뷰",
+  "note": "에이징 뷰 · Cloud ✓: I_APJrnlEntrItmAgingGrid·I_OperationalAcctgDocItem(계정유형 K 필터) / Cloud –: I_APLINEITEM",
   "terms": [
    "open-item-management",
    "clearing",
@@ -236,7 +240,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_Customer"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "yes",
   "note": "BP 통합 이후는 I_BusinessPartner 권장",
   "terms": [
@@ -262,7 +266,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_Supplier"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "yes",
   "note": "BP 통합 이후는 I_BusinessPartner 권장",
   "terms": [
@@ -286,7 +290,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_BusinessPartner"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "yes",
   "note": "엑셀 P주요필드 탭에 필드 상세 수록",
   "terms": [
@@ -311,7 +315,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_CompanyCode"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "yes",
   "note": "",
   "terms": [
@@ -331,9 +335,9 @@ const TABLE_ROWS = [
    "I_Exchangeraterawdata",
    "I_ExchangeRate"
   ],
-  "cloud": "unknown",
+  "cloud": "mix",
   "keyuser": "unknown",
-  "note": "",
+  "note": "Cloud ✓: I_Exchangeraterawdata / Cloud –: I_ExchangeRate · I_ExchangeRateRawData는 I_Exchangeraterawdata와 동일 뷰",
   "terms": [
    "foreign-currency-valuation"
   ],
@@ -352,7 +356,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_WithholdingTaxItem"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "",
   "terms": [
@@ -371,9 +375,9 @@ const TABLE_ROWS = [
    "I_TaxItem",
    "I_OperationalAcctgDocTaxItem"
   ],
-  "cloud": "unknown",
+  "cloud": "mix",
   "keyuser": "unknown",
-  "note": "부가세 신고 원장 필드 매핑: I_TaxItem.AccountingDocument(원장 ID) · I_OPERATIONALACCTGDOCITEM(거래처 코드, 매출 세금코드면 Customer) · I_BusinessPartner.BusinessPartnerName(거래처명) · I_BusinessPartnerTaxNumber.BPTaxNumber(사업자번호)",
+  "note": "부가세 신고 원장 필드 매핑: I_TaxItem.AccountingDocument(원장 ID) · I_OPERATIONALACCTGDOCITEM(거래처 코드, 매출 세금코드면 Customer) · I_BusinessPartner.BusinessPartnerName(거래처명) · I_BusinessPartnerTaxNumber.BPTaxNumber(사업자번호) · Cloud ✓: I_OperationalAcctgDocTaxItem / Cloud –: I_TaxItem",
   "terms": [
    "tax-code",
    "tax-invoice-issue"
@@ -390,7 +394,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_BusinessPlaceVH"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "PCE 참고용. 주민등록번호 성격 필드는 I_BusinessPlaceVH.BPTaxNumberForEditValue",
   "terms": [],
@@ -409,9 +413,9 @@ const TABLE_ROWS = [
    "I_ChartOfDepreciation",
    "I_AssetTransactionType"
   ],
-  "cloud": "unknown",
+  "cloud": "mix",
   "keyuser": "unknown",
-  "note": "공식 Released",
+  "note": "Cloud ✓: I_AssetClass·I_DepreciationAreaForLedger·I_ChartOfDepreciation·I_AssetTransactionType / Cloud –: I_DepreciationKey(대응 릴리스 뷰 없음)",
   "terms": [
    "asset-class",
    "depreciation-key",
@@ -442,7 +446,7 @@ const TABLE_ROWS = [
    "I_FixedAssetAssgmt",
    "I_AssetValuationForLedger"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "공식 Released",
   "terms": [
@@ -457,7 +461,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_PaymentProposalItem"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "",
   "terms": [
@@ -480,7 +484,7 @@ const TABLE_ROWS = [
    "I_PaymentProposalPayment",
    "I_PaymentProposalItem"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "유사 매핑(중) — 지급제안 뷰. 지급 완료 결과는 I_OperationalAcctgDocItem으로 대체 조회",
   "terms": [
@@ -502,7 +506,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_HouseBankAccountLinkage"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "G/L 계정은 미노출(커뮤니티 확인)",
   "terms": [
@@ -519,11 +523,12 @@ const TABLE_ROWS = [
   "cds": [
    "I_LedgerCoCode",
    "I_Ledger",
-   "I_LedgerText"
+   "I_LedgerText",
+   "I_LedgerCompanyCodeCrcyRoles"
   ],
-  "cloud": "yes",
+  "cloud": "mix",
   "keyuser": "unknown",
-  "note": "신규 릴리스 (developer extensibility)",
+  "note": "I_Ledger·I_LedgerText만 Cloud ✓. I_LedgerCoCode는 미릴리스 → I_LedgerCompanyCodeCrcyRoles 사용",
   "terms": [
    "ledger",
    "company-code"
@@ -552,11 +557,16 @@ const TABLE_ROWS = [
    "I_FISCALCALENDARDTEPREVPERIODS",
    "I_FISCALCALENDARDATENXTPERIODS",
    "I_FISCALCALDATEPREVFSCLPERIOD",
-   "I_FISCALCALDATENXTFSCLPERIOD"
+   "I_FISCALCALDATENXTFSCLPERIOD",
+   "I_FiscalYearPeriodForCmpnyCode",
+   "I_FiscalYearPeriodForVariant",
+   "I_FiscalPeriodForVariant",
+   "I_FiscalCalendarDate",
+   "I_FiscalYearForCompanyCode"
   ],
-  "cloud": "yes",
+  "cloud": "mix",
   "keyuser": "unknown",
-  "note": "신규 릴리스 (developer extensibility)",
+  "note": "기존 9개 뷰 모두 Cloud 미릴리스 → 대체 뷰 사용 · Cloud ✓: I_FiscalYearPeriodForCmpnyCode·I_FiscalYearPeriodForVariant·I_FiscalPeriodForVariant·I_FiscalCalendarDate·I_FiscalYearForCompanyCode",
   "terms": [
    "fiscal-year-variant",
    "posting-period"
@@ -582,7 +592,7 @@ const TABLE_ROWS = [
    "I_PROFITCENTERHIERARCHY",
    "I_PROFITCENTERHIERARCHYNODE"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "",
   "terms": [
@@ -607,7 +617,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_JournalEntryItem"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "유사 매핑(상) — CO 실적은 ACDOCA(Universal Journal)에 통합. 코스트센터·오더 등 CO 객체 필드 포함",
   "terms": [
@@ -632,7 +642,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_JournalEntry"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "유사 매핑(상) — CO 문서가 FI 전표와 통합되어 전표 헤더로 조회",
   "terms": [],
@@ -645,7 +655,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_InternalOrder"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "yes",
   "note": "",
   "terms": [
@@ -670,7 +680,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_CostCenter"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "yes",
   "note": "",
   "terms": [
@@ -693,7 +703,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_ProfitCenter"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "yes",
   "note": "",
   "terms": [
@@ -711,7 +721,7 @@ const TABLE_ROWS = [
    "I_CompanyCode",
    "I_ControllingArea"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "유사 매핑(상) — 회사코드↔영역 할당은 I_CompanyCode의 ControllingArea 필드, 영역 마스터는 I_ControllingArea",
   "terms": [
@@ -728,11 +738,12 @@ const TABLE_ROWS = [
   "desc": "기간 합계(외부 / 내부)",
   "cds": [
    "I_GLAcctBalanceCube",
-   "I_ActualPlanJrnlEntryItemCube"
+   "I_ActualPlanJrnlEntryItemCube",
+   "I_ActualPlanJournalEntryItem"
   ],
-  "cloud": "unknown",
+  "cloud": "mix",
   "keyuser": "unknown",
-  "note": "유사 매핑(중) — 합계 테이블은 ACDOCA 집계로 대체. 외부/내부 구분은 파트너 객체 필드로 판별",
+  "note": "유사 매핑(중) — 합계 테이블은 ACDOCA 집계로 대체. 외부/내부 구분은 파트너 객체 필드로 판별 · Cloud ✓: I_ActualPlanJournalEntryItem / Cloud –: I_GLAcctBalanceCube·I_ActualPlanJrnlEntryItemCube",
   "terms": [
    "cost-center"
   ],
@@ -758,7 +769,7 @@ const TABLE_ROWS = [
    "I_STSTCLKEYFIGUREHIERARCHY",
    "I_STSTCLKEYFIGUREHIERNODE"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "",
   "terms": [
@@ -784,7 +795,7 @@ const TABLE_ROWS = [
    "I_HIERRUNTIMERPRSTNNODE",
    "I_HIERRUNTIMERPRSTNNODETEXT"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "특정 테이블에 종속되지 않은 런타임 계층 노드",
   "terms": [],
@@ -798,7 +809,7 @@ const TABLE_ROWS = [
    "I_SalesDocument",
    "I_SalesDocumentItem"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "yes",
   "note": "",
   "terms": [
@@ -817,7 +828,7 @@ const TABLE_ROWS = [
    "I_DeliveryDocument",
    "I_DeliveryDocumentItem"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "yes",
   "note": "",
   "terms": [
@@ -835,7 +846,7 @@ const TABLE_ROWS = [
    "I_BillingDocument",
    "I_BillingDocumentItem"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "yes",
   "note": "",
   "terms": [
@@ -852,11 +863,14 @@ const TABLE_ROWS = [
   "table": "VBFA",
   "desc": "문서 흐름",
   "cds": [
-   "I_SDDocumentProcessFlow"
+   "I_SDDocumentProcessFlow",
+   "I_SalesDocumentPrecdgProcFlow",
+   "I_SalesDocumentSubsqntProcFlow",
+   "I_SDDocumentMultiLevelProcFlow"
   ],
-  "cloud": "unknown",
+  "cloud": "mix",
   "keyuser": "unknown",
-  "note": "유사 매핑(상) — 판매 문서 간 선행/후속 관계 직접 대응",
+  "note": "유사 매핑(상) — 판매 문서 간 선행/후속 관계 직접 대응 · Cloud ✓: I_SalesDocumentPrecdgProcFlow·I_SalesDocumentSubsqntProcFlow·I_SDDocumentMultiLevelProcFlow / Cloud –: I_SDDocumentProcessFlow",
   "terms": [],
   "items": []
  },
@@ -867,7 +881,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_Product"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "yes",
   "note": "",
   "terms": [
@@ -883,7 +897,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_ProductPlant"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "yes",
   "note": "",
   "terms": [
@@ -904,7 +918,7 @@ const TABLE_ROWS = [
    "I_ValuationArea",
    "I_ProductValuationBasic"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "mix",
   "note": "KeyUser ✓: I_ProductValuation",
   "terms": [
@@ -921,11 +935,13 @@ const TABLE_ROWS = [
   "desc": "자재문서 헤더 / 아이템",
   "cds": [
    "I_MaterialDocumentHeader",
-   "I_MaterialDocumentItem"
+   "I_MaterialDocumentItem",
+   "I_MaterialDocumentHeader_2",
+   "I_MaterialDocumentItem_2"
   ],
-  "cloud": "unknown",
+  "cloud": "mix",
   "keyuser": "yes",
-  "note": "",
+  "note": "Cloud ✓: I_MaterialDocumentHeader_2·I_MaterialDocumentItem_2 / Cloud –: I_MaterialDocumentHeader·I_MaterialDocumentItem",
   "terms": [
    "inventory-accounting",
    "mm-module"
@@ -943,11 +959,13 @@ const TABLE_ROWS = [
   "desc": "구매오더 헤더 / 아이템",
   "cds": [
    "I_PurchaseOrder",
-   "I_PurchaseOrderItem"
+   "I_PurchaseOrderItem",
+   "I_PurchaseOrderAPI01",
+   "I_PurchaseOrderItemAPI01"
   ],
-  "cloud": "unknown",
+  "cloud": "mix",
   "keyuser": "yes",
-  "note": "",
+  "note": "Cloud ✓: I_PurchaseOrderAPI01·I_PurchaseOrderItemAPI01 / Cloud –: I_PurchaseOrder·I_PurchaseOrderItem",
   "terms": [
    "p2p",
    "invoice-verification"
@@ -960,11 +978,12 @@ const TABLE_ROWS = [
   "desc": "구매오더 이력",
   "cds": [
    "I_PurchaseOrderHistory",
-   "I_GRIRPROCESSHISTORY"
+   "I_GRIRPROCESSHISTORY",
+   "I_PurchaseOrderHistoryAPI01"
   ],
   "cloud": "mix",
   "keyuser": "mix",
-  "note": "Cloud ✓: I_GRIRPROCESSHISTORY(신규 릴리스) · KeyUser ✓: I_PurchaseOrderHistory",
+  "note": "I_GRIRPROCESSHISTORY는 Cloud 미릴리스 → I_PurchaseOrderHistoryAPI01 사용 · Cloud –: I_PurchaseOrderHistory도 미릴리스 · KeyUser ✓: I_PurchaseOrderHistory",
   "terms": [
    "gr-ir",
    "invoice-verification"
@@ -987,7 +1006,7 @@ const TABLE_ROWS = [
    "I_MATERIALLEDGERCUBE_LIT",
    "I_ActCostingRunTypeVH"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "실제원가·단가 큐브",
   "terms": [
@@ -1007,11 +1026,12 @@ const TABLE_ROWS = [
   "table": "RBKP",
   "desc": "MM 송장 전표 헤더 (임시 문서 포함)",
   "cds": [
-   "I_SupplierInvoice"
+   "I_SupplierInvoice",
+   "I_SupplierInvoiceAPI01"
   ],
-  "cloud": "unknown",
+  "cloud": "mix",
   "keyuser": "unknown",
-  "note": "임시(parked) 송장도 RBKP에 전표 상태(RBSTAT)로 머문다. 전기 전이라 ACDOCA에는 아직 없다",
+  "note": "임시(parked) 송장도 RBKP에 전표 상태(RBSTAT)로 머문다. 전기 전이라 ACDOCA에는 아직 없다 · Cloud ✓: I_SupplierInvoiceAPI01 / Cloud –: I_SupplierInvoice",
   "terms": [
    "invoice-verification"
   ],
@@ -1025,11 +1045,12 @@ const TABLE_ROWS = [
   "table": "RSEG",
   "desc": "송장 수령 항목 (임시 문서 포함)",
   "cds": [
-   "I_SupplierInvoiceAccountAssgmt"
+   "I_SupplierInvoiceAccountAssgmt",
+   "I_SuplrInvcItmAcctAssgmtAPI01"
   ],
-  "cloud": "unknown",
+  "cloud": "mix",
   "keyuser": "unknown",
-  "note": "임시 송장의 계정지정 데이터는 이 CDS 뷰로 조회한다. 전기 전이라 ACDOCA에는 없다",
+  "note": "임시 송장의 계정지정 데이터는 이 CDS 뷰로 조회한다. 전기 전이라 ACDOCA에는 없다 · Cloud ✓: I_SuplrInvcItmAcctAssgmtAPI01 / Cloud –: I_SupplierInvoiceAccountAssgmt",
   "terms": [
    "invoice-verification",
    "gr-ir"
@@ -1053,7 +1074,7 @@ const TABLE_ROWS = [
    "I_ManufacturingOrderItem",
    "I_ManufacturingOrderOperation"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "MRP용 PPH_MRP_* 뷰는 별도 존재 · 유사 매핑(상) — AFKO 헤더/AFPO 품목/AFVC 공정 대응. MRP용 PPH_MRP_* 뷰는 별도 존재",
   "terms": [
@@ -1069,7 +1090,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_MaterialDocumentItem_2"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "유사 매핑(상) — 자재 이동은 MATDOC 기준. 오더 번호로 필터하면 AUFM과 동일 정보",
   "terms": [
@@ -1090,9 +1111,9 @@ const TABLE_ROWS = [
    "I_ProductionRoutingHeader",
    "I_ProductionRoutingOperation"
   ],
-  "cloud": "unknown",
+  "cloud": "no",
   "keyuser": "unknown",
-  "note": "유사 매핑(중) — 라우팅 API 엔터티 기준. 뷰명·릴리스 여부는 View Browser 확인 필요",
+  "note": "유사 매핑(중) — 라우팅 API 엔터티 기준. 조회용 릴리스 뷰 없음(TP 뷰 I_ProductionRoutingTP_2만 있음)",
   "terms": [
    "activity-type"
   ],
@@ -1107,7 +1128,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_EnterpriseProjectElement"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "",
   "terms": [],
@@ -1133,7 +1154,7 @@ const TABLE_ROWS = [
    "I_MaterialDocumentItem_2",
    "I_MaterialStock_2"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "MKPF+MSEG 통합. 합계는 저장하지 않고 조회 시 실시간 계산. MARC/MARD 분산 저장 불필요(HANA 컬럼 구조) · 유사 매핑(상) — 헤더·아이템 직접 대응. 재고 합계는 I_MaterialStock_2 실시간 집계",
   "terms": [
@@ -1155,7 +1176,7 @@ const TABLE_ROWS = [
   "cds": [
    "I_JournalEntryItem"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "MLDOC와 함께 실제원가 항목의 원가요소별 분석에 사용 · 유사 매핑(하) — 실제원가는 ACDOCA 기반. 원가요소 분할 전용 Released 뷰는 미확인(View Browser에서 CostComponent 검색)",
   "terms": [
@@ -1178,7 +1199,7 @@ const TABLE_ROWS = [
    "FCML_REP_V",
    "FCML_CCS_REP_V"
   ],
-  "cloud": "unknown",
+  "cloud": "no",
   "keyuser": "unknown",
   "note": "1610부터 CDS뷰가 MLDOC·MLDOCCCS에서 동적 조회로 대체. 구 트랜잭션 FCML_FILL 폐지. KKBML 수정 시 원가요소별 표시 가능",
   "terms": [
@@ -1197,11 +1218,12 @@ const TABLE_ROWS = [
   "desc": "자재원장 마스터 데이터 테이블군",
   "cds": [
    "I_ProductValuationBasic",
-   "I_ProductValuationAccounting"
+   "I_ProductValuationAccounting",
+   "I_ProductValuationAccounting_2"
   ],
-  "cloud": "unknown",
+  "cloud": "mix",
   "keyuser": "unknown",
-  "note": "M10 마이그레이션(Migrate Material Ledger Master Data)에서 ML 통화로 채워지고 ACDOCA로 이관 · 유사 매핑(중) — 자재 평가 대응. 기간별 수량/금액은 I_JournalEntryItem·I_MaterialStock_2로 보완",
+  "note": "M10 마이그레이션(Migrate Material Ledger Master Data)에서 ML 통화로 채워지고 ACDOCA로 이관 · 유사 매핑(중) — 자재 평가 대응. 기간별 수량/금액은 I_JournalEntryItem·I_MaterialStock_2로 보완 · Cloud ✓: I_ProductValuationBasic·I_ProductValuationAccounting_2 / Cloud –: I_ProductValuationAccounting",
   "terms": [
    "material-ledger"
   ],
@@ -1220,7 +1242,7 @@ const TABLE_ROWS = [
    "I_ProductValuationBasic",
    "I_JournalEntryItem"
   ],
-  "cloud": "unknown",
+  "cloud": "yes",
   "keyuser": "unknown",
   "note": "S/4HANA 전환 시 ACDOCA·ACDOCA_M_EXTRACT로 이관 (M10) · 유사 매핑(하) — S/4 전환 시 폐기된 구조. 현행 평가값은 제품 평가 뷰·ACDOCA로 대체 조회",
   "terms": [
@@ -1258,11 +1280,12 @@ const TABLE_ROWS = [
   "desc": "거래처(고객) 연락처 마스터 테이블. BP의 연락처 관계가 CVI 동기화를 통해 이 테이블로 넘어간다. 커스텀 BP 관계 카테고리를 만들 때 동기화 지점으로 함께 봐야 한다.",
   "cds": [
    "I_BPContactToFuncAndDept",
-   "I_BusinessPartnerRelationship"
+   "I_BusinessPartnerRelationship",
+   "I_BPRelationship_2"
   ],
-  "cloud": "unknown",
+  "cloud": "mix",
   "keyuser": "unknown",
-  "note": "유사 매핑(중) — BP 관계 뷰로 조회(API_BUSINESS_PARTNER의 A_BusinessPartnerContact 대응). 커스텀 BP 관계 카테고리 동기화 지점",
+  "note": "유사 매핑(중) — BP 관계 뷰로 조회(API_BUSINESS_PARTNER의 A_BusinessPartnerContact 대응). 커스텀 BP 관계 카테고리 동기화 지점 · Cloud ✓: I_BPContactToFuncAndDept·I_BPRelationship_2 / Cloud –: I_BusinessPartnerRelationship",
   "terms": [],
   "items": []
  }
