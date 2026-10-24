@@ -152,8 +152,7 @@
   function showDetail(id) {
     var n = byId(id); if (!n) return;
     var d = document.getElementById("detail");
-    var h = '<button class="backbtn" data-back="1">↑ 지도로 돌아가기</button>' +
-      "<h4>" + (n.main ? "◆ " : "") + esc(n.name) +
+    var h = "<h4>" + (n.main ? "◆ " : "") + esc(n.name) +
       ' <a class="item-link" href="' + gUrl("SAP " + n.name) + '" target="_blank" rel="noopener" title="구글 검색으로 열기"><i class="ext">↗</i></a> ' +
       whyLink("sap why " + n.name) +
       '<span class="en">' + esc(n.en || "") + "</span></h4>";
