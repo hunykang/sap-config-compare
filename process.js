@@ -47,6 +47,8 @@
       if (window.hatchWidget && window.hatchWidget.setState) { window.hatchWidget.setState(st); }
     } catch (e) {}
   }
+  function histSnap() { return { mode: st.mode, layers: Object.assign({}, st.layers), sel: st.sel, q: st.q }; }
+  function syncHistory() { try { history.replaceState(histSnap(), ""); } catch (e) {} }
 
   function matchesQ(n) {
     if (!st.q) return true;
@@ -95,7 +97,8 @@
     document.querySelectorAll("#modeSeg button").forEach(function (b) { b.classList.toggle("on", b.dataset.mode === st.mode); });
     document.getElementById("layerBar").innerHTML = PROCESS_LAYERS.map(function (L) {
       var on = st.layers[L[0]];
-      return '<span class="lchip' + (on ? "" : " off") + '"><label><input type="checkbox" data-layer="' + L[0] + '"' + (on ? " checked" : "") + "> " + L[1] + '</label><button class="solo" data-solo="' + L[0] + '">이것만</button></span>';
+      var dis = (st.mode === "overlay" && L[0] === "L1");
+      return '<span class="lchip' + (on ? "" : " off") + '"><label title="' + (dis ? "겹쳐보기에서는 바탕 지도로 항상 표시됩니다" : "") + '"><input type="checkbox" data-layer="' + L[0] + '"' + (on ? " checked" : "") + (dis ? " disabled" : "") + "> " + L[1] + '</label><button class="solo" data-solo="' + L[0] + '">이것만</button></span>';
     }).join("");
     var maps = document.getElementById("maps"); var h = "";
     if (st.mode === "overlay") {
@@ -137,7 +140,7 @@
   }
   function select(id, pushHash) {
     st.sel = id; saveState(); render();
-    if (pushHash) { try { history.pushState(null, "", "#p-" + id); } catch (e) {} }
+    if (pushHash) { try { history.pushState(histSnap(), "", "#p-" + id); } catch (e) {} }
     var d = document.getElementById("detail");
     if (d) d.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
@@ -190,9 +193,9 @@
     h += '<div style="margin-top:10px"><button class="backbtn" data-back="1">↑ 지도로 돌아가기</button></div>';
     d.innerHTML = h;
   }
-  document.querySelectorAll("#modeSeg button").forEach(function (b) { b.addEventListener("click", function () { st.mode = b.dataset.mode; saveState(); render(); }); });
+  document.querySelectorAll("#modeSeg button").forEach(function (b) { b.addEventListener("click", function () { st.mode = b.dataset.mode; if (st.mode === "overlay") st.layers.L1 = true; saveState(); render(); syncHistory(); }); });
   document.addEventListener("change", function (e) {
-    if (e.target && e.target.dataset && e.target.dataset.layer) { st.layers[e.target.dataset.layer] = e.target.checked; saveState(); render(); }
+    if (e.target && e.target.dataset && e.target.dataset.layer) { st.layers[e.target.dataset.layer] = e.target.checked; if (st.mode === "overlay") st.layers.L1 = true; saveState(); render(); syncHistory(); }
   });
   document.addEventListener("click", function (e) {
     if (e.target && e.target.dataset && e.target.dataset.back) { backToNode(); return; }
@@ -201,11 +204,14 @@
       PROCESS_LAYERS.forEach(function (L) { st.layers[L[0]] = false; });
       st.layers[k] = true;
       if (st.mode === "overlay") st.layers.L1 = true; // 겹쳐보기에서는 L1이 바탕 지도
-      saveState(); render();
+      saveState(); render(); syncHistory();
     }
   });
   var qEl = document.getElementById("pq");
-  if (qEl) { qEl.value = st.q; qEl.addEventListener("input", function () { st.q = qEl.value.trim(); saveState(); render(); }); }
+  if (qEl) { qEl.value = st.q; qEl.addEventListener("input", function () { st.q = qEl.value.trim(); saveState(); render(); syncHistory(); }); }
+  window.addEventListener("popstate", function (ev) {
+    if (ev.state) { st = mergeState(ev.state); var q = document.getElementById("pq"); if (q) q.value = st.q; saveState(); render(); }
+  });
   window.addEventListener("hashchange", function () {
     if (location.hash.indexOf("#p-") === 0) { st.sel = location.hash.slice(3); saveState(); render(); }
   });
@@ -215,4 +221,5 @@
   // 딥링크 #p-<nodeId> 로 들어오면 해당 노드 선택
   if (location.hash.indexOf("#p-") === 0) { var nid = location.hash.slice(3); if (byId(nid)) st.sel = nid; }
   render();
+  syncHistory();
 })();
