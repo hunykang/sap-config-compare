@@ -141,10 +141,19 @@
     var d = document.getElementById("detail");
     if (d) d.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
+  function backToNode() {
+    if (!st.sel) return;
+    var el = document.querySelector('[data-id="' + st.sel + '"]');
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    el.classList.add("flash");
+    setTimeout(function () { el.classList.remove("flash"); }, 1600);
+  }
   function showDetail(id) {
     var n = byId(id); if (!n) return;
     var d = document.getElementById("detail");
-    var h = "<h4>" + (n.main ? "◆ " : "") + esc(n.name) +
+    var h = '<button class="backbtn" data-back="1">↑ 지도로 돌아가기</button>' +
+      "<h4>" + (n.main ? "◆ " : "") + esc(n.name) +
       ' <a class="item-link" href="' + gUrl("SAP " + n.name) + '" target="_blank" rel="noopener" title="구글 검색으로 열기"><i class="ext">↗</i></a> ' +
       whyLink("sap why " + n.name) +
       '<span class="en">' + esc(n.en || "") + "</span></h4>";
@@ -174,6 +183,7 @@
     if (m.length) linkRows += '<div class="row"><b>현장 스케치</b> ' + m.map(function (s) { return '<a class="chip-link" href="sketch.html#sk-' + esc(s.id) + '">' + esc(s.title) + "</a>"; }).join(" ") + "</div>";
     if (linkRows) h += linkRows;
     h += '<div class="row" style="margin-top:8px"><a href="compare.html">비교표(SPRO)</a> · <a href="glossary.html">용어집</a> · <a href="usermenu.html">UserMenu</a> · <a href="table.html">Table</a> · <a href="sketch.html">현장 스케치</a> · <a href="autoposting.html">Auto-posting</a></div>';
+    h += '<div style="margin-top:10px"><button class="backbtn" data-back="1">↑ 지도로 돌아가기</button></div>';
     d.innerHTML = h;
   }
   document.querySelectorAll("#modeSeg button").forEach(function (b) { b.addEventListener("click", function () { st.mode = b.dataset.mode; saveState(); render(); }); });
@@ -181,6 +191,7 @@
     if (e.target && e.target.dataset && e.target.dataset.layer) { st.layers[e.target.dataset.layer] = e.target.checked; saveState(); render(); }
   });
   document.addEventListener("click", function (e) {
+    if (e.target && e.target.dataset && e.target.dataset.back) { backToNode(); return; }
     if (e.target && e.target.dataset && e.target.dataset.solo) {
       var k = e.target.dataset.solo;
       PROCESS_LAYERS.forEach(function (L) { st.layers[L[0]] = false; });
