@@ -8,7 +8,7 @@
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9919904969420259" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="style.css?v=20261020c">
-<script src="table.js?v=20261023a"></script>
+<script src="table.js?v=20261024a"></script>
 <style>
 .tmod { border: 1px solid var(--line); border-radius: 10px; background: #fff; margin: 10px 0; overflow: hidden; }
 .tmod { margin: 20px 0 8px; }
@@ -94,6 +94,7 @@ td.t-note { font-size: 12.5px; color: var(--muted); }
       <li>내부 T-Code 매핑 정리 자료 — P주요필드 탭의 I_BUSINESSPARTNER 필드 상세를 반영했습니다. 자료에 없는 CDS뷰는 공개 자료로 대조했고, 그래도 확인할 수 없는 항목은 <span class="tflag unk">확인중</span> 태그를 달았습니다.</li>
       <li>I_ARLINEITEM의 Cloud Development / Key User App 값은 TDD 시스템의 ADT API State 화면(스크린샷)에서 확인한 값입니다.</li>
       <li>S/4HANA Public에서는 DB 테이블을 직접 조회할 수 없고, 릴리스된 CDS 뷰로만 데이터에 접근할 수 있습니다.</li>
+      <li><b>2026-10-24 기준:</b> Use in Cloud dev 열은 SAP 공식 GitHub <a href="https://github.com/SAP/abap-atc-cr-cv-s4hc" target="_blank" rel="noopener">SAP/abap-atc-cr-cv-s4hc</a>의 <a href="https://raw.githubusercontent.com/SAP/abap-atc-cr-cv-s4hc/main/src/objectReleaseInfoLatest.json" target="_blank" rel="noopener">objectReleaseInfoLatest.json</a>(2026-09-04 갱신)에서 tadirObject DDLS·state released인 뷰를 ✓로 확정했습니다. 목록에 없는 뷰는 –로, 뷰별 판정이 엇갈리는 행은 혼합으로 표시하고 기타 칸에 뷰별 판정을 적었습니다. Use in Key User app 열은 이 자료로 검증하지 않아 그대로 두었습니다.</li>
       <li><b>확인중 채우는 방법:</b> ADT에서 CDS 뷰 우클릭 → Properties → API State 탭에서 <i>Use in Cloud Development</i> / <i>Use in Key User Apps</i> 확인, 또는 Fiori View Browser 앱 → Released Views에서 조회. 릴리스 상태는 버전에 따라 바뀔 수 있습니다.</li>
       <li>잘못된 매핑이나 새로 확인된 릴리스 상태는 <a href="feedback.html">피드백</a>으로 알려주세요.</li>
     </ul>
