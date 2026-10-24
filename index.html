@@ -36,6 +36,9 @@
 .diff-badge.nouse { background: #fdecec; color: #b3261e; border: 1px solid #f5c6c2; }
 #side { position: sticky; top: 76px; align-self: flex-start; max-height: calc(100vh - 100px); overflow-y: auto; }
 @media (max-width: 760px) { #side { position: static; max-height: none; } }
+.panel-back{border:1px solid #86BC25;background:#f4fbe8;color:#12240a;border-radius:999px;font-size:12.5px;font-weight:700;padding:6px 14px;cursor:pointer}
+canvas.flash-outline{outline:3px solid #86BC25;outline-offset:2px}
+.cfg-item.flash{outline:3px solid #86BC25;outline-offset:2px}
 </style>
 </head>
 <body>
@@ -174,7 +177,7 @@
 <script src="data.js?v=20261021b"></script>
 <script src="glossary.js?v=20261021a"></script>
 <script src="graph-widget.js?v=20261021c"></script>
-<script src="graph-panel.js?v=20261021a"></script>
+<script src="graph-panel.js?v=20261024b"></script>
 <script>
 // 맨 위 지식그래프: 클릭하면 오른쪽 패널에 설명 표시 (스크롤 이동 없음)
 let graphPanel = null;
@@ -254,11 +257,12 @@ listEl.addEventListener('click', ev => {
   if (btn) selectItem(btn.dataset.id, true);
 });
 
+sideEl.addEventListener('click', ev => { const b = ev.target.closest('[data-back-list]'); if (!b) return; const it = document.querySelector('.cfg-item.active'); if (it) { it.scrollIntoView({ behavior: 'smooth', block: 'center' }); it.classList.add('flash'); setTimeout(() => it.classList.remove('flash'), 1600); } });
 function selectItem(id, push) {
   const e = GUIDE_DATA.find(x => x.id === id);
   if (!e) return;
   document.querySelectorAll('.cfg-item').forEach(b => b.classList.toggle('active', b.dataset.id === id));
-  sideEl.innerHTML = gpDetailHTML(e, '');
+  sideEl.innerHTML = '<button class="panel-back" data-back-list>↑ 목록으로 돌아가기</button>' + gpDetailHTML(e, '') + '<div style="margin-top:10px"><button class="panel-back" data-back-list>↑ 목록으로 돌아가기</button></div>';
   if (push) history.replaceState(null, '', '#' + id);
   if (window.innerWidth <= 760) sideEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
