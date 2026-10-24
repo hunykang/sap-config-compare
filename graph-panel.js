@@ -84,7 +84,7 @@ function initGraphPanel(g, panel, opts) {
     panel.innerHTML = closeBtnHTML + gpDetailHTML(e, relChips(gpNeighbors(g, 'e-' + id), id) + afterEntry(e));
     if (slide) panel.classList.add('open');
     else if (window.innerWidth <= 760) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    if (!slide) { panel.insertAdjacentHTML('afterbegin', backBtnHTML); panel.insertAdjacentHTML('beforeend', backBtnHTML); }
+    if (!slide) { panel.insertAdjacentHTML('beforeend', backBtnHTML); }
   }
 
   function showTerm(t) {
@@ -106,7 +106,7 @@ function initGraphPanel(g, panel, opts) {
       <p style="margin-top:12px;font-size:13px"><a href="glossary.html#term-${encodeURIComponent(t.id)}">📖 용어집에서 보기 →</a> · <a href="feedback.html">✏️ 오류 제보하기</a></p>`;
     if (slide) panel.classList.add('open');
     else if (window.innerWidth <= 760) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    if (!slide) { panel.insertAdjacentHTML('afterbegin', backBtnHTML); panel.insertAdjacentHTML('beforeend', backBtnHTML); }
+    if (!slide) { panel.insertAdjacentHTML('beforeend', backBtnHTML); }
   }
 
   function onSelect(n) {
@@ -132,7 +132,7 @@ function initGraphPanel(g, panel, opts) {
         ${n.ref.href ? `<p style="margin-top:12px;font-size:13px"><a href="${gpEsc(n.ref.href)}">${n.ref.kind === 'table' ? '🗂 Table 페이지에서 보기' : '🧭 UserMenu에서 보기'} →</a></p>` : ''}`;
       if (slide) panel.classList.add('open');
       else if (window.innerWidth <= 760) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    if (!slide) { panel.insertAdjacentHTML('afterbegin', backBtnHTML); panel.insertAdjacentHTML('beforeend', backBtnHTML); }
+    if (!slide) { panel.insertAdjacentHTML('beforeend', backBtnHTML); }
       return;
     }
     const rel = gpNeighbors(g, n.id);
@@ -148,7 +148,7 @@ function initGraphPanel(g, panel, opts) {
         : '<p style="font-size:13px;color:#888">연결된 항목이 없습니다.</p>'}`;
     if (slide) panel.classList.add('open');
     else if (window.innerWidth <= 760) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    if (!slide) { panel.insertAdjacentHTML('afterbegin', backBtnHTML); panel.insertAdjacentHTML('beforeend', backBtnHTML); }
+    if (!slide) { panel.insertAdjacentHTML('beforeend', backBtnHTML); }
   }
 
   function close() { panel.classList.remove('open'); }
