@@ -154,6 +154,30 @@
     el.classList.add("flash");
     setTimeout(function () { el.classList.remove("flash"); }, 1600);
   }
+  // 외부 연계 ext 항목 앞부분("X 연계") → 외부 연계 페이지 절 앵커
+  var EXT_SEC = {
+    "e-HR 조직정보": "ext-2", "e-HR": "ext-2",
+    "구매관리 솔루션": "ext-9-2",
+    "WMS": "ext-9-1",
+    "e-Accounting 매입세금계산서": "ext-1", "e-Accounting 경비정산": "ext-1",
+    "펌뱅킹·CMS": "ext-6-1",
+    "MES": "ext-9-3",
+    "OMS": "ext-9-4",
+    "전자세금계산서발행": "ext-4",
+    "이커머스 정산관리": "ext-9-5",
+    "물류관리 솔루션": "ext-9-1",
+    "전자결재 기안·승인": "ext-3", "전자결재": "ext-3",
+    "분개엔진": "ext-8",
+    "환율 자동 수신": "ext-6-5",
+    "부가세·원천세 신고": "ext-5",
+    "리스회계 솔루션": "ext-10",
+    "전자어음": "ext-6-3",
+    "수익성분석 솔루션": "ext-12",
+    "자산관리 솔루션": "ext-13",
+    "연결회계 솔루션": "ext-7",
+    "내부회계관리 솔루션": "ext-11",
+    "가상계좌·B2B 결제": "ext-6"
+  };
   function showDetail(id) {
     var n = byId(id); if (!n) return;
     var d = document.getElementById("detail");
@@ -170,7 +194,10 @@
       }).join("") + "</ul>";
     }
     if (n.mc > 0) h += '<div class="row"><b>Model Company:</b> ' + esc(n.mcNote) + (n.mc === 1 ? " (연계)" : "") + "</div>";
-    if (n.ext && n.ext.length) h += '<div class="row"><b>외부 연계:</b> ' + n.ext.map(esc).join(" · ") + ' <a class="chip-link" href="integrations.html">외부 연계 설명 페이지</a></div>';
+    if (n.ext && n.ext.length) h += '<div class="row"><b>외부 연계:</b> ' + n.ext.map(function (e) {
+      var sec = EXT_SEC[e.split(" 연계")[0]];
+      return sec ? '<a class="chip-link" href="integrations.html#' + sec + '">' + esc(e) + '</a>' : esc(e);
+    }).join(" · ") + '</div>';
     if (n.cbo) h += '<div class="row"><b>CBO개발</b> — ' + (n.cboNote ? esc(n.cboNote) + ' ' : '') + '<span class="meta">(MC 전용 CBO프로그램)</span></div>';
     if (n.tcodes.length) {
       h += '<div class="row"><b>T-code</b> <span class="meta">(클릭하면 UserMenu 설명으로 이동)</span></div><ul class="tc-list">';
