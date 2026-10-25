@@ -610,8 +610,12 @@ function initGraph(canvasId, opts) {
 
   let dragging = null, selected = null, hover = null;
   let ox = 0, oy = 0, scale = 1;
+  let frozenUntil = 0;  // 화면을 끈 뒤 클릭할 수 있게 물리 정지 유지 (ms)
   applyFilter();
   function tick() {
+    // 화면을 끄는 중이거나 끈 직후에는 노드를 멈춰 둔다 — 가져다 놓은 노드가
+    // 커서 아래에서 미끄러져 클릭이 안 되는 문제를 막기 위함
+    if (downPos || performance.now() < frozenUntil) return;
     const cx = (W / 2 - ox) / scale, cy = (H / 2 - oy) / scale;
     for (let i = 0; i < nodes.length; i++) {
       const a = nodes[i];
@@ -633,15 +637,15 @@ function initGraph(canvasId, opts) {
       if (!a || !b || a.hidden || b.hidden || (a.pinned && b.pinned)) return;
       const dx = b.x - a.x, dy = b.y - a.y;
       const d = Math.hypot(dx, dy) || 1;
-      const f = (d - 130) * 0.012;
+      const f = (d - 130) * 0.006;  // 복귀 속도 완화 (기존 0.012)
       const fx = dx / d * f, fy = dy / d * f;
       if (!a.pinned) { a.vx += fx; a.vy += fy; }
       if (!b.pinned) { b.vx -= fx; b.vy -= fy; }
     });
     nodes.forEach(n => {
       if (n === dragging || n.hidden || n.pinned) return;
-      n.vx += (cx - n.x) * 0.0004;
-      n.vy += (cy - n.y) * 0.0004;
+      n.vx += (cx - n.x) * 0.0001;  // 중앙 복귀 속도 완화 (기존 0.0004)
+      n.vy += (cy - n.y) * 0.0001;
       n.vx *= 0.92; n.vy *= 0.92;
       if (Math.abs(n.vx) < 0.02 && Math.abs(n.vy) < 0.02) { n.vx = 0; n.vy = 0; }
       n.x += n.vx; n.y += n.vy;
@@ -741,6 +745,7 @@ function initGraph(canvasId, opts) {
     } else if (dragging) {
       dragging.pinned = true;  // 드래그한 노드는 그 자리에 고정
     }
+    if (moved) frozenUntil = performance.now() + 1500;  // 끈 뒤 1.5초간 정지 유지
     dragging = null; downPos = null; panStart = null;
   });
   canvas.addEventListener('dblclick', e => {
@@ -753,7 +758,7 @@ function initGraph(canvasId, opts) {
   }, { passive: false });
 
   resize();
-  for (let i = 0; i < (opts.ticks || 120); i++) tick();
+  for (let i = 0; i < (opts.ticks || 240); i++) tick();
   loop();
   function selectNode(n) {
     selected = n || null;
