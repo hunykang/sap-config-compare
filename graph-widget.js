@@ -706,9 +706,12 @@ function initGraph(canvasId, opts) {
     let best = null, bd = 1e9;
     nodes.forEach(n => {
       if (n.hidden) return;
-      const d = Math.hypot(n.x - p.x, n.y - p.y);
+      const dx = n.x - p.x, dy = n.y - p.y;
       const grabR = (n.r || 9) + 14;
-      if (d < grabR && d < bd) { bd = d; best = n; }
+      const d = Math.hypot(dx, dy);
+      // 원 아래 라벨 텍스트를 클릭해도 노드 선택으로 처리 (라벨은 원 아래 ~r+14px에 그려짐)
+      const inLabel = Math.abs(dx) < grabR && dy <= 0 && dy >= -(grabR + 16);
+      if ((d < grabR || inLabel) && d < bd) { bd = d; best = n; }
     });
     return best;
   }
