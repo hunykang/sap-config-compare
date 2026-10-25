@@ -255,13 +255,15 @@
     if (ev.state) { st = mergeState(ev.state); var q = document.getElementById("pq"); if (q) q.value = st.q; saveState(); render(); }
   });
   window.addEventListener("hashchange", function () {
-    if (location.hash.indexOf("#p-") === 0) { st.sel = location.hash.slice(3); saveState(); render(); }
+    if (location.hash.indexOf("#p-") === 0) { st.sel = location.hash.slice(3); saveState(); render(); if (byId(st.sel)) { var dd = document.getElementById("detail"); if (dd) dd.scrollIntoView({ behavior: "smooth", block: "nearest" }); } }
   });
   window.addEventListener("hatch-widget-state", function (ev) {
     if (ev && ev.detail && ev.detail.state) { st = mergeState(ev.detail.state); render(); }
   });
-  // 딥링크 #p-<nodeId> 로 들어오면 해당 노드 선택
-  if (location.hash.indexOf("#p-") === 0) { var nid = location.hash.slice(3); if (byId(nid)) st.sel = nid; }
+  // 딥링크 #p-<nodeId> 로 들어오면 해당 노드 선택 + 상세까지 스크롤 (노드 클릭과 동일)
+  var deepLinked = false;
+  if (location.hash.indexOf("#p-") === 0) { var nid = location.hash.slice(3); if (byId(nid)) { st.sel = nid; deepLinked = true; } }
   render();
+  if (deepLinked) { var dd = document.getElementById("detail"); if (dd) dd.scrollIntoView({ behavior: "smooth", block: "nearest" }); }
   syncHistory();
 })();
