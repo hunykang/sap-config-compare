@@ -220,7 +220,8 @@
       h += "</ul>";
     }
     var linkRows = "";
-    if (n.config.length) linkRows += '<div class="row"><b>관련 설정</b> ' + n.config.map(function (id) { return '<a class="chip-link" href="compare.html#row-' + esc(id) + '">' + esc(cfgName(id)) + "</a>"; }).join(" ") + "</div>";
+    var cfgIds = n.config.filter(function (id) { return (typeof GUIDE_DATA === "undefined") || GUIDE_DATA.some(function (v) { return v.id === id; }); });
+    if (cfgIds.length) linkRows += '<div class="row"><b>관련 설정</b> ' + cfgIds.map(function (id) { return '<a class="chip-link" href="compare.html#row-' + esc(id) + '">' + esc(cfgName(id)) + "</a>"; }).join(" ") + "</div>";
     if (n.terms.length) linkRows += '<div class="row"><b>관련 용어</b> ' + n.terms.map(function (id) { return '<a class="chip-link" href="glossary.html#term-' + esc(id) + '">' + esc(termName(id)) + "</a>"; }).join(" ") + "</div>";
     if (n.tables.length) linkRows += '<div class="row"><b>관련 테이블</b> ' + n.tables.map(function (t) {
       var onPage = (typeof TABLE_ROWS !== "undefined") && TABLE_ROWS.some(function (r) { return r.table && r.table.split(" ")[0].replace(/\//g, "-") === t; });
