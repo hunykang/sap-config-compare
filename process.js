@@ -171,7 +171,7 @@
     }
     if (n.mc > 0) h += '<div class="row"><b>Model Company:</b> ' + esc(n.mcNote) + (n.mc === 1 ? " (연계)" : "") + "</div>";
     if (n.ext && n.ext.length) h += '<div class="row"><b>외부 연계:</b> ' + n.ext.map(esc).join(" · ") + ' <a class="chip-link" href="integrations.html">외부 연계 설명 페이지</a></div>';
-    if (n.cbo) h += '<div class="row"><b>CBO개발</b> — ' + (n.cboNote ? esc(n.cboNote) + ' ' : '') + '<span class="meta">(MC 전용 프로그램, 코드 미표기)</span></div>';
+    if (n.cbo) h += '<div class="row"><b>CBO개발</b> — ' + (n.cboNote ? esc(n.cboNote) + ' ' : '') + '<span class="meta">(MC 전용 CBO프로그램)</span></div>';
     if (n.tcodes.length) {
       h += '<div class="row"><b>T-code</b> <span class="meta">(클릭하면 UserMenu 설명으로 이동)</span></div><ul class="tc-list">';
       n.tcodes.forEach(function (t) {
