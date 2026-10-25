@@ -166,7 +166,7 @@
     if (n.subs.length) {
       var fi = n.subFi || {};
       h += '<div class="row"><b>L2 서브 — 요약 · FI 영향:</b></div><ul class="subfi-list">' + n.subs.map(function (s) {
-        return "<li><b>" + esc(s) + "</b>" + (fi[s] ? " — " + esc(fi[s]) : "") + "</li>";
+        return "<li><b>" + esc(s) + "</b> " + whyLink("sap why " + s) + (fi[s] ? " — " + esc(fi[s]) : "") + "</li>";
       }).join("") + "</ul>";
     }
     if (n.mc > 0) h += '<div class="row"><b>Model Company:</b> ' + esc(n.mcNote) + (n.mc === 1 ? " (연계)" : "") + "</div>";
