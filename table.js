@@ -78,7 +78,7 @@ const TABLE_ROWS = [
   ],
   "cloud": "mix",
   "keyuser": "mix",
-  "note": "Cloud ✓: I_GLAccountLineItem·I_GLAccountLineItemRawData만 해당. 큐브 5종·C_TRIALBALANCE는 Cloud 미릴리스 · KeyUser ✓: I_GLAccountLineItem·I_GLAcctBalanceCube(커뮤니티 확인) · FAGLFLEXT 총계테이블 대체 · 시산표 API(C_TRIALBALANCE_CDS)",
+  "note": "Cloud ✓: I_GLAccountLineItem·I_GLAccountLineItemRawData만 해당. 큐브 5종·C_TRIALBALANCE는 Cloud 미릴리스 · KeyUser ✓: I_GLAccountLineItem·I_GLAcctBalanceCube(커뮤니티 확인) · FAGLFLEXT(신GL 합계)·GLT0(구 총계) 테이블 대체 · 시산표 API(C_TRIALBALANCE_CDS)",
   "terms": [
    "universal-journal",
    "general-ledger",
@@ -448,7 +448,7 @@ const TABLE_ROWS = [
   ],
   "cloud": "yes",
   "keyuser": "unknown",
-  "note": "공식 Released",
+  "note": "공식 Released · ANLC(자산 누적값)는 S/4에서 ACDOCA 기반 호환 뷰",
   "terms": [
    "acquire-to-decommission"
   ],
@@ -955,6 +955,22 @@ const TABLE_ROWS = [
  },
  {
   "mod": "MM",
+  "table": "EBAN",
+  "desc": "구매요청 (아이템 단위)",
+  "cds": [
+   "I_PurchaseRequisitionAPI01",
+   "I_PurchaseRequisitionItemAPI01"
+  ],
+  "cloud": "unknown",
+  "keyuser": "unknown",
+  "note": "헤더·아이템 API01 뷰 (SAP What's New 2208·2502). EBAN은 아이템 단위라 아이템 뷰가 주.",
+  "terms": [
+   "p2p"
+  ],
+  "items": []
+ },
+ {
+  "mod": "MM",
   "table": "EKKO / EKPO",
   "desc": "구매오더 헤더 / 아이템",
   "cds": [
@@ -969,6 +985,21 @@ const TABLE_ROWS = [
   "terms": [
    "p2p",
    "invoice-verification"
+  ],
+  "items": []
+ },
+ {
+  "mod": "MM",
+  "table": "EKKN",
+  "desc": "구매오더 계정배정",
+  "cds": [
+   "I_PurchaseOrderItemAPI01"
+  ],
+  "cloud": "yes",
+  "keyuser": "unknown",
+  "note": "전용 뷰 없음. I_PurchaseOrderItemAPI01의 계정배정 필드로 대체 (SAP Help Purchase Order Item).",
+  "terms": [
+   "p2p"
   ],
   "items": []
  },
