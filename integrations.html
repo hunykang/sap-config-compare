@@ -12,6 +12,7 @@
 .ext-sec h3{margin:14px 0 4px;font-size:13.5px}
 .ext-sec p,.ext-sec li{font-size:13.5px;line-height:1.7}
 .ext-sec ul{margin:4px 0;padding-left:18px}
+.ext-sec, .ext-sec h2, .ext-sec h3 { scroll-margin-top: 76px; }
 .tag{display:inline-block;font-size:11.5px;font-weight:700;border-radius:999px;padding:1px 9px;background:#eef4ff;border:1px solid var(--line);margin-right:4px}
 .flow{font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;line-height:1.8}
 .flow b{color:var(--ink)}
@@ -46,7 +47,7 @@
     <p style="font-size:13px;color:var(--muted)">지도에서 노드를 누르면 상세 패널의 <strong>외부 연계</strong> 행에도 같은 내용이 뜹니다.</p>
   </section>
 
-  <section class="ext-sec">
+  <section class="ext-sec" id="ext-1">
     <h2>1. e-Accounting — 경비정산 · 매입세금계산서</h2>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-journal">일반전표·경비 처리</a> · <a href="process.html#p-iv">송장 검증</a></p>
     <h3>하는 일</h3>
@@ -64,7 +65,7 @@
     <p>법인카드 경비 전표가 중복 생성된 현장 사례는 <a href="sketch.html#sk-sk-card-dup">현장 스케치</a>에, 국세청 매입내역을 긁어 쓰는 매입통합시스템 도입 이야기는 <a href="https://hksap.tistory.com/490" target="_blank" rel="noopener">삽질초보 블로그 글</a>에 있다.</p>
   </section>
 
-  <section class="ext-sec">
+  <section class="ext-sec" id="ext-2">
     <h2>2. e-HR — 조직정보 · 급여정보 · 복리후생</h2>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-org">조직·기준정보</a> · <a href="process.html#p-payroll">인건비·퇴직급여</a></p>
     <h3>하는 일</h3>
@@ -81,7 +82,7 @@
     </ul>
   </section>
 
-  <section class="ext-sec">
+  <section class="ext-sec" id="ext-3">
     <h2>3. 전자결재 — 내부통제 기안 · 전자증빙 보관</h2>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-approve">전표 승인</a> · <a href="process.html#p-journal">일반전표·경비 처리</a></p>
     <h3>하는 일</h3>
@@ -98,7 +99,7 @@
     </ul>
   </section>
 
-  <section class="ext-sec">
+  <section class="ext-sec" id="ext-4">
     <h2>4. 전자세금계산서발행 — 매출 · 영세율 · 계산서 · 역발행</h2>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-bill">대금청구·세금계산서</a> · <a href="process.html#p-iv">송장 검증</a></p>
     <h3>하는 일</h3>
@@ -118,7 +119,7 @@
     <p>전자세금계산서와 전자어음 의무화 시행 시점의 SAP 인터페이스 고민은 <a href="https://hksap.tistory.com/388" target="_blank" rel="noopener">삽질초보 블로그 글</a>에 정리되어 있다.</p>
   </section>
 
-  <section class="ext-sec">
+  <section class="ext-sec" id="ext-5">
     <h2>5. 부가세 및 원천세 신고</h2>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-report">재무제표·세무신고</a></p>
     <h3>하는 일 — 월별 / 분기 주기로 합계표를 확인하고 전자 신고 파일을 만듭니다</h3>
@@ -141,11 +142,11 @@
     <p>신고 솔루션 쪽은 삽질초보 블로그의 <a href="https://hksap.tistory.com/842" target="_blank" rel="noopener">DRC 글</a>에, 면세비율 변동 시 공통매입세액 재계산 실무는 <a href="https://hksap.tistory.com/725" target="_blank" rel="noopener">공통매입세액 글</a>에 정리되어 있다.</p>
   </section>
 
-  <section class="ext-sec">
+  <section class="ext-sec" id="ext-6">
     <h2>6. 펌뱅킹·CMS — 입출금 · 집금 · 가상계좌 · 전자어음 · B2B · 환율</h2>
     <p>은행과 자금을 연결하는 펌뱅킹·CMS의 세부 기능은 입출금, 집금, 가상계좌, 전자어음, B2B, 환율입니다. 참고로 이 기능들을 따로 도입하지 않고, 펌뱅킹 솔루션 하나로 전부 서비스하는 형태도 있습니다. 은행·규모에 따라 통합형으로 가기도 하고, 필요한 것만 골라 붙이기도 합니다.</p>
 
-    <h3>6-1. 펌뱅킹·CMS — 입출금 자동 대사 · 지급 파일 전송</h3>
+    <h3 id="ext-6-1">6-1. 펌뱅킹·CMS — 입출금 자동 대사 · 지급 파일 전송</h3>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-pay">지급</a> · <a href="process.html#p-coll">입금·반제</a> · <a href="process.html#p-cashplan">자금계획·유동성</a></p>
     <h3>하는 일</h3>
     <ul>
@@ -162,7 +163,7 @@
       <li>지급 파일 전송은 결재·권한과 묶어야 합니다. 파일이 나가면 되돌리기 어렵습니다.</li>
     </ul>
 
-    <h3>6-2. 가상계좌 — 거래처별 · 주문별 입금 식별</h3>
+    <h3 id="ext-6-2">6-2. 가상계좌 — 거래처별 · 주문별 입금 식별</h3>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-coll">입금·반제</a></p>
     <h3>하는 일</h3>
     <ul>
@@ -176,7 +177,7 @@
       <li>미식별 입금(계좌는 맞는데 주문이 안 맞는 경우)은 따로 모아 처리합니다. 계좌 해지 시점도 관리해야 합니다.</li>
     </ul>
 
-    <h3>6-3. 전자어음 — 발행 · 배서 · 할인 · 결제</h3>
+    <h3 id="ext-6-3">6-3. 전자어음 — 발행 · 배서 · 할인 · 결제</h3>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-note">어음·입출금 관리</a></p>
     <h3>하는 일</h3>
     <ul>
@@ -191,7 +192,7 @@
     </ul>
     <p>전자어음 의무화 시행 시점의 SAP 인터페이스 고민은 <a href="https://hksap.tistory.com/388" target="_blank" rel="noopener">삽질초보 블로그 글</a>에도 정리되어 있다.</p>
 
-    <h3>6-4. B2B 전자결제 — 기업 간 외상매출채권 결제</h3>
+    <h3 id="ext-6-4">6-4. B2B 전자결제 — 기업 간 외상매출채권 결제</h3>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-coll">입금·반제</a></p>
     <h3>하는 일</h3>
     <ul>
@@ -205,7 +206,7 @@
       <li>만기·할인 조건이 어음과 비슷하니, 만기 관리와 할인 전표 처리를 어음과 같은 기준으로 관리합니다.</li>
     </ul>
 
-    <h3>6-5. 환율 자동 수신 — 고시환율 마스터 자동 업데이트</h3>
+    <h3 id="ext-6-5">6-5. 환율 자동 수신 — 고시환율 마스터 자동 업데이트</h3>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-close">월결산</a></p>
     <h3>하는 일</h3>
     <ul>
@@ -221,7 +222,7 @@
     <p>은행 I/F로 환율정보를 받아 배치로 환율테이블을 업데이트하는 방법은 <a href="https://hksap.tistory.com/661" target="_blank" rel="noopener">삽질초보 블로그 글</a>(Worklist로 환율등록)에 정리되어 있다.</p>
   </section>
 
-  <section class="ext-sec">
+  <section class="ext-sec" id="ext-7">
     <h2>7. 연결회계 솔루션</h2>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-consolidation">연결회계</a></p>
     <h3>하는 일</h3>
@@ -241,7 +242,7 @@
     <p>국내 연결회계 솔루션들을 조사해 정리한 사례 모음은 <a href="https://hksap.tistory.com/641" target="_blank" rel="noopener">삽질초보 블로그 글</a>에 있다.</p>
   </section>
 
-  <section class="ext-sec">
+  <section class="ext-sec" id="ext-8">
     <h2>8. 분개엔진 솔루션 — 대량 거래데이터 자동 분개</h2>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-journal">일반전표·경비 처리</a> · <a href="process.html#p-close">월결산</a></p>
     <h3>하는 일</h3>
@@ -259,11 +260,11 @@
     <p>대량전표가 현장에서 어떻게 굴러가는지는 <a href="sketch.html#sk-sk-mass-doc-note">현장 스케치의 정산팀 루틴</a>에, Accrual Engine으로 장기 선급비용을 대량 등록한 기록은 <a href="https://hksap.tistory.com/548" target="_blank" rel="noopener">삽질초보 블로그 글</a>에 있다.</p>
   </section>
 
-  <section class="ext-sec">
+  <section class="ext-sec" id="ext-9">
     <h2>9. SCM 솔루션 연계 — 물류 · 구매 · 생산 · 주문 · 정산</h2>
     <p>SCM은 공급망 전체를 말합니다. FI와 만나는 지점만 다섯 갈래로 나눠 정리했습니다.</p>
 
-    <h3>9-1. WMS·물류관리 — 입고 · 이동 · 출고 · 실사 · 배송추적</h3>
+    <h3 id="ext-9-1">9-1. WMS·물류관리 — 입고 · 이동 · 출고 · 실사 · 배송추적</h3>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-gr">입고</a> · <a href="process.html#p-stocktransfer">재고 이동</a> · <a href="process.html#p-stocktake">재고실사</a> · <a href="process.html#p-gi">출고</a> · <a href="process.html#p-ecom">이커머스 주문·정산</a></p>
     <h3>하는 일</h3>
     <ul>
@@ -279,7 +280,7 @@
     </ul>
     <p>SAP 물류 비즈니스 배송추적 관련 장표는 <a href="https://hksap.tistory.com/830" target="_blank" rel="noopener">삽질초보 블로그 글</a>에 공유되어 있다.</p>
 
-    <h3>9-2. 구매관리 솔루션 — 아리바와 유사한 소싱 · 계약 · 카탈로그 구매</h3>
+    <h3 id="ext-9-2">9-2. 구매관리 솔루션 — 아리바와 유사한 소싱 · 계약 · 카탈로그 구매</h3>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-po">구매요청·발주</a> · <a href="process.html#p-iv">송장 검증</a></p>
     <h3>하는 일</h3>
     <ul>
@@ -296,7 +297,7 @@
     </ul>
     <p>소싱 및 조달 관련 장표는 <a href="https://hksap.tistory.com/805" target="_blank" rel="noopener">삽질초보 블로그 글</a>에 공유되어 있다.</p>
 
-    <h3>9-3. MES 생산관리 — 실시간 생산실적</h3>
+    <h3 id="ext-9-3">9-3. MES 생산관리 — 실시간 생산실적</h3>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-prod">생산입고·재고평가</a> · <a href="process.html#p-prodcost">제조원가결산</a></p>
     <h3>하는 일</h3>
     <ul>
@@ -309,7 +310,7 @@
       <li>실적이 늦게·틀리게 들어오면 원가와 재고가 함께 틀어집니다. 실적 확정 시점(당일 마감)과 결산 일정을 맞추고, 불량·재작업 실적 누락을 점검해야 합니다.</li>
     </ul>
 
-    <h3>9-4. OMS 주문관리 — 전 채널 주문 · 재고 할당</h3>
+    <h3 id="ext-9-4">9-4. OMS 주문관리 — 전 채널 주문 · 재고 할당</h3>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-so">판매오더</a> · <a href="process.html#p-ecom">이커머스 주문·정산</a> · <a href="process.html#p-gi">출고</a></p>
     <h3>하는 일</h3>
     <ul>
@@ -323,7 +324,7 @@
     </ul>
     <p>이커머스 주문데이터의 SAP 연동 관련 장표(사방넷 연동)는 <a href="https://hksap.tistory.com/840" target="_blank" rel="noopener">삽질초보 블로그 글</a>에 공유되어 있다.</p>
 
-    <h3>9-5. 이커머스 정산관리 — 채널별 매출 · 수수료 · 반품</h3>
+    <h3 id="ext-9-5">9-5. 이커머스 정산관리 — 채널별 매출 · 수수료 · 반품</h3>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-ecom">이커머스 주문·정산</a> · <a href="process.html#p-cardcollect">카드수금</a> · <a href="process.html#p-coll">입금·반제</a></p>
     <h3>하는 일</h3>
     <ul>
@@ -339,7 +340,7 @@
     <p>PG 정산 내역을 확인해 정산전표를 발행하고 승인하는 매일의 루틴과 반품 한 건이 지나가는 전체 여정은 현장 스케치의 <a href="sketch.html#sk-sk-pg-settle-note">PG 정산 루틴</a>과 <a href="sketch.html#sk-sk-return-note">반품 여정</a>에 정리되어 있고, PG정산·쿠폰정산을 다루는 이커머스 솔루션 Q&A는 <a href="https://hksap.tistory.com/643" target="_blank" rel="noopener">삽질초보 블로그 글</a>에 있다.</p>
   </section>
 
-  <section class="ext-sec">
+  <section class="ext-sec" id="ext-10">
     <h2>10. 리스회계 솔루션 — IFRS 16 · 사용권자산</h2>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-assetget">자산 취득</a> · <a href="process.html#p-depr">감가상각</a></p>
     <h3>하는 일</h3>
@@ -361,7 +362,7 @@
     <p>리스회계 관련 글은 삽질초보 블로그에 모여 있다 — <a href="https://hksap.tistory.com/680" target="_blank" rel="noopener">리스회계 스터디 자료</a> · <a href="https://hksap.tistory.com/653" target="_blank" rel="noopener">IFRS 16 솔루션 참고자료</a> · <a href="https://hksap.tistory.com/741" target="_blank" rel="noopener">리스채권과 투자부동산 구분</a>.</p>
   </section>
 
-  <section class="ext-sec">
+  <section class="ext-sec" id="ext-11">
     <h2>11. 내부회계관리 솔루션 — 권한 분리 · 승인 이력 · 통제 평가</h2>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-approve">전표 승인</a></p>
     <h3>하는 일</h3>
@@ -379,7 +380,7 @@
     <p>권한 분리(SoD)가 현장에서 어떻게 타협되는지는 현장 스케치의 <a href="sketch.html#sk-sk-grc-note-1">P2P SoD 이야기</a>와 <a href="sketch.html#sk-sk-grc-note-2">회사코드별 권한 패턴</a>에 정리되어 있다.</p>
   </section>
 
-  <section class="ext-sec">
+  <section class="ext-sec" id="ext-12">
     <h2>12. 관리회계 수익성분석 솔루션 — 고객/제품/채널별 수익성</h2>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-mgmtpl">관리손익</a></p>
     <h3>하는 일</h3>
@@ -397,7 +398,7 @@
     <p>CO-PA 탑다운 배부가 결산 때마다 어떻게 도는지는 <a href="https://hksap.tistory.com/825" target="_blank" rel="noopener">삽질초보 블로그 글</a>에 정리되어 있다.</p>
   </section>
 
-  <section class="ext-sec">
+  <section class="ext-sec" id="ext-13">
     <h2>13. 자산관리 솔루션 — 바코드·RFID 자산 실사</h2>
     <p><span class="tag">지도 연결</span> <a href="process.html#p-assetaudit">자산 실사</a></p>
     <h3>하는 일</h3>
