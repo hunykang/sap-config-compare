@@ -53,7 +53,9 @@
   function matchesQ(n) {
     if (!st.q) return true;
     var q = st.q.toLowerCase();
-    var hay = [n.name, n.en, n.posting, n.desc].concat(n.subs, n.tcodes).join(" ").toLowerCase();
+    var hayArr = [n.name, n.en, n.posting, n.desc].concat(n.subs, n.tcodes);
+    if (n.subFi) { Object.keys(n.subFi).forEach(function (k) { hayArr.push(n.subFi[k]); }); }
+    var hay = hayArr.join(" ").toLowerCase();
     return hay.indexOf(q) >= 0;
   }
   function badges(n) {
@@ -161,7 +163,12 @@
       '<span class="en">' + esc(n.en || "") + "</span></h4>";
     h += '<div class="meta">' + laneName(n.lane) + " · " + PROCESS_STEPS[n.step] + " 단계" + (n.posting ? " · 전표: " + esc(n.posting) : "") + "</div>";
     h += "<p>" + esc(n.desc) + "</p>";
-    if (n.subs.length) h += '<div class="row"><b>L2 서브:</b> ' + n.subs.map(esc).join(" · ") + "</div>";
+    if (n.subs.length) {
+      var fi = n.subFi || {};
+      h += '<div class="row"><b>L2 서브 — 요약 · FI 영향:</b></div><ul class="subfi-list">' + n.subs.map(function (s) {
+        return "<li><b>" + esc(s) + "</b>" + (fi[s] ? " — " + esc(fi[s]) : "") + "</li>";
+      }).join("") + "</ul>";
+    }
     if (n.mc > 0) h += '<div class="row"><b>Model Company:</b> ' + esc(n.mcNote) + (n.mc === 1 ? " (연계)" : "") + "</div>";
     if (n.ext && n.ext.length) h += '<div class="row"><b>외부 연계:</b> ' + n.ext.map(esc).join(" · ") + ' <a class="chip-link" href="integrations.html">외부 연계 설명 페이지</a></div>';
     if (n.cbo) h += '<div class="row"><b>CBO개발</b> — ' + (n.cboNote ? esc(n.cboNote) + ' ' : '') + '<span class="meta">(MC 전용 프로그램, 코드 미표기)</span></div>';
