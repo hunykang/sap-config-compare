@@ -16,6 +16,12 @@
     });
     return hit;
   }
+  // T-code 칩 링크: 기본 코드는 해당 행, 변형 코드(KSV5 등)는 부모 항목 행, 없는 코드는 구글 검색
+  function tcodeLink(t) {
+    var e = umEntry(t);
+    if (e) return { href: "usermenu.html#" + tcodeAnchor(e.tcode), ext: false };
+    return { href: gUrl("sap " + t), ext: true };
+  }
   function sketchMatches(n) {
     if (typeof SKETCHES === "undefined") return [];
     return SKETCHES.filter(function (s) {
@@ -69,7 +75,8 @@
   function tcodeChips(n) {
     if (!st.layers.L3 || !n.tcodes.length) return "";
     return '<div class="tchips">' + n.tcodes.map(function (t) {
-      return '<a class="tchip" href="usermenu.html#' + tcodeAnchor(t) + '" title="UserMenu에서 ' + esc(t) + ' 설명 보기">' + esc(t) + "</a>";
+      var l = tcodeLink(t);
+      return '<a class="tchip" href="' + l.href + '"' + (l.ext ? ' target="_blank" rel="noopener" title="구글 검색으로 열기"' : ' title="UserMenu에서 ' + esc(t) + ' 설명 보기"') + '>' + esc(t) + "</a>";
     }).join("") + "</div>";
   }
   function nodeHTML(n, overlay) {
@@ -200,12 +207,13 @@
     }).join(" · ") + '</div>';
     if (n.cbo) h += '<div class="row"><b>CBO개발</b> — ' + (n.cboNote ? esc(n.cboNote) + ' ' : '') + '<span class="meta">(MC 전용 CBO프로그램)</span></div>';
     if (n.tcodes.length) {
-      h += '<div class="row"><b>T-code</b> <span class="meta">(클릭하면 UserMenu 설명으로 이동)</span></div><ul class="tc-list">';
+      h += '<div class="row"><b>T-code</b> <span class="meta">(클릭하면 UserMenu 설명으로 이동, 없는 코드는 구글 검색)</span></div><ul class="tc-list">';
       n.tcodes.forEach(function (t) {
         var e = umEntry(t);
         var name = e ? ((e.ko ? esc(e.ko) : "") + (e.en ? " <span class='meta'>" + esc(e.en) + "</span>" : "")) : "";
         var why = e && e.why ? "<br><span class='u-why'>" + esc(e.why) + "</span>" : "";
-        h += "<li><a class='tchip big' href='usermenu.html#" + tcodeAnchor(t) + "'>" + esc(t) + "</a> " + name +
+        var l = tcodeLink(t);
+        h += "<li><a class='tchip big' href='" + l.href + "'" + (l.ext ? " target='_blank' rel='noopener'" : "") + ">" + esc(t) + "</a> " + name +
           ' <a class="item-link" href="' + gUrl("sap " + t) + '" target="_blank" rel="noopener" title="구글 검색으로 열기"><i class="ext">↗</i></a> ' +
           whyLink("sap why " + t) + why + "</li>";
       });
