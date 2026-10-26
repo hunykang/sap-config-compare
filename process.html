@@ -23,10 +23,10 @@
 .lchip.off{opacity:.45}
 .lchip input{accent-color:#86BC25}
 .scrollx{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
-.map{display:grid;grid-template-columns:86px repeat(6,minmax(118px,1fr));min-width:860px;background:#fff}
+.map{display:grid;grid-template-columns:110px repeat(6,minmax(118px,1fr));min-width:860px;background:#fff}
 .map>div{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:5px;min-height:44px}
 .map .hd{background:var(--card);font-size:12px;font-weight:700;text-align:center;display:flex;align-items:center;justify-content:center;min-height:30px}
-.map .lane{background:var(--card);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.35}
+.map .lane{background:var(--card);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.35;word-break:keep-all}
 .node{border:1px solid var(--line);border-left:4px solid #b9b9b9;background:#fff;border-radius:6px;padding:6px 7px;margin-bottom:5px;cursor:pointer;font-size:12.5px;line-height:1.4}
 .node:hover{border-color:#86BC25}
 .node.main{border-left-color:#86BC25;font-weight:700;font-size:13px}
@@ -71,7 +71,7 @@
 .psearch input{flex:1;padding:10px 14px;font-size:14px;border:1px solid var(--line);border-radius:8px;outline:none}
 .psearch input:focus{border-color:#86BC25}
 @media (max-width:760px){
-  .map{grid-template-columns:76px repeat(6,minmax(110px,1fr));min-width:740px}
+  .map{grid-template-columns:110px repeat(6,minmax(110px,1fr));min-width:780px}
   .node{font-size:12px}
   .node.main{font-size:12.5px}
   .seg button{padding:6px 11px;font-size:12.5px}
