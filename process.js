@@ -31,10 +31,14 @@
     });
   }
   function byId(id) { return PROCESS_NODES.find(function (n) { return n.id === id; }); }
+  function checksFor(n) {
+    if (typeof PROCESS_CHECKS === "undefined") return [];
+    return PROCESS_CHECKS[n.id] || [];
+  }
   function laneName(k) { var L = PROCESS_LANES.find(function (x) { return x[0] === k; }); return L ? L[1] : k; }
   function nodesAt(lane, step) { return PROCESS_NODES.filter(function (n) { return n.lane === lane && n.step === step; }); }
 
-  var DEF = { mode: "overlay", layers: { L1: true, L2: true, MC: true, L3: true, L4: true }, sel: null, q: "" };
+  var DEF = { mode: "overlay", layers: { L1: true, L2: true, MC: true, L3: true, L4: true, L5: false }, sel: null, q: "" };
   function mergeState(s) { return { mode: s.mode || DEF.mode, layers: Object.assign({}, DEF.layers, s.layers || {}), sel: s.sel || null, q: s.q || "" }; }
   function loadState() {
     // 위젯 환경에서는 백엔드 브리지 상태를, 일반 웹에서는 해시(#p-노드)만 사용한다.
@@ -61,6 +65,7 @@
     var q = st.q.toLowerCase();
     var hayArr = [n.name, n.en, n.posting, n.desc].concat(n.subs, n.tcodes);
     if (n.subFi) { Object.keys(n.subFi).forEach(function (k) { hayArr.push(n.subFi[k]); }); }
+    if (st.layers.L5) { checksFor(n).forEach(function (c) { hayArr.push(c.t); if (c.n) hayArr.push(c.n); }); }
     var hay = hayArr.join(" ").toLowerCase();
     return hay.indexOf(q) >= 0;
   }
@@ -70,6 +75,7 @@
     if (st.layers.MC && n.mc === 1) h += '<span class="badge link">MC 연계</span>';
     if (st.layers.MC && n.cbo) h += '<span class="badge cbo">CBO개발</span>';
     if (st.layers.L4) { var m = sketchMatches(n); if (m.length) h += '<span class="badge issue">Ep. ' + m.length + "건</span>"; }
+    if (st.layers.L5) { var c = checksFor(n); if (c.length) h += '<span class="badge check">점검 ' + c.length + "건</span>"; }
     return h ? '<div class="badges">' + h + "</div>" : "";
   }
   function tcodeChips(n) {
@@ -113,7 +119,7 @@
     if (st.mode === "overlay") {
       h += gridHTML(function (lane, step) { return nodesAt(lane, step).map(function (n) { return nodeHTML(n, true); }).join(""); });
     } else {
-      var titles = { L1: "L1 — 메가 프로세스 지도", L2: "L2 — 서브 프로세스 지도", MC: "Model Company — FI 중심 커버리지 지도", L3: "L3 — T-code 배치 지도", L4: "L4 — 프로젝트 이슈 (Ep.) 지도" };
+      var titles = { L1: "L1 — 메가 프로세스 지도", L2: "L2 — 서브 프로세스 지도", MC: "Model Company — FI 중심 커버리지 지도", L3: "L3 — T-code 배치 지도", L4: "L4 — 프로젝트 이슈 (Ep.) 지도", L5: "L5 — 체크리스트 지도" };
       PROCESS_LAYERS.forEach(function (L) {
         if (!st.layers[L[0]]) return;
         h += '<div class="ptitle">' + titles[L[0]] + "</div>";
@@ -137,6 +143,10 @@
         if (L[0] === "L4") {
           h += '<div class="pnote">현장 스케치 카드가 연결된 프로세스만 표시합니다. 카드를 누르면 해당 현장 스케치로 이동합니다.</div>';
           h += gridHTML(function (lane, step) { return nodesAt(lane, step).map(function (n) { var m = sketchMatches(n); if (!m.length) return ""; return '<div class="cellmini">' + esc(n.name) + "</div>" + m.map(function (s) { return '<a class="subbox" href="sketch.html#sk-' + esc(s.id) + '">' + esc(s.title) + "</a>"; }).join(""); }).join(""); });
+        }
+        if (L[0] === "L5") {
+          h += '<div class="pnote">프로젝트 현장 기록에서 선별한 점검 항목입니다. 기본은 꺼져 있고, L5를 켜야 표시됩니다.</div>';
+          h += gridHTML(function (lane, step) { return nodesAt(lane, step).map(function (n) { var c = checksFor(n); if (!c.length) return ""; return '<div class="cellmini">' + esc(n.name) + "</div>" + c.map(function (x) { return '<div class="checkrow">' + esc(x.t) + '<span class="csrc">CheckList</span>' + (x.n ? '<div class="cnote">' + esc(x.n) + "</div>" : "") + "</div>"; }).join(""); }).join(""); });
         }
       });
     }
@@ -233,6 +243,7 @@
     var m = sketchMatches(n);
     if (m.length) linkRows += '<div class="row"><b>현장 스케치</b> ' + m.map(function (s) { return '<a class="chip-link" href="sketch.html#sk-' + esc(s.id) + '">' + esc(s.title) + "</a>"; }).join(" ") + "</div>";
     if (linkRows) h += linkRows;
+    if (st.layers.L5) { var chk = checksFor(n); if (chk.length) h += '<div class="row"><b>체크리스트</b> <span class="meta">(현장 기록 선별 · 표시 태그 CheckList)</span></div><ul class="check-list">' + chk.map(function (x) { return "<li>" + esc(x.t) + '<span class="csrc">CheckList</span>' + (x.n ? '<br><span class="cnote">' + esc(x.n) + "</span>" : "") + "</li>"; }).join("") + "</ul>"; }
     h += '<div class="row" style="margin-top:8px"><a href="compare.html">비교표(SPRO)</a> · <a href="glossary.html">용어집</a> · <a href="usermenu.html">UserMenu</a> · <a href="table.html">Table</a> · <a href="sketch.html">현장 스케치</a> · <a href="autoposting.html">Auto-posting</a></div>';
     h += '<div style="margin-top:10px"><button class="backbtn" data-back="1">↑ 지도로 돌아가기</button></div>';
     d.innerHTML = h;
