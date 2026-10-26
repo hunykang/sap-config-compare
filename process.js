@@ -38,7 +38,7 @@
   function laneName(k) { var L = PROCESS_LANES.find(function (x) { return x[0] === k; }); return L ? L[1] : k; }
   function nodesAt(lane, step) { return PROCESS_NODES.filter(function (n) { return n.lane === lane && n.step === step; }); }
 
-  var DEF = { mode: "overlay", layers: { L1: true, L2: true, MC: true, L3: true, L4: true, L5: false }, sel: null, q: "" };
+  var DEF = { mode: "overlay", layers: { L1: true, L2: true, MC: true, L3: true, L4: true, L5: true }, sel: null, q: "" };
   function mergeState(s) { return { mode: s.mode || DEF.mode, layers: Object.assign({}, DEF.layers, s.layers || {}), sel: s.sel || null, q: s.q || "" }; }
   function loadState() {
     // 위젯 환경에서는 백엔드 브리지 상태를, 일반 웹에서는 해시(#p-노드)만 사용한다.
@@ -145,7 +145,7 @@
           h += gridHTML(function (lane, step) { return nodesAt(lane, step).map(function (n) { var m = sketchMatches(n); if (!m.length) return ""; return '<div class="cellmini">' + esc(n.name) + "</div>" + m.map(function (s) { return '<a class="subbox" href="sketch.html#sk-' + esc(s.id) + '">' + esc(s.title) + "</a>"; }).join(""); }).join(""); });
         }
         if (L[0] === "L5") {
-          h += '<div class="pnote">프로젝트 현장 기록에서 선별한 점검 항목입니다. 기본은 꺼져 있고, L5를 켜야 표시됩니다.</div>';
+          h += '<div class="pnote">프로젝트 현장 기록에서 선별한 점검 항목입니다.</div>';
           h += gridHTML(function (lane, step) { return nodesAt(lane, step).map(function (n) { var c = checksFor(n); if (!c.length) return ""; return '<div class="cellmini">' + esc(n.name) + "</div>" + c.map(function (x) { return '<div class="checkrow">' + esc(x.t) + '<span class="csrc">CheckList</span>' + (x.n ? '<div class="cnote">' + esc(x.n) + "</div>" : "") + "</div>"; }).join(""); }).join(""); });
         }
       });
