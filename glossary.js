@@ -3627,5 +3627,15 @@ const GLOSSARY = [
    "sap-activate",
    "realize-phase"
   ]
+ },
+ {
+  "id": "financial-assets",
+  "kr": "금융자산",
+  "en": "Financial Assets",
+  "abbr": "",
+  "desc": "IFRS 9 기준 금융자산. 상각후원가(AC)·기타포괄손익 공정가치(FVOCI)·당기손익 공정가치(FVPL)로 측정 범주를 나누고, 유효이자율법으로 상각한다. 차입원가 자본화·코딩블록 확장과 FI 접점이 있다.",
+  "area": "bank",
+  "items": [],
+  "terms": []
  }
 ];
