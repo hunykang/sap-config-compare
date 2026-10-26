@@ -76,7 +76,7 @@ const SKETCHES = [
     source: "blog",
     url: "https://hksap.tistory.com/825",
     comment: "CO-PA에서 위에서 아래로 배부하는 탑다운 배부. 수익성분석을 쓰는 현장에서 결산 때마다 돌리는 로직이라 흐름을 알아 두면 좋다.",
-    configs: ["co-alloc", "co-margin"],
+    configs: ["co-margin"],
     terms: ["allocation", "profitability-analysis"],
   },
   {
