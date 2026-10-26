@@ -322,7 +322,7 @@ const SKETCHES = [
     url: "https://hksap.tistory.com/857",
     comment: "표준원가 추정 때 외자에 P타입 환율만 넣으면 에러가 나고 M타입까지 넣어야 통과됐던 사례다. 추정 직전 체크리스트로 쓸 만하다.",
     configs: ["co-costvar"],
-    terms: ["standard-cost-valuation", "foreign-currency-valuation"],
+    terms: ["standard-cost-valuation", "foreign-currency-valuation", "financial-assets"],
   },
   {
     id: "sk-blog-10",
@@ -421,7 +421,7 @@ const SKETCHES = [
     url: "https://hksap.tistory.com/741",
     comment: "IFRS 16 리스채권과 IAS 40 투자부동산의 구분을 정리한 글. SAP 표준 리스 회계 적용 방안을 논의한 메모다.",
     configs: [],
-    terms: ["lease-accounting", "right-of-use-asset"],
+    terms: ["lease-accounting", "right-of-use-asset", "financial-assets"],
   },
   {
     id: "sk-blog-19",
@@ -454,7 +454,7 @@ const SKETCHES = [
     url: "https://hksap.tistory.com/708",
     comment: "상각후원가 금융자산의 유효이자율법 회계처리 참고자료 모음. SAP 처리 방법은 추가 예정인 메모다.",
     configs: ["close-accrual"],
-    terms: ["accrual-engine"],
+    terms: ["accrual-engine", "financial-assets"],
   },
   {
     id: "sk-blog-22",
@@ -826,7 +826,7 @@ const SKETCHES = [
     url: "https://hksap.tistory.com/808",
     comment: "ACDOCA 원장에 사용자필드를 추가하는 Coding Block 확장 방법을 정리한 참고자료다.",
     configs: [],
-    terms: ["additional-account-assignment"],
+    terms: ["additional-account-assignment", "financial-assets"],
   },
   {
     id: "sk-fsv-811",
@@ -848,7 +848,7 @@ const SKETCHES = [
     url: "https://hksap.tistory.com/822",
     comment: "은행 GL 계정 1개만 쓰고 계좌를 관리항목으로 등록할 수 없는지 묻는 현업 질의에 대한 조사 메모다. 손익센터 자동지정과 외화통장 환산손익 추가 관리가 포인트다.",
     configs: ["bank-glstruct"],
-    terms: ["house-bank"],
+    terms: ["house-bank", "financial-assets"],
   },
   {
     id: "sk-bankdigit-496",
@@ -1087,7 +1087,7 @@ const SKETCHES = [
     url: "https://hksap.tistory.com/558",
     comment: "GGB4 validation exit으로 기준환율을 점검한 사례다. 월초 1영업일에 나오는 기준환율이 없으면 전기할 때 Finance 팀에 연락하라는 메시지를 띄우도록 했다는 현장 기록이다.",
     configs: ["gl-validation"],
-    terms: ["foreign-currency-valuation", "validation"],
+    terms: ["foreign-currency-valuation", "validation", "financial-assets"],
   },
   {
     id: "sk-fcv-diff-537",
@@ -1320,4 +1320,26 @@ const SKETCHES = [
     configs: [],
     terms: ["auc", "investment-measure"],
   },
+  {
+    id: "sk-blog-25",
+    category: "회계 일반",
+    date: "20X9.12",
+    title: "차입원가자본화",
+    source: "blog",
+    url: "https://hksap.tistory.com/395",
+    comment: "IFRS 차입원가 자본화 접근법을 묻는 현장 질문 메모. 일반·특정 차입금 가중평균 차입율 로직이 주제다. 해법 글이 아니라 고민 기록이라, 적용 전에 현장 기준과 대조해야 한다.",
+    configs: [],
+    terms: ["financial-assets"],
+  },
+  {
+    id: "sk-blog-26",
+    category: "회계 일반",
+    date: "20X8.02",
+    title: "FVPL",
+    source: "blog",
+    url: "https://hksap.tistory.com/601",
+    comment: "IFRS 9 금융상품 분류(FVPL·FVOCI·AC) 참고 모음. 공정가치 평가 개념 정리로, SAP 처리 방법은 다루지 않는다.",
+    configs: [],
+    terms: ["financial-assets"],
+  }
 ];
