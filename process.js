@@ -183,7 +183,8 @@
     "자산관리 솔루션": "ext-13",
     "연결회계 솔루션": "ext-7",
     "내부회계관리 솔루션": "ext-11",
-    "가상계좌·B2B 결제": "ext-6"
+    "가상계좌·B2B 결제": "ext-6",
+    "금융자산": "ext-14"
   };
   function showDetail(id) {
     var n = byId(id); if (!n) return;
