@@ -397,6 +397,9 @@ const PROCESS_NODES = [
 // L5 체크리스트 데이터 (process.html 전용)
 // 원천: RTM C_CheckList·S_S4 Public 선별·익명화·매핑 초안 (hidden_files/l5_checklist_draft.json에서 생성, 383건)
 // 표시 태그는 전부 CheckList로 통일. 기본 OFF — L5 레이어를 켜야 조회됨. 개별 수정 시 초안 JSON을 고치고 이 블록을 재생성할 것.
+// L5 체크리스트 데이터 (process.html 전용)
+// 원천: RTM C_CheckList·S_S4 Public 선별·익명화·매핑 초안 (hidden_files/l5_checklist_draft.json에서 생성, 383건)
+// 표시 태그는 전부 CheckList로 통일. 기본 OFF — L5 레이어를 켜야 조회됨. 개별 수정 시 초안 JSON을 고치고 이 블록을 재생성할 것.
 var PROCESS_CHECKS = {
   "org": [
     {"t": "GL → 약정대체시 FI재무회계PFCG일반권한 많이필요함 SU53으로 체크해서 필요권한 부여해야함"},
@@ -860,7 +863,7 @@ var PROCESS_CHECKS = {
     {"t": "FI로 던져주는 HR의 급여 원천세, 국민연금, 건강보험등 계정처리 프로세스 study"}
   ],
   "subcontract": [
-    {"t": "PMO 외주파트는 직원을 붙여서 인계받고 knowledge 키울 수 있도록하기"}
+    {"t": "외주파트는 직원을 붙여서 인계받고 knowledge 키울 수 있도록하기"}
   ],
   "import": [
     {"t": "Xk01생성시 개별사항(은행) 필수입력으로 전표의 대체수취인 체크"}
