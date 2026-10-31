@@ -234,7 +234,7 @@ const SKETCHES = [
     url: "https://hksap.tistory.com/861",
     comment: "Fiori 전표 입력에서 그룹통화 금액을 바꾸는 방법을 정리한 글이다. GUI와 Fiori 앱의 동작이 달라 현장에서 헷갈리기 쉬운 지점이다.",
     configs: ["gl-global-param"],
-    terms: ["document-currency", "local-currency"],
+    terms: ["document-currency", "local-currency", "group-currency"],
   },
   {
     id: "sk-blog-02",
