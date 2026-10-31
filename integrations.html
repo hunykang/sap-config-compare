@@ -220,6 +220,7 @@
       <li>수신 실패일에 손으로 입력하면 나중에 대사가 안 맞습니다. 실패분은 재수신하는 것이 순서입니다.</li>
     </ul>
     <p>은행 I/F로 환율정보를 받아 배치로 환율테이블을 업데이트하는 방법은 <a href="https://hksap.tistory.com/661" target="_blank" rel="noopener">삽질초보 블로그 글</a>(Worklist로 환율등록)에 정리되어 있다.</p>
+    <p>고시환율 자동 수신 외에, Currency Exchange Rate API로 환율을 직접 입력하는 갈래도 있다. 동기식 인바운드로 환율유형·출발통화·도착통화·적용일을 키로 생성·조회·수정·삭제하고 Convert 함수도 제공한다. 예전의 '직접 API 없음, BYOR가 표준'이라는 입장은 구버전 입장이다. 자세한 설명은 <a href="https://wikidocs.net/book/21803" target="_blank" rel="noopener">2권</a> 01-23에 있다.</p>
   </section>
 
   <section class="ext-sec" id="ext-7">
