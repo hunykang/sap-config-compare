@@ -2515,6 +2515,21 @@ const GLOSSARY = [
   ]
  },
  {
+  "id": "apc",
+  "kr": "자산 취득·생산원가",
+  "en": "Acquisition and Production Costs",
+  "abbr": "APC",
+  "desc": "자산의 취득·생산원가를 뜻하는 약자. 자산의 장부가액은 이 취득·생산원가를 기준으로 잡히고, 감가상각도 이 금액에서 계산된다.",
+  "area": "aa",
+  "items": [
+   "aa-acctdet"
+  ],
+  "terms": [
+   "acquire-to-decommission",
+   "asset-class"
+  ]
+ },
+ {
   "id": "lease-accounting",
   "kr": "리스회계",
   "en": "Lease Accounting",
