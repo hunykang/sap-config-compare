@@ -278,7 +278,7 @@ const PROCESS_NODES = [
   { id: "coreport", lane: "co", step: 5, name: "제조원가 리포트", en: "Product Cost Reports", main: false, posting: "",
     desc: "결산이 끝나면 플랜트별로 확인하는 리포트. 제품수불부로 물량·금액 흐름을, 제조원가명세서로 원가 구조를 봅니다. 제조원가결산·자재원장 결산과 연결됩니다.",
     subs: ["플랜트별 제품수불부", "플랜트별 제조원가명세서", "표준/실제 차이 분석"],
-    subFi: {"플랜트별 제품수불부": "FI 전표 없음. 물량·금액 흐름 리포트.", "플랜트별 제조원가명세서": "FI 전표 없음. 원가 구조 리포트.", "표준/실제 차이 분석": "FI 전표 없음. 표준/실제 차이 분석."},
+    subFi: {"플랜트별 제품수불부": "FI 전표 없음. 물량·금액 흐름 리포트.", "플랜트별 제조원가명세서": "FI 전표 없음. 다만 FI 쪽에서 직접 만드는 자리도 있다. 기초재료(GL)+당기매입액(GL)-타계정-매출원가(GL)로 재료비를 구하고, 표준원가 투입분으로 검증하는 방식이다.", "표준/실제 차이 분석": "FI 전표 없음. 표준/실제 차이 분석."},
     tcodes: ["KKBC_ORD"], cbo: false, mc: 2, mcNote: "MC 추적표 4.4.4.11 제조원가 분석",
     config: ["co-ml"], terms: ["material-ledger"], tables: [] },
   { id: "mgmtpl", lane: "co", step: 5, name: "관리손익", en: "Management P&L / Profitability Analysis", main: true, posting: "매출원가·판관비 배부",
