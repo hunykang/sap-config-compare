@@ -3670,6 +3670,62 @@ const GLOSSARY = [
   ]
  },
  {
+  "id": "co-area-currency",
+  "kr": "관리회계 영역 통화",
+  "en": "Controlling Area Currency",
+  "abbr": "",
+  "desc": "관리회계 영역의 기준 통화다. 원가와 수익을 관리회계 영역 단위로 집계할 때 이 통화로 금액을 본다.",
+  "area": "gl",
+  "items": [],
+  "terms": [
+   "document-currency",
+   "local-currency",
+   "group-currency"
+  ]
+ },
+ {
+  "id": "hard-currency",
+  "kr": "경화",
+  "en": "Hard Currency",
+  "abbr": "",
+  "desc": "가치가 안정적인 강한 통화다. 원장에서 경화를 별도 통화 유형으로 두면, 현지통화와 별개로 경화 기준 금액을 관리할 수 있다.",
+  "area": "gl",
+  "items": [],
+  "terms": [
+   "document-currency",
+   "local-currency",
+   "group-currency"
+  ]
+ },
+ {
+  "id": "index-currency",
+  "kr": "지수 기준 통화",
+  "en": "Index-Based Currency",
+  "abbr": "",
+  "desc": "지수에 연동해 금액을 보는 통화 유형이다. 지수 기준으로 금액을 다시 보는 경우에 쓴다.",
+  "area": "gl",
+  "items": [],
+  "terms": [
+   "document-currency",
+   "local-currency",
+   "group-currency"
+  ]
+ },
+ {
+  "id": "global-company-currency",
+  "kr": "글로벌 회사 통화",
+  "en": "Global Company Currency",
+  "abbr": "",
+  "desc": "전 그룹에서 공통으로 쓰는 회사 통화다. 여러 회사코드의 금액을 하나의 통화로 모아 볼 때 기준이 된다.",
+  "area": "gl",
+  "items": [],
+  "terms": [
+   "document-currency",
+   "local-currency",
+   "group-currency"
+  ]
+ },
+ {
   "id": "financial-assets",
   "kr": "금융자산",
   "en": "Financial Assets",
