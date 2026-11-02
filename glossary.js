@@ -302,7 +302,7 @@ const GLOSSARY = [
   "kr": "변경문서",
   "en": "Change Document",
   "abbr": "",
-  "desc": "마스터데이터나 전표가 바뀌면 누가·언제·무엇을 바꿨는지 자동으로 남기는 변경 이력이다. 감사 추적의 근거가 된다.",
+  "desc": "마스터데이터나 전표가 바뀌면 누가·언제·무엇을 바꿨는지 자동으로 남기는 변경 이력이다. 헤더는 CDHDR, 항목은 CDPOS 테이블에 남는다. 감사 추적의 근거가 된다.",
   "area": "gl",
   "items": [
    "gl-doc-change"
@@ -3736,3 +3736,4 @@ const GLOSSARY = [
   "terms": []
  }
 ];
+
