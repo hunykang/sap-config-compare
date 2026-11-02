@@ -3734,7 +3734,7 @@ const GLOSSARY = [
   "area": "bank",
   "items": [],
   "terms": []
- }
+ },
  {
   "id": "complex-posting",
   "kr": "Complex Posting",
