@@ -898,6 +898,26 @@ const GUIDE_DATA = [
   "eccSame": true
  },
  {
+  "id": "ar-cust-change-doc",
+  "area": "AR",
+  "item": "고객 변경 이력 (변경문서)",
+  "ecc": "S_ALR_87012182(고객 변경 이력) · S_ALR_87012183(중요 변경) — 변경문서 기반 조회",
+  "pce": "S_ALR_87012182(고객 변경 이력) · S_ALR_87012183(중요 변경) — 변경문서 기반 조회",
+  "pub": "앱 F2681 Display Item Change Log - Customer (항목 변경 로그 조회 고객) · Display Change Documents (CA_SHOW_CD)",
+  "diff": "변경 이력은 변경문서 헤더(CDHDR)·항목(CDPOS)에 남는다. PCE는 리포트로 그 기록을 읽어 보여주고, Public에서는 테이블을 직접 조회하지 않고 변경 로그 전용 앱으로 대응한다. 고객용 CDS 뷰는 확인된 릴리스가 없다.",
+  "help": [],
+  "tags": [
+   "AR",
+   "BP",
+   "마스터"
+  ],
+  "related": [
+   "ar-cust-group",
+   "gl-doc-change"
+  ],
+  "eccSame": true
+ },
+ {
   "id": "ar-interest",
   "area": "AR",
   "item": "이자계산",
