@@ -3735,5 +3735,24 @@ const GLOSSARY = [
   "items": [],
   "terms": []
  }
+ {
+  "id": "complex-posting",
+  "kr": "Complex Posting",
+  "en": "Complex Posting",
+  "abbr": "",
+  "desc": "퍼블릭 시스템에서 전기키 입력 화면이 제한적인 전표 입력 방식이다. 업그레이드가 거듭될수록 전기키를 활용한 전표 처리 케이스는 줄어드는 추세다.",
+  "area": "gl",
+  "items": [],
+  "terms": []
+ },
+ {
+  "id": "cash-account",
+  "kr": "Cash Account",
+  "en": "Cash Account",
+  "abbr": "",
+  "desc": "하나의 G/L 계정에 여러 하우스뱅크 계좌를 관리해 계좌 수를 줄이는 은행 조정 계정 개념이다.",
+  "area": "bank",
+  "items": [],
+  "terms": []
+ }
 ];
-
