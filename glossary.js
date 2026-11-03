@@ -1692,7 +1692,7 @@ const GLOSSARY = [
   "kr": "대체",
   "en": "Substitution",
   "abbr": "",
-  "desc": "전표 입력값을 조건에 따라 자동으로 바꿔치우는 기능이다. 예를 들어 특정 계정에 전기하면 코스트센터를 자동으로 채워준다.",
+  "desc": "전표 입력값을 조건에 따라 자동으로 바꿔치우는 기능이다. 예를 들어 특정 계정에 전기하면 코스트센터를 자동으로 채워준다. F110 자동지급으로 만든 지급전표의 참조 필드도 대체룰로 채울 수 있다. 다만 표준으로는 원전표의 참조·텍스트가 지급전표로 그대로 옮겨지지 않으니, 규칙으로 미리 정해 두는 자리다.",
   "area": "gl",
   "items": [
    "gl-substitution"
@@ -1700,7 +1700,8 @@ const GLOSSARY = [
   "terms": [
    "validation",
    "document",
-   "cost-center"
+   "cost-center",
+   "automatic-payment"
   ],
   "menus": [
    "F-30",
