@@ -2034,6 +2034,21 @@ const GLOSSARY = [
   ]
  },
  {
+  "id": "cost-component-structure",
+  "kr": "원가구성요소",
+  "en": "Cost Component Structure",
+  "abbr": "",
+  "desc": "제품원가를 재료비·노무비·경비 같은 원가요소 유형별로 나눠 보는 구조. 표준원가 추정 때 원가요소별로 금액을 갈라 계산하고, 제조원가명세서에서 원가 구조를 읽는 기준이 된다. 한 현장에서는 타계정을 평가클래스별 GL로 나누지 않기로 해 GL만으로는 명세서 구분이 안 되니 자재원장 문서로 구분하는 방안이 거론됐다.",
+  "area": "co",
+  "items": [
+   "prodcost"
+  ],
+  "terms": [
+   "multilevel-costing",
+   "material-ledger"
+  ]
+ },
+ {
   "id": "variance-analysis",
   "kr": "차이분석",
   "en": "Variance Analysis",
