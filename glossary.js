@@ -2294,6 +2294,19 @@ const GLOSSARY = [
   ]
  },
  {
+  "id": "special-stock",
+  "kr": "특별재고",
+  "en": "Special Stock",
+  "abbr": "",
+  "desc": "일반 재고와 따로 관리하는 재고. 지시자로 구분한다. E는 수주오더 재고로 해당 오더 전용이고, Q는 프로젝트 재고로 WBS에 귀속되며, K는 위탁 재고로 공급업체 소유라 소비하기 전에는 금액이 없고, O는 외주 재고로 우리 소유이나 외주처에 있다. 소급 조회는 MB5B에서 재고 유형 특별재고와 지시자, 특정 번호(수주오더 번호·WBS 요소 등), 날짜를 함께 지정한다.",
+  "area": "xmod",
+  "items": [],
+  "terms": [
+   "inventory-accounting",
+   "material-ledger"
+  ]
+ },
+ {
   "id": "standard-cost-valuation",
   "kr": "표준원가평가",
   "en": "Standard Cost Valuation",
