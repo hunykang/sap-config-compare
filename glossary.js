@@ -426,7 +426,9 @@ const GLOSSARY = [
   "desc": "예전 GLT0 시절에 많이 사용한 원장 방식. 표준 총계정원장으로는 분석이 안 되는 보고가 필요할 때 고객이 직접 원장을 정의해 쓰던 기능이다(FI-SL). 보고 목적에 맞는 계정지정 대상과 필드로 원장을 만들고 FI·CO·MM·SD 등에서 실시간이나 배치로 값을 받아 Report Painter/Writer로 보고했다. 다른 통화나 회계연도 변형으로 보는 보고, 경영 보고용 재집계가 대표적 쓰임새였다. New GL과 ACDOCA가 들어오면서 통합되었으며, S/4HANA의 Extension Ledger와는 다른 개념이다.",
   "area": "gl",
   "items": [],
-  "terms": ["general-ledger"],
+  "terms": [
+   "general-ledger"
+  ],
   "menus": []
  },
  {
@@ -1030,6 +1032,22 @@ const GLOSSARY = [
    "document",
    "business-area",
    "line-item"
+  ]
+ },
+ {
+  "id": "segment",
+  "kr": "세그먼트",
+  "en": "Segment",
+  "abbr": "",
+  "desc": "회사를 나눈 사업 단위다. 전표분할이 전표를 세그먼트별로 쪼개주면 세그먼트별 재무제표를 뽑을 수 있다.",
+  "area": "gl",
+  "items": [
+   "gl-docsplit"
+  ],
+  "terms": [
+   "document-splitting",
+   "business-area",
+   "profit-center"
   ]
  },
  {
