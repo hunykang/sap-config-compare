@@ -1039,7 +1039,7 @@ const GLOSSARY = [
   "kr": "세그먼트",
   "en": "Segment",
   "abbr": "",
-  "desc": "회사를 나눈 사업 단위다. 전표분할이 전표를 세그먼트별로 쪼개주면 세그먼트별 재무제표를 뽑을 수 있다.",
+  "desc": "회사를 나눈 사업 단위다. 전표분할이 전표를 세그먼트별로 쪼개주면 세그먼트별 재무제표를 뽑을 수 있다. PA세그먼트(수익성 세그먼트)와는 다른 개념이다.",
   "area": "org",
   "items": [
    "gl-docsplit"
@@ -1047,6 +1047,19 @@ const GLOSSARY = [
   "terms": [
    "document-splitting",
    "business-area",
+   "profit-center"
+  ]
+ },
+ {
+  "id": "pa-segment",
+  "kr": "PA세그먼트",
+  "en": "Profitability Segment",
+  "abbr": "",
+  "desc": "수익성 분석(CO-PA)에서 시장을 나눈 단위다. 고객·제품 같은 특성값의 조합으로 정해지며, FI의 조직 세그먼트와는 다른 개념이다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "segment",
    "profit-center"
   ]
  },
