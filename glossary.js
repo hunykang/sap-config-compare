@@ -1040,7 +1040,7 @@ const GLOSSARY = [
   "en": "Segment",
   "abbr": "",
   "desc": "회사를 나눈 사업 단위다. 전표분할이 전표를 세그먼트별로 쪼개주면 세그먼트별 재무제표를 뽑을 수 있다.",
-  "area": "gl",
+  "area": "org",
   "items": [
    "gl-docsplit"
   ],
