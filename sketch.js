@@ -617,7 +617,7 @@ const SKETCHES = [
     title: "Accrual engine migration 대량 등록시 처리부분",
     source: "blog",
     url: "https://hksap.tistory.com/548",
-    comment: "장기 선급비용 100여 건을 Accrual Engine으로 마이그레이션하면서 건별 처리가 부담돼 BDC 녹화로 대량 등록한 기록이다.",
+    comment: "장기 선급비용 100여 건을 Accrual Engine으로 마이그레이션하면서 건별 처리가 부담돼 BDC 녹화를 시도했으나 발생 엔진 화면의 그리드 구간이 레코딩에 잡히지 않아 막혔고, 함수 모듈로 처리한 기록이다.",
     configs: ["close-accrual"],
     terms: ["accrual-engine"],
   },  {
