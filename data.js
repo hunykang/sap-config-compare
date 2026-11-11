@@ -107,9 +107,11 @@ const GUIDE_DATA = [
   "flag": "FM 전용 · FM 안 쓰면 이 페이지는 패스",
   "ecc": "기업 구조 > 정의 > 재무회계 > 재무관리영역 유지보수",
   "pce": "기업 구조 > 정의 > 재무회계",
-  "pub": "비PSM Public에는 PSM-FM 재무관리영역 설정이 없음. 코스트센터 예산은 스콥아이템 2I3·J54, 프로젝트 예산은 1NT로 가용성 통제. 미국 공공부문 PSM 스콥 번들에서는 Budget Management·Fund Accounting·Grants Management 제공",
+  "pub": "비PSM Public에는 PSM-FM 재무관리영역 설정이 없음. 코스트센터 예산은 스콥아이템 2I3·J54, 프로젝트 예산은 1NT로 가용성 통제. 미국 공공부문 PSM 스콥 번들에서는 Budget Management·Fund Accounting·Grants Management 제공. 월별 예산을 올려도 통제는 연간만 되고, 이월 기능은 없다(SAP KBA 3048467).",
   "diff": "자금관리(FM) 조직 단위. 대학교 교비회계·산학협력단회계·법인회계 같은 비영리 조직의 SAP 프로젝트에서 주로 사용하고, 일반회사 중에도 CO exit으로 예산통제를 개발하기보다 SAP 표준 FM 예산통제를 정책으로 채택한 사례가 있다. S/4HANA에서는 Former Budgeting이 아니라 BCS(Budget Control System)로 예산편성·가용성 통제·차년도 예산 이월을 관리한다.",
-  "help": [],
+  "help": [
+   "https://userapps.support.sap.com/sap/support/knowledge/en/3048467"
+  ],
   "tags": [
    "조직"
   ],
