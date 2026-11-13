@@ -333,6 +333,20 @@ const GLOSSARY = [
   ]
  },
  {
+  "id": "coding-block",
+  "kr": "코딩블록",
+  "en": "Coding Block",
+  "abbr": "",
+  "desc": "전표에 조직·기준·거래 정보 외의 추가 핵심정보를 담는 확장 필드 묶음이다. S/4HANA에서 필드를 추가하려면 OKX3 Add Field로 만들고 CDS 뷰를 수정한 뒤 Add Field BI와 Add Control Entries를 거친다. 탐색도움말은 최초 생성 시 함께 고려해야 하고, 필드는 CHAR로 등록한다. 차기이월 때는 FINSV_ACDOC_FCT에서 이월 열을 켜야 필드가 풀리지 않는다.",
+  "area": "gl",
+  "items": [],
+  "terms": [
+   "field-status",
+   "document",
+   "line-item"
+  ]
+ },
+ {
   "id": "posting-key",
   "kr": "전기키",
   "en": "Posting Key",
