@@ -2462,6 +2462,38 @@ const GLOSSARY = [
   ]
  },
  {
+  "id": "self-level-variance",
+  "kr": "자기레벨차이",
+  "en": "Single-Level Variance",
+  "abbr": "",
+  "desc": "제품레벨에서 발생한 가격차이. 제조 간접비처럼 그 제품에서 직접 생긴 차이로, 하위레벨에서 올라온 차이와는 태어난 층이 다르다.",
+  "area": "close",
+  "items": [
+   "xmod-ml"
+  ],
+  "terms": [
+   "consumption-revaluation",
+   "price-variance",
+   "actual-costing"
+  ]
+ },
+ {
+  "id": "lower-level-variance",
+  "kr": "하위레벨차이",
+  "en": "Multilevel Variance",
+  "abbr": "",
+  "desc": "원재료레벨에서 발생한 가격차이가 연결된 제품의 가격차이로 올라가 얹힌 것. 소비재평가차이는 월중 표준원가로 흐른 물류를 자기·하위레벨 차이로 산출된 제품 가격차이로 나눠, 출고분과 기말재고분으로 배부한다.",
+  "area": "close",
+  "items": [
+   "xmod-ml"
+  ],
+  "terms": [
+   "consumption-revaluation",
+   "price-variance",
+   "actual-costing"
+  ]
+ },
+ {
   "id": "manufacturing-cost-closing",
   "kr": "제조원가결산",
   "en": "Manufacturing Cost Closing",
