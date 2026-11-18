@@ -424,13 +424,27 @@ const AUTOPOSTINGS = [
 },
 {
   id: 'kbs', key: 'KBS', en: 'Account-Assigned Purchase Order',
-  kr: '계정귀속 구매오더',
+  kr: '계정지정 구매오더',
   cat: '구매·정산',
   summary: 'P/O 생성 시 Account Assignment Category로 차변 계정을 재고자산 대신 지정',
   desc: [
-    '일반적으로 Purchase Order를 통해 입고 처리하게 되면 차변에 재고자산 계정(BSX)이 기표되는데, 만일 이를 다른 계정으로 바꾸고자 한다면(비용계정, 고정자산 등) P/O 생성 시 Account Assignment Category 필드를 별도 지정한다 (A, K, P 등).'
+    '일반적으로 Purchase Order를 통해 입고 처리하게 되면 차변에 재고자산 계정(BSX)이 기표되는데, 만일 이를 다른 계정으로 바꾸고자 한다면(비용계정, 고정자산 등) P/O 생성 시 Account Assignment Category 필드를 별도 지정한다 (A, K, P 등).',
+    '계정지정범주는 K(코스트센터), F(내부오더), P(프로젝트), A(자산)이다.',
+    'OBYC에서 G/L 계정을 결정하지 않는다. PO 품목의 계정지정 탭에 입력한 G/L 계정(예: 소모품비)을 그대로 사용한다. KBS에는 G/L 계정을 넣지 않고 전기키만 정의한다(보통 차변 81 / 대변 91).',
+    '입고해도 재고로 들어가지 않고 곧바로 비용으로 처리된다. BSX(재고계정)는 발생하지 않는다. 대변은 WRX(GR/IR 정산계정)이다.',
+    '자주 헷갈리는 점: 코스트센터로 출고하는 이동유형 201은 KBS가 아니라 GBB-VBR을 쓴다. KBS는 PO 기반 입고에만 쓰인다.',
+    '계정지정 PO에서는 가격차이가 PRD(가격차이 계정)로 가지 않고, 원래 비용계정과 코스트센터에 추가로 반영된다.',
+    '평가 안 되는 입고(Non-valuated GR)로 설정했다면 입고 시 FI 전표가 생기지 않는다. 대신 MIRO 시점에 "차변 비용 / 대변 벤더"로 바로 전기된다.',
+    '자산 PO(A)는 KBS 라인의 계정이 자산클래스에 연결된 자산 취득계정(AO90)으로 결정되며, 입고 시 자산 취득으로 전기된다.',
+    '확인 방법: MIGO 전표 → FI 전표 → 환경 → 거래키 표시, 또는 BSEG의 KTOSL 필드에서 KBS를 확인할 수 있다.',
+    '아래 분개 예시는 사무용품 10개(단가 1,000원), 계정지정범주 K, 코스트센터 CC1000, 소모품비 53100000인 경우이다.'
   ],
-  entries: []
+  entries: [
+    { t: '입고 (MIGO, 이동유형 101)', dr: ['소모품비(KBS) 10,000'], cr: ['GR/IR 정산(WRX) 10,000'] },
+    { t: '송장검증 (MIRO, VAT 10%)', dr: ['GR/IR 정산(WRX) 10,000', '부가세대급금(VST) 1,000'], cr: ['외상매입금 11,000'] },
+    { t: '송장 단가가 다를 때 (단가 1,100원)', dr: ['GR/IR 정산(WRX) 10,000', '소모품비(KBS) 1,000', '부가세대급금(VST) 1,100'], cr: ['외상매입금 12,100'] },
+    { t: '입고 취소 (이동유형 102)', dr: ['GR/IR 정산(WRX) 10,000'], cr: ['소모품비(KBS) 10,000'] }
+  ]
 },
 {
   id: 'bo1', key: 'BO1', en: 'Rebates',
@@ -570,7 +584,7 @@ const AUTOPOST_LINKS = {
   'gbb-vqy': { terms: ['obyc'], sk: [] },
   'gbb-zob': { terms: ['obyc'], sk: [] },
   'gbb-zof': { terms: ['obyc'], sk: [] },
-  kbs:  { terms: ['obyc'], sk: [] },
+  kbs:  { terms: ['obyc', 'gr-ir', 'invoice-verification'], sk: [] },
   kdm:  { terms: ['obyc', 'gr-ir'], sk: [] },
   kdr:  { terms: ['obyc'], sk: [] },
   kon:  { terms: ['obyc'], sk: ['sk-autoposting-456'] },
