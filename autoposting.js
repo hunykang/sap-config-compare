@@ -267,12 +267,17 @@ const AUTOPOSTINGS = [
   summary: '이동평균가 자재의 거래건별 가격차이 기표 / 표준가는 월말 자재원장 정산 시 일괄 처리',
   desc: [
     'Moving Average Price를 사용하는 자재의 경우 Purchase Order상의 단가×수량과 Material Master상의 단가×수량의 차이를 거래건별 전표로 기표함으로써 표준원가와 실제원가의 차이를 나타낸다.',
-    'Standard Price를 사용하는 제품·상품 등의 경우는 월말에 Material Ledger 정산 시 일괄 전표 처리한다.'
+    'Standard Price를 사용하는 제품·상품 등의 경우는 월말에 Material Ledger 정산 시 일괄 전표 처리한다.',
+    '자재원장 실제원가 마감(CKMLCP)에서는 PRY에 General Modification(일반수정)을 달아 프로세스별로 계정을 나눌 수 있다. 다섯 가지: PNL(Next Level, 상위 자재로 넘긴 차이), PPL(Previous Level, 하위에서 받은 차이), PSL(Single Level, 코스트센터·판매오더 소비 재평가 차이), PWP(WIP, 기말 미결 생산오더의 WIP 차이), (공백, 기말재고에 남은 차이).',
+    'PNL과 PPL은 같은 금액의 거울 분개다. 하위 자재가 보낸 차이(PRY-PNL 대변)와 상위 자재가 받은 차이(PRY-PPL 차변)는 전체 합치면 0이 된다. KDM(환율차이)에도 똑같은 다섯 가지 수정이 적용된다.',
+    'ECC에서도 PRY에 General Modification을 달아 썼다. 제조원가명세서에서는 표준 재료비(VBR·VBO)에 PRY-PNL을 더해야 실제 재료비가 된다.'
   ],
   entries: [
     { t: '자재 입고 시 (1)', dr: ['원재료(BSX) 190', '가격차(PRD) 10'], cr: ['GR/IR(WRX) 200'] },
     { t: '자재 입고 시 (2)', dr: ['원재료(BSX) 10'], cr: ['가격차(PRY) 10'] },
-    { t: '월말 자재원장 정산 (표준가 제품)', dr: ['가격차(PRY) 200'], cr: ['재고자산(BSX) 200'] }
+    { t: '월말 자재원장 정산 (표준가 제품)', dr: ['가격차(PRY) 200'], cr: ['재고자산(BSX) 200'] },
+    { t: '멀티레벨 넘김 — 반제품이 완제품으로 차이를 넘길 때 (차이 70.70)', dr: ['가격차이(PRY-PPL) 70.70'], cr: ['가격차이(PRY-PNL) 70.70'] },
+    { t: '소비재평가 — 폐기 시 차이가 원계정으로 갈 때 (이동유형 909, CC 그룹 등록)', dr: ['재고자산폐기손실(VNG) 100,000'], cr: ['가격차이(PRY-PSL) 100,000'] }
   ]
 },
 {
@@ -486,11 +491,13 @@ const AUTOPOSTINGS = [
   summary: 'G/R과 I/V 시점 차이에 의해 발생하는 환차손익 기표계정',
   desc: [
     'G/R과 I/V 시점 차이에 의해 발생하는 환차손익 기표계정을 지정한다.',
-    '아래는 G/R 시점 환율 $1=₩1,200 → I/V 시점 $1=₩1,800으로 변동한 예시이다.'
+    '아래는 G/R 시점 환율 $1=₩1,200 → I/V 시점 $1=₩1,800으로 변동한 예시이다.',
+    '자재원장 실제원가 마감에서는 KDM에도 PRY와 똑같은 General Modification 다섯 가지(PNL/PPL/PSL/PWP/공백)가 적용된다. 하위 자재의 환율차이를 상위 자재로 넘길 때는 KDM-PNL(보내는 쪽 대변) / KDM-PPL(받는 쪽 차변)이다.'
   ],
   entries: [
     { t: 'G/R 시점 ($1=₩1,200)', dr: ['재고자산(BSX) $1,200'], cr: ['GR/IR(WRX) $1,200'] },
-    { t: 'I/V 시점 ($1=₩1,800)', dr: ['GR/IR $1,200', '환차손(KDM) $600'], cr: ['A/P $1,800'] }
+    { t: 'I/V 시점 ($1=₩1,800)', dr: ['GR/IR $1,200', '환차손(KDM) $600'], cr: ['A/P $1,800'] },
+    { t: '멀티레벨 넘김 — 환율차이 (반제품 → 완제품, 31.23)', dr: ['환율차이(KDM-PPL) 31.23'], cr: ['환율차이(KDM-PNL) 31.23'] }
   ]
 },
 {
@@ -540,17 +547,79 @@ const AUTOPOSTINGS = [
   summary: '소비재평가 시 오리지날 계정이 아닌 지정 계정으로 차이를 강제 전송',
   desc: [
     '소비재평가 단계에서 오리지날 계정이 아니라 여기서 지정한 계정으로 차이를 강제 전송하고 싶을 때 사용한다.',
-    '이동유형그룹(CC/CF) 설정과 함께 사용하며, 감모손실처럼 특정 성격의 차이를 별도 계정에 모을 때 쓴다.'
+    '이동유형그룹(CC/CF) 설정과 함께 사용하며, 감모손실처럼 특정 성격의 차이를 별도 계정에 모을 때 쓴다.',
+    '이동유형그룹(CC 그룹)에 등록된 이동유형으로 출고하면 차이가 원계정(예: 폐기손실)으로 가고, 미등록 이동유형(시험·자가소비 등)이면 차이가 이 COC 집합계정으로 간다.',
+    '미등록 이동유형의 차이는 원계정에 표준금액만 남고 차이분은 매출원가 쪽 COC 계정에 모이므로, 제조원가명세서 경비가 실제보다 작게 보일 수 있다.'
   ],
   entries: [
-    { t: '소비재평가 지정 시', dr: ['감모손실(COC) 80'], cr: ['재고자산(BSX) 80'] }
+    { t: '소비재평가 지정 시', dr: ['감모손실(COC) 80'], cr: ['재고자산(BSX) 80'] },
+    { t: '소비재평가 — CC 그룹 미등록 이동유형 (시험·자가소비)', dr: ['소비재평가(COC) 8,200'], cr: ['가격차이(PRY-PSL) 8,200'] }
+  ]
+},
+{
+  id: 'prv', key: 'PRV', en: 'Price Differences from Lower Levels',
+  kr: '하위레벨 가격차이',
+  cat: '가격차이',
+  summary: 'ECC 자재원장 멀티레벨 정산에서 하위 자재의 가격차이를 상위 자재로 넘길 때 쓰는 계정 (ECC 전용)',
+  desc: [
+    'ECC 전용 거래키입니다. S/4HANA 실제원가에서는 멀티레벨 넘김을 PRY의 General Modification(PNL/PPL)으로 처리합니다.',
+    '자재원장 멀티레벨 정산(CKMLCP)에서 원재료·반제품 같은 하위 자재에 쌓인 가격차이를 상위 제품(반제품·완제품)으로 넘길 때 쓴다. 상대계정은 PRY이다.',
+    'ECC에서는 PRV에도 PNL(상위로 넘김)/PPL(하위에서 받음) 수정을 달아 구분했다. 하위 자재가 보낸 차이와 상위 자재가 받은 차이는 거울 분개로 전체 합치면 0이 된다.',
+    '마감 뒤에는 PRD·PRV·PRY·KDV·KDM·UMB·AUM·AKO 계정 잔액이 0으로 맞아야 한다.'
+  ],
+  entries: [
+    { t: '멀티레벨 정산 — 하위 자재 차이를 상위 제품으로 넘길 때', dr: ['하위레벨 가격차이(PRV) 1,000'], cr: ['가격차이(PRY) 1,000'] },
+    { t: '하위에서 받은 차이 — 원재료가 보낸 차이를 반제품이 받을 때', dr: ['하위레벨 가격차이(PRV-PPL) 10,000'], cr: ['가격차이(PRY-PNL) 10,000'] }
+  ]
+},
+{
+  id: 'kdv', key: 'KDV', en: 'Exchange Rate Differences from Lower Levels',
+  kr: '하위레벨 환율차이',
+  cat: '가격차이',
+  summary: 'ECC 자재원장 멀티레벨 정산에서 하위 자재의 환율차이를 상위 자재로 넘길 때 쓰는 계정 (ECC 전용)',
+  desc: [
+    'ECC 전용 거래키입니다. S/4HANA 실제원가에서는 환율차이 넘김을 KDM의 General Modification(PNL/PPL)으로 처리합니다.',
+    'PRV의 환율 버전이다. 멀티레벨 정산에서 하위 자재에 쌓인 환율차이를 상위 제품으로 넘길 때 쓴다. 상대계정은 PRY이다.',
+    '마감 뒤에는 PRD·PRV·PRY·KDV·KDM·UMB·AUM·AKO 계정 잔액이 0으로 맞아야 한다.'
+  ],
+  entries: [
+    { t: '멀티레벨 정산 — 하위 자재 환율차이를 상위 제품으로 넘길 때', dr: ['하위레벨 환율차이(KDV) 500'], cr: ['가격차이(PRY) 500'] }
+  ]
+},
+{
+  id: 'prl', key: 'PRL', en: 'Activity Price Differences',
+  kr: '활동 가격차이',
+  cat: '가격차이',
+  summary: '실제원가 마감에서 코스트센터 활동 가격차이를 자재로 넘길 때 쓰는 계정',
+  desc: [
+    '자재원장 실제원가 마감(CKMLCP) Post Closing 단계에서 쓰는 키다. 코스트센터 활동 가격(계획 대비 실제 차이)을 자재로 넘길 때 쓴다.',
+    '상대계정은 GBB-AUI이다. GBB-AUI가 코스트센터에 활동 가격차이를 대변으로 기표하고, PRL이 자재 쪽 차변을 맡는다.'
+  ],
+  entries: [
+    { t: '활동 가격차이 — 코스트센터 활동을 자재로 넘길 때', dr: ['활동 가격차이(PRL) 250'], cr: ['활동 가격차이 상계(GBB-AUI) 250'] }
+  ]
+},
+{
+  id: 'gbb-aui', key: 'GBB-AUI', en: 'Activity Price Differences (Cost Center Credit)',
+  kr: '활동 가격차이 상계',
+  cat: '가격차이',
+  summary: '실제원가 마감에서 활동 가격차이를 코스트센터에 대변으로 기표하는 상대계정',
+  desc: [
+    '자재원장 실제원가 마감 시 코스트센터에 활동 가격차이(계획 활동 단가와 실제 활동 단가의 차이)를 대변으로 기표한다.',
+    '상대계정은 PRL이다. PRL이 자재 쪽 차변, GBB-AUI가 코스트센터 쪽 대변을 맡는다.'
+  ],
+  entries: [
+    { t: '활동 가격차이 — 코스트센터에 대변 기표', dr: ['활동 가격차이(PRL) 250'], cr: ['활동 가격차이 상계(GBB-AUI) 250'] }
   ]
 },
 ];
 /* 출처 */
 const AUTOPOST_SOURCES = [
   { label: '네이버 블로그 mondawy — MM-FI Automatic Posting 정리', url: 'https://blog.naver.com/mondawy/30078028402' },
-  { label: '네이버 블로그 밝마맑마(hsland) — MM-FI Automatic Posting 정리', url: 'http://blog.naver.com/hsland/40022024950' }
+  { label: '네이버 블로그 밝마맑마(hsland) — MM-FI Automatic Posting 정리', url: 'http://blog.naver.com/hsland/40022024950' },
+  { label: 'SAP Community — Automatic Account Determination in Actual Costing (PRY·KDM General Modification)', url: 'https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/automatic-account-determination-in-actual-costing-transaction-keys-and/ba-p/14413255' },
+  { label: 'SAP Community — Defining Account Determinations for Material Ledger (PRV·PRY·KDV)', url: 'https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/defining-account-determinations-for-material-ledger/ba-p/13574196' },
+  { label: 'SAP Community — Understanding the MM Automatic Posting for Material Ledger', url: 'https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-members/understanding-the-mm-automatic-posting-for-material-ledger/bc-p/13300092' }
 ];
 /* 항목별 관련 링크 (비교표 / 용어집 / 현장 스케치) */
 const AUTOPOST_LINKS = {
@@ -572,6 +641,7 @@ const AUTOPOST_LINKS = {
   frn:  { terms: ['obyc'], sk: [] },
   'gbb-aua': { terms: ['obyc'], sk: ['sk-autoposting-456', 'sk-mvtype-obyc-514'] },
   'gbb-auf': { terms: ['obyc'], sk: ['sk-autoposting-456'] },
+  'gbb-aui': { terms: ['obyc', 'material-ledger'], sk: ['sk-material-ledger-act', 'sk-ml-table'] },
   'gbb-bsa': { terms: ['obyc'], sk: ['sk-mvtype-obyc-514'] },
   'gbb-inv': { terms: ['obyc'], sk: [] },
   'gbb-vax': { terms: ['obyc'], sk: ['sk-blog-11'] },
@@ -585,13 +655,16 @@ const AUTOPOST_LINKS = {
   'gbb-zob': { terms: ['obyc'], sk: [] },
   'gbb-zof': { terms: ['obyc'], sk: [] },
   kbs:  { terms: ['obyc', 'gr-ir', 'invoice-verification'], sk: [] },
-  kdm:  { terms: ['obyc', 'gr-ir'], sk: [] },
+  kdm:  { terms: ['obyc', 'gr-ir', 'material-ledger'], sk: [] },
   kdr:  { terms: ['obyc'], sk: [] },
+  kdv:  { terms: ['obyc', 'material-ledger'], sk: ['sk-material-ledger-act', 'sk-ml-table'] },
   kon:  { terms: ['obyc'], sk: ['sk-autoposting-456'] },
   ktr:  { terms: ['obyc'], sk: [] },
   prd:  { terms: ['obyc'], sk: ['sk-autoposting-456'] },
   ppk:  { terms: ['obyc', 'material-ledger'], sk: ['sk-material-ledger-act', 'sk-ml-table'] },
+  prl:  { terms: ['obyc', 'material-ledger'], sk: ['sk-material-ledger-act', 'sk-ml-table'] },
   pry:  { terms: ['obyc', 'material-ledger'], sk: ['sk-material-ledger-act', 'sk-ml-table'] },
+  prv:  { terms: ['obyc', 'material-ledger'], sk: ['sk-material-ledger-act', 'sk-ml-table'] },
   umb:  { terms: ['obyc'], sk: [] },
   wrx:  { terms: ['obyc', 'gr-ir', 'invoice-verification'], sk: ['sk-blog-05', 'sk-grir-settle-461'] }
 };
