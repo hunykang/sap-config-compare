@@ -241,7 +241,8 @@ const AUTOPOSTINGS = [
   desc: [
     'Standard Price를 사용하는 경우 모든 재고자산의 이동에서 발생한 가격차이를 처리하기 위한 계정을 지정한다.',
     '예) 입고 시 참조한 Purchase Order상의 단가와 Master상의 표준원가가 다를 때, I/V 시 입고단가와 확정단가가 다를 때 그 차이분을 기표한다.',
-    'Moving Average Price( 이동평균가)를 사용하는 경우에는 입고·출고·송장 흐름에 따라 재고금액과 평균단가가 변동한다.'
+    'Moving Average Price( 이동평균가)를 사용하는 경우에는 입고·출고·송장 흐름에 따라 재고금액과 평균단가가 변동한다.',
+    '주의: PRD-PRA는 거래키 PRA와 다르다. PRD의 일반 수정자(출고 및 기타 이동 가격차이)이다. 거래키 PRA는 WIP 재평가에서 차이를 되돌릴 때 쓴다.'
   ],
   entries: [
     { t: '입고 시 가격차이 (표준가 1,960 / 발주단가 2,000)', dr: ['재고자산(BSX) 1,960', '가격차이(PRD) 40'], cr: ['GR/IR(WRX) 2,000'] }
@@ -565,6 +566,7 @@ const AUTOPOSTINGS = [
     'ECC 전용 거래키입니다. S/4HANA 실제원가에서는 멀티레벨 넘김을 PRY의 General Modification(PNL/PPL)으로 처리합니다.',
     '자재원장 멀티레벨 정산(CKMLCP)에서 원재료·반제품 같은 하위 자재에 쌓인 가격차이를 상위 제품(반제품·완제품)으로 넘길 때 쓴다. 상대계정은 PRY이다.',
     'ECC에서는 PRV에도 PNL(상위로 넘김)/PPL(하위에서 받음) 수정을 달아 구분했다. 하위 자재가 보낸 차이와 상위 자재가 받은 차이는 거울 분개로 전체 합치면 0이 된다.',
+    'ECC에서는 활동 차이도 GBB-AUI(코스트센터 대변) ↔ PRV(자재) 짝으로 처리했다.',
     '마감 뒤에는 PRD·PRV·PRY·KDV·KDM·UMB·AUM·AKO 계정 잔액이 0으로 맞아야 한다.'
   ],
   entries: [
@@ -587,13 +589,16 @@ const AUTOPOSTINGS = [
   ]
 },
 {
-  id: 'prl', key: 'PRL', en: 'Activity Price Differences',
+  id: 'prl', key: 'PRL', en: 'Differences Tariffs',
   kr: '활동 가격차이',
   cat: '가격차이',
-  summary: '실제원가 마감에서 코스트센터 활동 가격차이를 자재로 넘길 때 쓰는 계정',
+  summary: '실제원가 마감에서 코스트센터 활동 가격차이를 자재로 넘길 때 쓰는 계정 (S/4HANA 1610부터)',
   desc: [
     '자재원장 실제원가 마감(CKMLCP) Post Closing 단계에서 쓰는 키다. 코스트센터 활동 가격(계획 대비 실제 차이)을 자재로 넘길 때 쓴다.',
-    '상대계정은 GBB-AUI이다. GBB-AUI가 코스트센터에 활동 가격차이를 대변으로 기표하고, PRL이 자재 쪽 차변을 맡는다.'
+    '상대계정은 GBB-AUI이다. GBB-AUI가 코스트센터에 활동 가격차이를 대변으로 기표하고, PRL이 자재 쪽 차변을 맡는다.',
+    '공식 영문 설명 "Differences Tariffs"는 독일어 Tarif(활동유형 단가)에서 온 말로, 뜻은 활동 가격차이이다.',
+    'S/4HANA 1610부터 도입된 키이다. ECC에는 없었고, ECC에서는 GBB-AUI(코스트센터 대변) ↔ PRV(자재) 짝으로 활동 차이를 처리했다.',
+    '활동 업데이트 가격결정 관련 = 2로 설정해야 발생한다. 마감 뒤 PRL 계정에 잔액이 남으면 비정상 신호이다.'
   ],
   entries: [
     { t: '활동 가격차이 — 코스트센터 활동을 자재로 넘길 때', dr: ['활동 가격차이(PRL) 250'], cr: ['활동 가격차이 상계(GBB-AUI) 250'] }
@@ -606,10 +611,97 @@ const AUTOPOSTINGS = [
   summary: '실제원가 마감에서 활동 가격차이를 코스트센터에 대변으로 기표하는 상대계정',
   desc: [
     '자재원장 실제원가 마감 시 코스트센터에 활동 가격차이(계획 활동 단가와 실제 활동 단가의 차이)를 대변으로 기표한다.',
-    '상대계정은 PRL이다. PRL이 자재 쪽 차변, GBB-AUI가 코스트센터 쪽 대변을 맡는다.'
+    '상대계정은 PRL이다. PRL이 자재 쪽 차변, GBB-AUI가 코스트센터 쪽 대변을 맡는다.',
+    'ECC에서는 GBB-AUI ↔ PRV 짝으로 활동 차이를 처리했고, S/4HANA 1610부터는 그 사이에 PRL 단계가 생겼다.'
   ],
   entries: [
     { t: '활동 가격차이 — 코스트센터에 대변 기표', dr: ['활동 가격차이(PRL) 250'], cr: ['활동 가격차이 상계(GBB-AUI) 250'] }
+  ]
+},
+{
+  id: 'prg', key: 'PRG', en: 'Price Differences (Material Ledger, AVR)',
+  kr: '가격차이 (대체평가 실행)',
+  cat: '가격차이',
+  summary: '대체평가 실행(AVR)에서 단일레벨 소비재평가를 할 때 쓰는 계정 (AVR 전용)',
+  desc: [
+    '대체평가 실행(AVR, Alternative Valuation Run) 전용 키이다. 일반 실제원가 계산은 매월 돌리지만, AVR은 여러 달을 묶어 다시 계산하거나 이자 같은 추가 원가를 넣어 관리용 원가를 따로 계산할 때 쓴다.',
+    '일반 결산의 PRY-PSL 역할을 AVR에서 한다. 소비처로 보낼 차이만큼 자재 가격차이 계정을 대변 처리한다.',
+    'AVR을 쓰지 않으면 설정할 필요가 없다.'
+  ],
+  entries: [
+    { t: 'AVR 소비재평가 — 차이가 소비처로 갈 때', dr: ['재고자산폐기손실(VNG) 100'], cr: ['가격차이(PRG) 100'] }
+  ]
+},
+{
+  id: 'prc', key: 'PRC', en: 'Differences (AVR Price)',
+  kr: '가격차이 (AVR, 코스트센터 차이)',
+  cat: '가격차이',
+  summary: '대체평가 실행(AVR)에서 코스트센터 차이(이자 등)를 제품으로 넘길 때 쓰는 계정 (AVR 전용)',
+  desc: [
+    '대체평가 실행(AVR) 전용 키이다. 일반 결산의 GBB-AUI → PRV 흐름을 AVR에서 처리한다.',
+    'AVR에서 코스트센터 차이(이자 등)를 반제품·제품으로 넘길 때 쓴다. 상대계정은 GBB-AUI이다.',
+    'AVR을 쓰지 않으면 설정할 필요가 없다.'
+  ],
+  entries: [
+    { t: 'AVR — 코스트센터 차이를 제품으로 넘길 때', dr: ['가격차이(PRC) 100'], cr: ['활동 가격차이 상계(GBB-AUI) 100'] }
+  ]
+},
+{
+  id: 'wpm', key: 'WPM', en: 'WIP from Price Differences (Material)',
+  kr: '재공품 가격차이 (자재)',
+  cat: '가격차이',
+  summary: 'WIP 재평가에서 자재 차이를 재공품에 쌓을 때 쓰는 계정',
+  desc: [
+    'WIP 재평가 전용 키이다. 표준 실제원가 계산은 차이를 완성품과 기말재고에만 나누므로, 아직 만드는 중인 재공품(WIP) 몫의 차이는 WIP 재평가로 붙인다.',
+    '자재 차이(PRY·PRV·KDM·KDV)를 WIP에 쌓을 때 차변을 맡는다. 활동 차이는 WPA가 맡는다.',
+    '전제 조건: Business Function Financials Extension(EA-FIN) 활성(ECC), 플랜트에 ML + 실제원가 계산 활성, 활동 업데이트 가격결정 관련 = 2, OBYC에 WPM·WPA·PRM·PRA 설정, OMXW에서 플랜트별 WIP 재평가 활성화(기간 시작 전에 켤 것).'
+  ],
+  entries: [
+    { t: '월말 WIP 재평가 — 자재 차이 10을 WIP에 붙일 때', dr: ['재공품(WPM) 10'], cr: ['가격차이(PRY) 10'] }
+  ]
+},
+{
+  id: 'wpa', key: 'WPA', en: 'WIP from Price Differences (Int. Activity)',
+  kr: '재공품 가격차이 (활동)',
+  cat: '가격차이',
+  summary: 'WIP 재평가에서 활동 차이를 재공품에 쌓을 때 쓰는 계정',
+  desc: [
+    'WIP 재평가 전용 키이다. 활동 차이(GBB-AUI)를 WIP에 쌓을 때 차변을 맡는다. 자재 차이는 WPM이 맡는다.',
+    '전제 조건은 WPM 항목을 참조한다. 실제원가 계산이 법적 의무인 국가에서는 WPA를 설정하지 말아야 한다는 안내가 있으니, 적용 전 SAP 문서를 확인할 것.'
+  ],
+  entries: [
+    { t: '월말 WIP 재평가 — 활동 차이를 WIP에 붙일 때', dr: ['재공품(WPA) 10'], cr: ['활동 가격차이 상계(GBB-AUI) 10'] }
+  ]
+},
+{
+  id: 'prm', key: 'PRM', en: 'Price Difference from Exploded WIP (Material)',
+  kr: 'WIP 되돌리기 가격차이 (자재)',
+  cat: '가격차이',
+  summary: 'WIP 재평가에서 WIP가 완성품으로 빠질 때 자재 차이를 되돌리는 계정',
+  desc: [
+    'WIP 재평가 전용 키이다. WIP가 완성품으로 빠질 때 WPM에 쌓인 자재 차이를 되돌린다. 활동 차이는 PRA가 맡는다.',
+    'WIP가 줄어들 때는 기간별 WIP 층을 FIFO(선입선출)로 빼면서 재평가를 되돌린다.',
+    '전제 조건은 WPM 항목을 참조한다.'
+  ],
+  entries: [
+    { t: 'WIP 감소 1단계 — WIP에서 차이를 되돌릴 때', dr: ['WIP 감소 상대계정(PRM) 10'], cr: ['재공품(WPM) 10'] },
+    { t: 'WIP 감소 2단계 — 되돌린 차이를 완제품이 받을 때', dr: ['하위레벨 가격차이(PRV) 10'], cr: ['WIP 감소 상대계정(PRM) 10'] }
+  ]
+},
+{
+  id: 'pra', key: 'PRA', en: 'Price Difference from Exploded WIP (Activity)',
+  kr: 'WIP 되돌리기 가격차이 (활동)',
+  cat: '가격차이',
+  summary: 'WIP 재평가에서 WIP가 완성품으로 빠질 때 활동 차이를 되돌리는 계정',
+  desc: [
+    'WIP 재평가 전용 키이다. WIP가 완성품으로 빠질 때 WPA에 쌓인 활동 차이를 되돌린다. 자재 차이는 PRM이 맡는다.',
+    'WIP가 줄어들 때는 기간별 WIP 층을 FIFO(선입선출)로 빼면서 재평가를 되돌린다.',
+    '주의: 거래키 PRA와 PRD의 일반 수정자 PRD-PRA(출고 및 기타 이동 가격차이)는 다른 것이다. PRD 항목을 참조한다.',
+    '전제 조건은 WPM 항목을 참조한다.'
+  ],
+  entries: [
+    { t: 'WIP 감소 1단계 — WIP에서 차이를 되돌릴 때', dr: ['WIP 감소 상대계정(PRA) 10'], cr: ['재공품(WPA) 10'] },
+    { t: 'WIP 감소 2단계 — 되돌린 차이를 완제품이 받을 때', dr: ['하위레벨 가격차이(PRV) 10'], cr: ['WIP 감소 상대계정(PRA) 10'] }
   ]
 },
 ];
@@ -619,7 +711,12 @@ const AUTOPOST_SOURCES = [
   { label: '네이버 블로그 밝마맑마(hsland) — MM-FI Automatic Posting 정리', url: 'http://blog.naver.com/hsland/40022024950' },
   { label: 'SAP Community — Automatic Account Determination in Actual Costing (PRY·KDM General Modification)', url: 'https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/automatic-account-determination-in-actual-costing-transaction-keys-and/ba-p/14413255' },
   { label: 'SAP Community — Defining Account Determinations for Material Ledger (PRV·PRY·KDV)', url: 'https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/defining-account-determinations-for-material-ledger/ba-p/13574196' },
-  { label: 'SAP Community — Understanding the MM Automatic Posting for Material Ledger', url: 'https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-members/understanding-the-mm-automatic-posting-for-material-ledger/bc-p/13300092' }
+  { label: 'SAP Community — Understanding the MM Automatic Posting for Material Ledger', url: 'https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-members/understanding-the-mm-automatic-posting-for-material-ledger/bc-p/13300092' },
+  { label: 'SAP KBA 2558115 — S/4HANA CKMLCP: New Posting logic for activity types (new transaction key PRL)', url: 'https://userapps.support.sap.com/sap/support/knowledge/en/2558115' },
+  { label: 'SAP KBA 3568375 — Balance on PRL account after actual costing calculation with CKMLCP', url: 'https://userapps.support.sap.com/sap/support/knowledge/en/3568375' },
+  { label: 'SAP Community — OBYC GBB Transaction keys (PRG·PRC·PRA)', url: 'https://community.sap.com/t5/enterprise-resource-planning-q-a/obyc-gbb-transaction-keys/qaq-p/4495190' },
+  { label: 'masteringsap — Bring Work in Process to Actual Costing Using the Material Ledger (WPM·PRM)', url: 'https://masteringsap.com/bring-work-in-process-to-actual-costing-using-the-material-ledger/' },
+  { label: 'SAP Community — WPM / PRM 설명 스레드 (2010)', url: 'https://archive.sap.com/discussions/thread/1662471' }
 ];
 /* 항목별 관련 링크 (비교표 / 용어집 / 현장 스케치) */
 const AUTOPOST_LINKS = {
@@ -663,10 +760,16 @@ const AUTOPOST_LINKS = {
   prd:  { terms: ['obyc'], sk: ['sk-autoposting-456'] },
   ppk:  { terms: ['obyc', 'material-ledger'], sk: ['sk-material-ledger-act', 'sk-ml-table'] },
   prl:  { terms: ['obyc', 'material-ledger'], sk: ['sk-material-ledger-act', 'sk-ml-table'] },
+  pra:  { terms: ['obyc', 'material-ledger'], sk: ['sk-material-ledger-act', 'sk-ml-table'] },
+  prc:  { terms: ['obyc', 'material-ledger'], sk: ['sk-material-ledger-act', 'sk-ml-table'] },
+  prg:  { terms: ['obyc', 'material-ledger'], sk: ['sk-material-ledger-act', 'sk-ml-table'] },
+  prm:  { terms: ['obyc', 'material-ledger'], sk: ['sk-material-ledger-act', 'sk-ml-table'] },
   pry:  { terms: ['obyc', 'material-ledger'], sk: ['sk-material-ledger-act', 'sk-ml-table'] },
   prv:  { terms: ['obyc', 'material-ledger'], sk: ['sk-material-ledger-act', 'sk-ml-table'] },
   umb:  { terms: ['obyc'], sk: [] },
-  wrx:  { terms: ['obyc', 'gr-ir', 'invoice-verification'], sk: ['sk-blog-05', 'sk-grir-settle-461'] }
+  wrx:  { terms: ['obyc', 'gr-ir', 'invoice-verification'], sk: ['sk-blog-05', 'sk-grir-settle-461'] },
+  wpa:  { terms: ['obyc', 'material-ledger'], sk: ['sk-material-ledger-act', 'sk-ml-table'] },
+  wpm:  { terms: ['obyc', 'material-ledger'], sk: ['sk-material-ledger-act', 'sk-ml-table'] }
 };
 /* 관련 대상 이름표 */
 const AUTOPOST_NAMES = {
