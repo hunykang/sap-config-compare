@@ -3860,5 +3860,31 @@ const GLOSSARY = [
   "area": "bank",
   "items": [],
   "terms": []
+ },
+ {
+  "id": "wbs-element",
+  "kr": "WBS 요소",
+  "en": "WBS Element",
+  "abbr": "WBS",
+  "desc": "프로젝트별 비용을 모으는 단위다. 전표가 칠 때 계정지정에 WBS 요소가 들어가고, ACDOCA에도 같이 기록된다. 계획 요소·계정지정 요소·청구 요소로 역할이 나뉜다. 정산(CJ88)으로 모인 비용을 자산·코스트센터·수익성 분석으로 넘긴다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "internal-order",
+   "availability-control"
+  ]
+ },
+ {
+  "id": "commitment",
+  "kr": "약정",
+  "en": "Commitment",
+  "abbr": "",
+  "desc": "발주·구매요청이 생기면 예산에서 먼저 빼 두는 금액이다. 송장이 들어오면 약정이 풀리고 실제 비용이 잡힌다. 예산을 먼저 차감해 초과 집행을 막는 FM의 기본 동작이다.",
+  "area": "co",
+  "items": [],
+  "terms": [
+   "availability-control",
+   "funds-management-area"
+  ]
  }
 ];
