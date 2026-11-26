@@ -5,6 +5,7 @@
 const GUIDE_DATA = [
  {
   "id": "org-company",
+  "why4": "https://wikidocs.net/499841",
   "area": "조직구조",
   "item": "회사 정의",
   "ecc": "기업 구조 > 정의 > 재무회계 > 회사 정의",
@@ -24,6 +25,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "org-company-code",
+  "why4": "https://wikidocs.net/499841",
   "area": "조직구조",
   "item": "회사코드 정의/복사/삭제",
   "ecc": "기업 구조 > 정의 > 재무회계 > 회사코드 정의, 복사, 삭제, 점검",
@@ -44,6 +46,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "org-ccode-company",
+  "why4": "https://wikidocs.net/499841",
   "area": "조직구조",
   "item": "회사에 회사코드 지정",
   "ecc": "기업 구조 > 지정 > 재무회계 > 회사에 회사코드 지정",
@@ -63,6 +66,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "org-business-area",
+  "why4": "https://wikidocs.net/499841",
   "area": "조직구조",
   "item": "사업영역 정의",
   "ecc": "기업 구조 > 정의 > 재무회계 > 사업영역 정의",
@@ -84,6 +88,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "org-functional-area",
+  "why4": "https://wikidocs.net/499841",
   "area": "조직구조",
   "item": "기능영역 정의",
   "ecc": "기업 구조 > 정의 > 재무회계 > 기능영역 정의",
@@ -160,6 +165,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-field-status",
+  "why4": "https://wikidocs.net/499873",
   "area": "G/L",
   "item": "필드 상태 변형 정의",
   "ecc": "재무회계 > 재무회계 기본세팅 > 원장 > 필드 > 필드상태변형 정의",
@@ -198,6 +204,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-ledger",
+  "why4": "https://wikidocs.net/499873",
   "area": "G/L",
   "item": "원장 정의",
   "ecc": "재무회계 > 재무회계 기본세팅 > 원장 > 원장 > 총계정원장 회계에 대한 원장 정의",
@@ -220,6 +227,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-ledger-group",
+  "why4": "https://wikidocs.net/499873",
   "area": "G/L",
   "item": "원장그룹 정의",
   "ecc": "재무회계 > 재무회계 기본세팅 > 원장 > 원장 > 원장그룹 정의",
@@ -239,6 +247,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-acct-principle",
+  "why4": "https://wikidocs.net/499873",
   "area": "G/L",
   "item": "회계기준 정의 및 원장그룹 지정",
   "ecc": "재무회계 > 재무회계 기본세팅 > 원장 > 병렬회계 > 회계기준 정의 / 회계기준을 원장그룹에 지정",
@@ -317,6 +326,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-posting-period",
+  "why4": "https://wikidocs.net/499877",
   "area": "G/L",
   "item": "전기기간 개시 및 마감",
   "ecc": "재무회계 > 재무회계 기본세팅 > 원장 > 회계연도 및 전기 기간 > 전기 기간 > 전기기간 개시 및 마감",
@@ -338,6 +348,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-doc-type",
+  "why4": "https://wikidocs.net/499873",
   "area": "G/L",
   "item": "전표유형 정의",
   "ecc": "재무회계 > 재무회계 기본세팅 > 전표 > 전표유형 > 데이터 입력뷰의 전표유형 정의",
@@ -358,6 +369,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-doc-number",
+  "why4": "https://wikidocs.net/499873",
   "area": "G/L",
   "item": "전표 번호범위 정의",
   "ecc": "재무회계 > 재무회계 기본세팅 > 전표 > 전표번호범위 > 데이터 입력뷰에 대한 전표 번호범위 정의",
@@ -376,6 +388,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-posting-key",
+  "why4": "https://wikidocs.net/499873",
   "area": "G/L",
   "item": "전기키 정의",
   "ecc": "재무회계 > 재무회계 기본세팅 > 전표 > 전기키 정의",
@@ -432,6 +445,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-doc-change",
+  "why4": "https://wikidocs.net/499873",
   "area": "G/L",
   "item": "전표변경규칙",
   "ecc": "재무회계 > 재무회계 기본세팅 > 전표 > 전표변경규칙 > 전표변경규칙, 전표헤더/개별항목",
@@ -450,6 +464,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-coa",
+  "why4": "https://wikidocs.net/499873",
   "area": "G/L",
   "item": "계정과목표 정의",
   "ecc": "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항 > 계정과목표 리스트 편집",
@@ -487,6 +502,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-acct-group",
+  "why4": "https://wikidocs.net/499873",
   "area": "G/L",
   "item": "G/L 계정그룹 정의",
   "ecc": "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항 > 계정그룹 정의",
@@ -506,6 +522,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-retained",
+  "why4": "https://wikidocs.net/499877",
   "area": "G/L",
   "item": "이익잉여금계정 정의",
   "ecc": "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항 > 이익잉여금계정 정의",
@@ -524,6 +541,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-fsver",
+  "why4": "https://wikidocs.net/499884",
   "area": "G/L",
   "item": "재무제표버전 정의",
   "ecc": "재무회계 > 총계정원장 회계 > 마스터 데이터 > G/L 계정 > 준비사항 > 재무제표버전 정의",
@@ -543,6 +561,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-docsplit",
+  "why4": "https://wikidocs.net/499884",
   "area": "G/L",
   "item": "전표분할 설정",
   "ecc": "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 전표분할 > 전표분할 활성화/분류/제로잔액계정 정의",
@@ -564,6 +583,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-validation",
+  "why4": "https://wikidocs.net/499873",
   "area": "G/L",
   "item": "회계전표 유효성 확인",
   "ecc": "재무회계 > 재무회계 기본세팅 > 툴 > 유효성 확인 / 대체 > 회계전표에서 유효성 확인",
@@ -583,6 +603,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-substitution",
+  "why4": "https://wikidocs.net/499873",
   "area": "G/L",
   "item": "회계전표 대체",
   "ecc": "재무회계 > 재무회계 기본세팅 > 툴 > 유효성 확인 / 대체 > 회계전표내 대체",
@@ -602,6 +623,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-clear-prep",
+  "why4": "https://wikidocs.net/499861",
   "area": "G/L",
   "item": "자동반제 준비",
   "ecc": "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 미결 항목 반제 > 자동반제준비",
@@ -620,6 +642,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ap-bp-role",
+  "why4": "https://wikidocs.net/499842",
   "area": "AP",
   "item": "BP 역할 활성화/정의",
   "ecc": "BP 존재(선택 기능). FI·CO·SD·MM은 고객·공급처 마스터 중심",
@@ -641,6 +664,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ap-bp-num",
+  "why4": "https://wikidocs.net/499842",
   "area": "AP",
   "item": "BP 번호범위 및 그룹핑",
   "ecc": "해당 없음",
@@ -661,6 +685,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ap-cvi",
+  "why4": "https://wikidocs.net/499842",
   "area": "AP",
   "item": "CVI 통합 설정 (BP↔고객/공급처)",
   "ecc": "해당 없음 (전환 프로젝트에서만 해당)",
@@ -686,6 +711,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ap-vendor-group",
+  "why4": "https://wikidocs.net/499842",
   "area": "AP",
   "item": "공급처 계정그룹/화면레이아웃",
   "ecc": "재무회계 > 채권 및 채무 > 공급업체 계정 > 마스터데이터 > 공급업체 마스터 레코드 생성 준비 > 계정그룹을 화면레이아웃으로 정의",
@@ -707,6 +733,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ap-vendor-num",
+  "why4": "https://wikidocs.net/499842",
   "area": "AP",
   "item": "공급처 번호범위",
   "ecc": "재무회계 > 채권 및 채무 > 공급업체계정 > 마스터데이터 > 공급업체 마스터 레코드 생성 준비 > 구매처계정에 대한 번호범위 생성",
@@ -726,6 +753,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ap-payterms",
+  "why4": "https://wikidocs.net/499848",
   "area": "AP",
   "item": "지급조건 유지보수",
   "ecc": "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 수령 송장 / 대변 메모 > 지급조건 유지보수",
@@ -745,6 +773,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ap-housebank",
+  "why4": "https://wikidocs.net/499848",
   "area": "AP",
   "item": "House Bank 정의",
   "ecc": "재무회계 > 은행 회계 > 은행 계좌 > House Bank 정의",
@@ -766,6 +795,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ap-paymethod-country",
+  "why4": "https://wikidocs.net/499848",
   "area": "AP",
   "item": "국가별 지급방법 설정",
   "ecc": "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 자동 아웃고잉 지급 > 지급 방법/회사코드 설정",
@@ -785,6 +815,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ap-paymethod-ccode",
+  "why4": "https://wikidocs.net/499848",
   "area": "AP",
   "item": "회사코드별 지급방법 설정",
   "ecc": "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 자동 아웃고잉 지급 > 지급 방법/회사코드 설정",
@@ -805,6 +836,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ap-bank-determ",
+  "why4": "https://wikidocs.net/499848",
   "area": "AP",
   "item": "자동지급 은행결정",
   "ecc": "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 자동 아웃고잉 지급 > 은행결정",
@@ -825,12 +857,13 @@ const GUIDE_DATA = [
  },
  {
   "id": "ap-payblock",
+  "why4": "https://wikidocs.net/499848",
   "area": "AP",
   "item": "지급보류사유 정의",
   "ecc": "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 지급 > 지급 전역 세팅 > 지급 보류 사유 > 지급보류사유 정의",
   "pce": "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 아웃고잉 지급 > 지급보류사유 정의",
   "pub": "CBC: Finance > Accounts Payable > Define Payment Block Reasons",
-  "diff": "Public 매핑 ● 동일 — 스코프아이템 J60(AP)",
+  "diff": "Public 매핑 ● 동일 — 스콥아이템 J60(AP)",
   "help": [],
   "tags": [
    "AP",
@@ -843,6 +876,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ap-recon",
+  "why4": "https://wikidocs.net/499873",
   "area": "AP",
   "item": "공급처 대체조정계정",
   "ecc": "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 대체 조정 계정로 전기 > 기타 특별 G/L 거래 > 구매처에 대한 대체조정계정 정의",
@@ -862,6 +896,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ar-cust-group",
+  "why4": "https://wikidocs.net/499842",
   "area": "AR",
   "item": "고객 계정그룹/화면레이아웃",
   "ecc": "재무회계 > 채권 및 채무 > 고객계정 > 마스터데이터 > 고객 마스터 레코드 생성 준비 > 계정그룹을 화면레이아웃으로 정의",
@@ -883,6 +918,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ar-cust-num",
+  "why4": "https://wikidocs.net/499842",
   "area": "AR",
   "item": "고객 번호범위",
   "ecc": "재무회계 > 채권 및 채무 > 고객계정 > 마스터데이터 > 고객 마스터 레코드 생성 준비 > 고객계정에 대한 번호범위 생성",
@@ -940,6 +976,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ar-dunning",
+  "why4": "https://wikidocs.net/499861",
   "area": "AR",
   "item": "독촉 절차",
   "flag": "국내에선 잘 안 씀 · 독촉장보다 전화가 빠름",
@@ -979,6 +1016,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ar-recon",
+  "why4": "https://wikidocs.net/499873",
   "area": "AR",
   "item": "고객 대체조정계정",
   "ecc": "재무회계 > 채권 및 채무 > 비즈니스 트랜잭션 > 대체 조정 계정로 전기 > 기타 특별 G/L 거래 > 고객에 대한 대체조정계정 정의",
@@ -998,6 +1036,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ar-reason",
+  "why4": "https://wikidocs.net/499861",
   "area": "AR",
   "item": "사유코드 정의",
   "flag": "국내에선 잘 안 씀 · 차이나면 끝까지 직접 확인함",
@@ -1019,6 +1058,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ar-cashdisc",
+  "why4": "https://wikidocs.net/499861",
   "area": "AR",
   "item": "현금할인/지급차이 처리",
   "flag": "국내에선 잘 안 씀 · 할인하면 세금계산서 다시 끊어야 함",
@@ -1039,6 +1079,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ar-overunder",
+  "why4": "https://wikidocs.net/499861",
   "area": "AR",
   "item": "초과/미달지급 처리",
   "flag": "국내에선 잘 안 씀 · 1원도 안 놓치고 끝까지 받아냄",
@@ -1118,6 +1159,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "aa-depchart",
+  "why4": "https://wikidocs.net/499888",
   "area": "자산회계",
   "item": "참조감가상각표 복사",
   "ecc": "재무회계 > 자산 회계 > 조직 구조 > 참조감가상각표/감가상각영역 복사",
@@ -1155,6 +1197,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "aa-deparea",
+  "why4": "https://wikidocs.net/499888",
   "area": "자산회계",
   "item": "감가상각영역 정의",
   "ecc": "재무회계 > 자산 회계 > 일반 평가 > 감가상각영역 정의",
@@ -1174,6 +1217,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "aa-class",
+  "why4": "https://wikidocs.net/499886",
   "area": "자산회계",
   "item": "자산클래스 정의",
   "ecc": "재무회계 > 자산 회계 > 자산 데이터 구조 > 자산클래스 정의",
@@ -1192,6 +1236,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "aa-acctdet",
+  "why4": "https://wikidocs.net/499886",
   "area": "자산회계",
   "item": "자산 계정결정",
   "ecc": "재무회계 > 자산 회계 > 통합 > FI-GL과의 통합 > 계정결정 지정",
@@ -1210,6 +1255,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "aa-numrange",
+  "why4": "https://wikidocs.net/499886",
   "area": "자산회계",
   "item": "자산 번호범위",
   "ecc": "재무회계 > 자산 회계 > 조직 구조 > 번호범위간격 정의",
@@ -1227,6 +1273,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "aa-depkey",
+  "why4": "https://wikidocs.net/499888",
   "area": "자산회계",
   "item": "감가상각키",
   "ecc": "재무회계 > 자산 회계 > 감가상각 > 평가방법 > 감가상각키 유지보수",
@@ -1250,7 +1297,7 @@ const GUIDE_DATA = [
   "ecc": "재무회계 > 자산 회계 > 거래 > 취득/처분에 대한 거래유형 정의",
   "pce": "재무회계 > 자산 회계 > 거래",
   "pub": "CBC: Finance > Asset Accounting > Define Transaction Types (제한적)",
-  "diff": "Public 매핑 ◐ 유사/대체 — 표준 거래유형 대부분 고정, 신규 추가 범위 제한. 스코프아이템 J62 / 취득·처분·대체 거래유형. ECC와 동일. Public에서는 새 거래유형을 추가할 수 없고 제공된 표준 유형을 사용해야 한다. S/4HANA에서는 거래유형을 감가상각영역별로 제한할 필요가 줄었다. 손상차손을 별도 거래유형의 비계획 상각으로 처리하려 했으나 거래유형 추가가 불가능했고, 비계획 상각 계정지정의 계정을 바꾸려 했지만 기존 지정 계정에 이미 전표가 있어 변경하지 못했던 사례가 있다. 프로젝트 초기에 계정 체계를 확정하는 것이 중요하다.",
+  "diff": "Public 매핑 ◐ 유사/대체 — 표준 거래유형 대부분 고정, 신규 추가 범위 제한. 스콥아이템 J62 / 취득·처분·대체 거래유형. ECC와 동일. Public에서는 새 거래유형을 추가할 수 없고 제공된 표준 유형을 사용해야 한다. S/4HANA에서는 거래유형을 감가상각영역별로 제한할 필요가 줄었다. 손상차손을 별도 거래유형의 비계획 상각으로 처리하려 했으나 거래유형 추가가 불가능했고, 비계획 상각 계정지정의 계정을 바꾸려 했지만 기존 지정 계정에 이미 전표가 있어 변경하지 못했던 사례가 있다. 프로젝트 초기에 계정 체계를 확정하는 것이 중요하다.",
   "help": [],
   "tags": [
    "자산"
@@ -1262,6 +1309,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "aa-yearend",
+  "why4": "https://wikidocs.net/499877",
   "area": "자산회계",
   "item": "자산 연마감/이월 (AJAB)",
   "ecc": "AJAB (자산 연말마감)",
@@ -1281,6 +1329,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "tax-code",
+  "why4": "https://wikidocs.net/499898",
   "area": "세금",
   "item": "세금코드 정의",
   "ecc": "재무회계 > 재무회계 기본세팅 > 부가가치세 > 전기 > 세금코드 정의",
@@ -1300,6 +1349,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "tax-account",
+  "why4": "https://wikidocs.net/499898",
   "area": "세금",
   "item": "세금계정 정의",
   "ecc": "재무회계 > 재무회계 기본세팅 > 부가가치세 > 전기 > 세금계정 정의",
@@ -1318,6 +1368,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "tax-procedure",
+  "why4": "https://wikidocs.net/499898",
   "area": "세금",
   "item": "계산절차 점검 및 국가 지정",
   "ecc": "재무회계 > 재무회계 기본세팅 > 부가가치세 > 전기 > 계산절차 점검 / 국가를 계산절차에 지정",
@@ -1335,6 +1386,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "tax-nontax",
+  "why4": "https://wikidocs.net/499898",
   "area": "세금",
   "item": "비과세거래 세금코드",
   "ecc": "재무회계 > 재무회계 기본세팅 > 부가가치세 > 전기 > 비과세 거래에 대한 세금코드 정의",
@@ -1352,6 +1404,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "wth-type",
+  "why4": "https://wikidocs.net/499898",
   "area": "세금",
   "item": "원천세유형/코드 정의",
   "ecc": "재무회계 > 재무회계 기본세팅 > 원천세 > 확장된 원천세 > 원천세키/코드 정의",
@@ -1372,6 +1425,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "wth-section",
+  "why4": "https://wikidocs.net/499898",
   "area": "세금",
   "item": "섹션코드/사업장 정의",
   "ecc": "재무회계 > 재무회계 기본세팅 > 원천세 > 사업장/섹션코드 정의",
@@ -1390,6 +1444,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-area",
+  "why4": "https://wikidocs.net/499864",
   "area": "CO",
   "item": "관리영역 정의",
   "ecc": "관리회계 > 관리회계 기본 설정 > 조직 > 관리영역 유지보수",
@@ -1429,6 +1484,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-celem",
+  "why4": "https://wikidocs.net/499864",
   "area": "CO",
   "item": "원가요소 범주 (G/L계정 통합)",
   "ecc": "관리회계 > 원가요소 회계 > 원가요소 마스터 데이터 > 1차/2차 원가요소 생성",
@@ -1451,6 +1507,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-version",
+  "why4": "https://wikidocs.net/499865",
   "area": "CO",
   "item": "CO 버전 유지보수",
   "ecc": "관리회계 > 관리회계 기본 설정 > 버전 유지보수",
@@ -1469,6 +1526,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-okb9",
+  "why4": "https://wikidocs.net/499864",
   "area": "CO",
   "item": "OKB9 자동계정결정 (CO 오브젝트)",
   "ecc": "재무회계 > 총계정원장 > 자동계정결정 > OKB9 (CO 오브젝트 기본값)",
@@ -1490,6 +1548,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-ccenter",
+  "why4": "https://wikidocs.net/499864",
   "area": "CO",
   "item": "코스트센터/표준계층",
   "ecc": "관리회계 > 코스트센터 회계 > 마스터 데이터 > 코스트센터/표준계층",
@@ -1510,6 +1569,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-acttype",
+  "why4": "https://wikidocs.net/499864",
   "area": "CO",
   "item": "활동유형",
   "ecc": "관리회계 > 코스트센터 회계 > 마스터 데이터 > 활동유형",
@@ -1529,6 +1589,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-order",
+  "why4": "https://wikidocs.net/499870",
   "area": "CO",
   "item": "내부오더 유형",
   "ecc": "관리회계 > 내부오더 > 오더 마스터 데이터 > 오더 유형 정의",
@@ -1549,6 +1610,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-settle",
+  "why4": "https://wikidocs.net/499870",
   "area": "CO",
   "item": "정산 프로파일/배분구조",
   "ecc": "관리회계 > 내부오더 > 실제전기 > 정산 > 정산 프로파일/배분구조 정의",
@@ -1569,6 +1631,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-alloc",
+  "why4": "https://wikidocs.net/499869",
   "area": "CO",
   "item": "배부/분배 사이클 정의",
   "ecc": "관리회계 > 코스트센터 회계 > 기말결산 > 실제전기 > 배부/분배",
@@ -1589,6 +1652,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-skf",
+  "why4": "https://wikidocs.net/499869",
   "area": "CO",
   "item": "통계지표 정의",
   "ecc": "관리회계 > 코스트센터 회계 > 마스터 데이터 > 통계지표",
@@ -1609,6 +1673,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-repost",
+  "why4": "https://wikidocs.net/499869",
   "area": "CO",
   "item": "정기 재전기",
   "ecc": "관리회계 > 코스트센터 회계 > 기말결산 > 실제전기 > 정기 재전기",
@@ -1629,6 +1694,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-order-budget",
+  "why4": "https://wikidocs.net/499866",
   "area": "CO",
   "item": "내부오더 예산관리",
   "ecc": "관리회계 > 내부오더 > 예산 > 예산관리",
@@ -1649,6 +1715,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-prctr",
+  "why4": "https://wikidocs.net/499872",
   "area": "CO",
   "item": "손익센터 정의",
   "ecc": "관리회계 > 손익센터 회계 > 마스터 데이터 > 손익센터",
@@ -1670,6 +1737,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-ml",
+  "why4": "https://wikidocs.net/499879",
   "area": "CO",
   "item": "자재원장 활성화/실제원가계산",
   "ecc": "관리회계 > 자재원장 > 자재원장 활성화",
@@ -1691,6 +1759,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-costvar",
+  "why4": "https://wikidocs.net/499867",
   "area": "CO",
   "item": "원가계산 변형",
   "ecc": "관리회계 > 제품원가 관리 > 원가계산 > 원가계산 변형 정의",
@@ -1710,6 +1779,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-opcon",
+  "why4": "https://wikidocs.net/499872",
   "area": "CO",
   "item": "경영단위 정의",
   "ecc": "관리회계 > 수익성 분석 > 구조 > 경영단위 유지보수",
@@ -1730,6 +1800,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-margin",
+  "why4": "https://wikidocs.net/499872",
   "area": "CO",
   "item": "마진분석 (계정기반 수익성분석)",
   "ecc": "관리회계 > 수익성 분석 > 경영단위 (계정기반)",
@@ -1750,6 +1821,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-sd-copa",
+  "why4": "https://wikidocs.net/499872",
   "area": "CO",
   "item": "SD 조건유형 → COPA 값필드 매핑",
   "ecc": "관리회계 > 수익성 분석 > 플로우 > SD 인터페이스 > 조건유형을 값필드에 매핑",
@@ -1770,12 +1842,13 @@ const GUIDE_DATA = [
  },
  {
   "id": "close-cockpit",
+  "why4": "https://wikidocs.net/499877",
   "area": "결산",
   "item": "결산콕핏",
   "ecc": "재무회계 > 총계정원장 회계 > 정기 처리 > 결산콕핏 (작업 템플릿·태스크 정의)",
   "pce": "재무회계 > 총계정원장 회계 > 정기 처리 > 결산콕핏",
   "pub": "SAP S/4HANA Cloud for Advanced Financial Closing (Fiori: Manage Closing Tasks / Process Closing Tasks)",
-  "diff": "Public 매핑 ◐ 유사/대체 — 스코프아이템·라이선스 확인 필요 / S/4HANA 결산콕핏은 Fiori 기반 스케줄링·모니터링으로 고도화. 작업 템플릿·의존성 정의 체계는 ECC와 유사. ECC 결산콕핏은 작업을 하나씩 등록해야 해 초기 설정 공수가 들고, 소규모 회계팀에서는 엑셀 체크리스트가 더 실용적이라 정착이 어려울 수 있다. Public은 표준 통합 콕핏 대신 별도 라이선스의 SAP Advanced Financial Closing과 4HG 연동을 검토한다.",
+  "diff": "Public 매핑 ◐ 유사/대체 — 스콥아이템·라이선스 확인 필요 / S/4HANA 결산콕핏은 Fiori 기반 스케줄링·모니터링으로 고도화. 작업 템플릿·의존성 정의 체계는 ECC와 유사. ECC 결산콕핏은 작업을 하나씩 등록해야 해 초기 설정 공수가 들고, 소규모 회계팀에서는 엑셀 체크리스트가 더 실용적이라 정착이 어려울 수 있다. Public은 표준 통합 콕핏 대신 별도 라이선스의 SAP Advanced Financial Closing과 4HG 연동을 검토한다.",
   "help": [
    "https://blog.sap-press.com/key-changes-to-period-end-closing-in-s/4hana-finance"
   ],
@@ -1789,6 +1862,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "close-fxval",
+  "why4": "https://wikidocs.net/499877",
   "area": "결산",
   "item": "외화평가",
   "ecc": "재무회계 > 총계정원장 회계 > 정기처리 > 평가 > 외화평가 > 외화평가에 대한 자동전기 준비",
@@ -1807,6 +1881,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "close-carryfwd",
+  "why4": "https://wikidocs.net/499880",
   "area": "결산",
   "item": "잔액이월",
   "ecc": "F.16 (G/L), F.07 (AP/AR), AJRW (자산)",
@@ -1824,12 +1899,13 @@ const GUIDE_DATA = [
  },
  {
   "id": "close-accrual",
+  "why4": "https://wikidocs.net/499877",
   "area": "결산",
   "item": "발생엔진 (Accrual Engine)",
   "ecc": "재무회계 > 총계정원장 회계 > 정기처리 > 기간손익/발생엔진 설정",
   "pce": "재무회계 > 총계정원장 회계 > 정기 처리 > 발생엔진",
   "pub": "Accruals Management: Fiori Manage Accrual Objects (Manual Accruals) / Purchase Order Accruals",
-  "diff": "Public 매핑 ◐ 유사/대체 — 스코프아이템 ID 확인 필요 / 발생유형·평가영역·규칙세트 정의 체계는 ECC와 동일. S/4HANA에서는 구매오더 발생액 Fiori 앱(2VB)과 연계. S/4HANA Cloud Public Edition 2608 현재 재무 쪽 수기 발생엔진은 제공되지 않는다. 구매오더 기반 발생액(2VB)이 Accrual Engine 위에서 동작하며, MM 조달 프로세스를 쓰지 않는 회사에는 적용이 어려워 반복전표나 수기 전표를 검토한다.",
+  "diff": "Public 매핑 ◐ 유사/대체 — 스콥아이템 ID 확인 필요 / 발생유형·평가영역·규칙세트 정의 체계는 ECC와 동일. S/4HANA에서는 구매오더 발생액 Fiori 앱(2VB)과 연계. S/4HANA Cloud Public Edition 2608 현재 재무 쪽 수기 발생엔진은 제공되지 않는다. 구매오더 기반 발생액(2VB)이 Accrual Engine 위에서 동작하며, MM 조달 프로세스를 쓰지 않는 회사에는 적용이 어려워 반복전표나 수기 전표를 검토한다.",
   "help": [],
   "tags": [
    "결산"
@@ -1841,6 +1917,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "close-recurr",
+  "why4": "https://wikidocs.net/499874",
   "area": "결산",
   "item": "정기/반복전표",
   "ecc": "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 정기전표",
@@ -1860,6 +1937,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "xmod-obyc",
+  "why4": "https://wikidocs.net/499845",
   "area": "타모듈 연결",
   "item": "MM-FI 자동계정결정 (OBYC)",
   "ecc": "자재관리 > 평가 및 계정지정 > 계정결정 > 계정결정 마법사",
@@ -1896,12 +1974,13 @@ const GUIDE_DATA = [
  },
  {
   "id": "xmod-ml",
+  "why4": "https://wikidocs.net/499879",
   "area": "타모듈 연결",
   "item": "자재원장 활성화",
   "ecc": "선택 사항 (관리회계 > 실제원가계산/자재원장)",
   "pce": "관리회계 > 실제원가계산/자재원장 > 자재원장 활성화",
   "pub": "(사전 구성) 자재원장 상시 활성",
-  "diff": "Public 매핑 ○ 고정/미지원 — 실제원가계산은 별도 스코프아이템(CKMLCP 항목 참조) / S/4HANA에서는 모든 플랜트에 자재원장 활성화가 필수. MLDOC·MLDOCCCS 테이블로 평가하며 Universal Journal과 통합.",
+  "diff": "Public 매핑 ○ 고정/미지원 — 실제원가계산은 별도 스콥아이템(CKMLCP 항목 참조) / S/4HANA에서는 모든 플랜트에 자재원장 활성화가 필수. MLDOC·MLDOCCCS 테이블로 평가하며 Universal Journal과 통합.",
   "help": [
    "https://blog.sap-press.com/the-material-ledger-and-actual-costing-with-sap-s4hana"
   ],
@@ -1916,6 +1995,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "xmod-vkoa",
+  "why4": "https://wikidocs.net/499857",
   "area": "타모듈 연결",
   "item": "SD 수익계정결정 (VKOA)",
   "ecc": "영업 및 유통 > 기본 기능 > 계정지정/원가계산 > 수익 계정 결정",
@@ -1935,6 +2015,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "xmod-copamap",
+  "why4": "https://wikidocs.net/499872",
   "area": "타모듈 연결",
   "item": "SD 조건유형→CO-PA 값필드 매핑",
   "ecc": "관리회계 > 수익성 분석 > 플로우 > 실제값 > SD 조건유형/계정키 지정",
@@ -1953,6 +2034,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "xmod-assetpo",
+  "why4": "https://wikidocs.net/499886",
   "area": "타모듈 연결",
   "item": "자산구매오더 계정지정범주",
   "ecc": "재무회계 > 자산 회계 > ... > 자산구매오더에 대한 계정지정범주 정의",
@@ -1973,6 +2055,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "xmod-sdbill",
+  "why4": "https://wikidocs.net/499857",
   "area": "타모듈 연결",
   "item": "SD 인도·청구와 FI 전기 연계",
   "ecc": "영업 및 유통 > 청구 > 청구문서 > 회계전기 연계",
@@ -1992,6 +2075,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "xmod-griradj",
+  "why4": "https://wikidocs.net/499846",
   "area": "타모듈 연결",
   "item": "GR/IR 반제 수정계정",
   "ecc": "재무회계 > 총계정원장 회계 > 정기처리 > 재분류 > GRIR 반제에 대한 수정계정 정의",
@@ -2010,6 +2094,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "xmod-interco",
+  "why4": "https://wikidocs.net/499881",
   "area": "타모듈 연결",
   "item": "회사간 전기 자동계정결정",
   "ecc": "재무회계 > 재무회계 기본세팅 > 전표 > 회사간 전기 자동계정결정",
@@ -2028,6 +2113,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-negative-posting",
+  "why4": "https://wikidocs.net/499874",
   "area": "G/L",
   "item": "음의전기 허용",
   "ecc": "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 조정 전기 / 역분개 > 음의전기허용",
@@ -2047,6 +2133,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-reversal-reason",
+  "why4": "https://wikidocs.net/499874",
   "area": "G/L",
   "item": "역분개사유 정의",
   "ecc": "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 조정 전기 / 역분개 > 역분개사유 정의",
@@ -2066,6 +2153,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "gl-fx-diff-acct",
+  "why4": "https://wikidocs.net/499877",
   "area": "G/L",
   "item": "환율차이 계정 정의",
   "ecc": "재무회계 > 총계정원장 회계 > 비즈니스 트랜잭션 > 미결 항목 반제 > 환율차이에 대한 계정 정의",
@@ -2084,6 +2172,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "aa-settlement",
+  "why4": "https://wikidocs.net/499887",
   "area": "자산회계",
   "item": "자산 정산프로파일 정의",
   "ecc": "재무회계 > 자산회계 > 거래 > 건설가계정 자본화 > 정산프로파일 정의 / 지정",
@@ -2102,6 +2191,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "co-auc-settle",
+  "why4": "https://wikidocs.net/499887",
   "area": "자산회계",
   "item": "AUC 정산 (건설중인자산 → 본자산)",
   "ecc": "자산회계 > 기말결산 > 건설가계정(AuC) 정산",
@@ -2125,6 +2215,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "wth-account",
+  "why4": "https://wikidocs.net/499898",
   "area": "세금",
   "item": "지급 원천세 계정 정의",
   "ecc": "재무회계 > 재무회계 기본세팅 > 원천세 > 확장된 원천세 > 전기 > 원천세 계정 > 지급될 원천세에 대한 계정정의",
@@ -2142,11 +2233,12 @@ const GUIDE_DATA = [
  },
  {
   "id": "ml-ckmlcp-steps",
+  "why4": "https://wikidocs.net/499879",
   "area": "CO",
   "item": "실제원가계산 실행(CKMLCP) 8단계",
   "ecc": "관리회계 > 제품원가통제 > 실제원가계산/자재원장 > 실제원가계산 (CKMLCP)",
   "pce": "관리회계 > 제품원가통제 > 실제원가계산/자재원장 > 실제원가계산 (CKMLCP)",
-  "pub": "스코프아이템 33Q (Actual Costing) / Fiori: Run Actual Costing",
+  "pub": "스콥아이템 33Q (Actual Costing) / Fiori: Run Actual Costing",
   "diff": "Public 매핑 ◐ 유사/대체 — 실행 단계 구성은 표준 고정 / ECC에서는 ML 없이 표준원가·이동평균으로 마감했지만, S/4에서는 CKMLCP 8단계 런이 실제원가 확정의 표준 절차다. 순서 결정→단일·다수준 가격결정→소비·WIP 재평가→사후마감→가격 표시 순서로 돌린다.",
   "help": [],
   "tags": [
@@ -2158,6 +2250,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ml-parallel-valuation",
+  "why4": "https://wikidocs.net/499879",
   "area": "CO",
   "item": "병렬 통화/평가·이전가격",
   "ecc": "관리회계 > 일반통제 > 다중평가접근/이전가격 (SPRO)",
@@ -2174,6 +2267,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ml-consumption-cc-cf",
+  "why4": "https://wikidocs.net/499879",
   "area": "CO",
   "item": "소비재평가 CC/CF·이동유형그룹",
   "ecc": "관리회계 > 제품원가통제 > 실제원가계산/자재원장 > 자재갱신 > 자재원장의 이동유형그룹 지정",
@@ -2190,6 +2284,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ml-cogs-split",
+  "why4": "https://wikidocs.net/499879",
   "area": "CO",
   "item": "COGS 원가요소별 계정 분할",
   "ecc": "(지원 안 됨 — 단일 COGS 계정)",
@@ -2206,6 +2301,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ml-wip-revaluation",
+  "why4": "https://wikidocs.net/499878",
   "area": "CO",
   "item": "WIP 재평가",
   "ecc": "CKMLCP 6단계 WIP 재평가",
@@ -2222,6 +2318,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ml-price-marking",
+  "why4": "https://wikidocs.net/499879",
   "area": "CO",
   "item": "실제원가의 표준원가 표시",
   "ecc": "CKMLCP 8단계 자재가격 표시",
@@ -2237,6 +2334,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "ml-fx-exclusion",
+  "why4": "https://wikidocs.net/499879",
   "area": "CO",
   "item": "가격결정 시 환율차이 제외",
   "ecc": "CKMLCP 사용자정의 옵션",
@@ -2256,7 +2354,7 @@ const GUIDE_DATA = [
   "item": "리스회계 인식 방식 (IFRS16)",
   "ecc": "",
   "pce": "",
-  "pub": "Lease-In Accounting (계약 기반 리스 관리, 스코프아이템 ID 확인 필요)",
+  "pub": "Lease-In Accounting (계약 기반 리스 관리, 스콥아이템 ID 확인 필요)",
   "diff": "Public 매핑 ◐ 유사/대체 — RE-FX 기반 기능과 비교 필요. 원본 ECC/PCE 경로 공란 / IFRS16에 따라 리스 계약의 사용권자산과 리스부채를 재무상태표에 계상한다. ECC에는 내장 리스회계 기능이 없어 별도 애드온이나 수기 처리로 대응하고, S/4HANA부터 RE-FX 기반 리스회계가 내장됐다. Public의 지원 범위는 별도 확인이 필요하다.",
   "help": [],
   "tags": [
@@ -2301,6 +2399,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "tmp-cvi-sync",
+  "why4": "https://wikidocs.net/499842",
   "area": "조직구조",
   "item": "CVI 고객·공급처 동기화",
   "ecc": "CVI 선택 적용 (확인 중)",
@@ -2317,6 +2416,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "etc-mass-clearing",
+  "why4": "https://wikidocs.net/499861",
   "area": "AR",
   "item": "일일 정산 → 대량전표 → 미수금 반제",
   "ecc": "대량전표 파일 업로드·배치 전기 (확인 중)",
@@ -2334,6 +2434,7 @@ const GUIDE_DATA = [
  },
  {
   "id": "im-invest-program",
+  "why4": "https://wikidocs.net/499885",
   "area": "CO",
   "item": "투자 프로그램 정의",
   "ecc": "",
