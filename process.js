@@ -4,6 +4,7 @@
   function esc(x) { return String(x == null ? "" : x).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function gUrl(q) { return "https://www.google.com/search?q=" + encodeURIComponent(q); }
   function whyLink(q, cls) { return '<a class="' + (cls || "why-link") + '" href="' + gUrl(q) + '" target="_blank" rel="noopener" title="왜 필요한지 구글 검색">why?</a>'; }
+  function why4Link(n) { var w = n.why4 ? (Array.isArray(n.why4) ? n.why4 : [n.why4]) : []; if (!w.length) return whyLink("sap why " + n.name); return w.map(function (u, i) { return '<a class="why-link" href="' + u + '" target="_blank" rel="noopener" title="4권에서 왜를 보기' + (w.length > 1 ? ' (' + (i + 1) + '/' + w.length + ')' : '') + '">why?</a>'; }).join(" "); }
   function tcodeAnchor(c) { return "u-" + String(c).replace(/[^A-Za-z0-9_-]/g, "-"); }
   function cfgName(id) { var x = (typeof GUIDE_DATA !== "undefined") ? GUIDE_DATA.find(function (v) { return v.id === id; }) : null; return x ? (x.item || x.title_kr || id) : id; }
   function termName(id) { var x = (typeof GLOSSARY !== "undefined") ? GLOSSARY.find(function (v) { return v.id === id; }) : null; return x ? (x.kr || id) : id; }
@@ -201,7 +202,7 @@
     var d = document.getElementById("detail");
     var h = "<h4>" + (n.main ? "◆ " : "") + esc(n.name) +
       ' <a class="item-link" href="' + gUrl("SAP " + n.name) + '" target="_blank" rel="noopener" title="구글 검색으로 열기"><i class="ext">↗</i></a> ' +
-      whyLink("sap why " + n.name) +
+      why4Link(n) +
       '<span class="en">' + esc(n.en || "") + "</span></h4>";
     h += '<div class="meta">' + laneName(n.lane) + " · " + PROCESS_STEPS[n.step] + " 단계" + (n.posting ? " · 전표: " + esc(n.posting) : "") + "</div>";
     h += "<p>" + esc(n.desc) + "</p>";
