@@ -148,7 +148,7 @@ const GLOSSARY = [
   "kr": "중간계정",
   "en": "Clearing Account",
   "abbr": "",
-  "desc": "돈이나 물건이 잠시 거쳐 가는 계정이다. GR/IR처럼 입고와 송장이 따로 들어올 때, 두 쪽이 맞을 때까지 금액을 임시로 묶어 둔다.",
+  "desc": "돈이나 물건이 잠시 거쳐 가는 계정이다. GR/IR처럼 입고와 송장이 따로 들어올 때, 두 쪽이 맞을 때까지 금액을 임시로 묶어 둔다. 은행명세서 대사의 입금·출금 청산계정(클리어링계정)이나 자산 회계의 기술적 상계계정과는 다른 자리다.",
   "area": "gl",
   "items": [
    "gl-clear-prep"
@@ -156,7 +156,9 @@ const GLOSSARY = [
   "terms": [
    "gr-ir",
    "clearing",
-   "reconciliation-account"
+   "reconciliation-account",
+   "bank-clearing-account",
+   "technical-clearing-account"
   ],
   "menus": [
    "F.13"
@@ -2747,7 +2749,7 @@ const GLOSSARY = [
   "kr": "자금수지계획",
   "en": "Cash Flow Planning",
   "abbr": "",
-  "desc": "앞으로 들어오고 나갈 현금을 미리 짜보는 계획. 손익이 아니라 현금 기준으로 세워 자금이 모자랄 때를 대비한다.",
+  "desc": "앞으로 들어오고 나갈 현금을 미리 짜보는 계획. 손익이 아니라 현금 기준으로 세워 자금이 모자랄 때를 대비한다. 자금수지 리포트는 기초자금에 수입을 더하고 지출을 빼서 기말자금을 보여주며, 수입·지출은 경상·투자·금융으로 나눈다.",
   "area": "bank",
   "items": [],
   "terms": [
@@ -3885,6 +3887,71 @@ const GLOSSARY = [
   "terms": [
    "availability-control",
    "funds-management-area"
+  ]
+ },
+ {
+  "id": "own-promissory-note",
+  "kr": "자수어음",
+  "en": "Own Promissory Note",
+  "abbr": "",
+  "desc": "우리 회사가 발행인으로 쓴 어음. 우리 장부에서는 지급어음(부채)이 된다. 만기가 되면 어음 금액을 지급해야 한다.",
+  "area": "bank",
+  "items": [],
+  "terms": [
+   "third-party-promissory-note",
+   "electronic-promissory-note"
+  ]
+ },
+ {
+  "id": "third-party-promissory-note",
+  "kr": "타수어음",
+  "en": "Third-Party Promissory Note",
+  "abbr": "",
+  "desc": "거래처가 발행인으로 써서 우리에게 준 어음. 우리 장부에서는 받을어음(자산)이 된다. 타수어음을 받으면 배서인(어음을 넘겨준 사람)이 누구인지도 함께 관리한다.",
+  "area": "bank",
+  "items": [],
+  "terms": [
+   "own-promissory-note",
+   "electronic-promissory-note"
+  ]
+ },
+ {
+  "id": "electronic-promissory-note",
+  "kr": "전자어음",
+  "en": "Electronic Promissory Note",
+  "abbr": "",
+  "desc": "기업 간 거래에서 쓰는 전자어음. 「전자어음의 발행 및 유통에 관한 법률」에 따라 외부감사 대상 법인 등 일정 요건의 법인은 종이 어음이 아니라 금융결제원 전자어음 시스템(U-Note)으로만 어음을 발행해야 한다. 만기는 발행일부터 1년을 넘길 수 없고, 배서는 20회까지만 된다.",
+  "area": "bank",
+  "items": [],
+  "terms": [
+   "own-promissory-note",
+   "third-party-promissory-note"
+  ]
+ },
+ {
+  "id": "bank-clearing-account",
+  "kr": "은행대사 청산계정",
+  "en": "Bank Clearing Account",
+  "abbr": "",
+  "desc": "은행명세서 대사 때 입금·출금 금액이 잠시 거쳐 가는 청산계정이다. 명세서 금액이 먼저 청산계정에 잡히고, 미결항목과 대사가 끝나면 반제된다. 현장에서는 클리어링계정이라고도 부른다. 자산 회계의 기술적 상계계정과는 다른 자리다.",
+  "area": "bank",
+  "items": [],
+  "terms": [
+   "clearing-account",
+   "technical-clearing-account"
+  ]
+ },
+ {
+  "id": "technical-clearing-account",
+  "kr": "기술적 상계계정",
+  "en": "Technical Clearing Account",
+  "abbr": "",
+  "desc": "고정자산 취득·처분 때 잠시 거쳐 가는 기술적 계정이다. 취득원가를 잠시 묶어 두었다가 자산으로 넘기는 자리로, 은행명세서 대사의 청산계정(클리어링계정)과는 다른 자리다. 현장에서는 기술적임시계정이라고도 부른다.",
+  "area": "gl",
+  "items": [],
+  "terms": [
+   "clearing-account",
+   "bank-clearing-account"
   ]
  }
 ];
