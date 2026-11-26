@@ -8,6 +8,8 @@ SAP R/3, ECC, S/4HANA PCE, PUBLIC 버전별로 매번 위치 찾기가 어려워
 베타버전이니 피드백 해주시면 업데이트 및 기여자 코멘트에 반영하겠습니다.
 감사합니다.
 
+why 시리즈 4권 『S/4HANA FI Process Guide — why?』가 위키독스에 공개됐다: https://wikidocs.net/book/22335
+
 ## 피드백
 - 사이트 내 피드백 페이지: https://hunykang.github.io/sap-config-compare/feedback.html
 - 블로그 방명록: https://hksap.tistory.com/guestbook
